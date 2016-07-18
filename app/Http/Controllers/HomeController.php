@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests;
 use Illuminate\Http\Request;
+use App\Library\myfunction;
 
 class HomeController extends Controller
 {
@@ -24,6 +25,11 @@ class HomeController extends Controller
      */
     public function index()
     {
-        return view('home');
+
+        $myFunction = new myFunction;
+        $myFunction->fucntion1();
+        $data['name'] = 'huy';
+        $data['age'] = '28';
+        return view("home",$data);
     }
 }

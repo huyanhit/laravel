@@ -10,7 +10,10 @@
 	    <script src="./resources/assets/js/app.js" type="text/javascript"></script>
 	</head>
 	<body id="layout">
+
 		@include('include.header')
+		@include('include.module-headerline')
+		@include('include.module-intro')
 	    @yield('content')
 	    @include('include.footer')
 	</body>

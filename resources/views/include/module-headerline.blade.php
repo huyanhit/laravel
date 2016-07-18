@@ -1,6 +1,6 @@
 <div id="headline" class="container">
 	<div class="row-fluid">
-		
+		{{$name}}
 		<div class="span3">
 			<article class="post">
 				<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
