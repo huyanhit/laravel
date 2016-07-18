@@ -155,6 +155,7 @@ return [
         App\Providers\AuthServiceProvider::class,
         App\Providers\EventServiceProvider::class,
         App\Providers\RouteServiceProvider::class,
+        App\Modules\ModulesServiceProvider::class,
 
     ],
 
@@ -203,5 +204,5 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
 
     ],
-
+    
 ];

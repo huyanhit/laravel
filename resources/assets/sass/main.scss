@@ -1,0 +1,64 @@
+body{
+    margin: 50px AUTO;
+    background: #eee;
+    a:hover{
+  	text-decoration: none;
+	}
+}
+#header {
+    background: #3D4C54;
+    height: 50px;
+    #logo{
+  		line-height: 50px;
+	}
+	nav{
+  		line-height: 50px;
+  		ul{
+		    list-style: none;
+		    float: right;
+		    margin: 0;
+		    li{
+			 	float: left;
+			  	padding: 0 10px;
+			  	border-right: 1px solid #485a63;
+			  	position: relative;
+			  	a{
+				   color: #fff;
+				}
+				&:hover{
+				   background: #303e45;
+				   ul{
+					    position: absolute;
+					    opacity: 1;
+					    transition: all 0.3s;
+					    background: #3D4C54;
+					    top: 50px;
+					}
+				}
+				ul{
+				    position: absolute;
+				    opacity: 0;
+				    background: #303e45;
+				    padding: 0;
+				    min-width: 176px;
+				    top: 60px;
+				    left: 0;
+				    li{
+					    clear: both;
+					    width: 100%;
+					    border: none;
+					    line-height: 35px;
+					    font-size: 13px;
+						a{
+						    color: #ddd;
+						}
+					}
+				}
+			}
+		}
+		.icon-home img{
+	    	position: relative;
+	    	top: -3px;
+		}
+	}
+}

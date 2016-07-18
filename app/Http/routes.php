@@ -12,18 +12,13 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 	
 Route::get('/contact', 'ContactController@contact');
-Route::auth();
 
 Route::get('/home', 'HomeController@index');
 
-Route::auth();
-
 Route::get('/home', 'HomeController@index');
-
-Route::auth();
 
 Route::get('/home', 'HomeController@index');
