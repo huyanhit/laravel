@@ -1,7 +1,7 @@
 @import url(https://fonts.googleapis.com/css?family=Lato);
 body {
   margin: 50px AUTO;
-  background: #eee; }
+  background: #fff; }
   body a:hover {
     text-decoration: none; }
 
@@ -30,15 +30,17 @@ body {
             opacity: 1;
             transition: all 0.3s;
             background: #3D4C54;
-            top: 50px; }
+            top: 50px;
+            z-index: 2; }
         #header nav ul li ul {
           position: absolute;
           opacity: 0;
           background: #303e45;
           padding: 0;
           min-width: 176px;
-          top: 60px;
-          left: 0; }
+          top: 100px;
+          left: 0;
+          z-index: -1; }
           #header nav ul li ul li {
             clear: both;
             width: 100%;
@@ -50,6 +52,32 @@ body {
     #header nav .icon-home img {
       position: relative;
       top: -3px; }
+
+#headline {
+  background: #ebebeb;
+  padding: 15px 7px 0; }
+  #headline .item {
+    margin: 0 7px; }
+  #headline article {
+    background: #FFF;
+    margin-bottom: 15px;
+    padding: 10px; }
+    #headline article > a {
+      width: 40%;
+      float: left;
+      margin-right: 10px; }
+      #headline article > a img {
+        width: 100%; }
+    #headline article .entry h3 {
+      margin: 0;
+      font-size: 13px;
+      font-weight: normal;
+      line-height: 16px; }
+    #headline article .entry p {
+      color: #939EAD;
+      font-size: 12px;
+      margin: 0;
+      padding-top: 5px; }
 
 @media only screen and (max-width: 767px) {
   .main {

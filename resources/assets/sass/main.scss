@@ -1,6 +1,6 @@
 body{
     margin: 50px AUTO;
-    background: #eee;
+    background: #fff;
     a:hover{
   	text-decoration: none;
 	}
@@ -33,6 +33,7 @@ body{
 					    transition: all 0.3s;
 					    background: #3D4C54;
 					    top: 50px;
+					    z-index: 2;
 					}
 				}
 				ul{
@@ -41,8 +42,9 @@ body{
 				    background: #303e45;
 				    padding: 0;
 				    min-width: 176px;
-				    top: 60px;
+				    top: 100px;
 				    left: 0;
+				    z-index: -1;
 				    li{
 					    clear: both;
 					    width: 100%;
@@ -61,4 +63,40 @@ body{
 	    	top: -3px;
 		}
 	}
+}
+#headline{
+    background: #ebebeb;
+    padding: 15px 7px 0;
+    .owl-wrapper-outer{
+	}
+    .item{
+    	margin: 0 7px;
+    }
+    article{
+    	background: #FFF;
+    	margin-bottom: 15px;
+    	padding: 10px;
+    	>a{
+		    width: 40%;
+		    float: left;
+    		margin-right: 10px;
+		    img{
+		    	width: 100%		
+    		}
+    	}
+    	.entry{
+    		h3{
+			    margin: 0;
+			    font-size: 13px;
+			    font-weight: normal;
+			    line-height: 16px;
+    		}
+    		p{
+    			color: #939EAD;
+			    font-size: 12px;
+			    margin: 0;
+			    padding-top: 5px;
+    		}
+    	}
+    }
 }

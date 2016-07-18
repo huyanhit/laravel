@@ -27,9 +27,10 @@ class HomeController extends Controller
     {
 
         $myFunction = new myFunction;
-        $myFunction->fucntion1();
+        $myFunction->module_headerline();
         $data['name'] = 'huy';
         $data['age'] = '28';
+        $data['headerline']= $myFunction->module_headerline();
         return view("home",$data);
     }
 }
