@@ -6,7 +6,7 @@
 	</div>
 </div>
 <nav class="col-md-9" class="navbar">
-	<ul>
+	<ul class="main-menu">
 		<li class="icon-home"><a href="index.html"><img src="./resources/assets/images/home.png" alt="Magazine"></a></li>
 		<li class="dropdown"><a href="index.html" class="dropdown-toggle disabled">Trang chủ<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
