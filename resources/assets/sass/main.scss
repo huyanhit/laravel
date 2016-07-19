@@ -1,6 +1,11 @@
 body{
-    margin: 50px AUTO;
-    background: #fff;
+    margin: 30px AUTO;
+    background-color: #09151f;
+    background: url("../../resources/assets/images/background-new.jpg") no-repeat top center fixed;
+    color: #939ead;
+    font-family: Roboto, sans-serif;
+    font-weight: normal;
+    font-size: 13px;
     a:hover{
   	text-decoration: none;
 	}
@@ -41,10 +46,9 @@ body{
 				    opacity: 0;
 				    background: #303e45;
 				    padding: 0;
-				    min-width: 176px;
-				    top: 100px;
-				    left: 0;
-				    z-index: -1;
+				    min-width: 179px;
+				    top: 165px;
+   				    left: 0;
 				    li{
 					    clear: both;
 					    width: 100%;
@@ -100,3 +104,124 @@ body{
     	}
     }
 }
+#intro{
+	color: #939ead;
+    background: #f7f7f7;
+    border-bottom: 1px solid #d4d4d4;
+    border-top: 1px solid #d4d4d4;
+    height: 41px;
+	h3{
+    	width: 120px;
+    	float: left;
+    	color: #FFF;
+	    font-size: 11px;
+    	line-height: 41px;
+    	margin: 0;
+	    span{
+	    	background: #3d4c54;
+    		padding: 6px;
+   		 	position: relative;
+	    	&:after{
+	    		content: '';
+			    position: absolute;
+			    right: -12px;
+			    background: #3d4c54;
+			    bottom: 0px;
+			    border-left: 12px #3d4c54 solid;
+			    border-bottom: 12px #f7f7f7 solid;
+	    	}
+	    	&:before{
+	    		content: '';
+			    position: absolute;
+			    right: -12px;
+			    background: #3d4c54;
+			    top: 0px;
+			    border-left: 12px #3d4c54 solid;
+			    border-top: 12px #f7f7f7 solid;
+	    	}
+	    }
+	}
+	.simply-scroll-container { 
+		position: relative;
+		.simply-scroll-clip { 
+			position: relative;
+			overflow: hidden;
+			.simply-scroll-list { 
+				overflow: hidden;
+				margin: 0;
+				padding: 0;
+				list-style: none;
+    			height: 41px;
+				li {
+					padding: 0;
+					margin: 0;
+					list-style: none;
+					float: left; 
+					width: 500px;
+					height: 200px;
+					a{
+						font-size: 12px;
+						span{
+							&:after{
+								content: "»";
+						    	font-weight: normal;
+						    	margin: 0px 3px 0px 15px;
+							}
+							font-weight: bold;
+							color: #005580;
+						}
+					}
+				}
+			}
+			.simply-scroll { 
+				height: 41px;
+				margin-bottom: 1em;
+			}
+		}
+
+	}
+	ul{
+    	margin: 0;
+		list-style: none;
+    	line-height: 11px;
+		
+	}
+	#searchform{
+		p{
+			margin: 0;
+    		position: relative;
+    		background: #3d4c54;
+			&:after{
+				content: "\f002";
+			    font-family: FontAwesome;
+			    position: absolute;
+			    top: 0;
+			    right: 0;
+			    line-height: 39px;
+			    width: 23%;
+			    text-align: center;
+			    color: #eee;
+			}
+		}
+		input[type="text"]{
+		    border: medium none;
+		    box-shadow: none;
+		    height: 39px;
+		    width: 77%;
+		    padding: 15px;
+		    border-left: 1px #eee solid;
+		    border-right: 1px #eee solid;
+		}
+		input[type="submit"]{
+			float: right;
+		    width: 23%;
+		    border: none;
+		    height: 39px;
+		    background: transparent;
+		    font-size: 0;
+		    z-index: 1;
+		    position: relative;
+		}
+	}
+}
+

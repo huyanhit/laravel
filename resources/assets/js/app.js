@@ -10,3 +10,6 @@ $(document).ready(function($) {
       navigation : false,
    });
 });
+$(document).ready(function($) {
+  $("#scroller").simplyScroll();
+});
