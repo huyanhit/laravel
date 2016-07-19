@@ -19,3 +19,6 @@ $(document).ready(function($) {
     controlNav: "thumbnails"
   });
 });
+$(document).ready(function($){
+  $("#tabnav").idTabs();  
+});

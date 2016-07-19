@@ -227,4 +227,138 @@ body{
 }
 #news{
 	background: white;
+	padding-top: 15px;
+	.flexslider{
+		border: none;
+		ol{
+   			border: 1px #ddd solid;
+			li{
+    			padding: 10px;
+    			img{
+    				border: 5px #ddd solid;
+    			}
+			}
+		}
+		.flex-direction-nav{
+			a{
+				top: 35%;
+				&:before{
+					font-family: FontAwesome;
+			    	color: #fff;
+				}
+			}
+			&:before{
+				font-family: FontAwesome;
+			    color: #fff;
+			}
+			.flex-next:before{
+				content: '\f105';
+			}
+			.flex-prev:before{
+				content: '\f104';
+			}
+		}
+	}
+	.news-center{
+		h3{
+			background: #3d4c54;
+		    color: #FFF;
+		    font-size: 16px;
+		    font-weight: normal;
+		    margin: 0;
+		    padding: 10px 0;
+		    text-align: center;
+		}
+		ul{
+			background: #f2f2f2;
+		    margin: 0;
+    		padding: 2px 5px;
+			li{
+			    background: #FFF;
+    			margin: 12px 8px;
+    			padding: 10px;
+			    list-style: none;
+			    position: relative;
+			    h4{
+			    	margin: 0
+			    }
+			}
+		}
+	}
 }
+#tabwidget{
+  	#tabnav{
+    	list-style: none;
+    	padding: 0;
+    	margin: 0;
+	  	h3 {
+		  	font-size:13px;
+		 	font-weight:normal;
+		  	margin:0;
+	  	}
+	  	li{
+		  	float:left;
+    		width: calc(100%/3);
+		  	a {
+			  	color:#FFF;
+			  	background:#3d4c54;
+			  	border-right:1px solid #485A63;
+			 	display:block;
+			  	text-align:center;
+			    height: 41px;
+			    line-height: 41px;
+			    padding: 0;
+			    i{
+    				padding-right: 5px;
+			    }
+			  	&:last-child {
+				  border-right:none;
+				}
+				&:hover,&.selected {
+				  background:#81b752;
+				  text-decoration:none;
+				}
+			}
+		  	img {
+		  		margin-right:7px;
+			}
+		}
+  	}
+	#tab-content {
+	  	border:1px solid #eee;
+	  	ul{
+   		 	padding: 0;
+	  		li {
+			  	padding:15px;
+			  	border-bottom:1px solid #eee;
+			  	p {
+				  margin:0;
+				}
+			}
+			&:last-child {
+			  border-bottom:none;
+			}
+			img {
+			  float:left;
+			  margin-right:1em;
+			}
+			h4 {
+			  margin:0;
+			}
+	  	}
+	  	&.nav {
+		    float: right;
+		    margin: 0;
+		}
+	  	#tab3 {
+		  	padding:0;
+		  	ul{
+		  		li{
+			 		padding:15px;
+			  		border-bottom:1px solid #eeeeee;
+				}
+		  	}
+		}
+	}
+}
+

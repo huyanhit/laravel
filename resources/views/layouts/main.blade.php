@@ -15,6 +15,7 @@
 
 	    <script src="./resources/assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/modernizr.js" type="text/javascript"></script>
+	    <script src="./resources/assets/js/jquery.idTabs.min.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/jquery.flexslider-min.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/jquery.simplyscroll.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/owl.carousel.min.js" type="text/javascript"></script>
