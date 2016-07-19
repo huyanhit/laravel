@@ -13,3 +13,9 @@ $(document).ready(function($) {
 $(document).ready(function($) {
   $("#scroller").simplyScroll();
 });
+$(document).ready(function($) {
+  $('.flexslider').flexslider({
+    animation: "slide",
+    controlNav: "thumbnails"
+  });
+});

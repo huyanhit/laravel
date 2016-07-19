@@ -6,6 +6,7 @@ body{
     font-family: Roboto, sans-serif;
     font-weight: normal;
     font-size: 13px;
+    background-size: cover;
     a:hover{
   	text-decoration: none;
 	}
@@ -224,4 +225,6 @@ body{
 		}
 	}
 }
-
+#news{
+	background: white;
+}
