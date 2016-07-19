@@ -51,7 +51,7 @@
 				<li><a href="warning.html">Warning</a></li>
 			</ul>
 		</li>
-		<li class="dropdown"><a href="##" class="dropdown-toggle disabled">Giai trí<b class="caret"></b></a>
+		<li class="dropdown"><a href="##" class="dropdown-toggle disabled">Giải trí<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
 				<li><a href="accordion.html">Accordion</a></li>
 				<li><a href="blockquotes.html">Blockquotes</a></li>
