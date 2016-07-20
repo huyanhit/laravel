@@ -369,4 +369,13 @@ body{
 		}
 	}
 }
-
+#jobs{
+	background: #fff;
+	#list-jobs{
+		height: 300px;
+	    overflow-y: scroll;
+	    border: 14px #f2f2f2 solid;
+	    border-right: 1px;
+	    padding: 10px;
+	}
+}

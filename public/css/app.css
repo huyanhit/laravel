@@ -33,13 +33,10 @@ body {
           background: #303e45; }
           #header nav ul li:hover ul {
             position: absolute;
-            transition: all 0.3s;
+            opacity: 1;
             background: #3D4C54;
             top: 50px;
             z-index: 2; }
-          #header nav ul li:hover ul {
-            opacity: 1;
-            transition: all 0s; }
         #header nav ul li ul {
           position: absolute;
           opacity: 0;
@@ -48,15 +45,12 @@ body {
           min-width: 179px;
           top: 165px;
           left: 0;
-          z-index: -1; }
-          #header nav ul li ul li {
-            clear: both;
-            width: 100%;
-            border: none;
-            line-height: 35px;
-            font-size: 13px; }
-            #header nav ul li ul li a {
-              color: #ddd; }
+          z-index: li;
+            z-index-clear: both;
+            z-index-width: 100%;
+            z-index-border: none;
+            z-index-line-height: 35px;
+            z-index-font-size: 13px; }
     #header nav .icon-home img {
       position: relative;
       top: -3px; }
@@ -110,16 +104,16 @@ body {
         right: -12px;
         background: #3d4c54;
         bottom: 0px;
-        border-left: 12px #3d4c54 solid;
-        border-bottom: 12px #f7f7f7 solid; }
+        border-left: 13px #3d4c54 solid;
+        border-bottom: 13px #f7f7f7 solid; }
       #intro h3 span:before {
         content: '';
         position: absolute;
         right: -12px;
         background: #3d4c54;
         top: 0px;
-        border-left: 12px #3d4c54 solid;
-        border-top: 12px #f7f7f7 solid; }
+        border-left: 13px #3d4c54 solid;
+        border-top: 13px #f7f7f7 solid; }
   #intro .simply-scroll-container {
     position: relative; }
     #intro .simply-scroll-container .simply-scroll-clip {
@@ -293,8 +287,7 @@ body {
       padding: 15px;
       border-bottom: 1px solid #eeeeee; }
 
-@media only screen and (max-width: 767px) {
-  .main {
-    color: #ccc; } }
+#jobs {
+  background: #fff; }
 
 /*# sourceMappingURL=app.css.map */
