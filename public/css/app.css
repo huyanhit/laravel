@@ -1,4 +1,9 @@
+<<<<<<< HEAD
 harset "UTF-8";
+=======
+@charset "UTF-8";
+@import url(https://fonts.googleapis.com/css?family=Lato);
+>>>>>>> parent of 1c4806e... up
 body {
   margin: 30px AUTO;
   background-color: #09151f;
@@ -34,6 +39,10 @@ body {
           #header nav ul li:hover ul {
             position: absolute;
             opacity: 1;
+<<<<<<< HEAD
+=======
+            transition: all 0.3s;
+>>>>>>> parent of 1c4806e... up
             background: #3D4C54;
             top: 50px;
             z-index: 2; }
@@ -44,6 +53,7 @@ body {
           padding: 0;
           min-width: 179px;
           top: 165px;
+<<<<<<< HEAD
           left: 0;
           z-index: li;
             z-index-clear: both;
@@ -51,6 +61,17 @@ body {
             z-index-border: none;
             z-index-line-height: 35px;
             z-index-font-size: 13px; }
+=======
+          left: 0; }
+          #header nav ul li ul li {
+            clear: both;
+            width: 100%;
+            border: none;
+            line-height: 35px;
+            font-size: 13px; }
+            #header nav ul li ul li a {
+              color: #ddd; }
+>>>>>>> parent of 1c4806e... up
     #header nav .icon-home img {
       position: relative;
       top: -3px; }
@@ -255,27 +276,19 @@ body {
       margin-right: 7px; }
 
 #tabwidget #tab-content {
-  border: 1px solid #eee;
-  max-height: 357px;
-  overflow: hidden;
-  overflow-y: scroll; }
+  border: 1px solid #eee; }
   #tabwidget #tab-content ul {
-    padding: 0;
-    margin-top: 0; }
+    padding: 0; }
     #tabwidget #tab-content ul li {
       padding: 15px;
       border-bottom: 1px solid #eee; }
       #tabwidget #tab-content ul li p {
-        margin: 0;
-        padding-top: 5px; }
+        margin: 0; }
     #tabwidget #tab-content ul:last-child {
       border-bottom: none; }
     #tabwidget #tab-content ul img {
       float: left;
-      margin-right: 15px;
-      width: 90px;
-      height: auto;
-      margin-top: 3px; }
+      margin-right: 1em; }
     #tabwidget #tab-content ul h4 {
       margin: 0; }
   #tabwidget #tab-content.nav {

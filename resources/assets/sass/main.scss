@@ -32,10 +32,11 @@ body{
 				   color: #fff;
 				}
 				&:hover{
-				    background: #303e45;
-				    ul{
+				   background: #303e45;
+				   ul{
 					    position: absolute;
 					    opacity: 1;
+					    transition: all 0.3s;
 					    background: #3D4C54;
 					    top: 50px;
 					    z-index: 2;
@@ -49,7 +50,6 @@ body{
 				    min-width: 179px;
 				    top: 165px;
    				    left: 0;
-   				    z-index: 
 				    li{
 					    clear: both;
 					    width: 100%;
@@ -325,30 +325,22 @@ body{
 		}
   	}
 	#tab-content {
-	  	border: 1px solid #eee;
-	    max-height: 357px;
-	    overflow: hidden;
-	    overflow-y: scroll;
+	  	border:1px solid #eee;
 	  	ul{
    		 	padding: 0;
-    		margin-top: 0;
 	  		li {
 			  	padding:15px;
 			  	border-bottom:1px solid #eee;
 			  	p {
-				  	margin: 0;
-    				padding-top: 5px;
+				  margin:0;
 				}
 			}
 			&:last-child {
 			  border-bottom:none;
 			}
 			img {
-			    float: left;
-			    margin-right: 15px;
-			    width: 90px;
-			    height: auto;
-    			margin-top: 3px;
+			  float:left;
+			  margin-right:1em;
 			}
 			h4 {
 			  margin:0;
