@@ -96,24 +96,9 @@
 						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
 						<div class="clearfix"></div>				
 					</li>
-								
-					<script type="text/javascript">
-						jQuery(document).ready(function($){
-
-							/* initiate the plugin */
-							$("div.holder").jPages({
-							containerID  : "itemContainer",
-							perPage      : 3,
-							startPage    : 1,
-							startRange   : 1,
-							links		   : "blank"
-							});
-						});		
-					</script>
+					
 
 				</ul>
-				
-				<div class="holder clearfix"><a class="jp-previous">← previous</a><a class=""></a><span class="jp-hidden">...</span><a href="#" class="jp-current"></a><span class="jp-hidden">...</span><a class=""></a><a class="jp-next">next →</a></div>
 				<div class="clear"></div>
 
 			<!-- End most viewed post -->		  
