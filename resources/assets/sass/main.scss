@@ -108,8 +108,8 @@ body{
 #intro{
 	color: #939ead;
     background: #f7f7f7;
-    border-bottom: 1px solid #d4d4d4;
-    border-top: 1px solid #d4d4d4;
+    border-bottom: 1px solid #f2f2f2;
+    border-top: 1px solid #f2f2f2;
     height: 41px;
 	h3{
     	width: 120px;
@@ -209,9 +209,8 @@ body{
 		    box-shadow: none;
 		    height: 39px;
 		    width: 77%;
-		    padding: 15px;
-		    border-left: 1px #eee solid;
-		    border-right: 1px #eee solid;
+		    padding: 15px;	
+		    border: none;
 		}
 		input[type="submit"]{
 			float: right;
@@ -230,12 +229,13 @@ body{
 	padding-top: 15px;
 	.flexslider{
 		border: none;
+    	margin-bottom: 15px;
 		ol{
-   			border: 1px #ddd solid;
+   			border: 1px #f2f2f2 solid;
 			li{
     			padding: 10px;
     			img{
-    				border: 5px #ddd solid;
+    				border: 5px #f2f2f2 solid;
     			}
 			}
 		}
@@ -266,7 +266,8 @@ body{
 		    font-size: 16px;
 		    font-weight: normal;
 		    margin: 0;
-		    padding: 10px 0;
+		    height: 41px;
+		    line-height: 41px;
 		    text-align: center;
 		}
 		ul{
@@ -302,7 +303,7 @@ body{
 		  	a {
 			  	color:#FFF;
 			  	background:#3d4c54;
-			  	border-right:1px solid #485A63;
+			  	border-right: 1px solid #485A63;
 			 	display:block;
 			  	text-align:center;
 			    height: 41px;
@@ -325,22 +326,31 @@ body{
 		}
   	}
 	#tab-content {
-	  	border:1px solid #eee;
+		border: 1px solid #f2f2f2;
+	    max-height: 357px;
+	    overflow: hidden;
+	    overflow-y: scroll;
+	  	border:1px solid #f2f2f2;
 	  	ul{
    		 	padding: 0;
+   		 	margin-top: 0;
 	  		li {
 			  	padding:15px;
-			  	border-bottom:1px solid #eee;
+			  	border-bottom:1px solid #f2f2f2;
 			  	p {
-				  margin:0;
+				  	margin: 0;
+    				padding-top: 5px;
 				}
 			}
 			&:last-child {
 			  border-bottom:none;
 			}
 			img {
-			  float:left;
-			  margin-right:1em;
+			  	float:left;
+		    	margin-right: 15px;
+		    	width: 90px;
+		    	height: auto;
+				margin-top: 3px;
 			}
 			h4 {
 			  margin:0;
@@ -355,7 +365,7 @@ body{
 		  	ul{
 		  		li{
 			 		padding:15px;
-			  		border-bottom:1px solid #eeeeee;
+			  		border-bottom: 1px solid #f2f2f2;
 				}
 		  	}
 		}
@@ -363,11 +373,117 @@ body{
 }
 #jobs{
 	background: #fff;
+	#search-jobs{
+	    margin-bottom: 15px;
+	    height: 41px;
+	    background: #f7f7f7;
+		h3{
+	    	width: 120px;
+	    	color: #FFF;
+		    font-size: 11px;
+	    	line-height: 41px;
+	    	margin: 0;
+    		float: left;
+		    span{
+		    	background: #3d4c54;
+	    		padding: 6px;
+	   		 	position: relative;
+		    	&:after{
+		    		content: '';
+				    position: absolute;
+				    right: -12px;
+				    background: #3d4c54;
+				    bottom: 0px;
+				    border-left: 13px #3d4c54 solid;
+				    border-bottom: 13px #f7f7f7 solid;
+		    	}
+		    	&:before{
+		    		content: '';
+				    position: absolute;
+				    right: -12px;
+				    background: #3d4c54;
+				    top: 0px;
+				    border-left: 13px #3d4c54 solid;
+				    border-top: 13px #f7f7f7 solid;
+		    	}
+		    }
+		}
+		form{
+    		float: right;
+    		line-height: 41px;
+    		select{
+			    height: 39px;
+			    width: 200px;
+			    padding: 10px;
+			    border: none;
+			    margin-right: 1px;
+    		}
+		}
+	}
 	#list-jobs{
-		height: 300px;
+    	max-height: 486px;
 	    overflow-y: scroll;
 	    border: 14px #f2f2f2 solid;
 	    border-right: 1px;
-	    padding: 10px;
+	    clear: both;
+	    .item{
+
+    		padding: 5px 0;
+		    &:nth-child(2n){
+		    	background: #eee;
+			}
+			.title{
+				font-weight: bold;
+				i{
+					width: 30px;
+					font-size: 18px;
+				}
+			}
+			.salary{
+				font-weight: bold;
+				color: #81b752;
+			}
+	    }
+	}
+	.job-vip{
+		.title{
+				background: #3d4c54;
+			    color: #FFF;
+			    font-size: 16px;
+			    font-weight: normal;
+			    margin: 0;
+			    height: 41px;
+			    line-height: 41px;
+			    text-align: center;
+		}
+		.content{
+		    max-height: 500px;
+		    overflow-y: scroll;
+			.item{
+				h4{
+	    			margin: 5px;
+				}
+				.salo{
+					background: #fff;
+				    padding: 10px 0;
+				    color: #8abc5e;
+				    margin: 10px 0;
+				    font-weight: bold;
+				    border-bottom: 1pX #ccc solid;
+				    span{
+				    	padding-right: 20px;
+				    	&:last-child{
+				    		padding-right: 0;
+				    	};
+				    }
+				}
+				img{
+				    width: 100px;
+				    height: 100px;
+				    margin-right: 15px;
+				    float: left;
+				}
+			}
+		}
 	}
 }

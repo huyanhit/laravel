@@ -1,9 +1,4 @@
-<<<<<<< HEAD
-harset "UTF-8";
-=======
 @charset "UTF-8";
-@import url(https://fonts.googleapis.com/css?family=Lato);
->>>>>>> parent of 1c4806e... up
 body {
   margin: 30px AUTO;
   background-color: #09151f;
@@ -39,10 +34,7 @@ body {
           #header nav ul li:hover ul {
             position: absolute;
             opacity: 1;
-<<<<<<< HEAD
-=======
             transition: all 0.3s;
->>>>>>> parent of 1c4806e... up
             background: #3D4C54;
             top: 50px;
             z-index: 2; }
@@ -53,15 +45,6 @@ body {
           padding: 0;
           min-width: 179px;
           top: 165px;
-<<<<<<< HEAD
-          left: 0;
-          z-index: li;
-            z-index-clear: both;
-            z-index-width: 100%;
-            z-index-border: none;
-            z-index-line-height: 35px;
-            z-index-font-size: 13px; }
-=======
           left: 0; }
           #header nav ul li ul li {
             clear: both;
@@ -71,7 +54,6 @@ body {
             font-size: 13px; }
             #header nav ul li ul li a {
               color: #ddd; }
->>>>>>> parent of 1c4806e... up
     #header nav .icon-home img {
       position: relative;
       top: -3px; }
@@ -105,8 +87,8 @@ body {
 #intro {
   color: #939ead;
   background: #f7f7f7;
-  border-bottom: 1px solid #d4d4d4;
-  border-top: 1px solid #d4d4d4;
+  border-bottom: 1px solid #f2f2f2;
+  border-top: 1px solid #f2f2f2;
   height: 41px; }
   #intro h3 {
     width: 120px;
@@ -189,8 +171,7 @@ body {
     height: 39px;
     width: 77%;
     padding: 15px;
-    border-left: 1px #eee solid;
-    border-right: 1px #eee solid; }
+    border: none; }
   #intro #searchform input[type="submit"] {
     float: right;
     width: 23%;
@@ -205,13 +186,14 @@ body {
   background: white;
   padding-top: 15px; }
   #news .flexslider {
-    border: none; }
+    border: none;
+    margin-bottom: 15px; }
     #news .flexslider ol {
-      border: 1px #ddd solid; }
+      border: 1px #f2f2f2 solid; }
       #news .flexslider ol li {
         padding: 10px; }
         #news .flexslider ol li img {
-          border: 5px #ddd solid; }
+          border: 5px #f2f2f2 solid; }
     #news .flexslider .flex-direction-nav a {
       top: 35%; }
       #news .flexslider .flex-direction-nav a:before {
@@ -230,7 +212,8 @@ body {
     font-size: 16px;
     font-weight: normal;
     margin: 0;
-    padding: 10px 0;
+    height: 41px;
+    line-height: 41px;
     text-align: center; }
   #news .news-center ul {
     background: #f2f2f2;
@@ -276,19 +259,28 @@ body {
       margin-right: 7px; }
 
 #tabwidget #tab-content {
-  border: 1px solid #eee; }
+  border: 1px solid #f2f2f2;
+  max-height: 357px;
+  overflow: hidden;
+  overflow-y: scroll;
+  border: 1px solid #f2f2f2; }
   #tabwidget #tab-content ul {
-    padding: 0; }
+    padding: 0;
+    margin-top: 0; }
     #tabwidget #tab-content ul li {
       padding: 15px;
-      border-bottom: 1px solid #eee; }
+      border-bottom: 1px solid #f2f2f2; }
       #tabwidget #tab-content ul li p {
-        margin: 0; }
+        margin: 0;
+        padding-top: 5px; }
     #tabwidget #tab-content ul:last-child {
       border-bottom: none; }
     #tabwidget #tab-content ul img {
       float: left;
-      margin-right: 1em; }
+      margin-right: 15px;
+      width: 90px;
+      height: auto;
+      margin-top: 3px; }
     #tabwidget #tab-content ul h4 {
       margin: 0; }
   #tabwidget #tab-content.nav {
@@ -298,9 +290,101 @@ body {
     padding: 0; }
     #tabwidget #tab-content #tab3 ul li {
       padding: 15px;
-      border-bottom: 1px solid #eeeeee; }
+      border-bottom: 1px solid #f2f2f2; }
 
 #jobs {
   background: #fff; }
+  #jobs #search-jobs {
+    margin-bottom: 15px;
+    height: 41px;
+    background: #f7f7f7; }
+    #jobs #search-jobs h3 {
+      width: 120px;
+      color: #FFF;
+      font-size: 11px;
+      line-height: 41px;
+      margin: 0;
+      float: left; }
+      #jobs #search-jobs h3 span {
+        background: #3d4c54;
+        padding: 6px;
+        position: relative; }
+        #jobs #search-jobs h3 span:after {
+          content: '';
+          position: absolute;
+          right: -12px;
+          background: #3d4c54;
+          bottom: 0px;
+          border-left: 13px #3d4c54 solid;
+          border-bottom: 13px #f7f7f7 solid; }
+        #jobs #search-jobs h3 span:before {
+          content: '';
+          position: absolute;
+          right: -12px;
+          background: #3d4c54;
+          top: 0px;
+          border-left: 13px #3d4c54 solid;
+          border-top: 13px #f7f7f7 solid; }
+    #jobs #search-jobs form {
+      float: right;
+      line-height: 41px; }
+      #jobs #search-jobs form select {
+        height: 39px;
+        width: 200px;
+        padding: 10px;
+        border: none;
+        margin-right: 1px; }
+  #jobs #list-jobs {
+    max-height: 486px;
+    overflow-y: scroll;
+    border: 14px #f2f2f2 solid;
+    border-right: 1px;
+    clear: both; }
+    #jobs #list-jobs .item {
+      padding: 5px 0; }
+      #jobs #list-jobs .item:nth-child(2n) {
+        background: #eee; }
+      #jobs #list-jobs .item .title {
+        font-weight: bold; }
+        #jobs #list-jobs .item .title i {
+          width: 30px;
+          font-size: 18px; }
+      #jobs #list-jobs .item .salary {
+        font-weight: bold;
+        color: #81b752; }
+  #jobs .job-vip .title {
+    background: #3d4c54;
+    color: #FFF;
+    font-size: 16px;
+    font-weight: normal;
+    margin: 0;
+    height: 41px;
+    line-height: 41px;
+    text-align: center; }
+  #jobs .job-vip .content {
+    max-height: 500px;
+    overflow-y: scroll; }
+    #jobs .job-vip .content .item h4 {
+      margin: 5px; }
+    #jobs .job-vip .content .item .salo {
+      background: #fff;
+      padding: 10px 0;
+      color: #8abc5e;
+      margin: 10px 0;
+      font-weight: bold;
+      border-bottom: 1pX #ccc solid; }
+      #jobs .job-vip .content .item .salo span {
+        padding-right: 20px; }
+        #jobs .job-vip .content .item .salo span:last-child {
+          padding-right: 0; }
+    #jobs .job-vip .content .item img {
+      width: 100px;
+      height: 100px;
+      margin-right: 15px;
+      float: left; }
+
+@media only screen and (max-width: 767px) {
+  .main {
+    color: #ccc; } }
 
 /*# sourceMappingURL=app.css.map */

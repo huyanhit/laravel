@@ -123,19 +123,19 @@
 			<div id="tab2" style="display: none;">	
 				<ul id="itemContainer2" class="recent-tab">
 					<li>
-						<a href="#"><img width="225" height="136" src="images/dummy/shutterstock_134257640-225x136.jpg" class="thumb" alt="shutterstock_134257640"></a>
+						<a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb" alt="shutterstock_134257640"></a>
 						<h4 class="post-title"><a href="http://magazine.themedesigner.in/lectus-non-rutrum-pulvinar-urna-leo-dignissim-lorem-8/">Lectus non rutrum pulvinar urna...</a></h4>
 						<p>Nam nibh arcu, tristique eget pretium sed, porta id quam. Praesent dig...</p>
 						<div class="clearfix"></div>	
 					</li>
 					<li>
-						<a href="#"><img width="225" height="136" src="images/dummy/shutterstock_70184773-225x136.jpg" class="thumb" alt="shutterstock_70184773"></a>
+						<a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb" alt="shutterstock_70184773"></a>
 						<h4 class="post-title"><a href="#">Suspen disse auctor dapibus neq...</a></h4>
 						<p>Fusce aliquet non ipsum vitae scelerisque. Nullam ultricies adipiscing...</p>
 						<div class="clearfix"></div>	
 					</li>
 					<li>
-						<a href="#"><img width="225" height="136" src="images/dummy/shutterstock_70787161-225x136.jpg" class="thumb" alt="shutterstock_70787161"></a>
+						<a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb" alt="shutterstock_70787161"></a>
 						<h4 class="post-title"><a href="#">Porta lorem ipsum dolor sit ame...</a></h4>
 						<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer place...</p>
 						<div class="clearfix"></div>	
