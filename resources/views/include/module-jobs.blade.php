@@ -246,6 +246,20 @@
                     </div>
                 </div>
             </div>
+            <div class="pagination">
+                <span><a href="#">1</a></span>
+                <span><a href="#">2</a></span>
+                <span><a href="#">3</a></span>
+                <span><a href="#">4</a></span>
+                <span><a href="#">1</a></span>
+                <span><a href="#">2</a></span>
+                <span><a href="#">3</a></span>
+                <span><a href="#">4</a></span>
+                <span><a href="#">1</a></span>
+                <span><a href="#">2</a></span>
+                <span><a href="#">3</a></span>
+                <span><a href="#">4</a></span>
+            </div>
         </div>
         <div class="col-md-4">
              <div class="job-vip">

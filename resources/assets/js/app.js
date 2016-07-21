@@ -8,7 +8,17 @@ $(document).ready(function($) {
         [1200, 4],
       ],
       navigation : false,
-   });
+  });
+  var owl2 = $("#mutimedia .owl-carousel");
+  owl2.owlCarousel({
+      itemsCustom : [
+        [0, 2],
+        [768, 3],
+        [992, 4],
+        [1200, 6],
+      ],
+      navigation : true,
+  });
 });
 $(document).ready(function($) {
   $("#scroller").simplyScroll();
