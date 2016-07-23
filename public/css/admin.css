@@ -1,0 +1,69 @@
+* {
+  outline: 0; }
+
+input, select, button {
+  height: 30px; }
+
+input[type='checkbox'], input[type='radio'] {
+  height: auto; }
+
+input[type='submit'], input[type='button'], button, .button {
+  background: #31708f;
+  color: #fff;
+  padding: 0 15px;
+  border: none;
+  border-radius: 4px; }
+
+#header {
+  background: #337ab7;
+  margin-bottom: 10px;
+  line-height: 40px;
+  height: 40px;
+  color: #fff; }
+
+#footer {
+  background: #337ab7;
+  margin-top: 10px;
+  line-height: 40px;
+  height: 40px;
+  color: #fff; }
+
+table thead tr {
+  background: #31708f;
+  color: #fff;
+  font-weight: bold; }
+
+table i:before {
+  font-size: 20px;
+  margin-right: 8px;
+  height: 30px;
+  width: 30px;
+  line-height: 30px; }
+
+table .fa-plus-square-o {
+  color: #3c763d; }
+
+table .fa-pencil-square-o {
+  color: #337ab7; }
+
+table .fa-minus-square-o {
+  color: #a94442; }
+
+.pagination span {
+  background: #31708f;
+  margin-right: 5px;
+  width: 30px;
+  height: 30px;
+  display: inline-block;
+  text-align: center;
+  line-height: 30px;
+  color: #fff;
+  border-radius: 4px;
+  font-weight: bold;
+  border: 1px #31708f solid; }
+  .pagination span.active, .pagination span:hover {
+    background: #fff;
+    border: 1px #ccc solid;
+    color: #31708f; }
+
+/*# sourceMappingURL=admin.css.map */

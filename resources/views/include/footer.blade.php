@@ -1,15 +1,27 @@
 <footer id="footer">
 	<div id="footer-top" class="container">
-		<div class="row">
-			<div class="col-md-4 footer-logo" >logo</div>
-			<div class="col-md-4 contact-info">contact info</div>
-			<div class="col-md-4 social">
-				<ul>
+		<div class="row row-flex">
+			<div class="col-md-4 footer-logo" >
+				<h3 class="title">siteinfo</h3>
+				<img src="./resources/assets/images/logo.png" alt="Magazine">
+				<p>About Magazine</p>
+				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididu...<p>
+			</div>
+			<div class="col-md-4 contact-info">
+				<h3 class="title">Contact info</h3>
+				<p><i class="fa fa-envira" aria-hidden="true"></i>Address: <span>T3. An Phu. Pleiku. Gialai</span></p>
+				<p><i class="fa fa-envira" aria-hidden="true"></i>Phone: <span> 098 688 0601</span></p>
+				<p><i class="fa fa-envira" aria-hidden="true"></i>Email: <span>huyanhit@gmail.com</span></p>
+			</div>
+			<div class="col-md-4 map">
+				<h3 class="title">Map</h3>
+				<ul class="social">
 					<li><i class="fa fa-envira" aria-hidden="true"></i></li>
 					<li><i class="fa fa-envira" aria-hidden="true"></i></li>
 					<li><i class="fa fa-envira" aria-hidden="true"></i></li>
 					<li><i class="fa fa-envira" aria-hidden="true"></i></li>
 				</ul>
+				<iframe width="100%" height="200" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?f=q&amp;source=s_q&amp;hl=en&amp;geocode=+&amp;q=taj+mahal&amp;ie=UTF8&amp;hq=&amp;hnear=&amp;ll=27.175015,78.042155&amp;spn=0.006295,0.006295&amp;t=m&amp;output=embed"></iframe>
 			</div>
 		</div>
 	</div>

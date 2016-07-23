@@ -10,7 +10,7 @@
 | namespace/structure of controllers.
 |
 */
-Route::group(['prefix' => 'module-one', 'namespace' => 'App\Modules\ModuleOne\Controllers'], function () {
-	Route::get('/', ['as' => 'module-one.index', 'uses' => 'IndexController@index']);
-	Route::get('model-test', ['as' => 'module-one.modelTest', 'uses' => 'IndexController@modelTest']);
+Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers'], function () {
+	Route::get('/', ['as' => 'admin.index', 'uses' => 'NewsController@index']);
+	Route::get('/insert', ['as' => 'admin.insert', 'uses' => 'NewsController@insertNews']);
 });
