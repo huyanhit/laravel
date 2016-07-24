@@ -5,7 +5,7 @@
 		<thead>
 			<tr>
 				<td>
-					<input type="checkbox" name="checkall">	
+					<input type="checkbox" name="checkall" id="checkAll">	
 				</td>
 				<td>
 					Tittle	
@@ -57,9 +57,9 @@
 		</form>
 		<tbody>
 			@foreach($news as $key=> $val)
-			<tr>
+			<tr class="">
 				<td>
-					<input type="checkbox" name="check_{{++$key}}">
+					<input type="checkbox" name="check" id="check_{{++$key}}">
 				</td>
 				<td>
 					{{$val->catnews}}	
@@ -70,12 +70,13 @@
 				<td>
 					{{$val->from}}	
 				</td>
-				<td>
-				@if($val->active == 1)
-					<input type="checkbox" checked name="active">
-				@else
-					<input type="checkbox" name="unactive">
-				@endif		
+				<td >
+					
+					@if($val->active == 1)
+						<input type="checkbox" checked name="active" url="{{Request::root()}}/admin/news/active?id={{$val->id}}">
+					@else
+						<input type="checkbox" name="active" url="{{Request::root()}}/admin/news/active?id={{$val->id}}">
+					@endif
 				</td>
 				<td>
 					{{$val->view}}	
@@ -83,7 +84,7 @@
 				<td>
 					<a href="#"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
 					<a href="#"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-					<a href="#"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
+					<a class="ajaxdelete" href="{{Request::root()}}/admin/news/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			@endforeach
@@ -98,13 +99,7 @@
 			<input type="button" name="apply" value="apply">
 		</div>
 		<div class=" col-md-6 pagination">
-			<span class="active">1</span>
-			<span>1</span>
-			<span>1</span>
-			<span>1</span>
-			<span>1</span>
-			<span>1</span>
-			<span>1</span>
+			{!! $news->render() !!}
 		</div>
 		<div class=" col-md-3">
 			

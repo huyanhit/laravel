@@ -28,6 +28,75 @@ input[type='submit'], input[type='button'], button, .button {
   height: 40px;
   color: #fff; }
 
+#logo {
+  font-size: 24px;
+  font-weight: bold; }
+
+#menu {
+  list-style: none;
+  margin: 0;
+  float: right; }
+  #menu li {
+    float: left;
+    border-right: 1px #fff solid;
+    padding-right: 10px;
+    padding-left: 10px;
+    min-width: 60px;
+    text-align: center;
+    position: relative; }
+    #menu li a {
+      color: #fff;
+      text-decoration: none;
+      padding: 10px 0;
+      display: block;
+      line-height: 20px; }
+    #menu li.active, #menu li:hover {
+      background: #31708f;
+      transition: all o 0.5s; }
+      #menu li.active a, #menu li:hover a {
+        color: #fff; }
+    #menu li .submenu {
+      position: absolute;
+      left: 0;
+      min-width: 269px;
+      background: #337ab7;
+      list-style: none;
+      margin: 0;
+      padding: 0;
+      border-top: 1px #eeeeee solid;
+      display: none; }
+      #menu li .submenu li {
+        width: 100%;
+        text-align: left;
+        border-bottom: 1px #eee solid;
+        border-right: 0; }
+        #menu li .submenu li a {
+          color: #fff;
+          padding: 5px 0px; }
+        #menu li .submenu li:hover {
+          background: #31708f; }
+          #menu li .submenu li:hover a {
+            color: #fff; }
+
+.avata, .welcome, .logout {
+  display: inline-block; }
+
+.avata {
+  line-height: 39px;
+  float: left;
+  margin-right: 10px; }
+  .avata img {
+    width: 35px;
+    background: #fff;
+    border: 2px #d9edf7 solid;
+    padding: 3px;
+    line-height: 0; }
+
+.logout {
+  padding: 0 40px; }
+  .logout a {
+    color: #fff; }
+
 table thead tr {
   background: #31708f;
   color: #fff;
@@ -49,21 +118,31 @@ table .fa-pencil-square-o {
 table .fa-minus-square-o {
   color: #a94442; }
 
-.pagination span {
-  background: #31708f;
-  margin-right: 5px;
-  width: 30px;
-  height: 30px;
-  display: inline-block;
-  text-align: center;
-  line-height: 30px;
-  color: #fff;
-  border-radius: 4px;
-  font-weight: bold;
-  border: 1px #31708f solid; }
-  .pagination span.active, .pagination span:hover {
-    background: #fff;
-    border: 1px #ccc solid;
-    color: #31708f; }
+.pagination ul {
+  list-style: none;
+  padding: 0;
+  margin: 0; }
+  .pagination ul li {
+    background: #31708f;
+    margin-right: 5px;
+    width: 30px;
+    height: 30px;
+    display: inline-block;
+    text-align: center;
+    line-height: 28px;
+    color: #fff;
+    border-radius: 4px;
+    font-weight: bold;
+    border: 1px #31708f solid;
+    display: inline-block; }
+    .pagination ul li a {
+      color: #fff;
+      display: block;
+      text-decoration: none; }
+    .pagination ul li.active, .pagination ul li:hover {
+      background: #fff;
+      color: #31708f; }
+      .pagination ul li.active a, .pagination ul li:hover a {
+        color: #31708f; }
 
 /*# sourceMappingURL=admin.css.map */

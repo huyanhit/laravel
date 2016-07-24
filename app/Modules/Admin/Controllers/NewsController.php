@@ -20,11 +20,29 @@ class NewsController extends Controller
 	public function index()
 	{
 		$data['news'] = $this->newsModel->getAll();
-		return view('Admin::Admin.list',$data);
+		return view('Admin::News.list',$data);
 	}
 
 	public function insertNews()
 	{
-		return view('Admin::insert');
+		
+	}
+
+	public function deleteNews()
+	{
+		if(isset($_GET['id'])){
+			return $this->newsModel->deteleId($_GET['id']);
+		}
+	}
+
+	public function activeNews()
+	{
+		$active = 0;
+		if($_GET['check'] == 'true'){
+			$active = 1;
+		}
+		if(isset($_GET['id'])){
+			return $this->newsModel->activeId($active,$_GET['id']);
+		}
 	}
 }

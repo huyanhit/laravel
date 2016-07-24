@@ -28,6 +28,86 @@ input[type='submit'],input[type='button'],button,.button{
     height: 40px;
     color: #fff;
 }
+#logo{
+    font-size: 24px;
+    font-weight: bold;
+}
+#menu{
+    list-style: none;
+    margin: 0;
+    float: right;
+    li{
+        float: left;
+        border-right: 1px #fff solid;
+        padding-right: 10px;
+        padding-left: 10px;
+        min-width: 60px;
+        text-align: center;
+        position: relative;
+        a{
+            color: #fff;
+            text-decoration: none;
+            padding: 10px 0;
+            display: block;
+            line-height: 20px;
+        }
+        &.active,&:hover{
+            background: #31708f;
+            transition: all o.5s;
+            a{
+                color: #fff;
+            }
+        };
+        .submenu{
+            position: absolute;
+            left: 0;
+            min-width: 269px;
+            background: #337ab7;
+            list-style: none;
+            margin: 0;
+            padding: 0;
+            border-top: 1px #eeeeee solid;
+            display: none;
+            li{
+                width: 100%;
+                text-align: left;
+                border-bottom: 1px #eee solid;
+                border-right: 0;
+                a{
+                    color: #fff;
+                    padding: 5px 0px;
+                }
+                &:hover{
+                    background: #31708f;
+                    a{ 
+                        color: #fff;
+                    }
+                }
+            }
+        }
+    }
+}
+.avata,.welcome,.logout{
+    display: inline-block;
+} 
+.avata{
+    line-height: 39px;
+    float: left;
+    margin-right: 10px;
+    img{
+        width: 35px;
+        background: #fff;
+        border: 2px #d9edf7 solid;
+        padding: 3px;
+        line-height: 0;
+    }
+}
+.logout{
+    padding: 0 40px;
+    a{
+        color: #fff;
+    }
+}
 table{
     thead{
         tr{
@@ -54,22 +134,35 @@ table{
     }
 }
 .pagination{
-    span{
-        background: #31708f;
-        margin-right: 5px;
-        width: 30px;
-        height: 30px;
-        display: inline-block;
-        text-align: center;
-        line-height: 30px;
-        color: #fff;
-        border-radius: 4px;
-        font-weight: bold;
-        border: 1px #31708f solid;
-        &.active,&:hover{
-            background: #fff;
-            border: 1px #ccc solid;
-            color: #31708f;
+    ul{
+        list-style: none;
+        padding: 0;
+        margin: 0;
+        li{
+            background: #31708f;
+            margin-right: 5px;
+            width: 30px;
+            height: 30px;
+            display: inline-block;
+            text-align: center;
+            line-height: 28px;
+            color: #fff;
+            border-radius: 4px;
+            font-weight: bold;
+            border: 1px #31708f solid;
+            display: inline-block;
+            a{
+                color: #fff;
+                display: block;
+                text-decoration: none;
+            }
+            &.active,&:hover{
+                background: #fff;
+                color: #31708f;
+                a{
+                    color: #31708f;
+                }
+            }
         }
     }
 }
