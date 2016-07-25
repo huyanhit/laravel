@@ -145,4 +145,19 @@ table .fa-minus-square-o {
       .pagination ul li.active a, .pagination ul li:hover a {
         color: #31708f; }
 
+form.insert {
+  border: 1px #ccc solid;
+  border-radius: 4px;
+  padding: 40px;
+  background: #eee; }
+
+h3.title-insert {
+  font-size: 30px;
+  font-weight: bold;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 10px 0px;
+  border-radius: 4px;
+  background: #31708f; }
+
 /*# sourceMappingURL=admin.css.map */

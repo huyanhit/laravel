@@ -1,16 +1,58 @@
+@extends('Admin::Layouts.admin')
+@section('content')
 <div class="container">
-{{ Form::open(array('url' => 'foo/bar')) }}
+	<h3 class="title-insert text-center"> Insert - News </h3>
+	<form class="form-horizontal insert">
 
-  echo Form::text('tieu de');
-  echo Form::file($name, $attributes = array());
-  echo Form::select('animal', array(
-    'Cats' => array('leopard' => 'Leopard'),
-    'Dogs' => array('spaniel' => 'Spaniel'),
-  ));
-  echo Form::text('mo ta');
-  echo Form::text('noi dung');
-  echo Form::text('nguon');
-  
-  echo Form::submit('Click Me!');
-{{ Form::close() }}
+	  	<div class="form-group title">
+	    	<label class="control-label col-sm-3">Title</label>
+	    	<div class="col-sm-9">
+	      		<input type="text" class="form-control" id="title" placeholder="Input Title">
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">Description</label>
+	    	<div class="col-sm-9">
+	      		<textarea class="form-control" id="desc" placeholder="Input description"> </textarea>
+	      		<script type="text/javascript">CKEDITOR.replace('desc'); </script>
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">Type news</label>
+	    	<div class="col-sm-9">
+				<select class="form-control" id="typenews">
+				  	<option value="1">Volvo</option>
+				  	<option value="2">Saab</option>
+				  	<option value="3">Mercedes</option>
+				  	<option value="4">Audi</option>
+				</select>
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">Feature Image</label>
+	    	<div class="col-sm-9">
+	      		<input type="file" class="form-control" name="feature" id="feature">
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">Content</label>
+	    	<div class="col-sm-9">
+	      		<textarea class="form-control" id="content" placeholder="Content"> </textarea>
+	      		<script type="text/javascript">CKEDITOR.replace('content'); </script>
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">From</label>
+	    	<div class="col-sm-9">
+	      		<input type="text" class="form-control" name="from">
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
+	    	<label class="control-label col-sm-3" for="inputSuccess3">Active</label>
+	    	<div class="col-sm-9">
+	      		<input type="checkbox" id="active" name="active">
+	    	</div>
+	 	</div>
+	</form>
 </div>
+@endsection
