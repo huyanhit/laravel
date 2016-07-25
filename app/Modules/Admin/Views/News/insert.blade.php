@@ -1,15 +1,16 @@
-<!DOCTYPE html>
-<html>
-<head>
-	<title>Dummy view</title>
-</head>
-<body>
-	<h1>Just a dummy view</h1>
-	<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod
-	tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam,
-	quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-	consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse
-	cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non
-	proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
-</body>
-</html>
+<div class="container">
+{{ Form::open(array('url' => 'foo/bar')) }}
+
+  echo Form::text('tieu de');
+  echo Form::file($name, $attributes = array());
+  echo Form::select('animal', array(
+    'Cats' => array('leopard' => 'Leopard'),
+    'Dogs' => array('spaniel' => 'Spaniel'),
+  ));
+  echo Form::text('mo ta');
+  echo Form::text('noi dung');
+  echo Form::text('nguon');
+  
+  echo Form::submit('Click Me!');
+{{ Form::close() }}
+</div>

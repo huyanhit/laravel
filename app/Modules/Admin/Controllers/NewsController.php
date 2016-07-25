@@ -25,7 +25,7 @@ class NewsController extends Controller
 
 	public function insertNews()
 	{
-		
+		return view('Admin::News.insert');
 	}
 
 	public function deleteNews()
