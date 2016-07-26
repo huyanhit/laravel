@@ -25,7 +25,19 @@ class NewsController extends Controller
 
 	public function insertNews()
 	{
-		return view('Admin::News.insert');
+		if(isset($_POST['submit'])){
+			
+			$frm[] = $_POST['title'];
+			$frm[] = $_POST['desc'];
+			$frm[] = $_POST['content'];
+			$frm[] = $_POST['from'];
+			$frm[] = isset($_POST['active'])?1:0;
+			$frm[] = $_POST['typenews'];
+			print_r($frm);
+
+		}else{
+			return view('Admin::News.insert');
+		}
 	}
 
 	public function deleteNews()
