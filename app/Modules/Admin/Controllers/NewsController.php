@@ -16,9 +16,6 @@ class NewsController extends Controller
 {
 	function __construct()
 	{
-		session()->regenerate();
-		session(['filter'=>null]);
-		session(['sort'=>null]);
 		$this->newsModel    = new NewsModel();
 		$this->catnewsModel = new CatnewsModel();
 		$this->myFunction   = new MyFunction();
@@ -38,10 +35,16 @@ class NewsController extends Controller
 			session(['desc'   => $_POST['desc']]);
 			session(['from'   => $_POST['from']]);
 			session(['active' => ($_POST['active']=='active')?1:0]);
-		    $data['filter']['title']  = $_POST['title'];
-		    $data['filter']['desc']   = $_POST['desc'];
-		    $data['filter']['from']   = $_POST['from'];
-		    $data['filter']['active'] = ($_POST['active']=='active')? 1 : 0;
+		    $data['filter']['title']  = session('title');
+		    $data['filter']['desc']   = session('desc');
+		    $data['filter']['from']   = session('from');
+		    $data['filter']['active'] = session('active');
+		}
+
+		if(!empty(session('order')) && !empty(session('by'))){
+			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
+		}else{
+			$result['urlsort'] = "";
 		}
 		$result['news'] = $this->newsModel->getAll($data);
 		return view('Admin::News.list',$result);
@@ -50,22 +53,59 @@ class NewsController extends Controller
 	public function insertNews()
 	{
 		$data['catnews'] = $this->catnewsModel->getAll();
-
+		$data['frm'] = "";
 		if(isset($_POST['submit'])){
-			if($this->myFunction->uploadImage($_FILES["feature"])){
-				$frm =  
-				    ['id'     	  => NULL,
-				    'catnews'     => $_POST['category'],
-				    'title'       => $_POST['title'], 
-				    'desc'        => $_POST['desc'], 
-				    'content'     => $_POST['content'], 
-				    'image'       => $_FILES["feature"]["name"], 
-				    'from'        => $_POST['from'], 
-				    'active'      => isset($_POST['active'])? 1 : 0,  
-				    'date_create' => date('m/d/Y h:i:s a'), 
-				    'author'      => 1];
-				$this->newsModel->insertNews($frm);
+			$this->myFunction->uploadImage($_FILES["feature"]);
+			$frm =  
+			    ['id'     	  => NULL,
+			    'catnews'     => $_POST['category'],
+			    'title'       => $_POST['title'], 
+			    'desc'        => $_POST['desc'], 
+			    'content'     => $_POST['content'], 
+			    'image'       => $_FILES["feature"]["name"], 
+			    'from'        => $_POST['from'], 
+			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'date_create' => date('m/d/Y h:i:s a'), 
+			    'author'      => 1];
+			$this->newsModel->insertNews($frm);
+			$data['frm'] = $frm;
+			return view('Admin::News.insert',$data);
+		}else{
+			return view('Admin::News.insert',$data);
+		}
+	}
+	
+	public function editNews(){
+		$id = $_GET['id'];
+		$news = $this->newsModel->getnewsbyId($id);
+		$data['edit'] = $id;
+		$data['catnews'] = $this->catnewsModel->getAll();
+		$data['frm'] =  
+		   ['catnews'     => $news->catnews,
+		    'title'       => $news->title, 
+		    'desc'        => $news->desc, 
+		    'content'     => $news->content, 
+		    'from'        => $news->from, 
+		    'active'      => $news->active,  
+		    'author'      => 1];
+		if(isset($_POST['submit'])){
+			if(!empty($_FILES["feature"]["name"])){
+				$this->myFunction->uploadImage($_FILES["feature"]);
+			}else{
+				$_FILES["feature"]["name"] = $news->image;
 			}
+			$frm =  
+			   ['catnews'     => $_POST['category'],
+			    'title'       => $_POST['title'], 
+			    'desc'        => $_POST['desc'], 
+			    'content'     => $_POST['content'], 
+			    'image'       => $_FILES["feature"]["name"], 
+			    'from'        => $_POST['from'], 
+			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'author'      => 1];
+			$this->newsModel->updateNews($frm,$id);
+			$data['frm'] = $frm;
+			
 			return view('Admin::News.insert',$data);
 		}else{
 			return view('Admin::News.insert',$data);

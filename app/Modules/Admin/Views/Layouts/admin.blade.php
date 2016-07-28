@@ -14,6 +14,6 @@
 <body>
 	@include('Admin::include.header')
     @yield('content')
-    @include('Admin::include.footer')
+    <!--@include('Admin::include.footer')-->
 </body>
 </html>

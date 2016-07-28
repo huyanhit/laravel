@@ -91,7 +91,7 @@
 				</td>
 			</tr>
 		</thead>
-		<form id="filter" method="post" action="{{Request::root()}}/admin/news">
+		<form id="filter" method="post" action="{{Request::url().$urlsort}}">
 			<tr>
 				<td>
 					#
@@ -155,7 +155,7 @@
 				</td>
 				<td>
 					<a href="{{Request::root()}}/admin/news/insert"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
-					<a href="{{Request::root()}}/admin/news/edit"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::root()}}/admin/news/edit?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a class="ajaxdelete" href="{{Request::root()}}/admin/news/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>

@@ -18,4 +18,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
 	Route::get('/news/delete', ['as' => 'news.delete', 'uses' => 'NewsController@deleteNews']);
 	Route::get('/news/active', ['as' => 'news.active', 'uses' => 'NewsController@activeNews']);
+	Route::get('/news/edit', ['as' => 'news.edit', 'uses' => 'NewsController@editNews']);
+	Route::post('/news/edit', ['as' => 'news.edit', 'uses' => 'NewsController@editNews']);
 });
