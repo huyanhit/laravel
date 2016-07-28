@@ -1,6 +1,6 @@
 @extends('Admin::Layouts.admin')
 @section('content')
-<div class="container">
+<div id="insert" class="container">
 	<h3 class="title-insert text-center"> Insert - News </h3>
 	<form class="form-horizontal" method="post" action="{{Request::url()}}" enctype="multipart/form-data">
 
@@ -18,13 +18,12 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Type news</label>
+	    	<label class="control-label col-sm-3">Category news</label>
 	    	<div class="col-sm-9">
-				<select class="form-control" id="typenews"  name="typenews">
-				  	<option value="1">Volvo</option>
-				  	<option value="2">Saab</option>
-				  	<option value="3">Mercedes</option>
-				  	<option value="4">Audi</option>
+				<select class="form-control" id="category" name="category">
+					@foreach($catnews as $val)
+				  	<option value="{{$val->id}}">{{$val->title}}</option>
+				  	@endforeach
 				</select>
 	    	</div>
 	 	</div>
@@ -48,13 +47,13 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
-	    	<label class="control-label col-sm-3" for="inputSuccess3">Active</label>
+	    	<label class="control-label col-sm-3" >Active</label>
 	    	<div class="col-sm-9">
 	      		<input type="checkbox" id="active" name="active">
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
-	    	<label class="control-label col-sm-3" for="inputSuccess3"></label>
+	    	<label class="control-label col-sm-3" ></label>
 	    	<div class="col-sm-9">
 	      		<input type="submit" id="submit" name="submit">
 	    	</div>
