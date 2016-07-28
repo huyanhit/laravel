@@ -97,61 +97,54 @@ input[type='submit'], input[type='button'], button, .button {
   .logout a {
     color: #fff; }
 
-table thead tr {
+#list table thead tr {
   background: #31708f;
   color: #fff;
   font-weight: bold; }
+  #list table thead tr span.sort {
+    display: inline-block;
+    float: right; }
+    #list table thead tr span.sort i {
+      height: 15px;
+      width: 19px;
+      text-align: center;
+      color: #fff; }
+      #list table thead tr span.sort i.active {
+        color: #f00; }
+    #list table thead tr span.sort a:hover i {
+      color: #f00; }
 
-table i:before {
+#list table tbody i:before {
   font-size: 20px;
   margin-right: 8px;
   height: 30px;
   width: 30px;
   line-height: 30px; }
 
-table .fa-plus-square-o {
+#list table tbody .fa-plus-square-o {
   color: #3c763d; }
 
-table .fa-pencil-square-o {
+#list table tbody .fa-pencil-square-o {
   color: #337ab7; }
 
-table .fa-minus-square-o {
+#list table tbody .fa-minus-square-o {
   color: #a94442; }
 
-.pagination ul {
-  list-style: none;
-  padding: 0;
+#list .pagination {
   margin: 0; }
-  .pagination ul li {
-    background: #31708f;
-    margin-right: 5px;
-    width: 30px;
-    height: 30px;
-    display: inline-block;
-    text-align: center;
-    line-height: 28px;
-    color: #fff;
-    border-radius: 4px;
-    font-weight: bold;
-    border: 1px #31708f solid;
-    display: inline-block; }
-    .pagination ul li a {
-      color: #fff;
-      display: block;
-      text-decoration: none; }
-    .pagination ul li.active, .pagination ul li:hover {
-      background: #fff;
-      color: #31708f; }
-      .pagination ul li.active a, .pagination ul li:hover a {
-        color: #31708f; }
 
-form.insert {
+#insert form {
+  background: #eee;
+  padding: 15px;
+  border-radius: 4px; }
+
+#insert form.insert {
   border: 1px #ccc solid;
   border-radius: 4px;
   padding: 40px;
   background: #eee; }
 
-h3.title-insert {
+#insert h3.title-insert {
   font-size: 30px;
   font-weight: bold;
   text-transform: uppercase;
