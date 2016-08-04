@@ -1,0 +1,13 @@
+<?php 
+/**
+* 
+*/
+namespace App\Library {
+	class myFunction {
+
+		function module_headerline(){
+			$data = array('title'=>'title','url'=>'#');
+			return $data;
+		}
+	}
+}

@@ -6,25 +6,11 @@ use Illuminate\Database\Eloquent\Model;
 
 class NewsModel extends Model
 {
-	public function getAll($data)
+
+	public function getAll()
 	{
-		if(!empty($data['sort'])){
-			$result = DB::table('news')
-			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
-			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
-			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
-			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
-			->orderby($data['sort']['order'], $data['sort']['by'])
-			->paginate(10);
-		}else{
-			$result = DB::table('news')
-			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
-			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
-			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
-			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
-			->paginate(10);
-		}
-		return $result;
+		$news = DB::table('news')->paginate(10);
+		return $news;
 	}
 	public function deteleId($id)
 	{
@@ -33,6 +19,7 @@ class NewsModel extends Model
 	}
 	public function activeId($active,$id)
 	{
+<<<<<<< HEAD
 		$result = DB::table('news')
             ->where('id', $id)
             ->update(['active' => $active]);
@@ -53,6 +40,9 @@ class NewsModel extends Model
 	public function getnewsbyId($id){
 		$result = DB::table('news')->where('id', $id)->first();
 >>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
+=======
+		$result = DB::delete("UPDATE news SET active = ? WHERE id = ?",[$active,$id]);
+>>>>>>> parent of 3ff4627... up
 		return $result;
 	}
 }
