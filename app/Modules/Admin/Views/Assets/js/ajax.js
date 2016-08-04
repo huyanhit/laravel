@@ -23,4 +23,9 @@ $(document).ready(function(){
 		});
 		return false;
 	});
+
+	$('input[name="apply"]').click(function(){
+		var choose = $('select[name="apply"]');
+		rel =  window.location.host + '/' + window.location.pathname+'/'+choose.val();
+	})
 });

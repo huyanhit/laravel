@@ -107,13 +107,18 @@
 				</td>
 				<td>
 					<select id="active" name="active">
+					 	<option 
+					    @if(session('active') == '')
+					    {{'selected'}}
+					    @endif
+					    value="choose">Choose</option>
 					    <option 
-					    @if(session('active') == 'active')
+					    @if(session('active') == '1')
 					    {{'selected'}}
 					    @endif
 					    value="active">Active</option>
 					    <option
-					    @if(session('active') == 'unactive')
+					    @if(session('active') == '0')
 					    {{'selected'}}
 					    @endif
 					    value="unactive">Unactive</option>
@@ -131,7 +136,7 @@
 			@foreach($news as $key=> $val)
 			<tr class="">
 				<td>
-					<input type="checkbox" name="check" id="check_{{++$key}}">
+					<input type="checkbox" name="check" data="{{$val->id}}">
 				</td>
 				<td>
 					{{$val->title}}	
@@ -143,7 +148,6 @@
 					{{$val->from}}	
 				</td>
 				<td >
-					
 					@if($val->active == 1)
 						<input type="checkbox" checked name="active" url="{{Request::root()}}/admin/news/active?id={{$val->id}}">
 					@else
@@ -164,9 +168,10 @@
 	</table>
 	<div class="row">
 		<div class="col-md-3 action">
-			<select>
-			   <option value="volvo">Active</option>
-			   <option value="saab">Unactive</option>
+			<select name="apply">
+			   <option value="active">Active</option>
+			   <option value="unactive">Unactive</option>
+			   <option value="delete">Delete</option>
 			</select> 
 			<input type="button" name="apply" value="apply">
 		</div>

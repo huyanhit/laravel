@@ -33,7 +33,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Category news</label>
 	    	<div class="col-sm-9">
-				<select class="form-control" id="category" name="category">
+				<select class="form-control" id="catnews" name="catnews">
 					@foreach($catnews as $val)
 				  	<option
 				  	@if(isset($frm['catnews']) && ($frm['catnews'] == $val->id))

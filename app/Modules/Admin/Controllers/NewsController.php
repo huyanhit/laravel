@@ -34,7 +34,7 @@ class NewsController extends Controller
 			session(['title'  => $_POST['title']]);
 			session(['desc'   => $_POST['desc']]);
 			session(['from'   => $_POST['from']]);
-			session(['active' => ($_POST['active']=='active')?1:0]);
+			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
 		    $data['filter']['title']  = session('title');
 		    $data['filter']['desc']   = session('desc');
 		    $data['filter']['from']   = session('from');
@@ -58,7 +58,7 @@ class NewsController extends Controller
 			$this->myFunction->uploadImage($_FILES["feature"]);
 			$frm =  
 			    ['id'     	  => NULL,
-			    'catnews'     => $_POST['category'],
+			    'catnews'     => $_POST['catnews'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
@@ -95,7 +95,7 @@ class NewsController extends Controller
 				$_FILES["feature"]["name"] = $news->image;
 			}
 			$frm =  
-			   ['catnews'     => $_POST['category'],
+			   ['catnews'     => $_POST['catnews'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
