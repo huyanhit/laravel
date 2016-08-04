@@ -8,7 +8,11 @@
 				<ul id="menu">
 					<li><a href="{{Request::root().'/admin/news'}}">News</a>
 						<ul class="submenu">
+<<<<<<< HEAD
 							<li><a href="{{Request::root().'/admin/news'}}">List</a> </li>
+=======
+							<li><a href="{{Request::root().'/admi/news'}}">List</a> </li>
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 							<li><a href="{{Request::root().'/admin/insert'}}">Insert</a></li>
 						</ul>
 					</li>

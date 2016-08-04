@@ -16,11 +16,14 @@ class NewsController extends Controller
 {
 	function __construct()
 	{
+<<<<<<< HEAD
 		session()->regenerate();
 		if(!isset($_GET['order'])){
 			session(['filter'=>null]);
 			session(['sort'=>null]);
 		}
+=======
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 		$this->newsModel    = new NewsModel();
 		$this->catnewsModel = new CatnewsModel();
 		$this->myFunction   = new MyFunction();
@@ -45,6 +48,15 @@ class NewsController extends Controller
 		    $data['filter']['from']   = session('from');
 		    $data['filter']['active'] = session('active');
 		}
+<<<<<<< HEAD
+=======
+
+		if(!empty(session('order')) && !empty(session('by'))){
+			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
+		}else{
+			$result['urlsort'] = "";
+		}
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 		$result['news'] = $this->newsModel->getAll($data);
 		return view('Admin::News.list',$result);
 	}
@@ -52,6 +64,7 @@ class NewsController extends Controller
 	public function insertNews()
 	{
 		$data['catnews'] = $this->catnewsModel->getAll();
+<<<<<<< HEAD
 
 		if(isset($_POST['submit'])){
 			if($this->myFunction->uploadImage($_FILES["feature"])){
@@ -68,6 +81,61 @@ class NewsController extends Controller
 				    'author'      => 1];
 				$this->newsModel->insertNews($frm);
 			}
+=======
+		$data['frm'] = "";
+		if(isset($_POST['submit'])){
+			$this->myFunction->uploadImage($_FILES["feature"]);
+			$frm =  
+			    ['id'     	  => NULL,
+			    'catnews'     => $_POST['category'],
+			    'title'       => $_POST['title'], 
+			    'desc'        => $_POST['desc'], 
+			    'content'     => $_POST['content'], 
+			    'image'       => $_FILES["feature"]["name"], 
+			    'from'        => $_POST['from'], 
+			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'date_create' => date('m/d/Y h:i:s a'), 
+			    'author'      => 1];
+			$this->newsModel->insertNews($frm);
+			$data['frm'] = $frm;
+			return view('Admin::News.insert',$data);
+		}else{
+			return view('Admin::News.insert',$data);
+		}
+	}
+	
+	public function editNews(){
+		$id = $_GET['id'];
+		$news = $this->newsModel->getnewsbyId($id);
+		$data['edit'] = $id;
+		$data['catnews'] = $this->catnewsModel->getAll();
+		$data['frm'] =  
+		   ['catnews'     => $news->catnews,
+		    'title'       => $news->title, 
+		    'desc'        => $news->desc, 
+		    'content'     => $news->content, 
+		    'from'        => $news->from, 
+		    'active'      => $news->active,  
+		    'author'      => 1];
+		if(isset($_POST['submit'])){
+			if(!empty($_FILES["feature"]["name"])){
+				$this->myFunction->uploadImage($_FILES["feature"]);
+			}else{
+				$_FILES["feature"]["name"] = $news->image;
+			}
+			$frm =  
+			   ['catnews'     => $_POST['category'],
+			    'title'       => $_POST['title'], 
+			    'desc'        => $_POST['desc'], 
+			    'content'     => $_POST['content'], 
+			    'image'       => $_FILES["feature"]["name"], 
+			    'from'        => $_POST['from'], 
+			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'author'      => 1];
+			$this->newsModel->updateNews($frm,$id);
+			$data['frm'] = $frm;
+			
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 			return view('Admin::News.insert',$data);
 		}else{
 			return view('Admin::News.insert',$data);

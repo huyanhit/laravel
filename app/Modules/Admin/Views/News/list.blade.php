@@ -91,7 +91,11 @@
 				</td>
 			</tr>
 		</thead>
+<<<<<<< HEAD
 		<form id="filter" method="post" action="{{Request::url().'?order='.session('order').'&by='.session('by')}}">
+=======
+		<form id="filter" method="post" action="{{Request::url().$urlsort}}">
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 			<tr>
 				<td>
 					#
@@ -155,7 +159,11 @@
 				</td>
 				<td>
 					<a href="{{Request::root()}}/admin/news/insert"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+<<<<<<< HEAD
 					<a href="{{Request::root()}}/admin/news/edit"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+=======
+					<a href="{{Request::root()}}/admin/news/edit?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 					<a class="ajaxdelete" href="{{Request::root()}}/admin/news/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>

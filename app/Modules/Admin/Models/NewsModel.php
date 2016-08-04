@@ -41,6 +41,18 @@ class NewsModel extends Model
 	public function insertNews($data)
 	{	
 		$result = DB::table('news')->insert($data);
+<<<<<<< HEAD
+=======
+		return $result;
+	}
+	public function updateNews($data,$id)
+	{	
+		$result = DB::table('news')->where('id',$id)->update($data);
+		return $result;
+	}
+	public function getnewsbyId($id){
+		$result = DB::table('news')->where('id', $id)->first();
+>>>>>>> 4f222c836957527156128fbe2a738fccb1d819c5
 		return $result;
 	}
 }
