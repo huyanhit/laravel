@@ -129,4 +129,9 @@ class NewsController extends Controller
 			return $this->newsModel->activeId($active,$_GET['id']);
 		}
 	}
+
+	public function activeAll()
+	{
+		print_r($_POST);
+	}
 }

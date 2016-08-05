@@ -169,9 +169,9 @@
 	<div class="row">
 		<div class="col-md-3 action">
 			<select name="apply">
-			   <option value="active">Active</option>
-			   <option value="unactive">Unactive</option>
-			   <option value="delete">Delete</option>
+			   <option value="activeall">Active</option>
+			   <option value="unactiveall">Unactive</option>
+			   <option value="deleteall">Delete</option>
 			</select> 
 			<input type="button" name="apply" value="apply">
 		</div>

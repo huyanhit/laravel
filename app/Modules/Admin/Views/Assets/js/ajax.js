@@ -25,7 +25,21 @@ $(document).ready(function(){
 	});
 
 	$('input[name="apply"]').click(function(){
+		data = new Array();
 		var choose = $('select[name="apply"]');
-		rel =  window.location.host + '/' + window.location.pathname+'/'+choose.val();
+		
+		url = window.location.pathname+'/'+choose.val();
+
+		$("input[name='check']:checked").each(function(index,elem){
+			data.push($(elem).attr('data')) ;
+		})
+		console.log(data);
+		$.ajax({
+		  	method: "POST",
+		  	url: url,
+		  	data : data,
+		}).done(function( msg ){
+			alert(msg);
+		});
 	})
 });
