@@ -132,6 +132,8 @@ class NewsController extends Controller
 
 	public function activeAll()
 	{
-		print_r($_POST);
+		foreach ($_POST['data'] as $val) {
+			$this->newsModel->activeId(1,$val);		
+		}
 	}
 }
