@@ -10,14 +10,14 @@
 				<td>
 					<span class="title">Tittle</span>
 					<span class="sort">
-						<a href="{{Request::root()}}/admin/news?order=title&by=asc">
+						<a href="{{Request::url()}}?order=title&by=asc">
 							<i class="
 							@if((session('order')=='title')&&(session('by')=='asc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-asc" aria-hidden="true"></i>
 						</a>
-						<a href="{{Request::root()}}/admin/news?order=title&by=desc">
+						<a href="{{Request::url()}}?order=title&by=desc">
 							<i class="
 							@if((session('order')=='title')&&(session('by')=='desc'))
 								{{'active'}}
@@ -29,14 +29,14 @@
 				<td>
 					<span class="title">Description</span>
 					<span class="sort">
-						<a href="{{Request::root()}}/admin/news?order=desc&by=asc">
+						<a href="{{Request::url()}}?order=desc&by=asc">
 							<i class="
 							@if((session('order')=='desc')&&(session('by')=='asc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-asc" aria-hidden="true"></i>
 						</a>
-						<a href="{{Request::root()}}/admin/news?order=desc&by=desc">
+						<a href="{{Request::url()}}?order=desc&by=desc">
 							<i class="
 							@if((session('order')=='desc')&&(session('by')=='desc'))
 								{{'active'}}
@@ -48,14 +48,14 @@
 				<td>
 					<span class="title">Get From</span>
 					<span class="sort">
-						<a href="{{Request::root()}}/admin/news?order=from&by=asc">
+						<a href="{{Request::url()}}?order=from&by=asc">
 							<i class="
 							@if((session('order')=='from')&&(session('by')=='asc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-asc" aria-hidden="true"></i>
 						</a>
-						<a href="{{Request::root()}}/admin/news?order=from&by=desc">
+						<a href="{{Request::url()}}?order=from&by=desc">
 							<i class="
 							@if((session('order')=='from')&&(session('by')=='desc'))
 								{{'active'}}
@@ -70,14 +70,14 @@
 				<td>
 					<span class="title">View</span>
 					<span class="sort">
-						<a href="{{Request::root()}}/admin/news?order=view&by=asc">
+						<a href="{{Request::url()}}?order=view&by=asc">
 							<i class="
 							@if((session('order')=='view')&&(session('by')=='asc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-asc" aria-hidden="true"></i>
 						</a>
-						<a href="{{Request::root()}}/admin/news?order=view&by=desc">
+						<a href="{{Request::url()}}?order=view&by=desc">
 							<i class="
 							@if((session('order')=='view')&&(session('by')=='desc'))
 								{{'active'}}
@@ -149,18 +149,18 @@
 				</td>
 				<td >
 					@if($val->active == 1)
-						<input type="checkbox" checked name="active" url="{{Request::root()}}/admin/news/active?id={{$val->id}}">
+						<input type="checkbox" checked name="active" url="{{Request::url()}}/active?id={{$val->id}}">
 					@else
-						<input type="checkbox" name="active" url="{{Request::root()}}/admin/news/active?id={{$val->id}}">
+						<input type="checkbox" name="active" url="{{Request::url()}}/active?id={{$val->id}}">
 					@endif
 				</td>
 				<td>
 					{{$val->view}}	
 				</td>
 				<td>
-					<a href="{{Request::root()}}/admin/news/insert"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
-					<a href="{{Request::root()}}/admin/news/edit?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-					<a class="ajaxdelete" href="{{Request::root()}}/admin/news/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::url()}}/insert"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::url()}}/edit?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					<a class="ajaxdelete" href="{{Request::url()}}/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			@endforeach

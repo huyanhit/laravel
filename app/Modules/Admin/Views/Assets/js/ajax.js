@@ -13,12 +13,14 @@ $(document).ready(function(){
 		if(!confirm("do you Want to delete?")){
 			return false;
 		}
-		$(this).parent().parent().remove();
+		elem = $(this).parent().parent();
 		$.ajax({
 		  	type: 'GET',
 		  	url: url,
 		  	data : {check: $(this).is(':checked')},
-		}).done(function( msg ){});
+		}).done(function( msg ){
+			elem.remove();
+		});
 		return false;
 	});
 
@@ -27,13 +29,7 @@ $(document).ready(function(){
 		var choose = $('select[name="apply"]');
 		url = window.location.pathname+'/apply';
 		$("input[name='check']:checked").each(function(index,elem){
-			data.push($(elem).attr('data')) ;
-			if(choose.val() == '1'){
-				$(this).parent().parent().find("input[name='active']").prop('checked', this.checked);
-			}
-			else{
-				$(this).parent().parent().find("input[name='active']").prop('checked', false);
-			}
+			data.push($(elem).attr('data'));
 		})
 		console.log(choose.val());
 		$.ajax({
@@ -41,7 +37,17 @@ $(document).ready(function(){
 		  	url: url,
 		  	data: {action: choose.val(), data: data}
 		}).done(function( msg ){
-			console.log(msg);
-		});
+			$("input[name='check']:checked").each(function(index,elem){
+				if(choose.val() == '1'){
+					$(this).parent().parent().find("input[name='active']").prop('checked', this.checked);
+				}
+				else if(choose.val() == '2'){
+					$(this).parent().parent().find("input[name='active']").prop('checked', false);
+				}
+				else if(choose.val() == '3'){
+					$(this).parent().parent().remove();
+				}
+			})
+		})
 	})
 });

@@ -8,7 +8,7 @@
 				<ul id="menu">
 					<li><a href="{{Request::root().'/admin/news'}}">News</a>
 						<ul class="submenu">
-							<li><a href="{{Request::root().'/admi/news'}}">List</a> </li>
+							<li><a href="{{Request::root().'/admin/news'}}">List</a> </li>
 							<li><a href="{{Request::root().'/admin/insert'}}">Insert</a></li>
 						</ul>
 					</li>
