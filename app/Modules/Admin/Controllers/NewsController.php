@@ -132,9 +132,8 @@ class NewsController extends Controller
 
 	public function applyNews()
 	{
-		print_r($_POST);
 		if(isset($_POST['action'])){
-			switch (int($_POST['action'])) {
+			switch ((int)$_POST['action']) {
 				case 1:
 					foreach ($_POST['data'] as $val) {
 						$this->newsModel->activeId(1,$val);		

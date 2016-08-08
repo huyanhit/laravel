@@ -39,11 +39,7 @@ $(document).ready(function(){
 		$.ajax({
 		  	type: 'POST',
 		  	url: url,
-		  	dataType: 'json',
-		  	data:{
-		  		'action' : choose.val(),
-		  		'data': data,
-		  	},
+		  	data: {action: choose.val(), data: data}
 		}).done(function( msg ){
 			console.log(msg);
 		});
