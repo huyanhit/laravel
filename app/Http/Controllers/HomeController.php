@@ -25,12 +25,8 @@ class HomeController extends Controller
      */
     public function index()
     {
-
         $myFunction = new myFunction;
-        $myFunction->module_headerline();
-        $data['name'] = 'huy';
-        $data['age'] = '28';
-        $data['headerline']= $myFunction->module_headerline();
+        $data[]=array();
         return view("home",$data);
     }
 }
