@@ -130,10 +130,28 @@ class NewsController extends Controller
 		}
 	}
 
-	public function activeAll()
+	public function applyNews()
 	{
-		foreach ($_POST['data'] as $val) {
-			$this->newsModel->activeId(1,$val);		
+		print_r($_POST);
+		if(isset($_POST['action'])){
+			switch (int($_POST['action'])) {
+				case 1:
+					foreach ($_POST['data'] as $val) {
+						$this->newsModel->activeId(1,$val);		
+					}
+				break;
+				case 2:
+					foreach ($_POST['data'] as $val) {
+						$this->newsModel->activeId(0,$val);		
+					}
+				break;
+				case 3:
+					foreach ($_POST['data'] as $val) {
+						$this->newsModel->deteleId($val);		
+					}
+				break;
+			}
 		}
 	}
+
 }

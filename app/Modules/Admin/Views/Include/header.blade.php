@@ -24,7 +24,7 @@
 			<div class="col-md-3">
 				<div class="avata">
 					<a href="#">
-						<img src="{{Request::root()}}./resources/assets/images/user.png" alt="Magazine">
+						<img src="{{Request::root()}}/resources/assets/images/user.png" alt="Magazine">
 					</a>
 				</div>
 				<div class="welcome">

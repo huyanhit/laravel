@@ -12,14 +12,20 @@
 */
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers'], function () {
 	Route::get('/', ['as' => 'admin.index', 'uses' => 'NewsController@index']);
+
 	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 	Route::post('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
+
 	Route::post('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
 	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
+
 	Route::get('/news/delete', ['as' => 'news.delete', 'uses' => 'NewsController@deleteNews']);
+
 	Route::get('/news/active', ['as' => 'news.active', 'uses' => 'NewsController@activeNews']);
-	Route::get('/news/edit', ['as' => 'news.edit', 'uses' => 'NewsController@editNews']);
-	Route::post('/news/edit', ['as' => 'news.edit', 'uses' => 'NewsController@editNews']);
-	Route::post('/news/activeall', ['as' => 'news.activeall', 'uses' => 'NewsController@activeAll']);
-	Route::get('/news/activeall', ['as' => 'news.activeall', 'uses' => 'NewsController@activeAll']);
+
+	Route::get('/news/edit', ['as'   => 'news.edit', 'uses' => 'NewsController@editNews']);
+	Route::post('/news/edit', ['as'  => 'news.edit', 'uses' => 'NewsController@editNews']);
+
+	Route::get('/news/apply', ['as'  => 'news.apply','uses' => 'NewsController@applyNews']);
+	Route::post('/news/apply', ['as' => 'news.apply','uses' => 'NewsController@applyNews']);
 });
