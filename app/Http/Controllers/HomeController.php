@@ -40,7 +40,7 @@ class HomeController extends Controller
 
         $data['intro'] = $this->intro->getAll();
         foreach ($data['intro'] as $key => $val) {
-            $data['intro'][$key]->title = $this->myFunction->trimText($data['intro'][$key]->title,40);
+            $data['intro'][$key]->title = $this->myFunction->trimText($data['intro'][$key]->title,30);
             $data['intro'][$key]->desc = $this->myFunction->trimText($data['intro'][$key]->desc,60);
         }
 
