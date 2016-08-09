@@ -10,6 +10,8 @@ body {
   background-size: cover; }
   body a:hover {
     text-decoration: none; }
+  body a:focus {
+    outline: 0; }
 
 #header {
   background: #3D4C54;
@@ -195,7 +197,8 @@ body {
         #news .flexslider ol li img {
           border: 5px #f2f2f2 solid; }
     #news .flexslider .flex-direction-nav a {
-      top: 35%; }
+      top: 35%;
+      font-size: 0; }
       #news .flexslider .flex-direction-nav a:before {
         font-family: FontAwesome;
         color: #fff; }
@@ -221,7 +224,7 @@ body {
     padding: 2px 5px; }
     #news .news-center ul li {
       background: #FFF;
-      margin: 12px 8px;
+      margin: 10px 8px;
       padding: 10px;
       list-style: none;
       position: relative; }
@@ -273,6 +276,8 @@ body {
       #tabwidget #tab-content ul li p {
         margin: 0;
         padding-top: 5px; }
+      #tabwidget #tab-content ul li > a {
+        float: left; }
     #tabwidget #tab-content ul:last-child {
       border-bottom: none; }
     #tabwidget #tab-content ul img {

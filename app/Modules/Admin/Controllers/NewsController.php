@@ -47,8 +47,10 @@ class NewsController extends Controller
 			$result['urlsort'] = "";
 		}
 		$result['news'] = $this->newsModel->getAll($data);
-		$result['news'][0]->title = $this->myFunction->trimText($result['news'][0]->title,30);
-		$result['news'][0]->desc = $this->myFunction->trimText($result['news'][0]->desc,50);
+		foreach ($result['news'] as $key => $val) {
+			$result['news'][$key]->title = $this->myFunction->trimText($result['news'][$key]->title,30);
+			$result['news'][$key]->desc = $this->myFunction->trimText($result['news'][$key]->desc,50);
+        }
 		return view('Admin::News.list',$result);
 	}
 

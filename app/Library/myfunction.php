@@ -23,7 +23,7 @@ namespace App\Library {
 		    return $trimmed_text;
 		}
 		
-		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb"){
+		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb",$resize=0){
 		  	$arrext = explode(".", $ini_filename);
 		  	$ext = end($arrext);
 		  	$arrpath = explode("/", $ini_filename);
@@ -51,7 +51,20 @@ namespace App\Library {
 			if(!file_exists('public/uploads/'.$save)){
 				mkdir('public/uploads/'.$save, 0700);
 			}
-			imagejpeg($thumb_im, 'public/uploads/'.$save.'/'.$path, 100);
+			$newpath = 'public/uploads/'.$save.'/'.$path;
+			imagejpeg($thumb_im, $newpath , 100);
+			if($resize > 0){
+				$this->resize($newpath, $resize,($resize/$xtl)*$ytl);
+			}
+		}
+
+		public function resize($ini_filename ,$newwidth = 300, $newheight = 300) {
+			header('Content-Type: image/jpeg');
+			list($width, $height) = getimagesize($ini_filename);
+			$thumb = imagecreatetruecolor($newwidth, $newheight);
+			$source = imagecreatefromjpeg($ini_filename);
+			imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
+			imagejpeg($thumb, $ini_filename , 100);
 		}
 	}
 }

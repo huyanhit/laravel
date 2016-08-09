@@ -3,7 +3,7 @@ namespace App\Http\Models;
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
-class HeaderlineModel extends Model
+class IntroModel extends Model
 {
 	public function getAll()
 	{
