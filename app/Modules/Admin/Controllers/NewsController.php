@@ -68,7 +68,7 @@ class NewsController extends Controller
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
 			    'active'      => isset($_POST['active'])? 1 : 0,  
-			    'date_create' => date('m/d/Y h:i:s a'), 
+			    'date_create' => time(), 
 			    'author'      => 1];
 			if($id = $this->newsModel->insertNews($frm)){
 				return redirect('admin/news/edit?id='.$id);

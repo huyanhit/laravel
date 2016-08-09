@@ -1,11 +1,11 @@
 <?php 
 namespace App\Library {
 	class MyFunction {
-		public function uploadImage($file,$xtl = 1,$ytl = 1){
+		public function uploadImage($file){
 			$target_dir = "public/uploads/";
 			$target_file = $target_dir.basename($file["name"]);
 			move_uploaded_file($file["tmp_name"],$target_file);
-			$this->crop_image($target_file,$xtl,$ytl);
+			$this->cropImage($target_file);
 		}
 
 		public function trimText($text, $length, $ellipses = true, $strip_html = true) {
@@ -23,7 +23,7 @@ namespace App\Library {
 		    return $trimmed_text;
 		}
 		
-		public function crop_image($ini_filename,$xtl,$ytl){
+		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb"){
 		  	$arrext = explode(".", $ini_filename);
 		  	$ext = end($arrext);
 		  	$arrpath = explode("/", $ini_filename);
@@ -48,9 +48,10 @@ namespace App\Library {
 				$to_crop_array = array('x' =>(($ini_x_size-($ini_y_size/$ytl*$xtl))/2) , 'y' => 0, 'width' => ($ini_y_size/$ytl*$xtl), 'height'=> $ini_y_size);
 				$thumb_im = imagecrop($im, $to_crop_array);
 			}
-			if(!file_exists('public/uploads/thumb')) 
-				mkdir("public/uploads/thumb", 0700);
-			imagejpeg($thumb_im, 'public/uploads/thumb/'.$path, 100);
+			if(!file_exists('public/uploads/'.$save)){
+				mkdir('public/uploads/'.$save, 0700);
+			}
+			imagejpeg($thumb_im, 'public/uploads/'.$save.'/'.$path, 100);
 		}
 	}
 }

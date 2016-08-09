@@ -1,18 +1,19 @@
 <div id="headline" class="container">
 	<div class="owl-carousel">
-		<div class="item">
-			<article class="post">
-				<a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">
-				<img src="./public/images/img-headerline.jpg" alt="Magazine">
-				</a>
-				<div class="entry">
-					<h3><a href="#" title="Permalink to Donec consectetuer ligula vulputate sem tristique cursus" rel="bookmark">Donec consectetuer ligula vulputate...</a></h3>
-					<p>5 months ago </p>
-				</div>
-				<div class="clearfix"></div>
-			</article>
-		</div>
-
+		@foreach($news as $val)
+			<div class="item">
+				<article class="post">
+					<a href="{{Request::root()}}/content.html" title="{{$val->title}}" rel="bookmark">
+						<img src="{{Request::root()}}/public/uploads/headerline/{{$val->image}}" alt="Magazine">
+					</a>
+					<div class="entry">
+						<h3><a href="{{Request::root()}}/content.html" title="{{$val->title}}" rel="bookmark">{{$val->title}}</a></h3>
+						<p>{{$val->desc}}</p>
+					</div>
+					<div class="clearfix"></div>
+				</article>
+			</div>
+		@endforeach
 		<div class="item">
 			<article class="post">
 				<a href="#" title="Permalink to Nam nibh arcu tristique eget pretium vitae libero ac risus" rel="bookmark">
