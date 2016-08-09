@@ -263,7 +263,7 @@
         </div>
         <div class="col-md-4">
              <div class="job-vip">
-                <h3 class="title"><span>Job vip</span></h3>
+                <h3 class="title"><span>Job Vip</span></h3>
                 <div class="content">
                     @foreach($jobs as $val)
                     <div class="item">
