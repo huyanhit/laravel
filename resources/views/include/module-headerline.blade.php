@@ -8,7 +8,7 @@
 					</a>
 					<div class="entry">
 						<h3><a href="{{Request::root()}}/content.html" title="{{$val->title}}" rel="bookmark">{{$val->title}}</a></h3>
-						<p>Đăng ngày: {{$val->date_create}}</p>
+						<p>{{$val->date_create}}</p>
 					</div>
 					<div class="clearfix"></div>
 				</article>

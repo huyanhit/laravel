@@ -11,8 +11,6 @@
 |
 */
 Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers'], function () {
-	Route::get('/', ['as' => 'admin.index', 'uses' => 'NewsController@index']);
-
 	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 	Route::post('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 
@@ -28,4 +26,20 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
 	Route::get('/news/apply', ['as'  => 'news.apply','uses' => 'NewsController@applyNews']);
 	Route::post('/news/apply', ['as' => 'news.apply','uses' => 'NewsController@applyNews']);
+
+	Route::get('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
+	Route::post('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
+
+	Route::post('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertJobs']);
+	Route::get('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertJobs']);
+
+	Route::get('/jobs/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@deleteJobs']);
+
+	Route::get('/jobs/active', ['as' => 'jobs.active', 'uses' => 'JobsController@activeJobs']);
+
+	Route::get('/jobs/edit', ['as'   => 'jobs.edit', 'uses' => 'JobsController@editJobs']);
+	Route::post('/jobs/edit', ['as'  => 'jobs.edit', 'uses' => 'JobsController@editJobs']);
+
+	Route::get('/jobs/apply', ['as'  => 'jobs.apply','uses' => 'JobsController@applyJobs']);
+	Route::post('/jobs/apply', ['as' => 'jobs.apply','uses' => 'JobsController@applyJobs']);
 });

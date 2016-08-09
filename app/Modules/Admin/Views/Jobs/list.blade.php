@@ -10,21 +10,59 @@
 				<td>
 					<span class="title">Category</span>
 					<span class="sort">
-						<a href="{{Request::url()}}?order=catnews&by=asc">
+						<a href="{{Request::url()}}?order=catjobs&by=asc">
 							<i class="
-							@if((session('order')=='catnews')&&(session('by')=='asc'))
+							@if((session('order')=='catjobs')&&(session('by')=='asc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-asc" aria-hidden="true"></i>
 						</a>
-						<a href="{{Request::url()}}?order=catnews&by=desc">
+						<a href="{{Request::url()}}?order=catjobs&by=desc">
 							<i class="
-							@if((session('order')=='catnews')&&(session('by')=='desc'))
+							@if((session('order')=='catjobs')&&(session('by')=='desc'))
 								{{'active'}}
 							@endif
 							fa fa-sort-desc" aria-hidden="true"></i>
 						</a>
-					</span> 
+					</span>
+				</td>
+				<td>
+					<span class="title">Type</span>
+					<span class="sort">
+						<a href="{{Request::url()}}?order=typejobs&by=asc">
+							<i class="
+							@if((session('order')=='typejobs')&&(session('by')=='asc'))
+								{{'active'}}
+							@endif
+							fa fa-sort-asc" aria-hidden="true"></i>
+						</a>
+						<a href="{{Request::url()}}?order=typejobs&by=desc">
+							<i class="
+							@if((session('order')=='typejobs')&&(session('by')=='desc'))
+								{{'active'}}
+							@endif
+							fa fa-sort-desc" aria-hidden="true"></i>
+						</a>
+					</span>
+				</td>
+				<td>
+					<span class="title">Location</span>
+					<span class="sort">
+						<a href="{{Request::url()}}?order=location&by=asc">
+							<i class="
+							@if((session('order')=='location')&&(session('by')=='asc'))
+								{{'active'}}
+							@endif
+							fa fa-sort-asc" aria-hidden="true"></i>
+						</a>
+						<a href="{{Request::url()}}?order=location&by=desc">
+							<i class="
+							@if((session('order')=='location')&&(session('by')=='desc'))
+								{{'active'}}
+							@endif
+							fa fa-sort-desc" aria-hidden="true"></i>
+						</a>
+					</span>
 				</td>
 				<td>
 					<span class="title">Tittle</span>
@@ -116,15 +154,47 @@
 					#
 				</td>
 				<td>
-					<select  id="catnews" name="catnews">
+					<select  id="catjobs" name="catjobs">
 						<option 
-					    @if(session('catnews') == '')
+					    @if(session('catjobs') == '')
 					    {{'selected'}}
 					    @endif
 					    value="choose">Choose</option>
-						@foreach($catnews as $val)
+						@foreach($catjobs as $val)
 					  	<option
-					  	@if(session('catnews') == $val->id)
+					  	@if(session('catjobs') == $val->id)
+					  		{{'selected'}}
+					  	@endif
+					  	value="{{$val->id}}">{{$val->title}}</option>
+					  	@endforeach
+					</select>
+				</td>
+				<td>
+					<select  id="typejobs" name="typejobs">
+						<option 
+					    @if(session('typejobs') == '')
+					    {{'selected'}}
+					    @endif
+					    value="choose">Choose</option>
+						@foreach($typejobs as $val)
+					  	<option
+					  	@if(session('typejobs') == $val->id)
+					  		{{'selected'}}
+					  	@endif
+					  	value="{{$val->id}}">{{$val->title}}</option>
+					  	@endforeach
+					</select>
+				</td>
+				<td>
+					<select  id="location" name="location">
+						<option 
+					    @if(session('location') == '')
+					    {{'selected'}}
+					    @endif
+					    value="choose">Choose</option>
+						@foreach($location as $val)
+					  	<option
+					  	@if(session('location') == $val->id)
 					  		{{'selected'}}
 					  	@endif
 					  	value="{{$val->id}}">{{$val->title}}</option>
@@ -163,19 +233,33 @@
 					#
 				</td>
 				<td>
-					<input type="submit" name="submit" value="Filter">
+					<input type="submit" name="submit" value=" Filter ">
 				</td>
 			</tr>
 		</form>
 		<tbody>
-			@foreach($news as $key => $val)
+			@foreach($jobs as $key=> $val)
 			<tr class="">
 				<td>
 					<input type="checkbox" name="check" data="{{$val->id}}">
 				</td>
 				<td>
-					@foreach($catnews as $vals)
-						@if($val->catnews == $vals->id)
+					@foreach($catjobs as $vals)
+						@if($val->catjobs == $vals->id)
+							{{$vals->title}}
+						@endif
+					@endforeach		
+				</td>
+				<td>
+					@foreach($typejobs as $vals)
+						@if($val->typejobs == $vals->id)
+							{{$vals->title}}
+						@endif
+					@endforeach	
+				</td>
+				<td>
+					@foreach($location as $vals)
+						@if($val->location == $vals->id)
 							{{$vals->title}}
 						@endif
 					@endforeach	
@@ -218,7 +302,7 @@
 			<input type="button" name="apply" value="Apply">
 		</div>
 		<div class=" col-md-6 pagination">
-			{!! $news->render() !!}
+			{!! $jobs->render() !!}
 		</div>
 		<div class=" col-md-3">
 			

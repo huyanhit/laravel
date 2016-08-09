@@ -479,12 +479,16 @@ body{
 				    color: #8abc5e;
 				    margin: 10px 0;
 				    font-weight: bold;
-				    border-bottom: 1pX #ccc solid;
+				    border-bottom: 1px #ccc solid;
+    				clear: both;
 				    span{
 				    	padding-right: 20px;
 				    	&:last-child{
 				    		padding-right: 0;
 				    	};
+				    	i{
+    						padding-right: 5px;
+				    	}
 				    }
 				}
 				img{

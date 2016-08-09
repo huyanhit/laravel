@@ -8,6 +8,7 @@ use App\Library\myfunction;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\NewsModel;
+use App\Http\Models\JobsModel;
 
 class HomeController extends Controller
 {
@@ -17,6 +18,7 @@ class HomeController extends Controller
         $this->headerline = new HeaderlineModel();
         $this->intro = new IntroModel();
         $this->news = new NewsModel();
+        $this->jobs = new JobsModel();
         $this->myFunction = new MyFunction();
         $this->index();
     }
@@ -26,7 +28,7 @@ class HomeController extends Controller
         $data['headerline'] = $this->headerline->getAll();
         foreach ($data['headerline'] as $key => $val) {
             $data['headerline'][$key]->title = $this->myFunction->trimText($data['headerline'][$key]->title,50);
-            $data['headerline'][$key]->date_create = date('d/m/Y',$data['headerline'][$key]->date_create);
+            $data['headerline'][$key]->date_create = date('d-m-Y',$data['headerline'][$key]->date_create);
            
             if(empty($data['headerline'][$key]->image) || !file_exists('public/uploads/'.$data['headerline'][$key]->image)){
                 $data['headerline'][$key]->image = './public/uploads/headerline/Chrysanthemum.jpg';
@@ -69,6 +71,21 @@ class HomeController extends Controller
                 $data['newsnew'][$key]->image = './public/uploads/newsnew/'.$data['newsnew'][$key]->image;
             }
         }
+
+        $data['location'] = $this->jobs->getLocation();
+        $data['jobs'] = $this->jobs->getJobsvip();
+        foreach ($data['jobs'] as $key => $val) {
+            $data['jobs'][$key]->title = $this->myFunction->trimText($data['jobs'][$key]->title,40);
+            $data['jobs'][$key]->desc = $this->myFunction->trimText($data['jobs'][$key]->desc,60);
+            $data['jobs'][$key]->date_create = date('d-m-Y',$data['jobs'][$key]->date_create);
+            if(empty($data['jobs'][$key]->image) || !file_exists('public/uploads/'.$data['jobs'][$key]->image)){
+                $data['jobs'][$key]->image = './public/uploads/jobs/Chrysanthemum.jpg';
+            }else{
+                $this->myFunction->cropImage('./public/uploads/'.$data['jobs'][$key]->image,1,1,'jobs',400);
+                $data['jobs'][$key]->image = './public/uploads/jobs/'.$data['jobs'][$key]->image;
+            }
+        }
+
         return view("home",$data);
     }
 }

@@ -7,7 +7,7 @@ class HeaderlineModel extends Model
 {
 	public function getAll()
 	{
-		$result = DB::table('news')->take(10)->get();
+		$result = DB::table('news')->where('active',1)->take(10)->get();
 		return $result;
 	}
 	

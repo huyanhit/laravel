@@ -9,10 +9,15 @@
 					<li><a href="{{Request::root().'/admin/news'}}">News</a>
 						<ul class="submenu">
 							<li><a href="{{Request::root().'/admin/news'}}">List</a> </li>
-							<li><a href="{{Request::root().'/admin/insert'}}">Insert</a></li>
+							<li><a href="{{Request::root().'/admin/news/insert'}}">Insert</a></li>
 						</ul>
 					</li>
-					<li><a href="{{Request::url()}}">Jobs</a> </li>
+					<li><a href="{{Request::root().'/admin/jobs'}}">Jobs</a> 
+						<ul class="submenu">
+							<li><a href="{{Request::root().'/admin/jobs'}}">List</a> </li>
+							<li><a href="{{Request::root().'/admin/jobs/insert'}}">Insert</a></li>
+						</ul>
+					</li>
 					<li><a href="#">Ad</a></li>
 					<li><a href="#">Mutilmedia</a></li>
 					<li><a href="#">Shop</a></li>

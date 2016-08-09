@@ -6,10 +6,10 @@
                 <form>
                     <div class="name">
                         <select>
-                            <option value="volvo">Pleiku</option>
-                            <option value="saab">AnKhe</option>
-                            <option value="mercedes">DakDoa</option>
-                            <option value="audi">ChuPu</option>
+                            <option value="choose">Choose</option>
+                            @foreach($location as $val)
+                            <option value="{{$val->id}}">{{$val->title}}</option>
+                            @endforeach
                         </select>
                     </div>
                 </form>
@@ -265,72 +265,26 @@
              <div class="job-vip">
                 <h3 class="title"><span>Job vip</span></h3>
                 <div class="content">
+                    @foreach($jobs as $val)
                     <div class="item">
-                        <a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb fl" alt="shutterstock_134257640" title=""></a>
-                        <h3><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Phục Vụ Nhà Hàng Queen Plaza karatime</a></h3>
-                        <div class="desc">Lectus non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem </div>
+                        <a href="#"><img width="225" height="136" src="{{$val->image}}" class="thumb fl" alt="shutterstock_134257640" title=""></a>
+                        <h4><a href="#" rel="bookmark" title="{{$val->title}}">{{$val->title}}</a></h4>
+                        <div class="desc">{{$val->desc}}</div>
                         <div class="salo">
                             <span>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 trieu-5 trieu
+                                <i class="fa fa-clock-o" aria-hidden="true"></i>{{$val->date_create}}
                             </span>
                             <span>
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
+                                <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                                @foreach($location as $vals)
+                                    @if($val->location == $vals->id)
+                                        {{$vals->title}}
+                                    @endif
+                                @endforeach 
                             </span>
                         </div>
                     </div>
-                    <div class="item">
-                        <a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb fl" alt="shutterstock_134257640" title=""></a>
-                        <h3><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Phục Vụ Nhà Hàng Queen Plaza karatime</a></h3>
-                        <div class="desc">Lectus non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem </div>
-                        <div class="salo">
-                            <span>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 trieu-5 trieu
-                            </span>
-                            <span>
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb fl" alt="shutterstock_134257640" title=""></a>
-                        <h3><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Phục Vụ Nhà Hàng Queen Plaza karatime</a></h3>
-                        <div class="desc">Lectus non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem </div>
-                        <div class="salo">
-                            <span>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 trieu-5 trieu
-                            </span>
-                            <span>
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb fl" alt="shutterstock_134257640" title=""></a>
-                        <h3><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Phục Vụ Nhà Hàng Queen Plaza karatime</a></h3>
-                        <div class="desc">Lectus non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem </div>
-                        <div class="salo">
-                            <span>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 trieu-5 trieu
-                            </span>
-                            <span>
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                            </span>
-                        </div>
-                    </div>
-                    <div class="item">
-                        <a href="#"><img width="225" height="136" src="./public/images/background-new.jpg" class="thumb fl" alt="shutterstock_134257640" title=""></a>
-                        <h3><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Phục Vụ Nhà Hàng Queen Plaza karatime</a></h3>
-                        <div class="desc">Lectus non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem non rutrum pulvinar urna leo dignissim lorem Lectus non rutrum pulvinar urna leo dignissim lorem </div>
-                        <div class="salo">
-                            <span>
-                                <i class="fa fa-clock-o" aria-hidden="true"></i> 3 trieu-5 trieu
-                            </span>
-                            <span>
-                                <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                            </span>
-                        </div>
-                    </div>
-                    
+                    @endforeach
                 </div>
             </div>
         </div>

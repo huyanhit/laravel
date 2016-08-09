@@ -58,7 +58,13 @@ input[type='submit'],input[type='button'],button,.button{
             a{
                 color: #fff;
             }
+            
         };
+        &:hover{
+            .submenu{
+                display: block;
+            }
+        }
         .submenu{
             position: absolute;
             left: 0;
@@ -124,7 +130,7 @@ input[type='submit'],input[type='button'],button,.button{
                         float: right;
                     i{
                         height: 15px;
-                        width: 19px;
+                        width: 10px;
                         text-align: center;
                         color: #fff;
                         &.active{

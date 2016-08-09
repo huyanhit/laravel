@@ -380,11 +380,14 @@ body {
       color: #8abc5e;
       margin: 10px 0;
       font-weight: bold;
-      border-bottom: 1pX #ccc solid; }
+      border-bottom: 1px #ccc solid;
+      clear: both; }
       #jobs .job-vip .content .item .salo span {
         padding-right: 20px; }
         #jobs .job-vip .content .item .salo span:last-child {
           padding-right: 0; }
+        #jobs .job-vip .content .item .salo span i {
+          padding-right: 5px; }
     #jobs .job-vip .content .item img {
       width: 100px;
       height: 100px;

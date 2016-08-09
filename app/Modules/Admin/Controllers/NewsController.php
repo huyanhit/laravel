@@ -31,10 +31,12 @@ class NewsController extends Controller
 			$data['sort']['by']    = $_GET['by'];
 		}
 		if(isset($_POST['submit'])){
+			session(['catnews'=> ($_POST['catnews']!='choose')? $_POST['catnews'] : null ]);
 			session(['title'  => $_POST['title']]);
 			session(['desc'   => $_POST['desc']]);
 			session(['from'   => $_POST['from']]);
 			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
+			$data['filter']['catnews']= session('catnews');
 		    $data['filter']['title']  = session('title');
 		    $data['filter']['desc']   = session('desc');
 		    $data['filter']['from']   = session('from');
@@ -46,6 +48,7 @@ class NewsController extends Controller
 		}else{
 			$result['urlsort'] = "";
 		}
+		$result['catnews'] = $this->catnewsModel->getAll();
 		$result['news'] = $this->newsModel->getAll($data);
 		foreach ($result['news'] as $key => $val) {
 			$result['news'][$key]->title = $this->myFunction->trimText($result['news'][$key]->title,30);
@@ -78,6 +81,21 @@ class NewsController extends Controller
 			$data['frm'] = $frm;
 			return view('Admin::News.insert',$data);
 		}else{
+			if(isset($_GET['id'])){
+				$id = $_GET['id'];
+				$news = $this->newsModel->getnewsbyId($id);
+				$data['catnews'] = $this->catnewsModel->getAll();
+				$data['frm'] =  
+			    ['catnews'    => $news->catnews,
+			    'title'       => $news->title, 
+			    'desc'        => $news->desc, 
+			    'content'     => $news->content, 
+			    'image'       => $news->image,
+			    'from'        => $news->from, 
+			    'active'      => $news->active,  
+			    'author'      => 1];
+				return view('Admin::News.insert',$data);
+			}
 			return view('Admin::News.insert',$data);
 		}
 	}
@@ -108,11 +126,11 @@ class NewsController extends Controller
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
-			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'active'      => isset($_POST['active'])? 1 : 0, 
+			    'date_update' => time(),  
 			    'author'      => 1];
 			$this->newsModel->updateNews($frm,$id);
 			$data['frm'] = $frm;
-			
 			return view('Admin::News.insert',$data);
 		}else{
 			return view('Admin::News.insert',$data);
