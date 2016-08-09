@@ -57,7 +57,8 @@ class NewsController extends Controller
 		$data['catnews'] = $this->catnewsModel->getAll();
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
-			$this->myFunction->uploadImage($_FILES["feature"]);
+			if(!empty($_FILES["feature"]["name"]))
+				$this->myFunction->uploadImage($_FILES["feature"]);
 			$frm =  
 			    ['id'     	  => NULL,
 			    'catnews'     => $_POST['catnews'],
@@ -69,7 +70,9 @@ class NewsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => date('m/d/Y h:i:s a'), 
 			    'author'      => 1];
-			$this->newsModel->insertNews($frm);
+			if($id = $this->newsModel->insertNews($frm)){
+				return redirect('admin/news/edit?id='.$id);
+			}
 			$data['frm'] = $frm;
 			return view('Admin::News.insert',$data);
 		}else{

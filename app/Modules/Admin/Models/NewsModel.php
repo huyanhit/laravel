@@ -40,7 +40,7 @@ class NewsModel extends Model
 	}
 	public function insertNews($data)
 	{	
-		$result = DB::table('news')->insert($data);
+		$result = DB::table('news')->insertGetId($data);
 		return $result;
 	}
 	public function updateNews($data,$id)
