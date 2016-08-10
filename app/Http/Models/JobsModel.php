@@ -7,12 +7,12 @@ class JobsModel extends Model
 {
 	public function getAll()
 	{
-		$result = DB::table('jobs')->where('active',1)->paginate(10);
+		$result = DB::table('jobs')->where('active',1)->orderby('id','desc')->paginate(10);
 		return $result;
 	}
 	public function getJobsvip()
 	{
-		$result = DB::table('jobs')->where('active',1)->where('catjobs',1)->take(10)->get();
+		$result = DB::table('jobs')->where('active',1)->where('catjobs',1)->take(10)->orderby('id','desc')->get();
 		return $result;
 	}
 	public function getCatjobs()
