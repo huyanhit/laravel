@@ -92,6 +92,12 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">Salary</label>
+	    	<div class="col-sm-9">
+	      		<input type="text" class="form-control" name="salary" value="{{isset($frm['salary'])?$frm['salary']:''}}" required>
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
 	    	<label class="control-label col-sm-3" >Active</label>
 	    	<div class="col-sm-9">
 	      		<input type="checkbox" id="active" name="active" {{(isset($frm['active']) && $frm['active']==1)?'checked':''}} >

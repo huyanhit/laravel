@@ -15,236 +15,43 @@
                 </form>
             </div>
             <div id="list-jobs">
+                @foreach($jobs as $val)
                 <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
+                    <div class="title col-xs-9">
+                    <i class="fa 
+                    @foreach($typejobs as $vals)
+                        @if($val->typejobs == $vals->id)
+                            {{$vals->icon}}
+                        @endif
+                    @endforeach 
+                    " aria-hidden="true"></i> 
+                        <a href="#" class="title" target="_blank" title="{{$val->title}}">
+                           {{$val->title}}
                         </a>
                     </div>
                     <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
+                        <span class="salary"> {{$val->salary}} </span>
                     </div>
                     <div class="clearfix"></div>
                     <div class="bottom">
                         <div class="col-xs-6">
-                                Event Center  Wind Groups 
+                                {{$val->from}}
                         </div>
                         <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
+                            <i class="fa fa-clock-o" aria-hidden="true"></i> {{$val->date_create}}
                         </div>
                         <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
+                            <i class="fa fa-location-arrow" aria-hidden="true"></i>
+                            @foreach($location as $vals)
+                                @if($val->location == $vals->id)
+                                    {{$vals->title}}
+                                @endif
+                            @endforeach 
                         </div>
                         <div class="clearfix"></div>
                     </div>
                 </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
-                <div class="item "> 
-                    <div class="title col-xs-9"><i class="fa fa-star-o" aria-hidden="true"></i> 
-                        <a href="#" class="title" target="_blank" title="Phục Vụ Nhà Hàng Queen Plaza">
-                            Phục Vụ Nhà Hàng Queen Plaza (quận 10) 
-                        </a>
-                    </div>
-                    <div class="col-xs-3 text-right">
-                        <span class="salary"> 3 triệu - 5 triệu </span>
-                    </div>
-                    <div class="clearfix"></div>
-                    <div class="bottom">
-                        <div class="col-xs-6">
-                                Event Center  Wind Groups 
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-clock-o" aria-hidden="true"></i> 31/07/2016
-                        </div>
-                        <div class="col-xs-3">
-                            <i class="fa fa-location-arrow" aria-hidden="true"></i> Pleiku
-                        </div>
-                        <div class="clearfix"></div>
-                    </div>
-                </div>
+                @endforeach
             </div>
             <div class="pagination">
                 <span><a href="#">1</a></span>
@@ -265,7 +72,7 @@
              <div class="job-vip">
                 <h3 class="title"><span>Job Vip</span></h3>
                 <div class="content">
-                    @foreach($jobs as $val)
+                    @foreach($jobsvip as $val)
                     <div class="item">
                         <a href="#"><img width="225" height="136" src="{{$val->image}}" class="thumb fl" alt="shutterstock_134257640" title=""></a>
                         <h4><a href="#" rel="bookmark" title="{{$val->title}}">{{$val->title}}</a></h4>

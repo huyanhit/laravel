@@ -82,6 +82,7 @@ class JobsController extends Controller
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
+			    'salary'      => $_POST['salary'],
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
@@ -106,6 +107,7 @@ class JobsController extends Controller
 			    'content'     => $jobs->content, 
 			    'image'       => $jobs->image,
 			    'from'        => $jobs->from, 
+			    'salary'      => $jobs->salary, 
 			    'active'      => $jobs->active,  
 			    'author'      => 1];
 				return view('Admin::Jobs.insert',$data);
@@ -129,6 +131,7 @@ class JobsController extends Controller
 		    'desc'        => $jobs->desc, 
 		    'content'     => $jobs->content, 
 		    'from'        => $jobs->from, 
+		    'salary'      => $jobs->salary,
 		    'active'      => $jobs->active,  
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
@@ -146,6 +149,7 @@ class JobsController extends Controller
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
+			    'salary'      => $_POST['salary'],
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];

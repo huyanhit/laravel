@@ -71,21 +71,27 @@ class HomeController extends Controller
                 $data['newsnew'][$key]->image = './public/uploads/newsnew/'.$data['newsnew'][$key]->image;
             }
         }
-
         $data['location'] = $this->jobs->getLocation();
-        $data['jobs'] = $this->jobs->getJobsvip();
+        $data['catjobs'] = $this->jobs->getCatjobs();
+        $data['typejobs'] = $this->jobs->getTypejobs();
+        $data['jobs'] = $this->jobs->getAll();
         foreach ($data['jobs'] as $key => $val) {
             $data['jobs'][$key]->title = $this->myFunction->trimText($data['jobs'][$key]->title,40);
             $data['jobs'][$key]->desc = $this->myFunction->trimText($data['jobs'][$key]->desc,60);
             $data['jobs'][$key]->date_create = date('d-m-Y',$data['jobs'][$key]->date_create);
-            if(empty($data['jobs'][$key]->image) || !file_exists('public/uploads/'.$data['jobs'][$key]->image)){
-                $data['jobs'][$key]->image = './public/uploads/jobs/Chrysanthemum.jpg';
+        } 
+        $data['jobsvip'] = $this->jobs->getJobsvip();
+        foreach ($data['jobsvip'] as $key => $val) {
+            $data['jobsvip'][$key]->title = $this->myFunction->trimText($data['jobsvip'][$key]->title,40);
+            $data['jobsvip'][$key]->desc = $this->myFunction->trimText($data['jobsvip'][$key]->desc,60);
+            $data['jobsvip'][$key]->date_create = date('d-m-Y',$data['jobsvip'][$key]->date_create);
+            if(empty($data['jobsvip'][$key]->image) || !file_exists('public/uploads/'.$data['jobsvip'][$key]->image)){
+                $data['jobsvip'][$key]->image = './public/uploads/jobsvip/Chrysanthemum.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$data['jobs'][$key]->image,1,1,'jobs',400);
-                $data['jobs'][$key]->image = './public/uploads/jobs/'.$data['jobs'][$key]->image;
+                $this->myFunction->cropImage('./public/uploads/'.$data['jobsvip'][$key]->image,1,1,'jobsvip',400);
+                $data['jobsvip'][$key]->image = './public/uploads/jobsvip/'.$data['jobsvip'][$key]->image;
             }
         }
-
         return view("home",$data);
     }
 }
