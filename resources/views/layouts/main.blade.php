@@ -19,6 +19,7 @@
 	    <script src="./resources/assets/js/jquery.flexslider-min.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/jquery.simplyscroll.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/owl.carousel.min.js" type="text/javascript"></script>
+	    <script src="./resources/assets/js/ajax.js" type="text/javascript"></script>
 	    <script src="./resources/assets/js/app.js" type="text/javascript"></script>
 
 	</head>

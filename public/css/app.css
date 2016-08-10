@@ -12,6 +12,21 @@ body {
     text-decoration: none; }
   body a:focus {
     outline: 0; }
+  body #ajaxsend {
+    position: fixed;
+    text-align: center;
+    left: 50%;
+    top: 50%;
+    z-index: 100;
+    height: 100%;
+    width: 100%;
+    transform: translate(-50%, -50%);
+    background: rgba(0, 0, 0, 0.3); }
+    body #ajaxsend img {
+      border-radius: 50%;
+      top: 50%;
+      position: relative;
+      transform: translateY(-50px); }
 
 #header {
   background: #3D4C54;
@@ -341,7 +356,7 @@ body {
         border: none;
         margin-right: 1px; }
   #jobs #list-jobs {
-    max-height: 455px;
+    height: 455px;
     overflow-y: scroll;
     border: 14px #f2f2f2 solid;
     border-right: 1px;
@@ -353,7 +368,7 @@ body {
       #jobs #list-jobs .item .title {
         font-weight: bold; }
         #jobs #list-jobs .item .title i {
-          width: 30px;
+          width: 15px;
           font-size: 18px; }
       #jobs #list-jobs .item .salary {
         font-weight: bold;
@@ -396,16 +411,26 @@ body {
       float: left; }
   #jobs .pagination {
     height: 25px;
-    margin-top: 5px; }
-    #jobs .pagination span {
+    margin-top: 5px;
+    list-style: none;
+    padding: 0; }
+    #jobs .pagination li {
+      display: inline-block; }
+      #jobs .pagination li.active a, #jobs .pagination li.active span, #jobs .pagination li:hover a, #jobs .pagination li:hover span {
+        background: #fff;
+        color: #337ab7;
+        border: 1px #3d4c54 solid; }
+    #jobs .pagination a, #jobs .pagination span {
       background: #3d4c54;
       height: 25px;
       display: inline-block;
       width: 25px;
       text-align: center;
-      line-height: 25px; }
-      #jobs .pagination span a {
-        color: #fff; }
+      line-height: 25px;
+      margin-right: 5px;
+      color: #fff;
+      border: 1px #3d4c54 solid;
+      box-sizing: content-box; }
 
 #masonry {
   background: #fff;

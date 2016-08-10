@@ -94,4 +94,17 @@ class HomeController extends Controller
         }
         return view("home",$data);
     }
+    
+    public function ajaxjobs(){
+        $data['location'] = $this->jobs->getLocation();
+        $data['catjobs'] = $this->jobs->getCatjobs();
+        $data['typejobs'] = $this->jobs->getTypejobs();
+        $data['jobs'] = $this->jobs->getAll();
+        foreach ($data['jobs'] as $key => $val) {
+            $data['jobs'][$key]->title = $this->myFunction->trimText($data['jobs'][$key]->title,40);
+            $data['jobs'][$key]->desc = $this->myFunction->trimText($data['jobs'][$key]->desc,60);
+            $data['jobs'][$key]->date_create = date('d-m-Y',$data['jobs'][$key]->date_create);
+        } 
+        return view("include/ajax-listjobs",$data);
+    }
 }

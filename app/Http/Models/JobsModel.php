@@ -7,7 +7,7 @@ class JobsModel extends Model
 {
 	public function getAll()
 	{
-		$result = DB::table('jobs')->where('active',1)->take(10)->get();
+		$result = DB::table('jobs')->where('active',1)->paginate(10);
 		return $result;
 	}
 	public function getJobsvip()

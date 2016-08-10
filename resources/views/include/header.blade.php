@@ -1,3 +1,6 @@
+<div id="ajaxsend">
+	<img src="./resources/assets/images/ajax-loader.gif">
+</div>
 <header id="header" class="container">
 <div class="row">
 <div class="col-md-3" id="mast-head">

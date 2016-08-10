@@ -4,8 +4,15 @@ namespace App\Library {
 		public function uploadImage($file){
 			$target_dir = "public/uploads/";
 			$target_file = $target_dir.basename($file["name"]);
-			move_uploaded_file($file["tmp_name"],$target_file);
-			$this->cropImage($target_file);
+			$arrext = explode(".", $file["name"]);
+		  	$ext  = end($arrext);
+		  	$alow = array('jpg','png');
+		  	if(in_array($ext,$alow))
+		  	{
+				return move_uploaded_file($file["tmp_name"],$target_file);
+		  	}else{
+		  		return false;
+		  	}
 		}
 
 		public function trimText($text, $length, $ellipses = true, $strip_html = true) {

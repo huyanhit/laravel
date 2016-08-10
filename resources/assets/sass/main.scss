@@ -13,6 +13,26 @@ body{
 	a:focus{
 		outline: 0;
 	}
+	#ajaxsend{
+		position: fixed;
+	    text-align: center;
+	    left: 50%;
+	    top: 50%;
+	    z-index: 100;
+	    height: 100%;
+	    width: 100%;
+	    transform: translate(-50%, -50%);
+	    background: rgba(0, 0, 0, 0.3);
+	    &.ajaxsend{
+	    	display: block;
+	    	img{
+		    	border-radius: 50%;
+			    top: 50%;
+			    position: relative;
+			    transform: translateY(-50px);
+	    	}
+	    }
+	}
 }
 #header {
     background: #3D4C54;
@@ -429,7 +449,7 @@ body{
 		}
 	}
 	#list-jobs{
-    	max-height: 455px;
+    	height: 455px;
 	    overflow-y: scroll;
 	    border: 14px #f2f2f2 solid;
 	    border-right: 1px;
@@ -443,7 +463,7 @@ body{
 			.title{
 				font-weight: bold;
 				i{
-					width: 30px;
+					width: 15px;
 					font-size: 18px;
 				}
 			}
@@ -504,16 +524,29 @@ body{
 	.pagination{
 	    height: 25px;
 	    margin-top: 5px;
-		span{
+	    list-style: none;
+    	padding: 0;
+	    li{
+	    	display: inline-block;
+	    	&.active,&:hover{
+	    		a,span{
+	    			background: #fff;
+	    			color: #337ab7;
+    				border: 1px #3d4c54 solid;
+	    		}
+	    	}
+	    }
+		a,span{
 			background: #3d4c54;
 		    height: 25px;
 		    display: inline-block;
 		    width: 25px;
 		    text-align: center;
 		    line-height: 25px;
-    		a{
-    			color: #fff;
-			}
+		    margin-right: 5px;
+		    color: #fff;
+		    border: 1px #3d4c54 solid;
+		    box-sizing: content-box;
 		}
 	}
 }
