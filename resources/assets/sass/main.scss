@@ -178,11 +178,10 @@ body{
     			height: 41px;
 				li {
 					padding: 0;
+					padding-right: 20px;
 					margin: 0;
 					list-style: none;
 					float: left; 
-					width: 500px;
-					height: 200px;
 					a{
 						font-size: 12px;
 						span{
@@ -208,7 +207,15 @@ body{
     	margin: 0;
 		list-style: none;
     	line-height: 11px;
-		
+    	.introweather{
+    		font-size: 12px;
+    	}
+		.weather_icon{
+			height: 40px;
+			padding: 5px;
+			width: auto;
+			padding-right: 30px;
+		}
 	}
 	#searchform{
 		p{

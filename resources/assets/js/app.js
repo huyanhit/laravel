@@ -32,3 +32,25 @@ $(document).ready(function($) {
 $(document).ready(function($){
   $("#tabnav").idTabs();  
 });
+$(document).ready(function($){
+  var url = 'https://query.yahooapis.com/v1/public/yql';
+  var yql = 'select title, units.temperature, item.forecast from weather.forecast where woeid in (select woeid from geo.places where text="pleiku, vietnam") and u = "C" limit 2 | sort(field="item.forecast.date", descending="false");';
+  var iconUrl = 'https://s.yimg.com/zz/combo?a/i/us/we/52/';
+  $.ajax({url: url, data: {format: 'json', q: yql}, method: 'GET', dataType: 'json'})
+    .success(function(data) {
+      if (data.query.count > 0) {
+        jQuery.each(data.query.results.channel, function(idx, result) {
+          console.log(result);
+          var f = result.item.forecast;
+          var u = result.units.temperature;
+          var c = $('#weather').clone();
+          c.find('.weather_date').text('Pleiku: ' + f.date+' - ');
+          c.find('.weather_temp_min').text('Nhiệt độ: ' + f.low + u + ' -');
+          c.find('.weather_temp_max').text(f.high + u);
+          c.find('.weather_icon').attr('src', iconUrl + f.code + '.gif');
+          c.appendTo($('.introweather'));
+        });
+      }
+    }
+  );
+});

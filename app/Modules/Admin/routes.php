@@ -14,6 +14,8 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 	Route::post('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 
+	Route::get('/news/rss', ['as' => 'news.rss', 'uses' => 'NewsController@updateRss']);
+
 	Route::post('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
 	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
 

@@ -50,4 +50,12 @@ $(document).ready(function(){
 			})
 		})
 	})
+	$('input[name="updaterss"]').click(function(){
+		$.ajax({
+		  	type: 'GET',
+		  	url: './news/rss',
+		}).done(function( msg ){
+			alert('success');
+		})
+	})
 });

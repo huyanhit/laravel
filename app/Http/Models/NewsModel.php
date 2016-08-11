@@ -23,7 +23,7 @@ class NewsModel extends Model
 		$result = DB::table('news')
 		->where('active',1)
 		->orderBy('view','desc')
-		->take(10)->get();
+		->take(7)->get();
 		return $result;
 	}
 	

@@ -36,6 +36,14 @@ class HomeController extends Controller
                 $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',200);
                 $data['headerline'][$key]->image = './public/uploads/headerline/'.$data['headerline'][$key]->image;
             }
+            // if(empty($data['headerline'][$key]->image)){
+            //     $data['headerline'][$key]->image = './public/uploads/headerline/Chrysanthemum.jpg';
+            // }else if(!file_exists('public/uploads/'.$data['headerline'][$key]->image)){
+            //     $data['headerline'][$key]->image = $data['headerline'][$key]->image;
+            // }else{
+            //     $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',400);
+            //     $data['headerline'][$key]->image = './public/uploads/headerline/'.$data['headerline'][$key]->image;
+            // }
         }
 
         $data['intro'] = $this->intro->getAll();

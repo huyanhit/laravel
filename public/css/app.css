@@ -22,11 +22,13 @@ body {
     width: 100%;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.3); }
-    body #ajaxsend img {
-      border-radius: 50%;
-      top: 50%;
-      position: relative;
-      transform: translateY(-50px); }
+    body #ajaxsend.ajaxsend {
+      display: block; }
+      body #ajaxsend.ajaxsend img {
+        border-radius: 50%;
+        top: 50%;
+        position: relative;
+        transform: translateY(-50px); }
 
 #header {
   background: #3D4C54;
@@ -147,11 +149,10 @@ body {
         height: 41px; }
         #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li {
           padding: 0;
+          padding-right: 20px;
           margin: 0;
           list-style: none;
-          float: left;
-          width: 500px;
-          height: 200px; }
+          float: left; }
           #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a {
             font-size: 12px; }
             #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a span {
@@ -168,6 +169,13 @@ body {
     margin: 0;
     list-style: none;
     line-height: 11px; }
+    #intro ul .introweather {
+      font-size: 12px; }
+    #intro ul .weather_icon {
+      height: 40px;
+      padding: 5px;
+      width: auto;
+      padding-right: 30px; }
   #intro #searchform p {
     margin: 0;
     position: relative;

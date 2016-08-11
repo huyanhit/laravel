@@ -39,8 +39,10 @@ namespace App\Library {
 		    	$im = imagecreatefromgif($ini_filename);
 		  	} else if($ext =="png"){ 
 		    	$im = imagecreatefrompng($ini_filename);
-		    } else { 
+		    } else if($ext =="jpg" || $ext =="jpeg"){ 
 		        $im = imagecreatefromjpeg($ini_filename);
+		    }else{
+		    	return false;
 		    }
 			$ini_x_size = getimagesize($ini_filename )[0];
 			$ini_y_size = getimagesize($ini_filename )[1];

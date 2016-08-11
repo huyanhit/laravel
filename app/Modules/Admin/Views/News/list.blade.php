@@ -216,6 +216,7 @@
 			   <option value="3">Delete</option>
 			</select> 
 			<input type="button" name="apply" value="Apply">
+			<input type="button" name="updaterss" value="UpdateRss">
 		</div>
 		<div class=" col-md-6 pagination">
 			{!! $news->render() !!}

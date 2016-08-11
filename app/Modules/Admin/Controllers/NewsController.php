@@ -177,5 +177,8 @@ class NewsController extends Controller
 			}
 		}
 	}
-
+	public function updateRss()
+	{
+		$this->newsModel->importRss('http://vnexpress.net/rss/tin-moi-nhat.rss','VnExpress');
+	}
 }
