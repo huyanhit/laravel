@@ -1,4 +1,6 @@
+
 $(document).ready(function(){
+	$("#ajaxsend").hide();
 	$('input[name="active"]').click(function(){
 		url = this.getAttribute( "url" );
 		$.ajax({
@@ -58,4 +60,10 @@ $(document).ready(function(){
 			alert('success');
 		})
 	})
+});
+$(document).ajaxSend(function() {
+   $("#ajaxsend").show();
+});
+$(document).ajaxComplete(function() {
+   $("#ajaxsend").hide();
 });

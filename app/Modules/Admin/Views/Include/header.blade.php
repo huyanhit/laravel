@@ -1,3 +1,6 @@
+<div id="ajaxsend">
+	<img src="{{Request::root()}}/resources/assets/images/ajax-loader.gif">
+</div>
 <div id="header">
 	<div class="container-fluid">
 		<div class="row">

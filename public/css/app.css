@@ -22,13 +22,11 @@ body {
     width: 100%;
     transform: translate(-50%, -50%);
     background: rgba(0, 0, 0, 0.3); }
-    body #ajaxsend.ajaxsend {
-      display: block; }
-      body #ajaxsend.ajaxsend img {
-        border-radius: 50%;
-        top: 50%;
-        position: relative;
-        transform: translateY(-50px); }
+    body #ajaxsend img {
+      border-radius: 50%;
+      top: 50%;
+      position: relative;
+      transform: translateY(-50px); }
 
 #header {
   background: #3D4C54;
