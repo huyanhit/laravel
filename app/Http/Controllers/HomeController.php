@@ -27,13 +27,13 @@ class HomeController extends Controller
     {
         $data['headerline'] = $this->headerline->getAll();
         foreach ($data['headerline'] as $key => $val) {
-            $data['headerline'][$key]->title = $this->myFunction->trimText($data['headerline'][$key]->title,50);
-            $data['headerline'][$key]->date_create = date('d-m-Y',$data['headerline'][$key]->date_create);
+            $data['headerline'][$key]->title = $this->myFunction->trimText($data['headerline'][$key]->title,60);
+            $data['headerline'][$key]->desc = $this->myFunction->trimText($data['headerline'][$key]->desc,80);
            
             if(empty($data['headerline'][$key]->image) || !file_exists('public/uploads/'.$data['headerline'][$key]->image)){
                 $data['headerline'][$key]->image = './public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',200);
+                $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',400);
                 $data['headerline'][$key]->image = './public/uploads/headerline/'.$data['headerline'][$key]->image;
             }
         }
@@ -43,30 +43,54 @@ class HomeController extends Controller
             $data['intro'][$key]->desc = $this->myFunction->trimText($data['intro'][$key]->desc,60);
         }
 
-        $data['news'] = $this->news->getAll();
-        foreach ($data['news'] as $key => $val) {
-            $data['news'][$key]->title = $this->myFunction->trimText($data['news'][$key]->title,70);
-            $data['news'][$key]->desc = $this->myFunction->trimText($data['news'][$key]->desc,200);
-            if(empty($data['news'][$key]->image) || !file_exists('public/uploads/'.$data['news'][$key]->image)){
-                $data['news'][$key]->image = './public/images/no-image.jpg';
+        $data['newsSL'] = $this->news->getNewsSL();
+        foreach ($data['newsSL'] as $key => $val) {
+            $data['newsSL'][$key]->title = $this->myFunction->trimText($data['newsSL'][$key]->title,70);
+            $data['newsSL'][$key]->desc = $this->myFunction->trimText($data['newsSL'][$key]->desc,200);
+            if(empty($data['newsSL'][$key]->image) || !file_exists('public/uploads/'.$data['newsSL'][$key]->image)){
+                $data['newsSL'][$key]->image = './public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$data['news'][$key]->image,1.5,1,'news',400);
-                $data['news'][$key]->image = './public/uploads/news/'.$data['news'][$key]->image;
+                $this->myFunction->cropImage('./public/uploads/'.$data['newsSL'][$key]->image,1.5,1,'newsSL',400);
+                $data['newsSL'][$key]->image = './public/uploads/newsSL/'.$data['newsSL'][$key]->image;
             }
         }
-        $data['newshot'] = $this->news->getNewshot();
-        foreach ($data['newshot'] as $key => $val) {
-            $data['newshot'][$key]->title = $this->myFunction->trimText($data['newshot'][$key]->title,30);
+
+        $data['news'] = $this->news->getAll();
+        foreach ($data['news'] as $key => $val) {
+            $data['news'][$key]->title = $this->myFunction->trimText($data['news'][$key]->title, 40);
         }
-        $data['newsnew'] = $this->news->getNewsnew();
-        foreach ($data['newsnew'] as $key => $val) {
-            $data['newsnew'][$key]->title = $this->myFunction->trimText($data['newsnew'][$key]->title,60);
-            $data['newsnew'][$key]->desc = strip_tags($data['newsnew'][$key]->desc);
-            if(empty($data['newsnew'][$key]->image) || !file_exists('public/uploads/'.$data['newsnew'][$key]->image)){
-                $data['newsnew'][$key]->image = './public/images/no-image.jpg';
+
+        $data['newsRss'] = $this->news->getNewsRss();
+        foreach ($data['newsRss'] as $key => $val) {
+            $data['newsRss'][$key]->title = $this->myFunction->trimText($data['newsRss'][$key]->title,60);
+            $data['newsRss'][$key]->desc = strip_tags($data['newsRss'][$key]->desc);
+            if(empty($data['newsRss'][$key]->image) || !file_exists('public/uploads/'.$data['newsRss'][$key]->image)){
+                $data['newsRss'][$key]->image = './public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$data['newsnew'][$key]->image,1,1,'newsnew',200);
-                $data['newsnew'][$key]->image = './public/uploads/newsnew/'.$data['newsnew'][$key]->image;
+                $this->myFunction->cropImage('./public/uploads/'.$data['newsRss'][$key]->image,1,1,'newsRss',200);
+                $data['newsRss'][$key]->image = './public/uploads/newsRss/'.$data['newsRss'][$key]->image;
+            }
+        }
+        $data['newsXL'] = $this->news->getNewsXL();
+        foreach ($data['newsXL'] as $key => $val) {
+            $data['newsXL'][$key]->title = $this->myFunction->trimText($data['newsXL'][$key]->title,60);
+            $data['newsXL'][$key]->desc = strip_tags($data['newsXL'][$key]->desc);
+            if(empty($data['newsXL'][$key]->image) || !file_exists('public/uploads/'.$data['newsXL'][$key]->image)){
+                $data['newsXL'][$key]->image = './public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage('./public/uploads/'.$data['newsXL'][$key]->image,1,1,'newsXL',200);
+                $data['newsXL'][$key]->image = './public/uploads/newsXL/'.$data['newsXL'][$key]->image;
+            }
+        }
+        $data['newsGL'] = $this->news->getNewsGL();
+        foreach ($data['newsGL'] as $key => $val) {
+            $data['newsGL'][$key]->title = $this->myFunction->trimText($data['newsGL'][$key]->title,60);
+            $data['newsGL'][$key]->desc = strip_tags($data['newsGL'][$key]->desc);
+            if(empty($data['newsGL'][$key]->image) || !file_exists('public/uploads/'.$data['newsGL'][$key]->image)){
+                $data['newsGL'][$key]->image = './public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage('./public/uploads/'.$data['newsGL'][$key]->image,1,1,'newsGL',200);
+                $data['newsGL'][$key]->image = './public/uploads/newsGL/'.$data['newsGL'][$key]->image;
             }
         }
         $data['location'] = $this->jobs->getLocation();

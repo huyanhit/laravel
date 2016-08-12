@@ -5,13 +5,13 @@
 <div class="row">
 <div class="col-md-3" id="mast-head">
 	<div id="logo">
-	<a href="index.html" title="Magazine" rel="home"><img src="{{Request::root()}}/resources/assets/images/logo.png" alt="Magazine"></a>
+	<a href="{{Request::root()}}" title="Magazine" rel="home"><img src="{{Request::root()}}/resources/assets/images/logo.png" alt="Magazine"></a>
 	</div>
 </div>
 <nav class="col-md-9" class="navbar">
 	<ul>
-		<li class="icon-home"><a href="index.html"><img src="{{Request::root()}}/resources/assets/images/home.png" alt="Magazine"></a></li>
-		<li class="dropdown"><a href="index.html" class="dropdown-toggle disabled">Trang chủ<b class="caret"></b></a>
+		<li class="icon-home"><a href="{{Request::root()}}"><img src="{{Request::root()}}/resources/assets/images/home.png" alt="Magazine"></a></li>
+		<li class="dropdown"><a href="{{Request::root()}}" class="dropdown-toggle disabled">Trang chủ<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
 				<li><a href="magazine2.html">Tin</a></li>
 				<li><a href="blog.html">Homepage 3</a></li>

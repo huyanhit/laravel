@@ -269,7 +269,7 @@ body {
     background: #f2f2f2;
     margin: 0;
     padding: 5px;
-    height: 356px;
+    height: 398px;
     overflow-y: scroll;
     border-bottom: 12px #f2f2f2 solid; }
     #news .news-center ul li {
@@ -314,7 +314,7 @@ body {
 
 #tabwidget #tab-content {
   border: 1px solid #f2f2f2;
-  max-height: 357px;
+  height: 357px;
   overflow: hidden;
   overflow-y: scroll;
   border: 1px solid #f2f2f2; }

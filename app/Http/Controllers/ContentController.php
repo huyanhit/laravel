@@ -25,13 +25,13 @@ class ContentController extends Controller
     {
         $data['headerline'] = $this->headerline->getAll();
         foreach ($data['headerline'] as $key => $val) {
-            $data['headerline'][$key]->title = $this->myFunction->trimText($data['headerline'][$key]->title,50);
-            $data['headerline'][$key]->date_create = date('d-m-Y',$data['headerline'][$key]->date_create);
+            $data['headerline'][$key]->title = $this->myFunction->trimText($data['headerline'][$key]->title,60);
+            $data['headerline'][$key]->desc = $this->myFunction->trimText($data['headerline'][$key]->desc,80);
            
             if(empty($data['headerline'][$key]->image) || !file_exists('public/uploads/'.$data['headerline'][$key]->image)){
                 $data['headerline'][$key]->image = '../public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',200);
+                $this->myFunction->cropImage('./public/uploads/'.$data['headerline'][$key]->image,1.5,1,'headerline',400);
                 $data['headerline'][$key]->image = '../public/uploads/headerline/'.$data['headerline'][$key]->image;
             }
         }
@@ -64,6 +64,19 @@ class ContentController extends Controller
                 foreach($html->find('#box_tinkhac_detail') as $e){
                     $e->innertext = '';
                 }
+                foreach($html->find('#social_like') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('#box_tinlienquan') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('script') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('#banner_common') as $e){
+                    $e->innertext = '';
+                }
+                
                 foreach($html->find('.main_content_detail') as $e) {
                     $data['result'] = $e->innertext .'<br>';
                 }
