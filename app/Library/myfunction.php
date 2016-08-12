@@ -36,13 +36,16 @@ namespace App\Library {
 		  	$arrpath = explode("/", $ini_filename);
 		  	$path = end($arrpath);
 		  	if($ext == "gif"){ 
-		    	$im = imagecreatefromgif($ini_filename);
+		    	$im = @imagecreatefromgif($ini_filename);
 		  	} else if($ext =="png"){ 
-		    	$im = imagecreatefrompng($ini_filename);
+		    	$im = @imagecreatefrompng($ini_filename);
 		    } else if($ext =="jpg" || $ext =="jpeg"){ 
-		        $im = imagecreatefromjpeg($ini_filename);
+		        $im = @imagecreatefromjpeg($ini_filename);
 		    }else{
 		    	return false;
+		    }
+		    if (!$im) {
+		    	return;
 		    }
 			$ini_x_size = getimagesize($ini_filename )[0];
 			$ini_y_size = getimagesize($ini_filename )[1];

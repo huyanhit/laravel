@@ -62,7 +62,8 @@ body {
           padding: 0;
           min-width: 179px;
           top: 165px;
-          left: 0; }
+          left: 0;
+          z-index: -1; }
           #header nav ul li ul li {
             clear: both;
             width: 100%;

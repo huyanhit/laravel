@@ -9,9 +9,10 @@ use App\Http\Models\NewsModel;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 
+include('App\Library\domnode.php') ;
+
 class ContentController extends Controller
 {
-    
     public function __construct()
     {
         $this->headerline = new HeaderlineModel();
@@ -41,50 +42,38 @@ class ContentController extends Controller
         }
 
         $result = $this->news->getnewsbyId($id);
-        // $checkrss = substr($result->content, 0 , 4);
-        // if($checkrss == "http"){
-        //     $data['result'] = file_get_contents($result->content);
-        //     //$data['result'] = $this->cutContent($data['result']);
-        // }
-        // else{
-            $data['result'] = trim($result->content);
-        // }
+        if(isset($result->content)){
+            $checkrss = substr($result->content, 0 , 4);
+            if($checkrss == "http"){
+                $html = file_get_html($result->content);
+                foreach($html->find('.block_timer_share') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('.title_div_fbook') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('#right_calculator') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('.block_input_comment') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('.block_tag') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('#box_tinkhac_detail') as $e){
+                    $e->innertext = '';
+                }
+                foreach($html->find('.main_content_detail') as $e) {
+                    $data['result'] = $e->innertext .'<br>';
+                }
+                
+            }
+            else{
+                $data['result'] = trim($result->content);
+            }
+        }
+
         return view("content",$data);
     }
-
-    // public function cutContent($content){
-    //     $pos = strpos($content,'main_content_detail');
-    //     $str = substr($content, $pos , -1);
-    //     $curstr = $content;
-    //     $cur = $pos;
-    //     $loop = true;
-    //     $wrong = 0;
-    //     while ($loop){
-    //         if($pos = $this->findDiv($str,'div')){
-    //             if(substr($str, $pos-1 , 4) == '<div'){
-    //                 $pos = $this->findDiv($str,'<div');
-    //                 $str = substr($str, $pos+4 , -1);
-    //                 $wrong ++;
-    //                 if($wrong == 5){
-    //                    return $str; 
-    //                 }
-    //             }else if(substr($str, $pos-2 , 5) == '</div'){
-    //                 $pos = $this->findDiv($str,'</div');
-    //                 $str = substr($str, $pos+6 , -1);
-    //                 $wrong --;
-    //                 if($wrong == 4){
-    //                    return $str; 
-    //                 }
-    //             }
-    //         }
-    //         if($wrong < 0){
-    //             $loop = false; 
-    //         }
-    //     }
-    //     return substr($curstr, $cur ,$pos);
-    // }
-    // function findDiv($str,$find){
-    //     $pos = strpos($str,$find);
-    //     return $pos;
-    // }
 }
