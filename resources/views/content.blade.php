@@ -1,8 +1,8 @@
 @extends('layouts.main')
-@section('content-news')
+@section('content')
 <div id="content-news">
 	<div class="container">
-		{!!$result!!}
+		{!! $result  !!}
 	</div>
 </div>
 @endsection
