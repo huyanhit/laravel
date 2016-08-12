@@ -7,6 +7,12 @@
 			    @foreach($news as $val)	
 			    <li data-thumb="{{$val->image}}">
 			      <img src="{{$val->image}}" />
+			      <div class="flex-caption">
+			      	<h4><a href="./content/{{$val->id}}">{{$val->title}}</a></h4>
+			      	<div>
+			      		{{$val->desc}}
+			      	</div>
+			      </div>
 			    </li>
 			    @endforeach
 			  </ul>
@@ -16,7 +22,7 @@
 			<h3>Most Popular News</h3>
 			<ul>
 				@foreach($newshot as $val)	
-					<li><a href="#" title="{{$val->title}}" rel="bookmark"><h4 class="post-title">{{$val->title}}</h4></a></li>
+					<li><a href="./content/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><h4 class="post-title">{{$val->title}}</h4></a></li>
 				@endforeach
 			</ul>
 			<div class="clear"></div>
@@ -35,8 +41,8 @@
 				<ul id="itemContainer" class="recent-tab">
 					@foreach($newsnew as $val)	
 					<li class="jp-hidden" style="display: list-item; opacity: 1;">
-						<a href="#"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
-						<h4 class="post-title"><a href="#">{{$val->title}}</a></h4>
+						<a href="./content/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
+						<h4 class="post-title"><a href="./content/{{$val->id}}">{{$val->title}}</a></h4>
 						<p>{{$val->desc}}</p>
 						<div class="clearfix"></div>				
 					</li>

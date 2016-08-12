@@ -96,7 +96,7 @@ class NewsModel extends Model
 			    'catnews'     => 1,
 			    'title'       => strip_tags($item_title), 
 			    'desc'        => strip_tags($item_desc), 
-			    'content'     => strip_tags($item_desc),  
+			    'content'     => strip_tags($item_link),  
 			    'from'        => $item_from, 
 			    'image'  	  => $item_image, 
 			    'active'      => 1,  

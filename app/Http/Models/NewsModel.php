@@ -23,8 +23,11 @@ class NewsModel extends Model
 		$result = DB::table('news')
 		->where('active',1)
 		->orderBy('view','desc')
-		->take(7)->get();
+		->take(20)->get();
 		return $result;
 	}
-	
+	public function getnewsbyId($id){
+		$result = DB::table('news')->where('id', $id)->first();
+		return $result;
+	}
 }

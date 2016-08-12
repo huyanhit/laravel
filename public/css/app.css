@@ -156,10 +156,12 @@ body {
             #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a span {
               font-weight: bold;
               color: #005580; }
-              #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a span:after {
+              #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a span:before {
                 content: "»";
                 font-weight: normal;
-                margin: 0px 3px 0px 15px; }
+                margin: 0px 3px 0px 15px;
+                position: relative;
+                top: -1px; }
       #intro .simply-scroll-container .simply-scroll-clip .simply-scroll {
         height: 41px;
         margin-bottom: 1em; }
@@ -211,25 +213,44 @@ body {
   #news .flexslider {
     border: none;
     margin-bottom: 15px; }
+    #news .flexslider ul li {
+      position: relative; }
+      #news .flexslider ul li .flex-caption {
+        position: absolute;
+        bottom: 0;
+        left: 0px;
+        background: rgba(0, 0, 0, 0.6);
+        width: 100%;
+        color: #fff; }
+        #news .flexslider ul li .flex-caption h4 {
+          padding: 10px;
+          margin: 0; }
+        #news .flexslider ul li .flex-caption > div {
+          padding: 10px;
+          padding-top: 0; }
     #news .flexslider ol {
       border: 1px #f2f2f2 solid; }
       #news .flexslider ol li {
         padding: 10px; }
         #news .flexslider ol li img {
           border: 5px #f2f2f2 solid; }
-    #news .flexslider .flex-direction-nav a {
-      top: 35%;
-      font-size: 0; }
-      #news .flexslider .flex-direction-nav a:before {
+    #news .flexslider .flex-direction-nav {
+      position: absolute;
+      top: 33%;
+      width: 100%; }
+      #news .flexslider .flex-direction-nav a {
+        top: 35%;
+        font-size: 0; }
+        #news .flexslider .flex-direction-nav a:before {
+          font-family: FontAwesome;
+          color: #fff; }
+      #news .flexslider .flex-direction-nav:before {
         font-family: FontAwesome;
         color: #fff; }
-    #news .flexslider .flex-direction-nav:before {
-      font-family: FontAwesome;
-      color: #fff; }
-    #news .flexslider .flex-direction-nav .flex-next:before {
-      content: '\f105'; }
-    #news .flexslider .flex-direction-nav .flex-prev:before {
-      content: '\f104'; }
+      #news .flexslider .flex-direction-nav .flex-next:before {
+        content: '\f105'; }
+      #news .flexslider .flex-direction-nav .flex-prev:before {
+        content: '\f104'; }
   #news .news-center h3 {
     background: #3d4c54;
     color: #FFF;
@@ -242,10 +263,14 @@ body {
   #news .news-center ul {
     background: #f2f2f2;
     margin: 0;
-    padding: 2px 5px; }
+    padding: 5px;
+    height: 356px;
+    overflow-y: scroll;
+    border-bottom: 12px #f2f2f2 solid; }
     #news .news-center ul li {
       background: #FFF;
       margin: 10px 8px;
+      margin-right: 0;
       padding: 10px;
       list-style: none;
       position: relative; }
@@ -573,7 +598,8 @@ body {
 
 #footer .row-flex {
   display: -ms-flexbox;
-  display: flex; }
+  display: flex;
+  clear: both; }
 
 #footer #footer-top {
   background: #f1f1f1; }
@@ -635,6 +661,9 @@ body {
           #footer #footer-bot #site-info #footer-nav ul li:last-child {
             padding-right: 0;
             border-right: none; }
+
+#content-news .container {
+  background: #fff; }
 
 @media only screen and (max-width: 767px) {
   .main {

@@ -17,5 +17,7 @@ Route::get('/home', 'HomeController@index');
 
 Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
 
+Route::get('/content/{id}', 'ContentController@content');
+
 Route::get('/contact', 'ContactController@contact');
 

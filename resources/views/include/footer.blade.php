@@ -3,7 +3,7 @@
 		<div class="row row-flex">
 			<div class="col-md-4 footer-logo" >
 				<h3 class="title">siteinfo</h3>
-				<img src="./resources/assets/images/logo.png" alt="Magazine">
+				<img src="{{Request::root()}}/resources/assets/images/logo.png" alt="Magazine">
 				<p>About Magazine</p>
 				<p>Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eius mod tempor incididu...<p>
 			</div>

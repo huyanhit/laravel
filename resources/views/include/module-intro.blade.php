@@ -14,7 +14,7 @@
 					</span>
 				</li>
 				@foreach($intro as $val)	
-				<li><p><a href="#" title="{{$val->title}}" rel="bookmark"><span class="title">{{$val->title}}</span> {{$val->desc}}</a></p></li>
+				<li><p><a href="#" title="{{$val->title}}" rel="bookmark"><span class="title">{{$val->title}}</span></a></p></li>
 				@endforeach
 			</ul>
 		</div>
