@@ -226,6 +226,10 @@ body {
         #news .flexslider ul li .flex-caption h4 {
           padding: 10px;
           margin: 0; }
+          #news .flexslider ul li .flex-caption h4 a {
+            color: #fff;
+            font-weight: both;
+            font-size: 14px; }
         #news .flexslider ul li .flex-caption > div {
           padding: 10px;
           padding-top: 0; }
