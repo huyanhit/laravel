@@ -30,8 +30,8 @@
 			<div id="tabwidget" class="widget tab-container"> 
 				<ul id="tabnav" class="clearfix"> 
 					<li><h3><a href="#tab1" class="selected"><i class="fa fa-rss" aria-hidden="true"></i>Rss </a></h3></li>
-					<li><h3><a href="#tab2" class=""><i class="fa fa-gg" aria-hidden="true"></i>Xulanh</a></h3></li>
-				    <li><h3><a href="#tab3" class=""><i class="fa fa-envira" aria-hidden="true"></i>Gia Lai</a></h3></li>
+					<li><h3><a href="#tab2" class=""><i class="fa fa-envira" aria-hidden="true"></i>Xulanh</a></h3></li>
+				    <li><h3><a href="#tab3" class=""><i class="fa fa-gg" aria-hidden="true"></i>Gia Lai</a></h3></li>
 				</ul> 
 
 			<div id="tab-content">

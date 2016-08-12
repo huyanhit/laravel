@@ -2,11 +2,11 @@
     <div class="row">
         <div class="col-md-8">
             <div id="search-jobs">
-                <h3><span>Search jobs</span></h3>
+                <h3><span>Việc làm</span></h3>
                 <form>
                     <div class="name">
                         <select>
-                            <option value="choose">Choose</option>
+                            <option value="choose">Địa Điểm</option>
                             @foreach($location as $val)
                             <option value="{{$val->id}}">{{$val->title}}</option>
                             @endforeach
@@ -19,7 +19,7 @@
         </div>
         <div class="col-md-4">
              <div class="job-vip">
-                <h3 class="title"><span>Job Vip</span></h3>
+                <h3 class="title"><i class="fa fa-star-o"></i> <span>Việc làm tốt</span></h3>
                 <div class="content">
                     @foreach($jobsvip as $val)
                     <div class="item">

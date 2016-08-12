@@ -10,7 +10,7 @@ body{
     a:hover{
   	text-decoration: none;
 	}
-	a:focus{
+	*:focus{
 		outline: 0;
 	}
 	#ajaxsend{
@@ -338,6 +338,8 @@ body{
 		    height: 398px;
 		    overflow-y: scroll;
     		border-bottom: 12px #f2f2f2 solid;
+    		border-top: 12px #f2f2f2 solid;
+    		padding-top: 0;
 			li{
 			    background: #FFF;
     			margin: 10px 8px;
@@ -346,8 +348,11 @@ body{
 			    list-style: none;
 			    position: relative;
 			    h4{
-			    	margin: 0
+			    	margin: 0;
 			    }
+			    &:first-child(
+    				margin-top: 2px;
+			    )
 			}
 		}
 	}
