@@ -1,7 +1,7 @@
 <?php
 
-namespace App\Http\Controllers;
 
+namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Library\myfunction;
@@ -128,5 +128,19 @@ class HomeController extends Controller
             $data['jobs'][$key]->date_create = date('d-m-Y',$data['jobs'][$key]->date_create);
         } 
         return view("include/ajax-listjobs",$data);
+    }
+
+    public function postface(){
+        $token = 'EAACZCuDOGPW4BAGroxZCw1iCuurgjCxP7uPIHNZBKEnZBXBqfR8UnfqQpZBnEwCvwxUdY2h9o6oVJY6bFDnyzzOZCskvq5R80EthlRrxiNTMJNotXEfHEvXGUDqYQM8YVYSunboOE9uFfmIgZA60mLEwhiwHGXcgACelUJE5FxjO1C1TFm4VhwYRYfJdZCtfpOEZD';
+        $data['params'] = array(
+          "access_token" => $token,
+          "message" => "final facebook test",
+          "link" => "http://vnexpress.net/tin-tuc/thoi-su/giao-thong/xe-container-lao-sap-nha-dan-cuon-nguoi-phu-nu-tu-vong-3452733.html",
+          "picture" => "http://img.f29.vnecdn.net/2016/08/15/container-1-1620-1471228140.jpg",
+          "name" => "Post Facebook laravel",
+          "caption" => "http://vnexpress.net",
+          "description" => "Automatically post fabook app"
+        );
+        return view("include/post",$data);
     }
 }
