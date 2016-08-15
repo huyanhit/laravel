@@ -116,7 +116,6 @@ class HomeController extends Controller
         }
         return view("home",$data);
     }
-    
     public function ajaxjobs(){
         $data['location'] = $this->jobs->getLocation();
         $data['catjobs'] = $this->jobs->getCatjobs();

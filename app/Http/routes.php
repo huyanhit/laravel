@@ -19,6 +19,8 @@ Route::get('/postface', 'HomeController@postface');
 
 Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
 
+Route::get('/postjobs', 'PostjobsController@index');
+
 Route::get('/content/{id}', 'ContentController@content');
 
 Route::get('/contact', 'ContactController@contact');
