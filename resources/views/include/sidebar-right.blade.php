@@ -1,6 +1,5 @@
 <div id="sidr-right" class="sidr right"><div class="sidr-inner">
 	<ul class="sidr-class-nav">
-		
 		<li>
 		<span id="sidr-id-close-menu">
 			<a href="#" class="sidr-class-close-this-menu">Close</a>
