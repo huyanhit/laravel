@@ -28,10 +28,10 @@ class PostjobsModel extends Model
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,60);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $result[$key]->image = './public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$result[$key]->image,1,1,'jobsvip',400);
-                $result[$key]->image = './public/uploads/jobsvip/'.$result[$key]->image;
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'jobsvip',400);
+                $result[$key]->image = url('/').'/public/uploads/jobsvip/'.$result[$key]->image;
             }
         }
 		return $result;

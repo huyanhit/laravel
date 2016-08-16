@@ -35,10 +35,10 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
             $result[$key]->desc = strip_tags($result[$key]->desc);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $result[$key]->image = './public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$result[$key]->image,1,1,'newsRss',200);
-                $result[$key]->image = './public/uploads/newsRss/'.$result[$key]->image;
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'newsRss',200);
+                $result[$key]->image = url('/').'/public/uploads/newsRss/'.$result[$key]->image;
             }
         }
 		return $result;
@@ -51,10 +51,10 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,70);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,200);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $result[$key]->image = './public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$result[$key]->image,1.5,1,'newsSL',400);
-                $result[$key]->image = './public/uploads/newsSL/'.$result[$key]->image;
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1.5,1,'newsSL',400);
+                $result[$key]->image = url('/').'/public/uploads/newsSL/'.$result[$key]->image;
             }
         }
 		return $result;
@@ -71,10 +71,10 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
             $result[$key]->desc = strip_tags($result[$key]->desc);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $result[$key]->image = './public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$result[$key]->image,1,1,'newsXL',200);
-                $result[$key]->image = './public/uploads/newsXL/'.$result[$key]->image;
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'newsXL',200);
+                $result[$key]->image = url('/').'/public/uploads/newsXL/'.$result[$key]->image;
             }
         }
 		return $result;
@@ -91,10 +91,10 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
             $result[$key]->desc = strip_tags($result[$key]->desc);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $result[$key]->image = './public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage('./public/uploads/'.$result[$key]->image,1,1,'newsGL',200);
-                $result[$key]->image = './public/uploads/newsGL/'.$result[$key]->image;
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'newsGL',200);
+                $result[$key]->image = url('/').'/public/uploads/newsGL/'.$result[$key]->image;
             }
         }
 		return $result;
