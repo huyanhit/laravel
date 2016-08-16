@@ -4,14 +4,14 @@ $( document ).ajaxSend(function() {
 $( document ).ajaxComplete(function() {
    $("#ajaxsend").hide();
 });
-$("#ajaxjobs").ready(function(){
+if($("body").has('#ajaxjobs')){
 	$.ajax({
 	  	type: 'GET',
 	  	url: './ajaxjobs',
 	}).done(function( msg ){
 		elem.html(msg);
 	});
-});
+}
 $(document).ready(function(){
 	elem = $("#ajaxjobs");
 	$('#ajaxjobs').delegate(".ajaxpagin a","click",function(){
