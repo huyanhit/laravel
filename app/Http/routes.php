@@ -11,17 +11,27 @@
 |
 */
 
-Route::get('/', 'HomeController@index');
 
-Route::get('/home', 'HomeController@index');
 
-Route::get('/postface', 'HomeController@postface');
+Route::group(['middleware' => ['web']], function () {
+	Route::get('/', 'HomeController@index');
 
-Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
+	Route::get('/home', 'HomeController@index');
 
-Route::get('/postjobs', 'PostjobsController@index');
+	Route::get('/postface', 'HomeController@postface');
 
-Route::get('/content/{id}', 'ContentController@content');
+	Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
 
-Route::get('/contact', 'ContactController@contact');
+	Route::get('/postjobs', 'PostjobsController@index');
 
+
+	Route::get('/content/{id}', 'ContentController@content');
+
+	Route::get('/contact', 'ContactController@contact');
+
+	Route::post('/postjobs/insert', 'PostjobsController@insertJobs');
+	Route::get('/postjobs/insert', 'PostjobsController@insertJobs');
+
+	Route::post('/postjobs/edit', 'PostjobsController@editJobs');
+	Route::get('/postjobs/edit', 'PostjobsController@editJobs');
+});

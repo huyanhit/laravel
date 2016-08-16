@@ -60,7 +60,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">From</label>
 	    	<div class="col-sm-9">
-	      		<input type="text" class="form-control" name="from" value="{{isset($frm['from'])?$frm['from']:''}}" required>
+	      		<input type="text" name="from" value="{{isset($frm['from'])?$frm['from']:''}}" required>
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
