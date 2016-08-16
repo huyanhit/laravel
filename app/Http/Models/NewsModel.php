@@ -101,6 +101,7 @@ class NewsModel extends Model
 	}
 	public function getnewsbyId($id){
 		$result = DB::table('news')->where('id', $id)->orderby('id','desc')->first();
+
 		return $result;
 	}
 }
