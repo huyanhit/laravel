@@ -18,15 +18,34 @@ class PostjobsController extends BaseController
         $this->myFunction = new MyFunction();
         $this->index();
     }
-	public function index(){
-		$data['catjobs'] = $this->postjobs->getCatjobs();
-		return view("postjobs",$data);
+
+	public function index()
+	{
+		$data = array();
+		if(isset($_GET['order']) && isset($_GET['by'])){
+			session(['order' => $_GET['order']]);
+			session(['by'    => $_GET['by']]);
+			$data['sort']['order'] = $_GET['order'];
+			$data['sort']['by']    = $_GET['by'];
+		}
+		if(isset($_POST['submit'])){
+			session(['title'  => $_POST['title']]);
+			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
+		    $data['filter']['title']  = session('title');
+		    $data['filter']['active'] = session('active');
+		}
+
+		if(!empty(session('order')) && !empty(session('by'))){
+			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
+		}else{
+			$result['urlsort'] = "";
+		}
+		$result['jobs'] = $this->postjobs->getAll($data);
+		return view('listjobs',$result);
 	}
 
 	public function insertJobs()
 	{
-		//print_r($_POST);
-		//die();
 		$data['catjobs'] = $this->postjobs->getCatjobs();
 		$data['typejobs'] = $this->postjobs->getTypejobs();
 		$data['location'] = $this->postjobs->getLocation();
@@ -131,4 +150,19 @@ class PostjobsController extends BaseController
 			return $this->postjobs->deteleId($_GET['id']);
 		}
 	}
+
+	public function postface($id){
+        $result = $this->postjobs->getjobsbyId($id);
+        $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
+        $data['params'] = array(
+          "access_token" => $token,
+          "message" => $result->from,
+          "link" => url('/').'/viec-lam/'.$result->id,
+          "picture" => url('/').'/public/uploads/'.$result->image,
+          "name" => $result->title,
+          "caption" => strip_tags($result->desc),
+          "description" => strip_tags($result->content)
+        );
+        return view("include/post",$data);
+    }
 }

@@ -25,3 +25,16 @@ $(document).ready(function(){
 		return false;
 	});
 });
+
+$(document).ready(function(){
+	$("#postface").click(function(){
+		url = this.getAttribute( "href" );
+		$.ajax({
+		  	type: 'GET',
+		  	url: url,
+		}).done(function( msg ){
+
+		});
+		return false;
+	})
+});

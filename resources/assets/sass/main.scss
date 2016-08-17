@@ -23,6 +23,7 @@ body{
 	    width: 100%;
 	    transform: translate(-50%, -50%);
 	    background: rgba(0, 0, 0, 0.3);
+	    display: none;
 	    img{
 	    	border-radius: 50%;
 		    top: 50%;
@@ -902,4 +903,8 @@ body{
 		    text-transform: capitalize;
 		}
 	}
+}
+#list{
+	background: #fff;	
+    padding: 15px;
 }

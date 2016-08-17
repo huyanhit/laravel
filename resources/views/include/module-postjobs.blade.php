@@ -1,6 +1,6 @@
 <div id="postjobs" class="container">
    <h1 class="title">Đăng tin tuyển dụng</h1>
-   <form class="form-horizontal" method="post" action="
+   <form id="frmpostface" class="form-horizontal" method="post" action="
     @if(isset($edit))
         {{Request::url().'?id='.$edit}}
     @else
@@ -82,7 +82,10 @@
         <div class="form-group">
             <label class="control-label col-sm-3"></label>
             <div class="col-sm-9">
-                <input type="submit" id="submit" name="submit" value="Đăng Tin">
+                <input type="button" id="postjob-post" name="postjob-post" value="Đăng Tin">
+                <input type="button" id="postjob-save" name="postjob-save" value="Luu Tam">
+                <input type="checkbox" checked id="postface" name="postface"> Dang len fan page Facebook
+                <a href=""><i class="fa fa-facebook"></i></a>
             </div>
         </div>
         <div class="clearfix"></div>

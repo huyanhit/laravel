@@ -18,16 +18,16 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/home', 'HomeController@index');
 
-	Route::get('/postface', 'HomeController@postface');
 
 	Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
 
 	Route::get('/postjobs', 'PostjobsController@index');
 
-
 	Route::get('/content/{id}', 'ContentController@content');
 
 	Route::get('/contact', 'ContactController@contact');
+
+	Route::get('/postface/{id}', 'PostjobsController@postface');
 
 	Route::post('/postjobs/insert', 'PostjobsController@insertJobs');
 	Route::get('/postjobs/insert', 'PostjobsController@insertJobs');

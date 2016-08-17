@@ -5,6 +5,22 @@ use Illuminate\Database\Eloquent\Model;
 
 class PostjobsModel extends Model
 {
+	public function getAll($data)
+	{
+		if(!empty($data['sort'])){
+			$result = DB::table('jobs')
+			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
+			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+			->orderby($data['sort']['order'], $data['sort']['by'])
+			->paginate(10);
+		}else{
+			$result = DB::table('jobs')
+			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
+			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+			->paginate(10);
+		}
+		return $result;
+	}
 	public function insertjobs($data)
 	{	
 		$result = DB::table('jobs')->insertGetId($data);

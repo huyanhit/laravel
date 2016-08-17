@@ -21,7 +21,8 @@ body {
     height: 100%;
     width: 100%;
     transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.3); }
+    background: rgba(0, 0, 0, 0.3);
+    display: none; }
     body #ajaxsend img {
       border-radius: 50%;
       top: 50%;
@@ -705,7 +706,7 @@ body {
       max-width: 500px; }
     #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post {
       margin-bottom: 10px;
-      max-width: 500px; }
+      max-width: 700px; }
     #postjobs form textarea {
       height: 150px; }
     #postjobs form input[type='file'] {
@@ -721,6 +722,10 @@ body {
       color: #fff;
       border: none;
       text-transform: capitalize; }
+
+#list {
+  background: #fff;
+  padding: 15px; }
 
 @media only screen and (max-width: 767px) {
   .main {

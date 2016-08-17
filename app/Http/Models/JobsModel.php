@@ -10,6 +10,7 @@ class JobsModel extends Model
     {
         $this->myFunction = new MyFunction();
     }
+    
 
 	public function getAll()
 	{
