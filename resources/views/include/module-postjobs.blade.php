@@ -82,9 +82,9 @@
         <div class="form-group">
             <label class="control-label col-sm-3"></label>
             <div class="col-sm-9">
-                <input type="button" id="postjob-post" name="postjob-post" value="Đăng Tin">
-                <input type="button" id="postjob-save" name="postjob-save" value="Luu Tam">
-                <input type="checkbox" checked id="postface" name="postface"> Dang len fan page Facebook
+                <input type="submit" id="postjob-post" name="submit" value="Đăng Tin">
+                <input type="submit" id="postjob-save" name="submit-save" value="Lưu Tạm">
+                <input type="checkbox" checked id="postface" name="postface">Tự động đăng fanpage khi đã duyệt
                 <a href=""><i class="fa fa-facebook"></i></a>
             </div>
         </div>

@@ -38,3 +38,20 @@ $(document).ready(function(){
 		return false;
 	})
 });
+$(document).ready(function(){
+	$('a.ajaxdelete').click(function(){
+		url = this.getAttribute( "href" );
+		if(!confirm("do you Want to delete?")){
+			return false;
+		}
+		elem = $(this).parent().parent();
+		$.ajax({
+		  	type: 'GET',
+		  	url: url,
+		  	data : {check: $(this).is(':checked')},
+		}).done(function( msg ){
+			elem.remove();
+		});
+		return false;
+	});
+});

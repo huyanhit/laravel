@@ -66,11 +66,10 @@ class PostjobsController extends BaseController
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
 			    'salary'      => $_POST['salary'],
-			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
 			if($id = $this->postjobs->insertJobs($frm)){
-				return redirect('postjobs/edit?id='.$id);
+				return redirect('/viec-lam/sua-tin-tuyen-dung?id='.$id);
 			}
 			$data['frm'] = $frm;
 			return view("postjobs",$data);
@@ -91,7 +90,6 @@ class PostjobsController extends BaseController
 			    'image'       => $jobs->image,
 			    'from'        => $jobs->from, 
 			    'salary'      => $jobs->salary, 
-			    'active'      => $jobs->active,  
 			    'author'      => 1];
 				return view('postjobs',$data);
 			}
@@ -115,7 +113,6 @@ class PostjobsController extends BaseController
 		    'content'     => $jobs->content, 
 		    'from'        => $jobs->from, 
 		    'salary'      => $jobs->salary,
-		    'active'      => $jobs->active,  
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"])){
@@ -133,7 +130,6 @@ class PostjobsController extends BaseController
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
 			    'salary'      => $_POST['salary'],
-			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
 			$this->postjobs->updateJobs($frm,$id);

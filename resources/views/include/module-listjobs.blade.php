@@ -1,9 +1,13 @@
 <div id="list" class="container">
+	<div class="title-line" class="col-xs-12">
+         <h3><span>Việc làm</span></h3>
+         <a href="{{Request::root()}}/viec-lam/dang-tin-tuyen-dung">Đăng Tin</a>
+    </div>
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>
 				<td>
-					<span class="title">Tittle</span>
+					<span class="title">Tiêu đề</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=title&by=asc">
 							<i class="
@@ -22,11 +26,11 @@
 					</span> 
 				</td>
 				<td>
-					Trang thai	
+					<span class="title">Trạng thái</span>
 				</td>
 				
 				<td>
-					<span class="title">View</span>
+					<span class="title">Lượt xem</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=view&by=asc">
 							<i class="
@@ -45,14 +49,15 @@
 					</span>  
 				</td>
 				<td>
-					Post Facebook
+					<span class="title"> Đăng tin Facebook </span>
 				</td>
 				<td>
-					thao tac
+					<span class="title"> Thao tác </span>
 				</td>
 			</tr>
 		</thead>
 		<form id="filter" method="post" action="{{Request::url().$urlsort}}">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<tr>
 				<td>
 					<input type="text" name="title" value="{{session('title')}}">
@@ -63,28 +68,27 @@
 					    @if(session('active') == '')
 					    {{'selected'}}
 					    @endif
-					    value="choose">Choose</option>
+					    value="choose">Lựa chọn</option>
 					    <option 
 					    @if(session('active') == '1')
 					    {{'selected'}}
 					    @endif
-					    value="active">Active</option>
+					    value="active">Đã đăng</option>
 					    <option
 					    @if(session('active') == '0')
 					    {{'selected'}}
 					    @endif
-					    value="unactive">Unactive</option>
+					    value="unactive">Đang chờ duyệt</option>
 					</select> 
 				</td>
 				
 				<td>
-					#
 				</td>
 				<td>
-					Post Facebook
+					<a href="">fanpage <i class="fa fa-facebook"></i></a>
 				</td>
 				<td>
-					<input type="submit" name="submit" value=" Filter ">
+					<input type="submit" name="submit" value="Lọc thông tin">
 				</td>
 			</tr>
 		</form>
@@ -96,9 +100,9 @@
 				</td>
 				<td >
 					@if($val->active == 1)
-						Active
+						Đã đăng
 					@else
-						Pedding
+						Đang chờ duyệt
 					@endif
 				</td>
 				<td>
@@ -107,13 +111,15 @@
 				<td>
 					@if($val->active == 1)
 					<a id="postface" href="{{Request::root()}}/postface/{{$val->id}}">
-						Dang fanpage
+						Đăng tin
 					</a>
 					@else
-						Cho kich hoat
+						Đang chờ duyệt
 					@endif
+					
 				</td>
 				<td>
+					<a href="{{Request::url()}}/xem-thu?id={{$val->id}}"><i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a class="ajaxdelete" href="{{Request::url()}}/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>
@@ -121,19 +127,10 @@
 		</tbody>
 	</table>
 	<div class="row">
-		<div class="col-md-3 action">
-			<select name="apply">
-			   <option value="1">Active</option>
-			   <option value="2">Unactive</option>
-			   <option value="3">Delete</option>
-			</select> 
-			<input type="button" name="apply" value="Apply">
-		</div>
-		<div class=" col-md-6 pagination">
+		<div class=" col-md-9 pagination">
 			{!! $jobs->render() !!}
 		</div>
 		<div class=" col-md-3">
-			
 		</div>
 	</div>
 </div>

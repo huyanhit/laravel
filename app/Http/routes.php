@@ -16,22 +16,23 @@
 Route::group(['middleware' => ['web']], function () {
 	Route::get('/', 'HomeController@index');
 
-	Route::get('/home', 'HomeController@index');
+	Route::get('/trang-chu', 'HomeController@index');
 
 
 	Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
 
-	Route::get('/postjobs', 'PostjobsController@index');
+	Route::post('/viec-lam', 'PostjobsController@index');
+	Route::get('/viec-lam', 'PostjobsController@index');
 
-	Route::get('/content/{id}', 'ContentController@content');
+	Route::get('/viec-lam/delete', 'PostjobsController@deleteJobs');
 
-	Route::get('/contact', 'ContactController@contact');
+	Route::get('/noi-dung/{id}', 'ContentController@content');
 
 	Route::get('/postface/{id}', 'PostjobsController@postface');
 
-	Route::post('/postjobs/insert', 'PostjobsController@insertJobs');
-	Route::get('/postjobs/insert', 'PostjobsController@insertJobs');
+	Route::post('/viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
+	Route::get('/viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
 
-	Route::post('/postjobs/edit', 'PostjobsController@editJobs');
-	Route::get('/postjobs/edit', 'PostjobsController@editJobs');
+	Route::post('/viec-lam/sua-tin-tuyen-dung', 'PostjobsController@editJobs');
+	Route::get('/viec-lam/sua-tin-tuyen-dung', 'PostjobsController@editJobs');
 });

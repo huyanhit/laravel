@@ -726,6 +726,81 @@ body {
 #list {
   background: #fff;
   padding: 15px; }
+  #list input, #list select, #list button {
+    height: 30px; }
+  #list input[type='checkbox'], #list input[type='radio'] {
+    height: auto; }
+  #list input[type='submit'], #list input[type='button'], #list button, #list .button {
+    background: #3d4c54;
+    color: #fff;
+    padding: 0 15px;
+    border: none;
+    border-radius: 4px; }
+  #list table thead tr {
+    background: #3d4c54;
+    color: #fff;
+    font-weight: bold; }
+    #list table thead tr span.sort {
+      display: inline-block;
+      float: right; }
+      #list table thead tr span.sort i {
+        height: 15px;
+        width: 10px;
+        text-align: center;
+        color: #fff; }
+        #list table thead tr span.sort i.active {
+          color: #f00; }
+      #list table thead tr span.sort a:hover i {
+        color: #f00; }
+  #list table tbody i:before {
+    font-size: 20px;
+    margin-right: 8px;
+    height: 30px;
+    width: 30px;
+    line-height: 30px; }
+  #list table tbody .fa-plus-square-o {
+    color: #3c763d; }
+  #list table tbody .fa-pencil-square-o {
+    color: #337ab7; }
+  #list table tbody .fa-minus-square-o {
+    color: #a94442; }
+  #list .pagination {
+    margin: 0; }
+
+.title-line h3 {
+  width: 120px;
+  color: #FFF;
+  font-size: 11px;
+  line-height: 41px;
+  margin: 0;
+  float: left; }
+  .title-line h3 span {
+    background: #3d4c54;
+    padding: 6px 10px;
+    position: relative; }
+    .title-line h3 span:after {
+      content: '';
+      position: absolute;
+      right: -12px;
+      background: #3d4c54;
+      bottom: 0px;
+      border-left: 13px #3d4c54 solid;
+      border-bottom: 13px #fff solid; }
+    .title-line h3 span:before {
+      content: '';
+      position: absolute;
+      right: -12px;
+      background: #3d4c54;
+      top: 0px;
+      border-left: 13px #3d4c54 solid;
+      border-top: 13px #fff solid; }
+
+.title-line a {
+  float: right;
+  background: #3d4c54;
+  padding: 3px 15px;
+  color: #fff;
+  margin-top: 7px; }
 
 @media only screen and (max-width: 767px) {
   .main {

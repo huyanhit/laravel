@@ -3,11 +3,11 @@
 		@foreach($headerline as $val)
 			<div class="item">
 				<article class="post">
-					<a href="{{Request::root()}}/content/{{$val->id}}" title="{{$val->title}}" rel="bookmark">
+					<a href="{{Request::root()}}/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark">
 						<img src="{{$val->image}}" alt="Magazine">
 					</a>
 					<div class="entry">
-						<h3><a href="{{Request::root()}}/content/{{$val->id}}" title="{{$val->title}}" rel="bookmark">{{$val->title}}</a></h3>
+						<h3><a href="{{Request::root()}}/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark">{{$val->title}}</a></h3>
 						<p>{{$val->desc}}</p>
 					</div>
 					<div class="clearfix"></div>
