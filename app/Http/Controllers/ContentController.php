@@ -19,7 +19,7 @@ class ContentController extends Controller
         $this->news = new NewsModel();
     }
     
-    public function content($id)
+    public function contentNews($id)
     {
         $data['headerline'] = $this->headerline->getAll();
         $data['intro'] = $this->intro->getAll();
@@ -66,7 +66,14 @@ class ContentController extends Controller
                 $data['result'] = trim($result->content);
             }
         }
-
+        return view("content",$data);
+    }
+    public function contentJobs($id){
+        $data['result'] = trim("please waiting update");
+        return view("content",$data);
+    }
+    public function contentAds($id){
+        $data['result'] =  trim("please waiting update");
         return view("content",$data);
     }
 }

@@ -147,7 +147,7 @@ class PostjobsController extends BaseController
 		}
 	}
 
-	public function postface($id){
+	public function postfaceJobs($id){
         $result = $this->postjobs->getjobsbyId($id);
         $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
         $data['params'] = array(
@@ -159,6 +159,6 @@ class PostjobsController extends BaseController
           "caption" => strip_tags($result->desc),
           "description" => strip_tags($result->content)
         );
-        return view("include/post",$data);
+        return view("include/module-postface",$data);
     }
 }

@@ -8,6 +8,7 @@
     @endif
     " enctype="multipart/form-data">
         {!! csrf_field() !!}
+        <h3>Thông tin tuyển dụng</h3>
         <div class="form-group title">
             <label class="control-label col-sm-3">Tên Công Việc</label>
             <div class="col-sm-9">
