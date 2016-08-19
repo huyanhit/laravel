@@ -78,5 +78,49 @@ namespace App\Library {
 			imagecopyresized($thumb, $source, 0, 0, 0, 0, $newwidth, $newheight, $width, $height);
 			imagejpeg($thumb, $ini_filename , 100);
 		}
+
+		public function masorycol($array,$col){
+			$group = ceil(count($array)/4);
+			$total = 0;
+			$gr = 0;
+			$arraygr[$gr] = array();
+
+			for($i=0 ; $i < count($array); $i++){
+				$total += $array[$i];
+				if($total < $group){
+					array_push($arraygr[$gr],$array[$i]);
+					continue;
+				}
+				if($total == $group){
+					array_push($arraygr[$gr],$array[$i]);
+					$gr += 1;
+					$arraygr[$gr] = array();
+					$total = 0;
+				}
+				$br = false;
+				if($total > $group){
+					for($k = $i; $k > $i - count($arraygr[$gr]); $k--){
+						for($n = $i+1; $n < count($array); $n++){
+							if($total - $array[$k] + $array[$n] == $group){
+								echo($k.'  '.$n .' - ');
+								changeposarray($array,$k,$n);
+								$br = true;
+								break;
+							}
+						}
+						if($br) break;
+					}
+					$gr += 1;
+					$arraygr[$gr] = array();
+					$total = 0;
+				}
+			}
+			return $array;
+		}
+		private function changeposarray(&$array,$posX,$posY){
+			$tam = $array[$posX];
+			$array[$posX] = $array[$posY];
+			$array[$posY] = $tam;
+		}
 	}
 }
