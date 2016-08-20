@@ -8,6 +8,7 @@ use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
+use App\Http\Models\AdsModel;
 
 class HomeController extends Controller
 {
@@ -18,6 +19,7 @@ class HomeController extends Controller
         $this->intro = new IntroModel();
         $this->news = new NewsModel();
         $this->jobs = new JobsModel();
+        $this->ads = new AdsModel();
         $this->index();
     }
     
@@ -35,6 +37,9 @@ class HomeController extends Controller
         $data['typejobs'] = $this->jobs->getTypejobs();
         $data['jobs'] = $this->jobs->getAll();
         $data['jobsvip'] = $this->jobs->getJobsvip();
+        $data['ads'] = $this->ads->getAll();
+        $data['catads'] = $this->ads->getCatads();
+        $data['typeads'] = $this->ads->getTypeads();
         return view("home",$data);
     }
     public function ajaxjobs(){
@@ -45,7 +50,10 @@ class HomeController extends Controller
         return view("include/module-postjobs-ajaxlistjobs",$data);
     }
     public function ajaxads(){
-        $data['location'] = $this->jobs->getLocation();
+        $data['location'] = $this->ads->getLocation();
+        $data['catads'] = $this->ads->getCatasd();
+        $data['typeads'] = $this->ads->getTypeads();
+        $data['ads'] = $this->ads->getAll();
         return view("include/module-mansory-ajaxadv",$data);
     }
 }

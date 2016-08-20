@@ -45,4 +45,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
 	Route::get('/jobs/apply', ['as'  => 'jobs.apply','uses' => 'JobsController@applyJobs']);
 	Route::post('/jobs/apply', ['as' => 'jobs.apply','uses' => 'JobsController@applyJobs']);
+
+
+	Route::get('/ads', ['as' => 'news.index', 'uses' => 'AdsController@index']);
+	Route::post('/ads', ['as' => 'news.index', 'uses' => 'AdsController@index']);
+
+	Route::post('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertAds']);
+	Route::get('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertAds']);
+
+	Route::get('/ads/delete', ['as' => 'ads.delete', 'uses' => 'AdsController@deleteAds']);
+
+	Route::get('/ads/active', ['as' => 'ads.active', 'uses' => 'AdsController@activeAds']);
+
+	Route::get('/ads/edit', ['as'   => 'ads.edit', 'uses' => 'AdsController@editAds']);
+	Route::post('/ads/edit', ['as'  => 'ads.edit', 'uses' => 'AdsController@editAds']);
+
+	Route::get('/ads/apply', ['as'  => 'ads.apply','uses' => 'AdsController@applyAds']);
+	Route::post('/ads/apply', ['as' => 'ads.apply','uses' => 'AdsController@applyAds']);
 });

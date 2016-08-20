@@ -8,7 +8,7 @@
 			    <li data-thumb="{{$val->image}}">
 			      <img src="{{$val->image}}" />
 			      <div class="flex-caption">
-			      	<h4><a href="./noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+			      	<h4><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
 			      	<div>
 			      		{{$val->desc}}
 			      	</div>
