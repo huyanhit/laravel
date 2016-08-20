@@ -41,6 +41,10 @@ $(document).ready(function($){
   $("#tabnav").idTabs();  
 });
 $(document).ready(function($){
+  var height = $(".frame-masonry .masonry-text").width(); 
+  $(".frame-masonry .masonry-text").attr('height', height);
+});
+$(document).ready(function($){
   var url = 'https://query.yahooapis.com/v1/public/yql';
   var yql = 'select title, units.temperature, item.forecast from weather.forecast where woeid in (select woeid from geo.places where text="pleiku, vietnam") and u = "C" limit 2 | sort(field="item.forecast.date", descending="false");';
   var iconUrl = 'https://s.yimg.com/zz/combo?a/i/us/we/52/';
