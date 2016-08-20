@@ -42,6 +42,10 @@ class HomeController extends Controller
         $data['catjobs'] = $this->jobs->getCatjobs();
         $data['typejobs'] = $this->jobs->getTypejobs();
         $data['jobs'] = $this->jobs->getAll();
-        return view("include/ajax-listjobs",$data);
+        return view("include/module-postjobs-ajaxlistjobs",$data);
+    }
+    public function ajaxads(){
+        $data['location'] = $this->jobs->getLocation();
+        return view("include/module-mansory-ajaxadv",$data);
     }
 }

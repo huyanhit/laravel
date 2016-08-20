@@ -20,6 +20,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::post('/viec-lam', 'PostjobsController@index');
 	Route::get('/viec-lam', 'PostjobsController@index');
 	Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
+	Route::get('/ajaxads', 'HomeController@ajaxads');
 
 	/*CONTENT*/
 	Route::get('/noi-dung-tin/{id}', 'ContentController@contentNews');

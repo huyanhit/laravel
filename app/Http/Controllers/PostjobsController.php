@@ -153,12 +153,12 @@ class PostjobsController extends BaseController
         $data['params'] = array(
           "access_token" => $token,
           "message" => $result->from,
-          "link" => url('/').'/viec-lam/'.$result->id,
+          "link" => url('/').'/noi-dung-viec-lam/'.$result->id,
           "picture" => url('/').'/public/uploads/'.$result->image,
           "name" => $result->title,
           "caption" => strip_tags($result->desc),
           "description" => strip_tags($result->content)
         );
-        return view("include/module-postface",$data);
+        return view("include/module-listjobs-postface",$data);
     }
 }

@@ -1,4 +1,109 @@
 @charset "UTF-8";
+/* -----------------------------Sass XULANH SITE--------------------------------*/
+/* ADDS A BROWSER PREFIX TO THE PROPERTY */
+/* BACKGROUND GRADIENT */
+/* BACKGROUND HORIZONTAL */
+/* BACKGROUND RADIAL */
+/* BACKGROUND SIZE */
+/* BACKGROUND COLOR OPACITY */
+/* COLOR OPACITY */
+/* BORDER COLOR OPACITY */
+/* BORDER RADIUS */
+/* BOX */
+/* BOX RGBA */
+/* BOX SHADOW */
+/* BOX SIZING */
+/* COLUMNS */
+/* DOUBLE BORDERS */
+/* FLEX */
+/* FLIP */
+/* FONT FACE */
+/* OPACITY */
+/* OUTLINE RADIUS */
+/* RESIZE */
+/* ROTATE*/
+/* TEXT SHADOW */
+/* TRANSFORM  */
+/* TRANSFORM STYLE */
+/* TRANSITION */
+/* TRIPLE BORDERS */
+/* KEYFRAMES */
+/* ANIMATION */
+/*///////////////////////////////////ANIMATION//////////////////////////////////*/
+/*/////////////////////////////////////SCREEN////////////////////////////////////////*/
+/*/////////////////////////////////////DIV////////////////////////////////////////*/
+
+@keyframes toLeftFromRight {
+  49% {
+    -khtml-transform: translate(-100%);
+    transform: translate(-100%); }
+  50% {
+    opacity: 0;
+    -khtml-transform: translate(100%);
+    transform: translate(100%); }
+  51% {
+    opacity: 1; } }
+
+@keyframes toRightFromLeft {
+  49% {
+    -khtml-transform: translate(100%);
+    transform: translate(100%); }
+  50% {
+    opacity: 0;
+    -khtml-transform: translate(-100%);
+    transform: translate(-100%); }
+  51% {
+    opacity: 1; } }
+
+@keyframes toTopFromBottom {
+  49% {
+    -khtml-transform: translateY(-100%);
+    transform: translateY(-100%); }
+  50% {
+    opacity: 0;
+    -khtml-transform: translateY(100%);
+    transform: translateY(100%); }
+  51% {
+    opacity: 1; } }
+
+@keyframes toBottomFromTop {
+  49% {
+    -khtml-transform: translateY(100%);
+    transform: translateY(100%); }
+  50% {
+    opacity: 0;
+    -khtml-transform: translateY(-100%);
+    transform: translateY(-100%); }
+  51% {
+    opacity: 1; } }
+
+@keyframes toTopFromBottom2 {
+  0% {
+    -khtml-transform: translateY(-100%);
+    transform: translateY(-100%); }
+  100% {
+    -khtml-transform: translateY(0);
+    transform: translateY(0); } }
+
+@keyframes rotateVibrate {
+  0% {
+    opacity: 0;
+    -khtml-transform: rotate(-40deg);
+    transform: rotate(-40deg); }
+  30% {
+    -khtml-transform: rotate(40deg);
+    transform: rotate(40deg); }
+  60% {
+    -khtml-transform: rotate(-20deg);
+    transform: rotate(-20deg); }
+  90% {
+    -khtml-transform: rotate(20deg);
+    transform: rotate(20deg); }
+  100% {
+    -khtml-transform: rotate(0deg);
+    transform: rotate(0deg);
+    opacity: 1; } }
+
 body {
   margin: 30px AUTO;
   background-color: #09151f;
@@ -517,20 +622,20 @@ body {
         padding: 10px;
         border: none;
         margin-right: 1px; }
-  #masonry .list-masonry {
+  #masonry .list-masonry .frame-masonry {
     -moz-column-count: 4;
     column-count: 4; }
-    #masonry .list-masonry .item {
-      display: inline-block;
-      background: #fff;
-      padding: 5px;
-      border: 1px #f2f2f2 solid;
-      margin: 5px 0;
-      width: 100%; }
-      #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
-        max-width: 100%;
-        height: auto;
-        display: inline-block; }
+  #masonry .list-masonry .item {
+    display: inline-block;
+    background: #fff;
+    padding: 5px;
+    border: 1px #f2f2f2 solid;
+    margin: 5px 0;
+    width: 100%; }
+    #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
+      max-width: 100%;
+      height: auto;
+      display: inline-block; }
 
 #mutimedia {
   background: #fff;
@@ -695,8 +800,7 @@ body {
   #postjobs form {
     border: 1px #f2f2f2 solid;
     border-radius: 10px;
-    padding: 30px 5px;
-    margin: 30px 0; }
+    padding: 30px 5px; }
     #postjobs form input[type='text'], #postjobs form input[type='email'], #postjobs form textarea, #postjobs form select {
       width: 100%;
       height: 40px;
@@ -798,7 +902,7 @@ body {
 .title-line a {
   float: right;
   background: #3d4c54;
-  padding: 3px 15px;
+  padding: 4px 15px;
   color: #fff;
   margin-top: 7px; }
 
