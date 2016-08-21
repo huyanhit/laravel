@@ -34,10 +34,10 @@ class NewsModel extends Model
 		foreach ($result as $key => $val) {
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
             $result[$key]->desc = strip_tags($result[$key]->desc);
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists('public/uploads/rootrss/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'newsRss',200);
+                $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image,1,1,'newsRss',200);
                 $result[$key]->image = url('/').'/public/uploads/newsRss/'.$result[$key]->image;
             }
         }

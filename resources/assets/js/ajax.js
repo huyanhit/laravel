@@ -55,39 +55,38 @@ $(document).ready(function(){
 		return false;
 	});
 });
-
- 
-// $(document).ready(function(){    
-// 	var is_busy = false;
-// 	var page = 1;
-// 	var stopped = false;
-//     $(window).scroll(function() 
-//     {
-//         $element = $('#ajax-masonry-ads');
-//         $loadding = $('#loading');
-// 		console.log($(window).height());
-// 		console.log($(window).scrollTop());
-//         if($(window).scrollTop() + $(window).height() >= $element.height()) 
-//         {
-//             if (is_busy == true){
-//                 return false;
-//             }
-// 			is_busy = true;
-//             page++;
-//             $.ajax(
-//             {
-//                 type        : 'get',
-//                 dataType    : 'text',
-//                 url         : './ajaxads',
-//                 success     : function (result)
-//                 {
-//                     $element.append(result);
-//                 }
-//             }).always(function()
-//             {
-//                 is_busy = false;
-//             });
-//             return false;
-//         }
-//     });
-// });
+$(document).ready(function(){    
+	var is_busy = false;
+	var page = 1;
+	var stopped = false;
+	var total = $('#ajax-masonry-ads').attr('page');
+    $(window).scroll(function() 
+    {
+        $element = $('#ajax-masonry-ads');
+        $loadding = $('#loading');
+		console.log($(window).height());
+		console.log($(window).scrollTop());
+        if($(window).scrollTop() + $(window).height() >= $element.height() && page < total) 
+        {
+            if (is_busy == true){
+                return false;
+            }
+			is_busy = true;
+            page++;
+            $.ajax(
+            {
+                type        : 'get',
+                dataType    : 'text',
+                url         : './ajaxads?page='+page,
+                success     : function (result)
+                {
+                    $element.append(result);
+                }
+            }).always(function()
+            {
+                is_busy = false;
+            });
+            return false;
+        }
+    });
+});

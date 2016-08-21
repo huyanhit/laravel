@@ -13,10 +13,11 @@
                 </div>
             </form>
         </div>
-		<div id="ajax-masonry-ads" class="col-xs-12 list-masonry">
+		<div id="ajax-masonry-ads" class="col-xs-12 list-masonry" page='{{$ads->lastPage()}}'>
 			<div class="frame-masonry">	
 				@foreach($ads as $val)
-					<div class="item">
+					<div class="item" display="{{$val->totaldisplay}}">
+						<div class="it-fream">
 						@if($val->image != '')
 						<a href="{{Request::root()}}/noi-dung-rao-vat/{{$val->id}}">
 							<img src="{{$val->image}} " alt="{{$val->title}}">
@@ -25,8 +26,12 @@
 						@if($val->display != '')
 						<div class="text">
 						<a href="{{Request::root()}}/noi-dung-rao-vat/{{$val->id}}">{{$val->title}}</a>
+						<p>
+							{{$val->desc}}
+						</p>
 						</div>
 						@endif
+						</div>
 					</div>
 				@endforeach
 			</div>

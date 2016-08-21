@@ -21,7 +21,7 @@
 							<li><a href="{{Request::root().'/admin/jobs/insert'}}">Insert</a></li>
 						</ul>
 					</li>
-					<li><a href="#">Ad</a></li>
+					<li><a href="{{Request::root().'/admin/ads'}}">Ad</a></li>
 					<li><a href="#">Mutilmedia</a></li>
 					<li><a href="#">Shop</a></li>
 					<li><a href="#">Account</a></li>

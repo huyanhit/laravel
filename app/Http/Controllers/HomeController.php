@@ -51,7 +51,7 @@ class HomeController extends Controller
     }
     public function ajaxads(){
         $data['location'] = $this->ads->getLocation();
-        $data['catads'] = $this->ads->getCatasd();
+        $data['catads'] = $this->ads->getCatads();
         $data['typeads'] = $this->ads->getTypeads();
         $data['ads'] = $this->ads->getAll();
         return view("include/module-mansory-ajaxadv",$data);

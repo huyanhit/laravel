@@ -71,7 +71,7 @@ class JobsController extends Controller
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
-				$this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
 			$frm =  
 			    ['id'     	  => NULL,
 			    'catjobs'     => $_POST['catjobs'],
@@ -136,7 +136,7 @@ class JobsController extends Controller
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"])){
-				$this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
 			}else{
 				$_FILES["feature"]["name"] = $jobs->image;
 			}

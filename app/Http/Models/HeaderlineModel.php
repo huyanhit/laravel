@@ -22,7 +22,7 @@ class HeaderlineModel extends Model
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,80);
            
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-                $data['headerline'][$key]->image = url('/').'/public/images/no-image.jpg';
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
                 $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1.5,1,'headerline',400);
                 $result[$key]->image = url('/').'/public/uploads/headerline/'.$result[$key]->image;

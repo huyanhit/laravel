@@ -21,6 +21,14 @@ $(document).ready(function($) {
   });
 });
 $(document).ready(function($) {
+    $(".frame-masonry .item").each(function(index , elem) {
+        var height = $(elem).width();
+        var display = $(elem).attr('display');
+        height = Math.round(height * display/2);
+        $(elem).attr('style','height:'+height+'px');
+    });
+});
+$(document).ready(function($) {
   $("#scroller").simplyScroll();
 });
 $(document).ready(function($) {

@@ -530,7 +530,7 @@ body {
     line-height: 41px;
     text-align: center; }
   #jobs .job-vip .content {
-    max-height: 500px;
+    height: 500px;
     overflow-y: scroll;
     border: 1px #f2f2f2 solid;
     padding: 0 15px;
@@ -625,13 +625,25 @@ body {
   #masonry .list-masonry .frame-masonry {
     -moz-column-count: 4;
     column-count: 4; }
+    #masonry .list-masonry .frame-masonry .text {
+      padding: 10px 0;
+      border-radius: 0px; }
+      #masonry .list-masonry .frame-masonry .text a {
+        text-transform: uppercase;
+        font-weight: bold; }
+      #masonry .list-masonry .frame-masonry .text p {
+        margin-top: 5px;
+        margin-bottom: 5px; }
   #masonry .list-masonry .item {
     display: inline-block;
     background: #fff;
-    padding: 5px;
-    border: 1px #f2f2f2 solid;
-    margin: 5px 0;
-    width: 100%; }
+    width: 100%;
+    padding: 7px 0; }
+    #masonry .list-masonry .item .it-fream {
+      border: 7px #fff solid;
+      box-shadow: 0px 0px 1px 0px #ccc;
+      height: 100%;
+      overflow: hidden; }
     #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
       max-width: 100%;
       height: auto;
