@@ -22,9 +22,10 @@ $(document).ready(function($) {
 });
 $(document).ready(function($) {
     $(".frame-masonry .item").each(function(index , elem) {
-        var height = $(elem).width();
+        var height = parseInt($(elem).width());
+        console.log(height);
         var display = $(elem).attr('display');
-        height = Math.round(height * display/2);
+        height = parseInt(height * display/2);
         $(elem).attr('style','height:'+height+'px');
     });
 });

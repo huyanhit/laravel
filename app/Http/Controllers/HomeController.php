@@ -55,6 +55,7 @@ class HomeController extends Controller
         $data['catads'] = $this->ads->getCatads();
         $data['typeads'] = $this->ads->getTypeads();
         $data['ads'] = $this->ads->getAll();
+        $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         return view("include/module-mansory-ajaxadv",$data);
     }
 }

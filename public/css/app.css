@@ -624,7 +624,8 @@ body {
         margin-right: 1px; }
   #masonry .list-masonry .frame-masonry .col {
     width: 25%;
-    float: left; }
+    float: left;
+    padding: 5px; }
   #masonry .list-masonry .frame-masonry .text {
     padding: 10px 0;
     border-radius: 0px; }
