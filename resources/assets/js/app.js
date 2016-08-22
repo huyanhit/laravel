@@ -23,6 +23,7 @@ $(document).ready(function($) {
 $(document).ready(function($) {
     $(".frame-masonry .item").each(function(index , elem) {
         var height = parseInt($(elem).width());
+        
         console.log(height);
         var display = $(elem).attr('display');
         height = parseInt(height * display/2);

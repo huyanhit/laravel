@@ -67,6 +67,9 @@ class AdsModel extends Model
         } 
         $total = $this->getTotaldisplay($result);
         $result = $this->masorycol($result,$total);
+  //       for($i=0 ; $i < count($result); $i++){
+		// 	echo $result[$i]->totaldisplay;
+		// }
         return $result;
     }
 
@@ -117,11 +120,26 @@ class AdsModel extends Model
 			$br = false;
 			if($total > $group){
 				for($k = $i; $k > $i - count($arraygr[$gr]); $k--){
+					$haschange = false;
 					for($n = $i+1; $n < count($array); $n++){
 						if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay == $group){
-							$this->changeposarray($array,$k,$n);
+							$haschange = $this->changeposarray($array,$k,$n);
 							$br = true;
 							break;
+						}
+					}
+					if(!$haschange){
+						$subdisplay = 0;
+						for($n = $i+1; $n < count($array); $n++){
+							if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay+$subdisplay < $group){
+								$this->changeposarray($array,$k,$n);
+								$subdisplay += $array[$n]->totaldisplay;
+							}
+							if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay+$subdisplay == $group){
+								$haschange = $this->changeposarray($array,$k,$n);
+								$br = true;
+								break;
+							}
 						}
 					}
 					if($br) break;
@@ -137,5 +155,6 @@ class AdsModel extends Model
 		$tam = $array[$posX];
 		$array[$posX] = $array[$posY];
 		$array[$posY] = $tam;
+		return true;
 	}
 }

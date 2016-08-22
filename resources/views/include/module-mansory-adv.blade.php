@@ -18,6 +18,16 @@
 				<div class="col">
 				@php $total = 0 @endphp
 				@foreach($ads as $val)
+				@php
+				$total += $val->totaldisplay;
+				@endphp
+				@if($total > $totaldisplay)
+				@php
+					$total -= $totaldisplay;
+				@endphp
+				</div>
+				<div class="col">
+				@endif
 					<div class="item" display="{{$val->totaldisplay}}">
 						<div class="it-fream">
 						@if($val->image != '')
@@ -35,10 +45,11 @@
 						@endif
 						</div>
 					</div>
+				
+				@if($total == $totaldisplay)
 				@php
-					$total += $val->totaldisplay;
+					$total -= $totaldisplay;
 				@endphp
-				@if($total%$totaldisplay == 0)
 				</div>
 				<div class="col">
 				@endif
