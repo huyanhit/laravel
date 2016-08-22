@@ -38,6 +38,7 @@ class HomeController extends Controller
         $data['jobs'] = $this->jobs->getAll();
         $data['jobsvip'] = $this->jobs->getJobsvip();
         $data['ads'] = $this->ads->getAll();
+        $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         $data['catads'] = $this->ads->getCatads();
         $data['typeads'] = $this->ads->getTypeads();
         return view("home",$data);

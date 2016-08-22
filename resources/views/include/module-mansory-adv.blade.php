@@ -15,7 +15,16 @@
         </div>
 		<div id="ajax-masonry-ads" class="col-xs-12 list-masonry" page='{{$ads->lastPage()}}'>
 			<div class="frame-masonry">	
+				<div class="col">
+				@php $total = 0 @endphp
 				@foreach($ads as $val)
+				@php
+					$total += $val->totaldisplay;
+				@endphp
+				@if($total%$totaldisplay == 0)
+				</div>
+				<div class="col">
+				@endif
 					<div class="item" display="{{$val->totaldisplay}}">
 						<div class="it-fream">
 						@if($val->image != '')
@@ -34,6 +43,7 @@
 						</div>
 					</div>
 				@endforeach
+				</div>
 			</div>
 		</div>
 	</div>

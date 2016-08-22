@@ -14,9 +14,7 @@ class PostjobsController extends BaseController
 	public function __construct()
     {
         $this->postjobs = new PostjobsModel();
-
         $this->myFunction = new MyFunction();
-        $this->index();
     }
 
 	public function index()

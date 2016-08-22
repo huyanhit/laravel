@@ -15,7 +15,6 @@ class AdsModel extends Model
 	public function getAll()
 	{
 		$result = DB::table('ads')->where('active',1)->orderby('id','desc')->paginate(20);
-		$total = 0;
 		foreach ($result as $key => $val) {
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
 	        $idtype = $result[$key]->typeads;
@@ -27,17 +26,17 @@ class AdsModel extends Model
 	                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,2,1,'adsshort',400);
 	                $result[$key]->image = url('/').'/public/uploads/adsshort/'.$result[$key]->image;
 	                $result[$key]->totaldisplay = 1;
-	                $total += 1;
+	                //$total += 1;
 	            }else if( $idtype == 3 || $idtype == 7 || $idtype == 10){
 	            	$this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'ads',400);
 		            $result[$key]->image = url('/').'/public/uploads/ads/'.$result[$key]->image;
 		            $result[$key]->totaldisplay = 2;
-		            $total += 2;
+		            //$total += 2;
 	            }else if( $idtype == 4 || $idtype == 11){
 	                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,2,3,'adslong',400);
 	                $result[$key]->image = url('/').'/public/uploads/adslong/'.$result[$key]->image;
 	                $result[$key]->totaldisplay = 3;
-	                $total += 3;
+	                //$total += 3;
 	            }else{
 	            	$result[$key]->image = '';
 	            }
@@ -45,19 +44,19 @@ class AdsModel extends Model
 	        if( $idtype == 1 || $idtype == 2 || $idtype == 3 || $idtype == 4){
 	        	$result[$key]->display = 1;
 	        	$result[$key]->totaldisplay += 1;
-	        	$total += 1;
+	        	//$total += 1;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,50);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,100);
 	        }else if( $idtype == 5 || $idtype == 6 || $idtype == 7){
 	        	$result[$key]->display = 2;
 	        	$result[$key]->totaldisplay += 2;
-	        	$total += 2;
+	        	//$total += 2;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,100);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,200);
 	        }else if( $idtype == 8){
 	        	$result[$key]->display = 3;
 	        	$result[$key]->totaldisplay += 3;
-	        	$total += 3;
+	        	//$total += 3;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,200);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,255);
 	        }else{
@@ -66,16 +65,19 @@ class AdsModel extends Model
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,255);
 	        }
         } 
-        // for($i=0 ; $i < count($result); $i++){
-        // 	echo($result[$i]->totaldisplay.' ');
-        // }
-        $result = $this->masorycol($result,ceil($total/4));
-        // 	echo(ceil($total/4).'<br>');
-        // for($i=0 ; $i < count($result); $i++){
-        // 	echo($result[$i]->totaldisplay.' ');
-        // }
+        $total = $this->getTotaldisplay($result);
+        $result = $this->masorycol($result,$total);
         return $result;
     }
+
+    public function getTotaldisplay($array){
+    	$total = 0;
+    	for($i=0 ; $i < count($array); $i++){
+			$total += $array[$i]->totaldisplay;
+		}
+		return ceil($total/4);
+    }
+
 	public function getCatads()
 	{
 		$result = DB::table('catads')->where('active',1)->get();

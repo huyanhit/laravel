@@ -13,7 +13,6 @@ class PostadsController extends BaseController
     {
         $this->postads = new PostadsModel();
         $this->myFunction = new MyFunction();
-        $this->index();
     }
 
 	public function index()
@@ -65,7 +64,7 @@ class PostadsController extends BaseController
 			    'date_create' => time(), 
 			    'author'      => 1];
 			if($id = $this->postads->insertads($frm)){
-				return redirect('/viec-lam/sua-tin-tuyen-dung?id='.$id);
+				return redirect('/rao-vat/sua-tin-rao-vat?id='.$id);
 			}
 			$data['frm'] = $frm;
 			return view("postads",$data);

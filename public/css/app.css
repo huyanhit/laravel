@@ -622,18 +622,18 @@ body {
         padding: 10px;
         border: none;
         margin-right: 1px; }
-  #masonry .list-masonry .frame-masonry {
-    -moz-column-count: 4;
-    column-count: 4; }
-    #masonry .list-masonry .frame-masonry .text {
-      padding: 10px 0;
-      border-radius: 0px; }
-      #masonry .list-masonry .frame-masonry .text a {
-        text-transform: uppercase;
-        font-weight: bold; }
-      #masonry .list-masonry .frame-masonry .text p {
-        margin-top: 5px;
-        margin-bottom: 5px; }
+  #masonry .list-masonry .frame-masonry .col {
+    width: 25%;
+    float: left; }
+  #masonry .list-masonry .frame-masonry .text {
+    padding: 10px 0;
+    border-radius: 0px; }
+    #masonry .list-masonry .frame-masonry .text a {
+      text-transform: uppercase;
+      font-weight: bold; }
+    #masonry .list-masonry .frame-masonry .text p {
+      margin-top: 5px;
+      margin-bottom: 5px; }
   #masonry .list-masonry .item {
     display: inline-block;
     background: #fff;
@@ -825,7 +825,8 @@ body {
       margin-bottom: 10px;
       max-width: 700px; }
     #postjobs form textarea, #postads form textarea {
-      height: 150px; }
+      height: 150px;
+      padding: 15px; }
     #postjobs form input[type='file'], #postads form input[type='file'] {
       height: 40px;
       margin-bottom: 10px;

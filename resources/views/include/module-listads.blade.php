@@ -1,7 +1,7 @@
 <div id="list" class="container">
 	<div class="title-line" class="col-xs-12">
          <h3><span>Rao vặt</span></h3>
-         <a href="{{Request::root()}}/rao-vat/dang-tin-tuyen-dung">Đăng Tin</a>
+         <a href="{{Request::root()}}/rao-vat/dang-tin-rao-vat">Đăng Tin</a>
     </div>
 	<table class="table table-bordered table-hover table-striped">
 		<thead>

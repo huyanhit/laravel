@@ -48,10 +48,10 @@
          <div class="form-group">
             <label class="control-label col-sm-3">Hiển thị dạng</label>
             <div class="col-sm-9">
-                <select class="form-control" id="location" name="location">
-                    @foreach($catads as $val)
+                <select class="form-control" id="typeads" name="typeads">
+                    @foreach($typeads as $val)
                     <option
-                    @if(isset($frm['catads']) && ($frm['catads'] == $val->id))
+                    @if(isset($frm['typeads']) && ($frm['typeads'] == $val->id))
                         {{'selected'}}
                     @endif
                     value="{{$val->id}}">{{$val->title}}</option>
