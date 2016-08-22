@@ -24,7 +24,7 @@
 						</a>
 						@endif
 						@if($val->display != '')
-						<div class="masonry-text">
+						<div class="text">
 						<a href="{{Request::root()}}/noi-dung-rao-vat/{{$val->id}}">{{$val->title}}</a>
 						<p>
 							{{$val->desc}}

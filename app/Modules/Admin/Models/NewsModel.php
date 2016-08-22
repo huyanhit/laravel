@@ -119,6 +119,9 @@ class NewsModel extends Model
 	  	$arrpath = explode("/", $newimage);
 		$path = end($arrpath);
 	  	if($ext == "gif" || $ext =="png" || $ext =="jpeg" || $ext =="jpg"){ 
+	  		if(!file_exists('./public/uploads/rootrss/')){
+				mkdir('public/uploads/rootrss/', 0700);
+			}
 	    	copy($newimage,'./public/uploads/rootrss/'.$path);
 	  	}
 	  	return $path;

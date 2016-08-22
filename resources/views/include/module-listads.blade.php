@@ -1,7 +1,7 @@
 <div id="list" class="container">
 	<div class="title-line" class="col-xs-12">
-         <h3><span>Việc làm</span></h3>
-         <a href="{{Request::root()}}/viec-lam/dang-tin-tuyen-dung">Đăng Tin</a>
+         <h3><span>Rao vặt</span></h3>
+         <a href="{{Request::root()}}/rao-vat/dang-tin-tuyen-dung">Đăng Tin</a>
     </div>
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
@@ -93,7 +93,7 @@
 			</tr>
 		</form>
 		<tbody>
-			@foreach($jobs as $key=> $val)
+			@foreach($ads as $key=> $val)
 			<tr class="">
 				<td>
 					{{$val->title}}	
@@ -119,8 +119,8 @@
 					
 				</td>
 				<td>
-					<a href="{{Request::url()}}/xem-tin-tuyen-dung?id={{$val->id}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></i></a>
-					<a href="{{Request::url()}}/sua-tin-tuyen-dung?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::url()}}/xem-tin-rao-vat?id={{$val->id}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></i></a>
+					<a href="{{Request::url()}}/sua-tin-rao-vat?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a class="ajaxdelete" href="{{Request::url()}}/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>
@@ -129,7 +129,7 @@
 	</table>
 	<div class="row">
 		<div class=" col-md-9 pagination">
-			{!! $jobs->render() !!}
+			{!! $ads->render() !!}
 		</div>
 		<div class=" col-md-3">
 		</div>

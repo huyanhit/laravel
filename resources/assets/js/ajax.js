@@ -4,15 +4,16 @@ $( document ).ajaxSend(function() {
 $( document ).ajaxComplete(function() {
    $("#ajaxsend").hide();
 });
-if($("body").has('#ajaxjobs')){
-	$.ajax({
-	  	type: 'GET',
-	  	url: './ajaxjobs',
-	}).done(function( msg ){
-		elem.html(msg);
-	});
-}
+
 $(document).ready(function(){
+	if($("body #ajaxjobs").length){
+		$.ajax({
+		  	type: 'GET',
+		  	url: './ajaxjobs',
+		}).done(function( msg ){
+			elem.html(msg);
+		});
+	}
 	elem = $("#ajaxjobs");
 	$('#ajaxjobs').delegate(".ajaxpagin a","click",function(){
 		url = this.getAttribute( "href" );
@@ -37,8 +38,6 @@ $(document).ready(function(){
 		});
 		return false;
 	})
-});
-$(document).ready(function(){
 	$('a.ajaxdelete').click(function(){
 		url = this.getAttribute( "href" );
 		if(!confirm("do you Want to delete?")){
@@ -55,38 +54,39 @@ $(document).ready(function(){
 		return false;
 	});
 });
-$(document).ready(function(){    
-	var is_busy = false;
-	var page = 1;
-	var stopped = false;
-	var total = $('#ajax-masonry-ads').attr('page');
-    $(window).scroll(function() 
-    {
-        $element = $('#ajax-masonry-ads');
-        $loadding = $('#loading');
-		console.log($(window).height());
-		console.log($(window).scrollTop());
-        if($(window).scrollTop() + $(window).height() >= $element.height() && page < total) 
-        {
-            if (is_busy == true){
-                return false;
-            }
-			is_busy = true;
-            page++;
-            $.ajax(
-            {
-                type        : 'get',
-                dataType    : 'text',
-                url         : './ajaxads?page='+page,
-                success     : function (result)
-                {
-                    $element.append(result);
-                }
-            }).always(function()
-            {
-                is_busy = false;
-            });
-            return false;
-        }
-    });
+
+$(document).ready(function(){   
+	if($("body #ajax-masonry-ads").length){ 
+		var is_busy = false;
+		var page = 1;
+		var stopped = false;
+		var total = $('#ajax-masonry-ads').attr('page');
+	    $(window).scroll(function() 
+	    {
+	        $element = $('#ajax-masonry-ads');
+	        $loadding = $('#loading');
+	        if($(window).scrollTop() + $(window).height() >= $element.height() && page < total) 
+	        {
+	            if (is_busy == true){
+	                return false;
+	            }
+				is_busy = true;
+	            page++;
+	            $.ajax(
+	            {
+	                type        : 'get',
+	                dataType    : 'text',
+	                url         : './ajaxads?page='+page,
+	                success     : function (result)
+	                {
+	                    $element.append(result);
+	                }
+	            }).always(function()
+	            {
+	                is_busy = false;
+	            });
+	            return false;
+	        }
+	    });
+	}
 });

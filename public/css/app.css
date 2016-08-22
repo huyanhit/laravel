@@ -793,44 +793,45 @@ body {
 #content-news .container {
   background: #fff; }
 
-#postjobs {
+#postjobs, #postads {
   background: #fff; }
-  #postjobs h1 {
+  #postjobs h1, #postads h1 {
     text-align: center;
     text-transform: uppercase; }
-  #postjobs h3 {
+  #postjobs h3, #postads h3 {
     background: #3d4c54;
     clear: both;
     padding: 10px;
     text-align: center;
     color: #fff;
     text-transform: uppercase; }
-  #postjobs .control-label {
+  #postjobs .control-label, #postads .control-label {
     text-align: right;
     font-size: 16px;
     line-height: 40px; }
-  #postjobs form {
+  #postjobs form, #postads form {
     border: 1px #f2f2f2 solid;
     border-radius: 10px;
-    padding: 30px 5px; }
-    #postjobs form input[type='text'], #postjobs form input[type='email'], #postjobs form textarea, #postjobs form select {
+    padding: 30px 5px;
+    padding-top: 0; }
+    #postjobs form input[type='text'], #postjobs form input[type='email'], #postjobs form textarea, #postjobs form select, #postads form input[type='text'], #postads form input[type='email'], #postads form textarea, #postads form select {
       width: 100%;
       height: 40px;
       padding: 0 15px;
       font-size: 14px;
       margin-bottom: 10px;
       max-width: 500px; }
-    #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post {
+    #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post {
       margin-bottom: 10px;
       max-width: 700px; }
-    #postjobs form textarea {
+    #postjobs form textarea, #postads form textarea {
       height: 150px; }
-    #postjobs form input[type='file'] {
+    #postjobs form input[type='file'], #postads form input[type='file'] {
       height: 40px;
       margin-bottom: 10px;
       padding: 8px;
       border: 1px #999 solid; }
-    #postjobs form input[type='submit'] {
+    #postjobs form input[type='submit'], #postads form input[type='submit'] {
       padding: 0 30px;
       line-height: 40px;
       margin-bottom: 40px;
