@@ -27,6 +27,7 @@ class ContentController extends Controller
         if(isset($result->content)){
             $checkrss = substr($result->content, 0 , 4);
             if($checkrss == "http"){
+
                 $html = file_get_html($result->content);
                 foreach($html->find('.block_timer_share') as $e){
                     $e->innertext = '';
@@ -65,6 +66,7 @@ class ContentController extends Controller
             else{
                 $data['result'] = trim($result->content);
             }
+            $data['result'] = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $data['result']);
         }
         return view("content",$data);
     }
