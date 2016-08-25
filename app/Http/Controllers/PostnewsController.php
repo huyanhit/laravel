@@ -10,7 +10,7 @@ use App\Http\Models\IntroModel;
 
 include('App\Library\domnode.php') ;
 
-class ContentController extends Controller
+class PostnewsController extends Controller
 {
     public function __construct()
     {
@@ -19,7 +19,7 @@ class ContentController extends Controller
         $this->news = new NewsModel();
     }
     
-    public function contentNews($id)
+    public function content($id)
     {
         $data['headerline'] = $this->headerline->getAll();
         $data['intro'] = $this->intro->getAll();
@@ -68,14 +68,6 @@ class ContentController extends Controller
             }
             $data['result'] = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $data['result']);
         }
-        return view("content",$data);
-    }
-    public function contentJobs($id){
-        $data['result'] = trim("please waiting update");
-        return view("content",$data);
-    }
-    public function contentAds($id){
-        $data['result'] =  trim("please waiting update");
-        return view("content",$data);
+        return view("contentnews",$data);
     }
 }

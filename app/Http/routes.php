@@ -21,9 +21,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/ajaxads', 'HomeController@ajaxads');
 
 	/*CONTENT*/
-	Route::get('/noi-dung/{id}', 'ContentController@contentNews');
-	Route::get('/noi-dung-viec-lam/{id}', 'ContentController@contentJobs');
-	Route::get('/noi-dung-rao-vat/{id}', 'ContentController@contentAds');
+	Route::get('/noi-dung/{id}', 'PostnewsController@content');
 	
 	/*JOBS*/
 	Route::get('/postface/{id}', 'PostjobsController@postfaceJobs');

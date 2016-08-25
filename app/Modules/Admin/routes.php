@@ -29,6 +29,7 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
 	Route::get('/news/apply', ['as'  => 'news.apply','uses' => 'NewsController@applyNews']);
 	Route::post('/news/apply', ['as' => 'news.apply','uses' => 'NewsController@applyNews']);
+	
 
 	Route::get('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
 	Route::post('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
@@ -62,4 +63,21 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
 	Route::get('/ads/apply', ['as'  => 'ads.apply','uses' => 'AdsController@applyAds']);
 	Route::post('/ads/apply', ['as' => 'ads.apply','uses' => 'AdsController@applyAds']);
+
+
+	Route::get('/muti', ['as' => 'news.index', 'uses' => 'MutiController@index']);
+	Route::post('/muti', ['as' => 'news.index', 'uses' => 'MutiController@index']);
+
+	Route::post('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertMuti']);
+	Route::get('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertMuti']);
+
+	Route::get('/muti/delete', ['as' => 'muti.delete', 'uses' => 'MutiController@deleteMuti']);
+
+	Route::get('/muti/active', ['as' => 'muti.active', 'uses' => 'MutiController@activeMuti']);
+
+	Route::get('/muti/edit', ['as'   => 'muti.edit', 'uses' => 'MutiController@editMuti']);
+	Route::post('/muti/edit', ['as'  => 'muti.edit', 'uses' => 'MutiController@editMuti']);
+
+	Route::get('/muti/apply', ['as'  => 'muti.apply','uses' => 'MutiController@applyMuti']);
+	Route::post('/muti/apply', ['as' => 'muti.apply','uses' => 'MutiController@applyMuti']);
 });
