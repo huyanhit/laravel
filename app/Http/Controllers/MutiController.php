@@ -12,6 +12,6 @@ class MutiController extends Controller
     }
     public function index(){
         $data = array();
-        return view("muti",$data);
+        return view("mutimedia",$data);
     }
 }
