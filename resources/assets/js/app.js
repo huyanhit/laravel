@@ -23,8 +23,8 @@ $(document).ready(function($) {
 $(document).ready(function($) {
     $(".frame-masonry .item").each(function(index , elem) {
         var height = parseInt($(elem).width());
-        
-        console.log(height);
+        if(height%2 != 0)
+          height += 1;
         var display = $(elem).attr('display');
         height = parseInt(height * display/2);
         $(elem).attr('style','height:'+height+'px');
@@ -54,7 +54,6 @@ $(document).ready(function($){
     .success(function(data) {
       if (data.query.count > 0) {
         jQuery.each(data.query.results.channel, function(idx, result) {
-          console.log(result);
           var f = result.item.forecast;
           var u = result.units.temperature;
           var c = $('#weather').clone();

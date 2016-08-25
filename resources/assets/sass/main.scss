@@ -1,6 +1,5 @@
 body{
     margin: 30px AUTO;
-    background-color: #09151f;
     background: url("../../resources/assets/images/background-new.jpg") no-repeat top center fixed;
     color: #939ead;
     font-family: Roboto, sans-serif;
@@ -602,6 +601,14 @@ body{
 #masonry{
     background: #fff;
     padding-bottom: 15px;
+    .page-ads{
+	    position: absolute;
+	    margin-top: -15px;
+	    left: 0;
+    }
+    .margintop-10{
+    	margin-top: 10px;
+    }
     #search-adv{
 	    margin-bottom: 15px;
 	    height: 41px;
@@ -902,9 +909,13 @@ body{
     		margin-bottom: 10px;
     		max-width: 500px;
 		}
+		select{
+		    padding-left: 11px;
+		    text-transform: capitalize;
+		}
 		input[type='radio'],input[type='checkbox'],#cke_content-post{
     		margin-bottom: 10px;
-    		max-width: 700px;
+    		max-width: 498px;
 		}
 		textarea{
 			height: 150px;
@@ -992,7 +1003,7 @@ body{
         }
     }
     .pagination{
-       margin: 0;
+		margin: 0 7px;
     }
 }
 .title-line{

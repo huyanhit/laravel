@@ -64,7 +64,7 @@ class PostadsController extends BaseController
 			    'date_create' => time(), 
 			    'author'      => 1];
 			if($id = $this->postads->insertads($frm)){
-				return redirect('/rao-vat/sua-tin-rao-vat?id='.$id);
+				return redirect('/rao-vat');
 			}
 			$data['frm'] = $frm;
 			return view("postads",$data);
@@ -124,9 +124,12 @@ class PostadsController extends BaseController
 			    'from'        => $_POST['from'], 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->postads->updateads($frm,$id);
-			$data['frm'] = $frm;
-			return view('postads',$data);
+			if($this->postads->updateads($frm,$id)){
+				return redirect('/rao-vat');
+			}else{
+				$data['frm'] = $frm;
+				return view('postads',$data);
+			}
 		}else{
 			return view('postads',$data);
 		}

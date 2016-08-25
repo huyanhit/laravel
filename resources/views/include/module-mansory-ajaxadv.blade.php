@@ -1,4 +1,8 @@
-<div class="frame-masonry clearfix">	
+<div class="title-line page-ads clearfix">
+    <h3><span>Trang {{isset($_GET['page'])?$_GET['page']:''}}</span>
+    </h3>
+</div>
+<div class="frame-masonry margintop-10 clearfix">	
 	<div class="col">
 	@php $total = 0 @endphp
 	@foreach($ads as $val)

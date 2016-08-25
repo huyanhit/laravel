@@ -11,47 +11,26 @@
 <nav class="col-md-9" class="navbar">
 	<ul>
 		<li class="icon-home"><a href="{{Request::root()}}"><img src="{{Request::root()}}/resources/assets/images/home.png" alt="Magazine"></a></li>
-		<li class="dropdown"><a href="{{Request::root()}}" class="dropdown-toggle disabled">Trang chủ<b class="caret"></b></a>
-			<ul class="sub-menu dropdown-menu">
-				<li><a href="magazine2.html">Tin</a></li>
-				<li><a href="blog.html">Homepage 3</a></li>
-				<li><a href="shop-page.html">Homepage 4</a></li>
-			</ul>
+		<li class="dropdown"><a href="{{Request::root()}}" class="dropdown-toggle disabled">Trang chủ</a>
 		</li>
 		<li><a href="about.html">Giới thiệu</a>
+		</li>
+		<li>
 			<ul class="sub-menu dropdown-menu">
-                <li><a href="index.html">Magazine 1</a></li>
-				<li><a href="magazine2.html">Magazine 2</a></li>
-				<li><a href="shop-page.html">Magazine 3</a></li>
-				
+				<li><a href="{{Request::root()}}/tin-tuc">Tin tức</a></li>
+				<li><a href="{{Request::root()}}/tin-tuc-xulanh">Tin Xulanh</a></li>
+				<li><a href="{{Request::root()}}/tin-tuc-gia-lai">Tin gia lai</a></li>
 			</ul>
 		</li>
-		<li><a href="about.html">Tin Tức</a>
+		<li class="dropdown"><a href="{{Request::root()}}/rao-vat" class="dropdown-toggle disabled">Rao vặt<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-                <li><a href="index.html">Magazine 1</a></li>
-				<li><a href="magazine2.html">Magazine 2</a></li>
-				<li><a href="shop-page.html">Magazine 3</a></li>
-				
+				<li><a href="{{Request::root()}}/rao-vat/dang-tin-rao-vat">Đăng tin</a></li>
 			</ul>
 		</li>
-		<li class="dropdown"><a href="blog.html" class="dropdown-toggle disabled">Rao vặt<b class="caret"></b></a>
+        <li class="dropdown"><a href="{{Request::root()}}/viec-lam" class="dropdown-toggle disabled">Việc làm<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-				<li><a href="fashion-news.html">Fashion News</a></li>
-				<li><a href="#">Game News</a></li>
-				<li><a href="#">Sport News</a></li>
-			</ul>
-		</li>
-        <li class="dropdown"><a href="##" class="dropdown-toggle disabled">Việc làm<b class="caret"></b></a>
-			<ul class="sub-menu dropdown-menu">
-				<li><a href="accordion.html">Accordion</a></li>
-				<li><a href="blockquotes.html">Blockquotes</a></li>
-				<li><a href="button.html">Buttons</a></li>
-				<li><a href="column.html">Columns</a></li>
-				<li><a href="dropcap.html">Dropcaps</a></li>
-				<li><a href="heading.html">Heading</a></li>
-				<li><a href="tabs.html">Tabs</a></li>
-				<li><a href="tables.html">Tables</a></li>
-				<li><a href="warning.html">Warning</a></li>
+				<li><a href="{{Request::root()}}/viec-lam/dang-tin-tuyen-dung">Đăng tin tuyển dụng</a></li>
+				<li><a href="{{Request::root()}}/viec-lam/dang-tin-tim-viec">Đăng tin tìm việc</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="##" class="dropdown-toggle disabled">Giải trí<b class="caret"></b></a>

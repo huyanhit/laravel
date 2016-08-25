@@ -106,7 +106,6 @@
 
 body {
   margin: 30px AUTO;
-  background-color: #09151f;
   background: url("../../resources/assets/images/background-new.jpg") no-repeat top center fixed;
   color: #939ead;
   font-family: Roboto, sans-serif;
@@ -582,6 +581,12 @@ body {
 #masonry {
   background: #fff;
   padding-bottom: 15px; }
+  #masonry .page-ads {
+    position: absolute;
+    margin-top: -15px;
+    left: 0; }
+  #masonry .margintop-10 {
+    margin-top: 10px; }
   #masonry #search-adv {
     margin-bottom: 15px;
     height: 41px;
@@ -821,9 +826,12 @@ body {
       font-size: 14px;
       margin-bottom: 10px;
       max-width: 500px; }
+    #postjobs form select, #postads form select {
+      padding-left: 11px;
+      text-transform: capitalize; }
     #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post {
       margin-bottom: 10px;
-      max-width: 700px; }
+      max-width: 498px; }
     #postjobs form textarea, #postads form textarea {
       height: 150px;
       padding: 15px; }
@@ -883,7 +891,7 @@ body {
   #list table tbody .fa-minus-square-o {
     color: #a94442; }
   #list .pagination {
-    margin: 0; }
+    margin: 0 7px; }
 
 .title-line h3 {
   width: 120px;

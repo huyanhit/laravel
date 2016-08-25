@@ -67,7 +67,7 @@ class PostjobsController extends BaseController
 			    'date_create' => time(), 
 			    'author'      => 1];
 			if($id = $this->postjobs->insertJobs($frm)){
-				return redirect('/viec-lam/sua-tin-tuyen-dung?id='.$id);
+				return redirect('/viec-lam');
 			}
 			$data['frm'] = $frm;
 			return view("postjobs",$data);
