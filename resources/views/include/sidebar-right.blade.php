@@ -1,22 +1,5 @@
-<div id="sidr-right" class="sidr right"><div class="sidr-inner">
+<div class="siderbar-news">
 	<ul class="sidr-class-nav">
-		<li>
-		<span id="sidr-id-close-menu">
-			<a href="#" class="sidr-class-close-this-menu">Close</a>
-				<script type="text/javascript">
-					jQuery('a.sidr-class-close-this-menu').click(function(){
-						jQuery('div.sidr').css({
-							'right': '-476px'
-						});
-						jQuery('body').css({
-						'right': '0'
-						});							
-					});
-				</script>
-			
-		</span>
-		</li>
-						
 		<li><a href="index.html"><img src="images/home.png" alt="Magazine"></a></li>
 		<li class="sidr-class-dropdown"><a href="index.html" class="sidr-class-dropdown-toggle sidr-class-disabled">Home<b class="sidr-class-caret"></b></a>
 			<ul class="sidr-class-sub-menu sidr-class-dropdown-menu">
