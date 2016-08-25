@@ -23,6 +23,5 @@ class TypemutiModel extends Model
 		
 		$result = DB::delete("UPDATE typemuti SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
-	}
-	
+	}	
 }

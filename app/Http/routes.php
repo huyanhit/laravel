@@ -44,4 +44,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
 	Route::post('/rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
 	Route::get('/rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
+
+	/*MUTI*/
+	Route::get('/giai-tri', 'MutiController@index');
 });
