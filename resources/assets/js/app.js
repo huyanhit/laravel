@@ -82,7 +82,18 @@ $(document).ready(function($){
   );
 });
 $(document).ready(function($){
-  if($('audio,video').length){
-    $('audio,video').mediaelementplayer();
+  if($('.playlist audio,.playlist video').length){
+    $('.playlist video, .playlist audio').mediaelementplayer({
+      loop: true,
+      shuffle: true,
+      playlist: true,
+      audioHeight: 30,
+      playlistposition: 'bottom',
+      features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack', 'loop', 'shuffle', 'playlist', 'current', 'progress', 'duration', 'volume'],
+          keyActions: []
+    });
+  }
+  if($('.single audio, .single video').length){
+    $('.single video, .single audio').mediaelementplayer();
   }
 });
