@@ -627,32 +627,34 @@ body {
         padding: 10px;
         border: none;
         margin-right: 1px; }
-  #masonry .list-masonry .frame-masonry .col {
-    width: 25%;
-    float: left;
-    padding: 5px; }
-  #masonry .list-masonry .frame-masonry .text {
-    padding: 10px 0;
-    border-radius: 0px; }
-    #masonry .list-masonry .frame-masonry .text a {
-      text-transform: uppercase;
-      font-weight: bold; }
-    #masonry .list-masonry .frame-masonry .text p {
-      margin-top: 5px;
-      margin-bottom: 5px; }
-  #masonry .list-masonry .item {
-    background: #fff;
-    width: 100%;
-    padding: 7px 0; }
-    #masonry .list-masonry .item .it-fream {
-      border: 7px #fff solid;
-      box-shadow: 0px 0px 1px 0px #ccc;
-      height: 100%;
-      overflow: hidden; }
-    #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
-      max-width: 100%;
-      height: auto;
-      display: inline-block; }
+  #masonry .list-masonry {
+    padding: 0 10px; }
+    #masonry .list-masonry .frame-masonry .col {
+      width: 25%;
+      float: left;
+      padding: 5px; }
+    #masonry .list-masonry .frame-masonry .text {
+      padding: 10px 0;
+      border-radius: 0px; }
+      #masonry .list-masonry .frame-masonry .text a {
+        text-transform: uppercase;
+        font-weight: bold; }
+      #masonry .list-masonry .frame-masonry .text p {
+        margin-top: 5px;
+        margin-bottom: 5px; }
+    #masonry .list-masonry .item {
+      background: #fff;
+      width: 100%;
+      padding: 7px 0; }
+      #masonry .list-masonry .item .it-fream {
+        border: 7px #fff solid;
+        box-shadow: 0px 0px 1px 0px #ccc;
+        height: 100%;
+        overflow: hidden; }
+      #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
+        max-width: 100%;
+        height: auto;
+        display: inline-block; }
 
 #mutimedia {
   background: #fff;
@@ -927,6 +929,91 @@ body {
   padding: 4px 15px;
   color: #fff;
   margin-top: 7px; }
+
+#muti-audio, #muti-video, #muti-story {
+  background: #fff;
+  padding: 15px; }
+
+#siderbar-right {
+  margin-top: 15px;
+  margin-bottom: 15px; }
+  #siderbar-right .siderbar h3.title {
+    display: inline-block;
+    padding: 5px 10px;
+    margin: 0;
+    color: #fff;
+    background: #3d4c54;
+    text-transform: uppercase;
+    margin-bottom: 5px; }
+  #siderbar-right .siderbar h4 {
+    margin: 0;
+    margin-bottom: 5px; }
+  #siderbar-right .latest-post {
+    border-bottom: 1px #f2f2f2 solid;
+    margin-bottom: 10px;
+    padding-bottom: 5px; }
+    #siderbar-right .latest-post .item {
+      clear: both;
+      padding: 5px 0; }
+    #siderbar-right .latest-post img {
+      max-width: 100px;
+      float: left;
+      margin-right: 10px;
+      height: 100px; }
+  #siderbar-right .sidebar-ads {
+    margin-bottom: 5px; }
+    #siderbar-right .sidebar-ads img {
+      width: 100%;
+      height: auto; }
+
+#comment-script {
+  padding: 0;
+  list-style: none; }
+  #comment-script ul {
+    list-style: none;
+    padding-left: 15px; }
+  #comment-script .content {
+    margin: 2px 0;
+    padding: 5px;
+    border: 1px #f2f2f2 solid; }
+  #comment-script .avata {
+    float: left;
+    margin-right: 15px; }
+    #comment-script .avata img {
+      width: 50px;
+      height: 50px;
+      border-radius: 0px;
+      box-shadow: 1px 3px 4px 0px #eee; }
+
+#comment-form {
+  padding: 10px;
+  border: 1px #f2f2f2 solid;
+  margin: 10px 0; }
+  #comment-form .form-group {
+    line-height: 30px;
+    padding: 5px 0; }
+    #comment-form .form-group input[type='text'] {
+      height: 30px;
+      padding: 5px 10px;
+      width: 100%; }
+    #comment-form .form-group textarea {
+      height: 120px;
+      padding: 5px 10px;
+      width: 100%;
+      text-align: left; }
+    #comment-form .form-group input[type='button'] {
+      background: #fff;
+      display: inline-block;
+      padding: 0px 30px;
+      text-transform: uppercase;
+      font-weight: 300;
+      color: #333;
+      height: 40px;
+      margin: 5px 0px;
+      line-height: 37px;
+      border: 1px #999 solid;
+      position: relative;
+      top: -15px; }
 
 @media only screen and (max-width: 767px) {
   .main {

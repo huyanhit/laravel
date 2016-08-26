@@ -86,10 +86,17 @@ $(document).ready(function($){
       audioHeight: 30,
       playlistposition: 'bottom',
       features: ['playlistfeature', 'prevtrack', 'playpause', 'nexttrack', 'loop', 'shuffle', 'playlist', 'current', 'progress', 'duration', 'volume'],
-          keyActions: []
+      keyActions: []
     });
   }
   if($('.single audio, .single video').length){
     $('.single video, .single audio').mediaelementplayer();
+  }
+  if($('.muti-caroul-item audio, .muti-caroul-item video').length){
+    $('.muti-caroul-item video, .muti-caroul-item audio').mediaelementplayer({
+      loop: true,
+      shuffle: true,
+      features: ['playpause','progress'],
+    });
   }
 });

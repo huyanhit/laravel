@@ -40,6 +40,9 @@
 /* End: Shuffle */
 
 /*Start: Playlist*/
+.playlist .mejs-audio{
+  margin-bottom: 200px;
+}
 .playlist  .mejs-playlist {
   position: absolute;
   left: 0;
