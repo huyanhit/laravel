@@ -22,7 +22,10 @@ Route::group(['middleware' => ['web']], function () {
 
 	/*CONTENT*/
 	Route::get('/noi-dung/{id}', 'PostnewsController@content');
-	
+	Route::get('/insertcomment', 'PostnewsController@insertComment');
+	Route::post('/insertcomment', 'PostnewsController@insertComment');
+	Route::get('/getcomment/{id}', 'PostnewsController@getComment');
+
 	/*JOBS*/
 	Route::get('/postface/{id}', 'PostjobsController@postfaceJobs');
 	Route::post('/viec-lam', 'PostjobsController@index');

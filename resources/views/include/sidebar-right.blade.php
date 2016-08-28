@@ -1,24 +1,18 @@
 <div id="siderbar-right" class="span4">
     <div class="siderbar latest-post">
         <h3 class="title"><span>Recent Posts</span></h3>
-        <div class="item clearfix">
-            <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title=""></a>
-            <h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
-            <div class="desc" >Lectus non rutrum pulvinar urna leo </div>
-            <div class="post-time"> August 12, 2013 </div>
-        </div>
-        <div class="item clearfix">
-            <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title=""></a>
-            <h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
-            <div class="desc" >Lectus non rutrum pulvinar urna leo </div>
-            <div class="post-time"> August 12, 2013 </div>
-        </div>
-        <div class="item clearfix">
-            <a href="#"><img width="225" height="136" src="http://placehold.it/225x136" class="thumb fl" alt="" title=""></a>
-            <h4><a href="#" rel="bookmark" title="Lectus non rutrum pulvinar urna leo dignissim lorem">Lectus non rutrum pulvinar urna leo</a></h4>
-            <div class="desc" >Lectus non rutrum pulvinar urna leo </div>
-            <div class="post-time"> August 12, 2013 </div>
-        </div>
+        @foreach($recent as $val)
+            <div class="item clearfix">
+                <a href="{{Request::root()}}/noi-dung/{{$val->id}}"><img  src="{{$val->image}}" title="{{$val->title}}"></a>
+                <h4><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+                <div class="desc" >{{$val->desc}}</div>
+                <div class="extra">
+                <span class="post-time"> {{$val->date_create}} </span>
+                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1 </span>
+                <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> {{$val->view}} </span>
+                </div>
+            </div>
+        @endforeach
     </div>
 
     <div class="siderbar sidebar-ads">

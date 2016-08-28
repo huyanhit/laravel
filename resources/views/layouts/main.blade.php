@@ -27,7 +27,7 @@
 		@include('include.header')
 		@include('include.module-headerline')
 		@include('include.module-intro')
-	    @yield('content')
+	    @yield('content') 
 	    @include('include.footer')
 	</body>
 </html>

@@ -110,7 +110,25 @@ class NewsModel extends Model
 	}
 	public function getnewsbyId($id){
 		$result = DB::table('news')->where('id', $id)->orderby('id','desc')->first();
-
 		return $result;
+	}
+	public function getRecentNews($id){
+		$arraynews = $this->getnewsbyId($id);
+		$result = DB::table('news')
+		->where('catnews', $arraynews->catnews)
+		->where('id', '!=' , $id)
+		->orderby('id','desc')->take(4)->get();
+		foreach ($result as $key => $val) {
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+            if(empty($result[$key]->image) || !file_exists('public/uploads/rootrss/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image,1,1,'newsRC',200);
+                $result[$key]->image = url('/').'/public/uploads/newsRC/'.$result[$key]->image;
+            }
+        }
+        return $result;
 	}
 }

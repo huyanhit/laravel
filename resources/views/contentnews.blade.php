@@ -4,7 +4,9 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				{!! isset($result)?$result:'' !!}
+				<h3 class="title"> 
+				{{ isset($result->title)?$result->title:'' }}</h3>
+				{!! isset($result->content)?$result->content:'' !!}
 				@include('include.module-comment')
 			</div>
 			<div class="col-md-4">

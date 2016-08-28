@@ -954,7 +954,19 @@ body {
     padding-bottom: 5px; }
     #siderbar-right .latest-post .item {
       clear: both;
-      padding: 5px 0; }
+      padding: 5px 0;
+      position: relative; }
+      #siderbar-right .latest-post .item .extra {
+        position: absolute;
+        bottom: 2px;
+        right: 0;
+        font-size: 11px;
+        color: #3d4c54;
+        width: 100%;
+        padding-left: 110px; }
+        #siderbar-right .latest-post .item .extra .like, #siderbar-right .latest-post .item .extra .view {
+          float: right;
+          margin-left: 10px; }
     #siderbar-right .latest-post img {
       max-width: 100px;
       float: left;
@@ -966,54 +978,80 @@ body {
       width: 100%;
       height: auto; }
 
-#comment-script {
-  padding: 0;
-  list-style: none; }
-  #comment-script ul {
+#module-comment {
+  margin-bottom: 30px; }
+  #module-comment #comment-script {
+    padding: 0;
     list-style: none;
-    padding-left: 15px; }
-  #comment-script .content {
-    margin: 2px 0;
-    padding: 5px;
-    border: 1px #f2f2f2 solid; }
-  #comment-script .avata {
-    float: left;
-    margin-right: 15px; }
-    #comment-script .avata img {
-      width: 50px;
-      height: 50px;
-      border-radius: 0px;
-      box-shadow: 1px 3px 4px 0px #eee; }
-
-#comment-form {
-  padding: 10px;
-  border: 1px #f2f2f2 solid;
-  margin: 10px 0; }
-  #comment-form .form-group {
-    line-height: 30px;
-    padding: 5px 0; }
-    #comment-form .form-group input[type='text'] {
-      height: 30px;
-      padding: 5px 10px;
-      width: 100%; }
-    #comment-form .form-group textarea {
-      height: 120px;
-      padding: 5px 10px;
-      width: 100%;
-      text-align: left; }
-    #comment-form .form-group input[type='button'] {
-      background: #fff;
-      display: inline-block;
-      padding: 0px 30px;
+    margin: 0; }
+    #module-comment #comment-script ul {
+      list-style: none;
+      padding-left: 56px; }
+    #module-comment #comment-script .content {
+      margin: 2px 0;
+      padding: 5px;
+      border: 1px #f2f2f2 solid;
+      position: relative; }
+    #module-comment #comment-script .avata {
+      float: left;
+      margin-right: 15px; }
+      #module-comment #comment-script .avata img {
+        width: 50px;
+        height: 50px;
+        border-radius: 0px;
+        box-shadow: 1px 3px 4px 0px #eee; }
+    #module-comment #comment-script .pendding {
+      font-style: italic;
+      font-size: 10px; }
+    #module-comment #comment-script .extra .name {
       text-transform: uppercase;
-      font-weight: 300;
-      color: #333;
-      height: 40px;
-      margin: 5px 0px;
-      line-height: 37px;
-      border: 1px #999 solid;
-      position: relative;
-      top: -15px; }
+      padding-right: 20px; }
+    #module-comment #comment-script .extra .date {
+      padding-right: 20px; }
+    #module-comment #comment-script .extra .like, #module-comment #comment-script .extra .dislike {
+      padding: 0 5px; }
+      #module-comment #comment-script .extra .like i, #module-comment #comment-script .extra .dislike i {
+        cursor: pointer; }
+    #module-comment #comment-script .reply {
+      float: right;
+      position: absolute;
+      right: 15px;
+      top: 15px;
+      padding: 2px 10px;
+      border-radius: 0px;
+      color: #fff;
+      background: #3d4c54; }
+  #module-comment #comment-form, #module-comment #child-comment-form {
+    padding-top: 10px;
+    border: 1px #f2f2f2 solid;
+    margin-top: 10px; }
+    #module-comment #comment-form .form-group, #module-comment #child-comment-form .form-group {
+      line-height: 30px;
+      padding: 5px 0; }
+      #module-comment #comment-form .form-group input[type='text'], #module-comment #child-comment-form .form-group input[type='text'] {
+        height: 30px;
+        padding: 5px 10px;
+        width: 100%; }
+      #module-comment #comment-form .form-group textarea, #module-comment #child-comment-form .form-group textarea {
+        height: 120px;
+        padding: 5px 10px;
+        width: 100%;
+        text-align: left; }
+      #module-comment #comment-form .form-group input[type='button'], #module-comment #child-comment-form .form-group input[type='button'] {
+        background: #fff;
+        display: inline-block;
+        padding: 0px 30px;
+        text-transform: uppercase;
+        font-weight: 300;
+        color: #333;
+        height: 40px;
+        margin: 5px 0px;
+        line-height: 37px;
+        border: 1px #999 solid;
+        position: relative;
+        top: -5px; }
+  #module-comment #comment-form {
+    margin: 0; }
 
 @media only screen and (max-width: 767px) {
   .main {
