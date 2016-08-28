@@ -27,6 +27,8 @@ class PostnewsController extends Controller
         $data['intro'] = $this->intro->getAll();
         $data['result'] = $this->news->getnewsbyId($id);
         $data['recent'] = $this->news->getRecentNews($id);
+        $data['jobs'] = $this->news->getJobs();
+        $data['ads'] = $this->news->getAds();
         $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
         if(isset($data['result']->content)){
             $checkrss = substr(trim($data['result']->content), 0 , 4);
