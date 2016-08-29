@@ -66,6 +66,8 @@ class MutiController extends Controller
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+			if(!empty($_FILES["file"]["name"]))
+				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
 			$frm =  
 			    ['id'     	  => NULL,
 			    'catmuti'     => $_POST['catmuti'],
@@ -74,6 +76,7 @@ class MutiController extends Controller
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
+			    'file'        => $_FILES["file"]["name"], 
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
@@ -121,7 +124,13 @@ class MutiController extends Controller
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
 			}else{
-				$_FILES["feature"]["name"] = $muti->image;
+				$_FILES["feature"]["name"] = $muti->file;
+			}
+
+			if(!empty($_FILES["file"]["name"])){
+				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
+			}else{
+				$_FILES["file"]["name"] = $muti->file;
 			}
 			$frm =  
 			   ['catmuti'     => $_POST['catmuti'],
@@ -130,6 +139,7 @@ class MutiController extends Controller
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
+			    'file'       => $_FILES["file"]["name"],
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];

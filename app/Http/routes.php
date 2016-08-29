@@ -49,5 +49,5 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
 
 	/*MUTI*/
-	Route::get('/giai-tri', 'MutiController@index');
+	Route::get('/giai-tri/{id}', 'MutiController@content');
 });

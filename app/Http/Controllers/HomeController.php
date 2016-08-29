@@ -9,6 +9,7 @@ use App\Http\Models\IntroModel;
 use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
 use App\Http\Models\AdsModel;
+use App\Http\Models\MutiModel;
 
 class HomeController extends Controller
 {
@@ -20,6 +21,7 @@ class HomeController extends Controller
         $this->news = new NewsModel();
         $this->jobs = new JobsModel();
         $this->ads = new AdsModel();
+        $this->muti = new MutiModel();
         $this->index();
     }
     
@@ -41,6 +43,7 @@ class HomeController extends Controller
         $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         $data['catads'] = $this->ads->getCatads();
         $data['typeads'] = $this->ads->getTypeads();
+        $data['muti'] = $this->muti->getAll();
         return view("home",$data);
     }
     public function ajaxjobs(){

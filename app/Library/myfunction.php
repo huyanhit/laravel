@@ -26,6 +26,25 @@ namespace App\Library {
 		  	}
 		}
 
+		public function uploadFile($file){
+			$target_dir = "public/uploads/file/";
+			$target_file = $target_dir.basename($file["name"]);
+		  	$name = pathinfo($file["name"], PATHINFO_FILENAME);
+			$ext = pathinfo($file["name"], PATHINFO_EXTENSION);
+			$run = 1;
+		  	while(true){
+	  			if(file_exists($target_file)){
+	  				$target_file = $target_dir.$name.$run.'.'.$ext;
+	  				$file["name"] = $name.$run.'.'.$ext;
+		  		}else{
+					move_uploaded_file($file["tmp_name"],$target_file);
+					return $file["name"];
+					break;
+		  		}
+		  		$run++;
+	  		}
+		}
+
 		public function trimText($text, $length, $ellipses = true, $strip_html = true) {
 		    if ($strip_html) {
 		        $text = strip_tags($text);

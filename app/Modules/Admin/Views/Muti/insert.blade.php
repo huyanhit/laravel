@@ -65,6 +65,12 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">File</label>
+	    	<div class="col-sm-9">
+	      		<input type="file" class="form-control" name="file" id="file">
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Content</label>
 	    	<div class="col-sm-9">
 	      		<textarea class="form-control" id="content" placeholder="Content" name="content" required> {{isset($frm['content'])?$frm['content']:''}} </textarea>
