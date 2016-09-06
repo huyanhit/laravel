@@ -56,6 +56,7 @@ class PlaylistController extends Controller
 	public function insertPlaylist()
 	{
 		$data['frm'] = "";
+		$data['playlistmuti'] = array();
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
@@ -67,10 +68,11 @@ class PlaylistController extends Controller
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
-			    'active'      => isset($_POST['active'])? 1 : 0,  
+			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->playlistModel->insertPlaylist($frm)){
+
+			if($id = $this->playlistModel->insertPlaylist($frm,$_POST['playlist-muti'])){
 				return redirect('admin/playlist/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -85,7 +87,7 @@ class PlaylistController extends Controller
 			    'desc'        => $playlist->desc, 
 			    'content'     => $playlist->content, 
 			    'image'       => $playlist->image,
-			    'active'      => $playlist->active,  
+			    'active'      => $playlist->active, 
 			    'author'      => 1];
 				return view('Admin::Playlist.insert',$data);
 			}
@@ -96,6 +98,8 @@ class PlaylistController extends Controller
 	public function editPlaylist(){
 		$id = $_GET['id'];
 		$playlist = $this->playlistModel->getplaylistbyId($id);
+		$playlistmuti = $this->playlistModel->getplaylistmutibyId($id);
+		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['frm'] =  
 		   [
@@ -108,13 +112,7 @@ class PlaylistController extends Controller
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
 			}else{
-				$_FILES["feature"]["name"] = $playlist->file;
-			}
-
-			if(!empty($_FILES["file"]["name"])){
-				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
-			}else{
-				$_FILES["file"]["name"] = $playlist->file;
+				$_FILES["feature"]["name"] = $playlist->image;
 			}
 			$frm =  
 			   [
@@ -125,7 +123,7 @@ class PlaylistController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->playlistModel->updatePlaylist($frm,$id);
+			$this->playlistModel->updateplaylist($frm,$id,$_POST['playlist-muti']);
 			$data['frm'] = $frm;
 			return view('Admin::Playlist.insert',$data);
 		}else{

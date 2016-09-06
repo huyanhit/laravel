@@ -158,7 +158,6 @@ $(document).ready(function(){  
 	    return false;
 	});
 	$("#comment-script .reply").click(function() {
-		console.log($(this).text());
 		if($(this).text() !='Huy'){
 			$('#comment-script .reply').text('Hoi dap')
 			$(this).text('Huy');
@@ -177,4 +176,5 @@ $(document).ready(function(){  
 			$("#comment-script").append(html);
 		}
 	});
+	
 });

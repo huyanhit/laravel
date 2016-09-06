@@ -44,19 +44,28 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">list File</label>
+	    	<label class="control-label col-sm-3">List file</label>
 	    	<div class="col-sm-9">
 	      		<input type="text" class="form-control" name="searchmuti" id="searchmuti">
-	      		<div class="col-sm-6">
-	      			<h3>List Search</h3>
-	      			<ul id="listchoose">
-	      			</ul>
-	      		</div>
-	      		<div class="col-sm-6">
-	      			<h3>Has Add</h3>
-	      			<ul id="listadd" class="col-sm-6">
-	      				
-	      			</ul>
+	      		<div class="row">
+	      			<div class="col-sm-6">
+		      			<input type="hidden" name="playlist-muti" id="playlist-muti"  value="
+			      		@foreach($playlistmuti as $val)
+			      			{{$val->title.','}}
+			      		@endforeach
+			      		">
+		      			<h5>List Search</h5>
+		      			<ul id="listchoose">
+		      			</ul>
+		      		</div>
+		      		<div class="col-sm-6">
+		      			<h5>Has Add</h5>
+		      			<ul id="listadd" class="col-sm-6">
+		      				@foreach($playlistmuti as $val)
+		      					<li>{{ $val->title }}<span class='btn-delete'>delete</span></li>
+		      				@endforeach
+		      			</ul>
+		      		</div>
 	      		</div>
 	    	</div>
 	 	</div>

@@ -1,7 +1,7 @@
 
 $(document).ready(function(){
 	$("#ajaxsend").hide();
-	$('input[name="active"]').click(function(){
+	$('#list input[name="active"]').click(function(){
 		url = this.getAttribute( "url" );
 		$.ajax({
 		  	type: 'GET',
@@ -71,15 +71,18 @@ $(document).ready(function(){
 			$('#listchoose').html(html);
 		})
 	});
-	// $("#autocomplete").autocomplete({
-	// 	source: "./getfile",
-	// 	minLength: 1,
-	// 	select: function(event,ui){
-	// 		text = $('#listchoose').html();
-	// 		$('#listchoose').html(text+ui.item.value+"<br>");
-	// 		$("#autocomplete").val('');
-	//     }
-	// });
+	$('#listchoose').on('click','.btn-add',function(){
+		val = $(this).parent().find('.title').text();
+		id = $(this).parent().find('.btn-add').attr('val');
+		html = $('#listadd').html();
+		text = $('#playlist-muti').val();
+		$('#playlist-muti').val(text+id+',');
+		html += "<li>"+ val +"<span class='btn-delete'>delete</span></li>";
+		$('#listadd').html(html);
+	})
+	$('#listadd').on('click','.btn-delete',function(){
+		val = $(this).parent().remove();
+	})
 });
 $(document).ajaxSend(function() {
    $("#ajaxsend").show();

@@ -171,4 +171,28 @@ input[type='submit'], input[type='button'], button, .button {
   border-radius: 4px;
   background: #31708f; }
 
+#listchoose, #listadd {
+  padding: 20px;
+  list-style: decimal-leading-zero;
+  padding-left: 40px;
+  border: 1px #ccc solid;
+  background: #fff;
+  width: 100%;
+  border-radius: 5px;
+  height: 200px;
+  overflow-y: scroll; }
+  #listchoose li, #listadd li {
+    line-height: 30px;
+    text-transform: capitalize; }
+    #listchoose li .btn-add, #listchoose li .btn-delete, #listadd li .btn-add, #listadd li .btn-delete {
+      text-transform: capitalize;
+      float: right;
+      background: #337ab7;
+      padding: 0px 20px;
+      line-height: 27px;
+      border-radius: 3px;
+      color: #fff; }
+    #listchoose li .btn-delete, #listadd li .btn-delete {
+      background: #a94442; }
+
 /*# sourceMappingURL=admin.css.map */

@@ -36,18 +36,45 @@ class PlaylistModel extends Model
             ->update(['active' => $active]);
 		return $result;
 	}
-	public function insertplaylist($data)
+	public function insertplaylist($data,$strplaylist_muti)
 	{	
+		$arrayplaylist_muti = explode(',', $strplaylist_muti);
 		$result = DB::table('playlist')->insertGetId($data);
+		foreach($arrayplaylist_muti as $val){
+			$frm =[  'playlistid' => $result,
+					 'mutiid'     => $val];
+			$this->insertplaylistmuti($frm);
+		}
 		return $result;
 	}
-	public function updateplaylist($data,$id)
+	private function insertplaylistmuti($data){
+		DB::table('playlist-muti')->insertGetId($data);
+	}
+	public function updateplaylist($data,$id,$strplaylist_muti)
 	{	
+		$arrayplaylist_muti = explode(',', $strplaylist_muti);
 		$result = DB::table('playlist')->where('id',$id)->update($data);
+		foreach($arrayplaylist_muti as $val){
+			$frm =['mutiid' => $val];
+			$this->updateplaylistmuti($frm,$id);
+		}
 		return $result;
+	}
+	private function updateplaylistmuti($data,$id){
+		DB::table('playlist-muti')
+		->where('playlistid', $id)
+		->update($data);
 	}
 	public function getplaylistbyId($id){
-		$result = DB::table('playlist')->where('id', $id)->get();
+		$result = DB::table('playlist')->where('id', $id)->first();
+		return $result;
+	}
+	public function getplaylistmutibyId($id){
+		$result = DB::table('playlist-muti')
+ 		->where('playlistid', $id)
+ 		->join('muti', 'playlist-muti.mutiid', '=', 'muti.id')
+ 		->select('muti.title')
+		->get();
 		return $result;
 	}
 	public function completePlaylist($search){
@@ -58,8 +85,7 @@ class PlaylistModel extends Model
 		->get();
 		$html = '';
 		foreach ($result as $value) {
-			$html .= '<li><span>'.$value->title.' </span><button val='.$value->id.'>Add</a></li>';
-			//print_r($value);
+			$html .= '<li><span class="title">'.$value->title.' </span><span class="btn-add" val='.$value->id.'>Add</span></li>';
 		}
 		return $html;
 	}
