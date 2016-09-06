@@ -124,6 +124,8 @@ class PlaylistController extends Controller
 			    'date_update' => time(),  
 			    'author'      => 1];
 			$this->playlistModel->updateplaylist($frm,$id,$_POST['playlist-muti']);
+			$playlistmuti = $this->playlistModel->getplaylistmutibyId($id);
+			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Playlist.insert',$data);
 		}else{

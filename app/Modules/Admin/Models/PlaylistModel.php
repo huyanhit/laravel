@@ -36,44 +36,48 @@ class PlaylistModel extends Model
             ->update(['active' => $active]);
 		return $result;
 	}
-	public function insertplaylist($data,$strplaylist_muti)
+	public function insertplaylist($data,$str)
 	{	
-		$arrayplaylist_muti = explode(',', $strplaylist_muti);
+		$str = substr($str, 0, -1);
+		$array = explode(',', $str);
 		$result = DB::table('playlist')->insertGetId($data);
-		foreach($arrayplaylist_muti as $val){
-			$frm =[  'playlistid' => $result,
-					 'mutiid'     => $val];
-			$this->insertplaylistmuti($frm);
+		foreach($array as $val){
+
+		
+			$insert =[  'mtid' => $val,
+						'plid' => $result ];
+			$this->insertplaylistmuti($insert);
 		}
 		return $result;
 	}
 	private function insertplaylistmuti($data){
-		DB::table('playlist-muti')->insertGetId($data);
+		DB::table('mutiplaylist')->insertGetId($data);
 	}
-	public function updateplaylist($data,$id,$strplaylist_muti)
+	public function updateplaylist($data,$id,$str)
 	{	
-		$arrayplaylist_muti = explode(',', $strplaylist_muti);
+		$str = substr($str, 0, -1);
+		$array = explode(',', $str);
 		$result = DB::table('playlist')->where('id',$id)->update($data);
-		foreach($arrayplaylist_muti as $val){
-			$frm =['mutiid' => $val];
-			$this->updateplaylistmuti($frm,$id);
+		DB::table('mutiplaylist')
+		->where('plid', $id)
+		->delete();
+		foreach($array as $val){
+			$insert =[ 
+					'plid' => $id,
+					'mtid' => $val];
+			$this->insertplaylistmuti($insert);
 		}
 		return $result;
-	}
-	private function updateplaylistmuti($data,$id){
-		DB::table('playlist-muti')
-		->where('playlistid', $id)
-		->update($data);
 	}
 	public function getplaylistbyId($id){
 		$result = DB::table('playlist')->where('id', $id)->first();
 		return $result;
 	}
 	public function getplaylistmutibyId($id){
-		$result = DB::table('playlist-muti')
- 		->where('playlistid', $id)
- 		->join('muti', 'playlist-muti.mutiid', '=', 'muti.id')
- 		->select('muti.title')
+		$result = DB::table('mutiplaylist')
+ 		->where('plid', $id)
+ 		->join('muti', 'mutiplaylist.mtid', '=', 'muti.id')
+ 		->select('muti.title','muti.id')
 		->get();
 		return $result;
 	}

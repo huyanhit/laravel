@@ -10,6 +10,7 @@ use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
 use App\Http\Models\AdsModel;
 use App\Http\Models\MutiModel;
+use App\Http\Models\PlaylistModel;
 
 class HomeController extends Controller
 {
@@ -22,6 +23,7 @@ class HomeController extends Controller
         $this->jobs = new JobsModel();
         $this->ads = new AdsModel();
         $this->muti = new MutiModel();
+        $this->playlist = new PlaylistModel();
         $this->index();
     }
     
@@ -43,7 +45,8 @@ class HomeController extends Controller
         $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         $data['catads'] = $this->ads->getCatads();
         $data['typeads'] = $this->ads->getTypeads();
-        $data['muti'] = $this->muti->getAll();
+        $data['audio'] = $this->muti->getAll();
+        $data['playlist'] = $this->playlist->getAll();
         return view("home",$data);
     }
     public function ajaxjobs(){

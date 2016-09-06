@@ -49,11 +49,7 @@
 	      		<input type="text" class="form-control" name="searchmuti" id="searchmuti">
 	      		<div class="row">
 	      			<div class="col-sm-6">
-		      			<input type="hidden" name="playlist-muti" id="playlist-muti"  value="
-			      		@foreach($playlistmuti as $val)
-			      			{{$val->title.','}}
-			      		@endforeach
-			      		">
+		      			<input type="hidden" name="playlist-muti" id="playlist-muti"  value="@foreach($playlistmuti as $val){{$val->id.','}}@endforeach">
 		      			<h5>List Search</h5>
 		      			<ul id="listchoose">
 		      			</ul>
@@ -62,7 +58,7 @@
 		      			<h5>Has Add</h5>
 		      			<ul id="listadd" class="col-sm-6">
 		      				@foreach($playlistmuti as $val)
-		      					<li>{{ $val->title }}<span class='btn-delete'>delete</span></li>
+		      					<li data='{{$val->id}}'>{{ $val->title }}<span class='btn-delete'>delete</span></li>
 		      				@endforeach
 		      			</ul>
 		      		</div>

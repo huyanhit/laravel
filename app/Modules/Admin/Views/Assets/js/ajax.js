@@ -77,11 +77,17 @@ $(document).ready(function(){
 		html = $('#listadd').html();
 		text = $('#playlist-muti').val();
 		$('#playlist-muti').val(text+id+',');
-		html += "<li>"+ val +"<span class='btn-delete'>delete</span></li>";
+		html += "<li data='"+id+"'>"+ val +"<span class='btn-delete'>delete</span></li>";
 		$('#listadd').html(html);
 	})
 	$('#listadd').on('click','.btn-delete',function(){
 		val = $(this).parent().remove();
+		$('#playlist-muti').val('');
+		text = '';
+		$('#listadd li').each(function(index,elem){
+			text += $(elem).attr('data')+',';
+		})
+		$('#playlist-muti').val(text);
 	})
 });
 $(document).ajaxSend(function() {
