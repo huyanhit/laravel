@@ -80,4 +80,22 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 
 	Route::get('/muti/apply', ['as'  => 'muti.apply','uses' => 'MutiController@applyMuti']);
 	Route::post('/muti/apply', ['as' => 'muti.apply','uses' => 'MutiController@applyMuti']);
+
+	Route::get('/playlist', ['as' => 'news.index', 'uses' => 'PlaylistController@index']);
+	Route::post('/playlist', ['as' => 'news.index', 'uses' => 'PlaylistController@index']);
+
+	Route::post('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertPlaylist']);
+	Route::get('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertPlaylist']);
+
+	Route::get('/playlist/delete', ['as' => 'playlist.delete', 'uses' => 'PlaylistController@deletePlaylist']);
+
+	Route::get('/playlist/active', ['as' => 'playlist.active', 'uses' => 'PlaylistController@activePlaylist']);
+
+	Route::get('/playlist/edit', ['as'   => 'playlist.edit', 'uses' => 'PlaylistController@editPlaylist']);
+	Route::post('/playlist/edit', ['as'  => 'playlist.edit', 'uses' => 'PlaylistController@editPlaylist']);
+
+	Route::get('/playlist/apply', ['as'  => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
+	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
+
+	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completePlaylist']);
 });

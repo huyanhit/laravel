@@ -60,6 +60,26 @@ $(document).ready(function(){
 			alert('success');
 		})
 	})
+	$("#searchmuti").keyup(function(){
+		value = $(this).val();
+		url =  "./getfile",
+		$.ajax({
+		  	type: 'get',
+		  	url: url,
+		  	data: {value: value}
+		}).done(function( html ){
+			$('#listchoose').html(html);
+		})
+	});
+	// $("#autocomplete").autocomplete({
+	// 	source: "./getfile",
+	// 	minLength: 1,
+	// 	select: function(event,ui){
+	// 		text = $('#listchoose').html();
+	// 		$('#listchoose').html(text+ui.item.value+"<br>");
+	// 		$("#autocomplete").val('');
+	//     }
+	// });
 });
 $(document).ajaxSend(function() {
    $("#ajaxsend").show();
