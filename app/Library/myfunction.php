@@ -28,6 +28,9 @@ namespace App\Library {
 
 		public function uploadFile($file){
 			$target_dir = "public/uploads/file/";
+			if(!file_exists($target_dir)){
+				mkdir($target_dir, 0700);
+			}
 			$target_file = $target_dir.basename($file["name"]);
 		  	$name = pathinfo($file["name"], PATHINFO_FILENAME);
 			$ext = pathinfo($file["name"], PATHINFO_EXTENSION);
