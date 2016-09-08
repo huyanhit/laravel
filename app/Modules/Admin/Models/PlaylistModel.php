@@ -42,8 +42,6 @@ class PlaylistModel extends Model
 		$array = explode(',', $str);
 		$result = DB::table('playlist')->insertGetId($data);
 		foreach($array as $val){
-
-		
 			$insert =[  'mtid' => $val,
 						'plid' => $result ];
 			$this->insertplaylistmuti($insert);

@@ -27,7 +27,7 @@ class PlaylistModel extends Model
     }
 	public function getPlaylistbyID($id)
 	{
-		$result = DB::table('playlist')->where('id',$id)->first();
+		$result = DB::table('playlist')->where('active',1)->where('id',$id)->first();
         if(empty($result->image) || !file_exists('public/uploads/'.$result->image)){
             $result->image = url('/').'/public/images/no-image.jpg';
         }else{

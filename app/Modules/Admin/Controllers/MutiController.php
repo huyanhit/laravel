@@ -63,6 +63,7 @@ class MutiController extends Controller
 		$data['catmuti'] = $this->catmutiModel->getAll();
 		$data['typemuti'] = $this->typemutiModel->getAll();
 		$data['frm'] = "";
+		$data['playlistmuti'] = array();
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
@@ -80,7 +81,7 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->mutiModel->insertMuti($frm)){
+			if($id = $this->mutiModel->insertMuti($frm,$_POST['playlist-muti'])){
 				return redirect('admin/muti/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -109,6 +110,8 @@ class MutiController extends Controller
 	public function editMuti(){
 		$id = $_GET['id'];
 		$muti = $this->mutiModel->getmutibyId($id);
+		$playlistmuti = $this->mutiModel->getplaylistmutibyId($id);
+		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['catmuti'] = $this->catmutiModel->getAll();
 		$data['typemuti'] = $this->typemutiModel->getAll();
@@ -143,7 +146,9 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->mutiModel->updateMuti($frm,$id);
+			$this->mutiModel->updateMuti($frm,$id,$_POST['playlist-muti']);
+			$playlistmuti = $this->mutiModel->getplaylistmutibyId($id);
+			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Muti.insert',$data);
 		}else{
@@ -190,5 +195,9 @@ class MutiController extends Controller
 				break;
 			}
 		}
+	}
+	public function completeMuti(){
+		$complete = $_GET['value'];
+		echo $this->mutiModel->completeMuti($complete);
 	}
 }

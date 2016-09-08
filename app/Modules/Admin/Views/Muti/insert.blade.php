@@ -78,6 +78,28 @@
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
+	    	<label class="control-label col-sm-3">List file</label>
+	    	<div class="col-sm-9">
+	      		<input type="text" class="form-control" name="searchplaylist" id="searchplaylist">
+	      		<div class="row">
+	      			<div class="col-sm-6">
+		      			<input type="hidden" name="playlist-muti" id="playlist-muti"  value="@foreach($playlistmuti as $val){{$val->id.','}}@endforeach">
+		      			<h5>List Search</h5>
+		      			<ul id="listchoose">
+		      			</ul>
+		      		</div>
+		      		<div class="col-sm-6">
+		      			<h5>Has Add</h5>
+		      			<ul id="listadd" class="col-sm-6">
+		      				@foreach($playlistmuti as $val)
+		      					<li data='{{$val->id}}'>{{ $val->title }}<span class='btn-delete'>delete</span></li>
+		      				@endforeach
+		      			</ul>
+		      		</div>
+	      		</div>
+	    	</div>
+	 	</div>
+	 	<div class="form-group">
 	    	<label class="control-label col-sm-3" >Active</label>
 	    	<div class="col-sm-9">
 	      		<input type="checkbox" id="active" name="active" {{(isset($frm['active']) && $frm['active']==1)?'checked':''}} >

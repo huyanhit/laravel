@@ -82,7 +82,8 @@ input[type='submit'], input[type='button'], button, .button {
       margin: 0;
       padding: 0;
       border-top: 1px #eeeeee solid;
-      display: none; }
+      display: none;
+      z-index: 1; }
       #menu li .submenu li {
         width: 100%;
         text-align: left;

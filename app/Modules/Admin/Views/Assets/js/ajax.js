@@ -71,6 +71,17 @@ $(document).ready(function(){
 			$('#listchoose').html(html);
 		})
 	});
+	$("#searchplaylist").keyup(function(){
+		value = $(this).val();
+		url =  "./getfile",
+		$.ajax({
+		  	type: 'get',
+		  	url: url,
+		  	data: {value: value}
+		}).done(function( html ){
+			$('#listchoose').html(html);
+		})
+	});
 	$('#listchoose').on('click','.btn-add',function(){
 		val = $(this).parent().find('.title').text();
 		id = $(this).parent().find('.btn-add').attr('val');

@@ -21,11 +21,23 @@
 							<li><a href="{{Request::root().'/admin/jobs/insert'}}">Insert</a></li>
 						</ul>
 					</li>
-					<li><a href="{{Request::root().'/admin/ads'}}">Ad</a></li>
-					<li><a href="#">Mutilmedia</a></li>
+					<li><a href="{{Request::root().'/admin/ads'}}">Ad</a>
+						<ul class="submenu">
+							<li><a href="{{Request::root().'/admin/ads'}}">List</a> </li>
+							<li><a href="{{Request::root().'/admin/ads/insert'}}">Insert</a></li>
+						</ul>
+					</li>
+					<li><a href="#">Mutilmedia</a>
+						<ul class="submenu">
+							<li><a href="{{Request::root().'/admin/muti'}}">Muti List</a> </li>
+							<li><a href="{{Request::root().'/admin/muti/insert'}}">Muti Insert</a></li>
+							<li><a href="{{Request::root().'/admin/playlist'}}">Playlist</a> </li>
+							<li><a href="{{Request::root().'/admin/playlist/insert'}}">Playlist Insert</a></li>
+						</ul>
+					</li>
 					<li><a href="#">Shop</a></li>
 					<li><a href="#">Account</a></li>
-					<li><a href="#">comment</a></li>
+					<li><a href="#">Comment</a></li>
 					<li><a href="#">System</a></li>
 				</ul>
 			</div>

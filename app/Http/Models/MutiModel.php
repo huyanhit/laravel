@@ -34,7 +34,7 @@ class MutiModel extends Model
 	}
 	public function getMutibyID($id)
 	{
-		$result = DB::table('muti')->where('id',$id)->first();
+		$result = DB::table('muti')->where('active',1)->where('id',$id)->first();
 		if(empty($result->image) || !file_exists('public/uploads/'.$result->image)){
             $result->image = url('/').'/public/images/no-image.jpg';
         }else{

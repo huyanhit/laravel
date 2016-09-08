@@ -92,6 +92,7 @@ input[type='submit'],input[type='button'],button,.button{
             padding: 0;
             border-top: 1px #eeeeee solid;
             display: none;
+            z-index: 1;
             li{
                 width: 100%;
                 text-align: left;
