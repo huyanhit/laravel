@@ -187,7 +187,7 @@ class AdsModel extends Model
 	    }
 	    return $result;
 	}
-	public function getrecentAds($id = 0){
+	public function getrecentAds($id){
 		$arrayads = $this->getadsbyId($id);
 		$result = DB::table('ads')
 		->where('catads', $arrayads->catads)

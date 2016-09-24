@@ -797,7 +797,7 @@ body {
             padding-right: 0;
             border-right: none; }
 
-#content-news .container {
+#content-news .container, #content-jobs .container, #content-ads .container {
   background: #fff; }
 
 #postjobs, #postads {

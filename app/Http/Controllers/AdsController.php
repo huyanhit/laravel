@@ -5,10 +5,15 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Library\myfunction;
-use App\Http\Models\AdsModel;
+use App\Http\Models\JobsModel;
 use App\Http\Models\CatadsModel;
 use App\Http\Models\TypeadsModel;
 use App\Http\Models\LocationModel;
+use App\Http\Models\NewsModel;
+use App\Http\Models\AdsModel;
+use App\Http\Models\HeaderlineModel;
+use App\Http\Models\IntroModel;
+use App\Http\Models\CommentModel;
 
 class AdsController extends BaseController
 {
@@ -19,6 +24,21 @@ class AdsController extends BaseController
         $this->typeads = new TypeadsModel();
         $this->location = new LocationModel();
         $this->myFunction = new MyFunction();
+        $this->comment = new CommentModel();
+        $this->jobs = new JobsModel();
+        $this->news = new NewsModel();
+    }
+
+    public function content($id)
+    {
+        $data['headerline'] = $this->news->getHeadline();
+        $data['intro'] = $this->news->getIntro();
+        $data['news'] = $this->news->getpopularNews();
+        $data['recent'] = $this->ads->getrecentAds($id);
+        $data['ads'] = $this->jobs->getpopularJobs();
+        $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
+        $data['result'] = $this->ads->getadsbyId($id);
+        return view("contentads",$data);
     }
 
 	public function index()
