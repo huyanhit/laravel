@@ -796,7 +796,6 @@ body{
 	}
 	#footer-top{
 		background: #f1f1f1;
-		
 		h3{
 			background: #fff;
 		    display: inline-block;
@@ -914,7 +913,7 @@ body{
 		    padding-left: 11px;
 		    text-transform: capitalize;
 		}
-		input[type='radio'],input[type='checkbox'],#cke_content-post{
+		input[type='radio'],input[type='checkbox'],#cke_content-post,input[type='file']{
     		margin-bottom: 10px;
     		max-width: 498px;
 		}
@@ -1200,6 +1199,4 @@ body{
 	#comment-form{
 		 margin: 0;
 	}
-}
-.mejs-video{
 }

@@ -831,7 +831,7 @@ body {
     #postjobs form select, #postads form select {
       padding-left: 11px;
       text-transform: capitalize; }
-    #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post {
+    #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postjobs form input[type='file'], #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post, #postads form input[type='file'] {
       margin-bottom: 10px;
       max-width: 498px; }
     #postjobs form textarea, #postads form textarea {

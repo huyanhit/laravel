@@ -6,14 +6,20 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Library\myfunction;
-use App\Http\Models\PostjobsModel;
+use App\Http\Models\JobsModel;
+use App\Http\Models\CatjobsModel;
+use App\Http\Models\TypejobsModel;
+use App\Http\Models\LocationModel;
 
 
-class PostjobsController extends BaseController
+class JobsController extends BaseController
 {
 	public function __construct()
     {
-        $this->postjobs = new PostjobsModel();
+        $this->jobs = new JobsModel();
+        $this->catjobs = new CatjobsModel();
+        $this->typejobs = new TypejobsModel();
+        $this->location = new LocationModel();
         $this->myFunction = new MyFunction();
     }
 
@@ -38,15 +44,15 @@ class PostjobsController extends BaseController
 		}else{
 			$result['urlsort'] = "";
 		}
-		$result['jobs'] = $this->postjobs->getAll($data);
+		$result['jobs'] = $this->jobs->getAll($data);
 		return view('listjobs',$result);
 	}
 
 	public function insertJobs()
 	{
-		$data['catjobs'] = $this->postjobs->getCatjobs();
-		$data['typejobs'] = $this->postjobs->getTypejobs();
-		$data['location'] = $this->postjobs->getLocation();
+		$data['catjobs'] = $this->catjobs->getCatjobs();
+		$data['typejobs'] = $this->typejobs->getTypejobs();
+		$data['location'] = $this->location->getLocation();
 
 
 		$data['frm'] = "";
@@ -66,7 +72,7 @@ class PostjobsController extends BaseController
 			    'salary'      => $_POST['salary'],
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->postjobs->insertJobs($frm)){
+			if($id = $this->jobs->insertJobs($frm)){
 				return redirect('/viec-lam');
 			}
 			$data['frm'] = $frm;
@@ -74,10 +80,10 @@ class PostjobsController extends BaseController
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$jobs = $this->postjobs->getjobsbyId($id);
-				$data['catjobs'] = $this->postjobs->getCatjobs();
-				$data['typejobs'] = $this->postjobs->getTypejobs();
-				$data['location'] = $this->postjobs->getLocation();
+				$jobs = $this->jobs->getjobsbyId($id);
+				$data['catjobs'] = $this->catjobs->getCatjobs();
+				$data['typejobs'] = $this->typejobs->getTypejobs();
+				$data['location'] = $this->location->getLocation();
 				$data['frm'] =  
 			    ['catjobs'    => $jobs->catjobs,
 			    'typejobs'    => $jobs->typejobs,
@@ -97,11 +103,11 @@ class PostjobsController extends BaseController
 	
 	public function editJobs(){
 		$id = $_GET['id'];
-		$jobs = $this->postjobs->getjobsbyId($id);
+		$jobs = $this->jobs->getjobsbyId($id);
 		$data['edit'] = $id;
-		$data['catjobs'] = $this->postjobs->getCatjobs();
-		$data['typejobs'] = $this->postjobs->getTypejobs();
-		$data['location'] = $this->postjobs->getLocation();
+		$data['catjobs'] = $this->catjobs->getCatjobs();
+		$data['typejobs'] = $this->typejobs->getTypejobs();
+		$data['location'] = $this->location->getLocation();
 		$data['frm'] =  
 		   ['catjobs'     => $jobs->catjobs,
 		    'typejobs'    => $jobs->typejobs,
@@ -130,7 +136,7 @@ class PostjobsController extends BaseController
 			    'salary'      => $_POST['salary'],
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->postjobs->updateJobs($frm,$id);
+			$this->jobs->updateJobs($frm,$id);
 			$data['frm'] = $frm;
 			return view('postjobs',$data);
 		}else{
@@ -141,12 +147,12 @@ class PostjobsController extends BaseController
 	public function deleteJobs()
 	{
 		if(isset($_GET['id'])){
-			return $this->postjobs->deteleId($_GET['id']);
+			return $this->jobs->deteleId($_GET['id']);
 		}
 	}
 
 	public function postfaceJobs($id){
-        $result = $this->postjobs->getjobsbyId($id);
+        $result = $this->jobs->getjobsbyId($id);
         $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
         $data['params'] = array(
           "access_token" => $token,

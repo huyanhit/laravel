@@ -45,7 +45,7 @@
                 <script type="text/javascript">CKEDITOR.replace('content-post'); </script>
             </div>
         </div>
-         <div class="form-group">
+        <div class="form-group">
             <label class="control-label col-sm-3">Hiển thị dạng</label>
             <div class="col-sm-9">
                 <select class="form-control" id="typeads" name="typeads">
@@ -65,11 +65,11 @@
             <div class="col-sm-9">
                 <input type="text" class="form-control" name="from" value="{{isset($frm['from'])?$frm['from']:''}}" required/>
             </div>
-            <div class="form-group">
-                <label class="control-label col-sm-3">Liên hệ</label>
-                <div class="col-sm-9">
-                    <textarea class="form-control" name="desc" id="desc" placeholder="Input description" required>{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
-                </div>
+        </div>
+        <div class="form-group">
+            <label class="control-label col-sm-3">Liên hệ</label>
+            <div class="col-sm-9">
+                <textarea class="form-control" name="desc" id="desc" placeholder="Input description" required >{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
             </div>
         </div>
         

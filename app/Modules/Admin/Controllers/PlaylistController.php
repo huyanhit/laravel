@@ -6,6 +6,7 @@ use App\Modules\Admin\Models\PlaylistModel;
 use App\Modules\Admin\Models\CatplaylistModel;
 use App\Modules\Admin\Models\TypeplaylistModel;
 use App\Modules\Admin\Models\MutiModel;
+use App\Modules\Admin\Models\PlaylistmutiModel;
 use App\Library\MyFunction;
 
 /**
@@ -19,6 +20,8 @@ class PlaylistController extends Controller
 	function __construct()
 	{
 		$this->playlistModel    = new PlaylistModel();
+		$this->playlistmutiModel    = new PlaylistmutiModel();
+		$this->mutiModel    = new MutiModel();
 		$this->myFunction   = new MyFunction();
 	}
 
@@ -98,7 +101,7 @@ class PlaylistController extends Controller
 	public function editPlaylist(){
 		$id = $_GET['id'];
 		$playlist = $this->playlistModel->getplaylistbyId($id);
-		$playlistmuti = $this->playlistModel->getplaylistmutibyId($id);
+		$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
 		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['frm'] =  
@@ -123,8 +126,8 @@ class PlaylistController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->playlistModel->updateplaylist($frm,$id,$_POST['playlist-muti']);
-			$playlistmuti = $this->playlistModel->getplaylistmutibyId($id);
+			$this->playlistModel->updatePlaylist($frm,$id,$_POST['playlist-muti']);
+			$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
 			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Playlist.insert',$data);
@@ -173,8 +176,8 @@ class PlaylistController extends Controller
 			}
 		}
 	}
-	public function completePlaylist(){
+	public function completeMuti(){
 		$complete = $_GET['value'];
-		echo $this->playlistModel->completePlaylist($complete);
+		echo $this->mutiModel->completePlaylist($complete);
 	}
 }

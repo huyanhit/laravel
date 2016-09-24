@@ -10,9 +10,43 @@ class AdsModel extends Model
     {
         $this->myFunction = new MyFunction();
     }
-    
-
-	public function getAll()
+    public function getAll($data)
+	{
+		if(!empty($data['sort'])){
+			$result = DB::table('ads')
+			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
+			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+			->orderby($data['sort']['order'], $data['sort']['by'])
+			->paginate(10);
+		}else{
+			$result = DB::table('ads')
+			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
+			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+			->paginate(10);
+		}
+		return $result;
+	}
+	public function insertads($data)
+	{	
+		$result = DB::table('ads')->insertGetId($data);
+		return $result;
+	}
+	public function updateads($data,$id)
+	{	
+		$result = DB::table('ads')->where('id',$id)->update($data);
+		return $result;
+	}
+	public function getadsbyId($id){
+		$result = DB::table('ads')->where('id', $id)->first();
+		return $result;
+	}
+	
+	public function deteleId($id)
+	{
+		$result = DB::delete("DELETE FROM ads WHERE id = ?",[$id]);
+		return $result;
+	}
+	public function getAds()
 	{
 		$result = DB::table('ads')->where('active',1)->orderby('id','desc')->paginate(20);
 		foreach ($result as $key => $val) {
@@ -67,7 +101,7 @@ class AdsModel extends Model
         } 
         $total = $this->getTotaldisplay($result);
         $result = $this->masorycol($result,$total);
-  //       for($i=0 ; $i < count($result); $i++){
+  		// for($i=0 ; $i < count($result); $i++){
 		// 	echo $result[$i]->totaldisplay;
 		// }
         return $result;
@@ -80,27 +114,7 @@ class AdsModel extends Model
 		}
 		return ceil($total/4);
     }
-
-	public function getCatads()
-	{
-		$result = DB::table('catads')->where('active',1)->get();
-		return $result;
-	}
-	public function getTypeadsbyId($id)
-	{
-		$result = DB::table('typeads')->where('active',1)->where('id',$id)->get();
-		return $result;
-	}
-	public function getTypeads()
-	{
-		$result = DB::table('typeads')->where('active',1)->get();
-		return $result;
-	}
-	public function getLocation()
-	{
-		$result = DB::table('location')->where('active',1)->get();
-		return $result;
-	}
+    
 	private function masorycol($array,$group){
 		$total = 0;
 		$gr = 0;
@@ -156,5 +170,21 @@ class AdsModel extends Model
 		$array[$posX] = $array[$posY];
 		$array[$posY] = $tam;
 		return true;
+	}
+	public function getrecentAds(){
+		$result = DB::table('ads')->where('active',1)->where('typeads',7)->take(4)->orderby('id','desc')->get();
+		foreach ($result as $key => $val) {
+	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,100);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
+	        }else{
+	            $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'ads',400);
+	            $result[$key]->image = url('/').'/public/uploads/ads/'.$result[$key]->image;
+	            $result[$key]->totaldisplay = 2;
+	        }
+	    }
+	    return $result;
 	}
 }

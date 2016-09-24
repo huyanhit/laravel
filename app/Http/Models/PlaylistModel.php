@@ -10,7 +10,7 @@ class PlaylistModel extends Model
     {
         $this->myFunction = new MyFunction();
     }
-	public function getAll()
+	public function getPlaylist()
 	{
 		$result = DB::table('Playlist')->where('active',1)->orderby('id','desc')->paginate(10);
 		foreach ($result as $key => $val) {
@@ -37,13 +37,4 @@ class PlaylistModel extends Model
         }
 		return $result;
 	}
-    public function getMutiplaylistbyID($id)
-    {
-        $result = DB::table('mutiplaylist')
-        ->where('plid', $id)
-        ->join('muti', 'mutiplaylist.mtid', '=', 'muti.id')
-        ->select('muti.*')
-        ->get();
-        return $result;
-    }
 }

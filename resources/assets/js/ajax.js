@@ -118,7 +118,7 @@ $(document).ready(function(){  
 		           		htm += html;
 		           		htm += '</li></ul>';
 		           		insert.append(htm);
-		           		html = '<form id="comment-form" method="POST" action="http://localhost/laravel/insertcomment">';
+		           		html = '<form id="comment-form" method="POST" action="/laravel/insertcomment">';
 						html += $("#child-comment-form").html();
 						html +='</form>';
 						$("#child-comment-form").remove();
@@ -161,7 +161,7 @@ $(document).ready(function(){  
 		if($(this).text() !='Huy'){
 			$('#comment-script .reply').text('Hoi dap')
 			$(this).text('Huy');
-			html = '<form id="child-comment-form" method="POST" action="http://localhost/laravel/insertcomment">';
+			html = '<form id="child-comment-form" method="POST" action="/laravel/insertcomment">';
 			html += '<input type="hidden" id="frm-idcomment" name="frm-idcomment" value="'+$(this).attr('data')+'">';
 			html += $("#comment-form").html();
 			html +='</form>';
@@ -169,12 +169,11 @@ $(document).ready(function(){  
 			$(this).parent().append(html);
 		}else{
 			$(this).text('Hoi dap');
-			html = '<form id="comment-form" method="POST" action="http://localhost/laravel/insertcomment">';
+			html = '<form id="comment-form" method="POST" action="/laravel/insertcomment">';
 			html += $("#child-comment-form").html();
 			html +='</form>';
 			$("#child-comment-form").remove();
 			$("#comment-script").append(html);
 		}
 	});
-	
 });

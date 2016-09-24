@@ -3,9 +3,14 @@ namespace App\Modules\Admin\Models;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
+use App\Modules\Admin\Models\PlaylistmutiModel;
 
 class PlaylistModel extends Model
-{
+{	
+	function __construct()
+	{
+		$this->playlistmutiModel = new PlaylistmutiModel();
+	}
 	public function getAll($data)
 	{
 		if(!empty($data['sort'])){
@@ -36,7 +41,10 @@ class PlaylistModel extends Model
             ->update(['active' => $active]);
 		return $result;
 	}
-	public function insertplaylist($data,$str)
+	private function insertPlaylistmuti($data){
+		DB::table('mutiplaylist')->insertGetId($data);
+	}
+	public function insertPlaylist($data,$str)
 	{	
 		$str = substr($str, 0, -1);
 		$array = explode(',', $str);
@@ -44,26 +52,24 @@ class PlaylistModel extends Model
 		foreach($array as $val){
 			$insert =[  'mtid' => $val,
 						'plid' => $result ];
-			$this->insertplaylistmuti($insert);
+			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
 	}
-	private function insertplaylistmuti($data){
-		DB::table('mutiplaylist')->insertGetId($data);
-	}
-	public function updateplaylist($data,$id,$str)
+	public function updatePlaylist($data,$id,$str)
 	{	
 		$str = substr($str, 0, -1);
 		$array = explode(',', $str);
 		$result = DB::table('playlist')->where('id',$id)->update($data);
-		DB::table('mutiplaylist')
-		->where('plid', $id)
-		->delete();
+		// DB::table('mutiplaylist')
+		// ->where('mtid', $id)
+		// ->delete();
+		$this->playlistmutiModel->deletemutiplaylistbymtID($id);
 		foreach($array as $val){
 			$insert =[ 
-					'plid' => $id,
-					'mtid' => $val];
-			$this->insertplaylistmuti($insert);
+					'mtid' => $id,
+					'plid' => $val];
+			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
 	}
@@ -71,18 +77,9 @@ class PlaylistModel extends Model
 		$result = DB::table('playlist')->where('id', $id)->first();
 		return $result;
 	}
-	public function getplaylistmutibyId($id){
-		$result = DB::table('mutiplaylist')
- 		->where('plid', $id)
- 		->join('muti', 'mutiplaylist.mtid', '=', 'muti.id')
- 		->select('muti.title','muti.id')
-		->get();
-		return $result;
-	}
-	public function completePlaylist($search){
-		$result = DB::table('muti')
+	public function completeMuti($search){
+		$result = DB::table('playlist')
 		->select('id','title')
-		->where('file','like',$search.'%')
 		->orwhere('title','like',$search.'%')
 		->get();
 		$html = '';

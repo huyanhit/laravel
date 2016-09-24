@@ -4,6 +4,7 @@ use DB;
 use Illuminate\Database\Eloquent\Model;
 use App\Library\myfunction;
 
+
 class CommentModel extends Model
 {
 	public function getCommentbyID($typeid,$id)

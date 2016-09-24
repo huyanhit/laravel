@@ -5,13 +5,19 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Library\myfunction;
-use App\Http\Models\PostadsModel;
+use App\Http\Models\AdsModel;
+use App\Http\Models\CatadsModel;
+use App\Http\Models\TypeadsModel;
+use App\Http\Models\LocationModel;
 
-class PostadsController extends BaseController
+class AdsController extends BaseController
 {
 	public function __construct()
     {
-        $this->postads = new PostadsModel();
+        $this->ads = new AdsModel();
+        $this->catads = new CatadsModel();
+        $this->typeads = new TypeadsModel();
+        $this->location = new LocationModel();
         $this->myFunction = new MyFunction();
     }
 
@@ -36,17 +42,15 @@ class PostadsController extends BaseController
 		}else{
 			$result['urlsort'] = "";
 		}
-		$result['ads'] = $this->postads->getAll($data);
+		$result['ads'] = $this->ads->getAll($data);
 		return view('listads',$result);
 	}
 
 	public function insertads()
 	{
-		$data['catads'] = $this->postads->getCatads();
-		$data['typeads'] = $this->postads->getTypeads();
-		$data['location'] = $this->postads->getLocation();
-
-
+		$data['catads'] = $this->catads->getCatads();
+		$data['typeads'] = $this->typeads->getTypeads();
+		$data['location'] = $this->location->getLocation();
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
@@ -63,7 +67,7 @@ class PostadsController extends BaseController
 			    'from'        => $_POST['from'], 
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->postads->insertads($frm)){
+			if($id = $this->ads->insertads($frm)){
 				return redirect('/rao-vat');
 			}
 			$data['frm'] = $frm;
@@ -71,10 +75,10 @@ class PostadsController extends BaseController
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$ads = $this->postads->getadsbyId($id);
-				$data['catads'] = $this->postads->getCatads();
-				$data['typeads'] = $this->postads->getTypeads();
-				$data['location'] = $this->postads->getLocation();
+				$ads = $this->ads->getadsbyId($id);
+				$data['catads'] = $this->catads->getCatads();
+				$data['typeads'] = $this->typeads->getTypeads();
+				$data['location'] = $this->location->getLocation();
 				$data['frm'] =  
 			    ['catads'    => $ads->catads,
 			    'typeads'    => $ads->typeads,
@@ -93,11 +97,11 @@ class PostadsController extends BaseController
 	
 	public function editads(){
 		$id = $_GET['id'];
-		$ads = $this->postads->getadsbyId($id);
+		$ads = $this->ads->getadsbyId($id);
 		$data['edit'] = $id;
-		$data['catads'] = $this->postads->getCatads();
-		$data['typeads'] = $this->postads->getTypeads();
-		$data['location'] = $this->postads->getLocation();
+		$data['catads'] = $this->catads->getCatads();
+		$data['typeads'] = $this->typeads->getTypeads();
+		$data['location'] = $this->location->getLocation();
 		$data['frm'] =  
 		   ['catads'     => $ads->catads,
 		    'typeads'    => $ads->typeads,
@@ -124,7 +128,7 @@ class PostadsController extends BaseController
 			    'from'        => $_POST['from'], 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			if($this->postads->updateads($frm,$id)){
+			if($this->ads->updateads($frm,$id)){
 				return redirect('/rao-vat');
 			}else{
 				$data['frm'] = $frm;
@@ -138,12 +142,12 @@ class PostadsController extends BaseController
 	public function deleteads()
 	{
 		if(isset($_GET['id'])){
-			return $this->postads->deteleId($_GET['id']);
+			return $this->ads->deteleId($_GET['id']);
 		}
 	}
 
 	public function postfaceads($id){
-        $result = $this->postads->getadsbyId($id);
+        $result = $this->ads->getadsbyId($id);
         $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
         $data['params'] = array(
           "access_token" => $token,

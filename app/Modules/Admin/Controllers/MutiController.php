@@ -3,6 +3,8 @@ namespace App\Modules\Admin\Controllers;
 
 use App\Http\Controllers\Controller;
 use App\Modules\Admin\Models\MutiModel;
+use App\Modules\Admin\Models\PlaylistModel;
+use App\Modules\Admin\Models\PlaylistmutiModel;
 use App\Modules\Admin\Models\CatmutiModel;
 use App\Modules\Admin\Models\TypemutiModel;
 use App\Library\MyFunction;
@@ -18,6 +20,8 @@ class MutiController extends Controller
 	function __construct()
 	{
 		$this->mutiModel    = new MutiModel();
+		$this->playlistModel    = new PlaylistModel();
+		$this->playlistmutiModel = new PlaylistmutiModel();
 		$this->catmutiModel = new CatmutiModel();
 		$this->typemutiModel = new TypemutiModel();
 		$this->myFunction   = new MyFunction();
@@ -110,7 +114,7 @@ class MutiController extends Controller
 	public function editMuti(){
 		$id = $_GET['id'];
 		$muti = $this->mutiModel->getmutibyId($id);
-		$playlistmuti = $this->mutiModel->getplaylistmutibyId($id);
+		$playlistmuti = $this->playlistmutiModel->getplaylistmutibyId($id);
 		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['catmuti'] = $this->catmutiModel->getAll();
@@ -142,12 +146,12 @@ class MutiController extends Controller
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
 			    'image'       => $_FILES["feature"]["name"], 
-			    'file'       => $_FILES["file"]["name"],
+			    'file'        => $_FILES["file"]["name"],
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
 			$this->mutiModel->updateMuti($frm,$id,$_POST['playlist-muti']);
-			$playlistmuti = $this->mutiModel->getplaylistmutibyId($id);
+			$playlistmuti = $this->playlistmutiModel->getplaylistmutibyId($id);
 			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Muti.insert',$data);
@@ -196,8 +200,8 @@ class MutiController extends Controller
 			}
 		}
 	}
-	public function completeMuti(){
+	public function completePlaylist(){
 		$complete = $_GET['value'];
-		echo $this->mutiModel->completeMuti($complete);
+		echo $this->playlistModel->completeMuti($complete);
 	}
 }

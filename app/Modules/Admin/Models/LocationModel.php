@@ -18,7 +18,6 @@ class LocationModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE location SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

@@ -97,6 +97,6 @@ Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers
 	Route::get('/playlist/apply', ['as'  => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
 	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
 
-	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completePlaylist']);
-	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completeMuti']);
+	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completePlaylist']);
+	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completeMuti']);
 });

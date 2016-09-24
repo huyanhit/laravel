@@ -5,30 +5,32 @@ namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Http\Models\NewsModel;
+use App\Http\Models\JobsModel;
+use App\Http\Models\AdsModel;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\CommentModel;
 
 include('App\Library\domnode.php') ;
 
-class PostnewsController extends Controller
+class NewsController extends Controller
 {
     public function __construct()
     {
-        $this->headerline = new HeaderlineModel();
-        $this->intro = new IntroModel();
         $this->news = new NewsModel();
+        $this->jobs = new JobsModel();
+        $this->ads = new AdsModel();
         $this->comment = new CommentModel();
     }
     
     public function content($id)
     {
-        $data['headerline'] = $this->headerline->getAll();
-        $data['intro'] = $this->intro->getAll();
+        $data['headerline'] = $this->news->getHeadline();
+        $data['intro'] = $this->news->getIntro();
         $data['result'] = $this->news->getnewsbyId($id);
         $data['recent'] = $this->news->getRecentNews($id);
-        $data['jobs'] = $this->news->getJobs();
-        $data['ads'] = $this->news->getAds();
+        $data['jobs'] = $this->jobs->getrecentJobs();
+        $data['ads'] = $this->ads->getrecentAds();
         $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
         if(isset($data['result']->content)){
             $checkrss = substr(trim($data['result']->content), 0 , 4);
@@ -71,27 +73,5 @@ class PostnewsController extends Controller
             }
         }
         return view("contentnews",$data);
-    }
-    public function insertComment(){
-        $data = ['id'           => NULL,
-                'name'     => $_POST['name'],
-                'comment'    => $_POST['comment'],
-                'date_create' => time(),
-                'idnews' => $_POST['id'],
-                'idcomment' => isset($_POST['idcomment'])?$_POST['idcomment']:0];
-        $this->comment->insertComment($data);
-        $html ='
-        <div class="content clearfix">
-            <div class="avata"><img src="http://localhost/laravel/public/images/background-new.jpg"></div>
-            <div class="pendding">Cho duyet</div>
-            <div class="extra">
-                <span class="name"><strong>'.$_POST['name'].'</strong></span>
-                <span class="date">Luc: '.date('d-m-Y',time()).'</span>
-                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 0 </span>
-                <span class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i> 0 </span>
-            </div>
-            <div class="desc">'.$_POST['comment'].'</div>
-        </div>';
-        print($html);
     }
 }
