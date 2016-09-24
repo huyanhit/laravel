@@ -78,7 +78,7 @@ class JobsModel extends Model
         }
         return $result;
     }
-	public function getrecentJobs()
+	public function getpopularJobs()
 	{
 		$result = DB::table('jobs')->where('active',1)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
@@ -93,5 +93,24 @@ class JobsModel extends Model
 	        }
 	    }
 	    return $result;
+	}
+	public function getrecentJobs($id){
+		$arrayjobs = $this->getjobsbyId($id);
+		$result = DB::table('jobs')
+		->where('catjobs', $arrayjobs->catjobs)
+		->where('id', '!=' , $id)
+		->orderby('id','desc')->take(4)->get();
+		foreach ($result as $key => $val) {
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+            if(empty($result[$key]->image) || !file_exists('public/uploads/rootrss/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image,1,1,'jobsRC',200);
+                $result[$key]->image = url('/').'/public/uploads/jobsRC/'.$result[$key]->image;
+            }
+        }
+        return $result;
 	}
 }

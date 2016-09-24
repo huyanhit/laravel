@@ -10,6 +10,11 @@ use App\Http\Models\JobsModel;
 use App\Http\Models\CatjobsModel;
 use App\Http\Models\TypejobsModel;
 use App\Http\Models\LocationModel;
+use App\Http\Models\NewsModel;
+use App\Http\Models\AdsModel;
+use App\Http\Models\HeaderlineModel;
+use App\Http\Models\IntroModel;
+use App\Http\Models\CommentModel;
 
 
 class JobsController extends BaseController
@@ -17,10 +22,25 @@ class JobsController extends BaseController
 	public function __construct()
     {
         $this->jobs = new JobsModel();
+        $this->news = new NewsModel();
+        $this->ads = new AdsModel();
+        $this->comment = new CommentModel();
         $this->catjobs = new CatjobsModel();
         $this->typejobs = new TypejobsModel();
         $this->location = new LocationModel();
         $this->myFunction = new MyFunction();
+    }
+
+	public function content($id)
+    {
+        $data['headerline'] = $this->news->getHeadline();
+        $data['intro'] = $this->news->getIntro();
+        $data['news'] = $this->news->getpopularNews();
+        $data['recent'] = $this->jobs->getrecentJobs($id);
+        $data['ads'] = $this->ads->getpopularAds();
+        $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
+        $data['result'] = $this->jobs->getjobsbyId($id);
+        return view("contentjobs",$data);
     }
 
 	public function index()

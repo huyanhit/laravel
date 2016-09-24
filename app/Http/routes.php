@@ -21,7 +21,10 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/ajaxads', 'HomeController@ajaxads');
 
 	/*CONTENT*/
-	Route::get('/noi-dung/{id}', 'NewsController@content');
+	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@content');
+	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@content');
+	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@content');
+
 	Route::get('/insertcomment', 'LibraryController@insertComment');
 	Route::post('/insertcomment', 'LibraryController@insertComment');
 	Route::get('/getcomment/{id}', 'LibraryController@getComment');

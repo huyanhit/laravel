@@ -9,13 +9,13 @@
 		<div class="item" display="{{$val->totaldisplay}}">
 			<div class="it-fream">
 			@if($val->image != '')
-			<a href="{{Request::root()}}/noi-dung-rao-vat/{{$val->id}}">
+			<a href="{{Request::root()}}/rao-vat/noi-dung/{{$val->id}}">
 				<img src="{{$val->image}} " alt="{{$val->title}}">
 			</a>
 			@endif
 			@if($val->display != '')
 			<div class="text">
-			<a href="{{Request::root()}}/noi-dung-rao-vat/{{$val->id}}">{{$val->title}}</a>
+			<a href="{{Request::root()}}/rao-vat/noi-dung/{{$val->id}}">{{$val->title}}</a>
 			<p>
 				{{$val->desc}}
 			</p>

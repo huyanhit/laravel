@@ -171,7 +171,7 @@ class AdsModel extends Model
 		$array[$posY] = $tam;
 		return true;
 	}
-	public function getrecentAds(){
+	public function getpopularAds(){
 		$result = DB::table('ads')->where('active',1)->where('typeads',7)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
@@ -186,5 +186,24 @@ class AdsModel extends Model
 	        }
 	    }
 	    return $result;
+	}
+	public function getrecentAds($id = 0){
+		$arrayads = $this->getadsbyId($id);
+		$result = DB::table('ads')
+		->where('catads', $arrayads->catads)
+		->where('id', '!=' , $id)
+		->orderby('id','desc')->take(4)->get();
+		foreach ($result as $key => $val) {
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+            if(empty($result[$key]->image) || !file_exists('public/uploads/rootrss/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image,1,1,'adsRC',200);
+                $result[$key]->image = url('/').'/public/uploads/adsRC/'.$result[$key]->image;
+            }
+        }
+        return $result;
 	}
 }

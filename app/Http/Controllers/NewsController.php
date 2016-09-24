@@ -28,9 +28,9 @@ class NewsController extends Controller
         $data['headerline'] = $this->news->getHeadline();
         $data['intro'] = $this->news->getIntro();
         $data['result'] = $this->news->getnewsbyId($id);
-        $data['recent'] = $this->news->getRecentNews($id);
-        $data['jobs'] = $this->jobs->getrecentJobs();
-        $data['ads'] = $this->ads->getrecentAds();
+        $data['recent'] = $this->news->getrecentNews($id);
+        $data['jobs'] = $this->jobs->getpopularJobs();
+        $data['ads'] = $this->ads->getpopularAds();
         $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
         if(isset($data['result']->content)){
             $checkrss = substr(trim($data['result']->content), 0 , 4);

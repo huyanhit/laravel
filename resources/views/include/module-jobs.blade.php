@@ -24,8 +24,8 @@
                 <div class="content">
                     @foreach($jobsvip as $val)
                     <div class="item">
-                        <a href="#"><img width="225" height="136" src="{{$val->image}}" class="thumb fl" alt="{{$val->title}}"></a>
-                        <h4><a href="#" rel="bookmark" title="{{$val->title}}">{{$val->title}}</a></h4>
+                        <a href="{{Request::root()}}/viec-lam/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb fl" alt="{{$val->title}}"></a>
+                        <h4><a href="{{Request::root()}}/viec-lam/noi-dung/{{$val->id}}" rel="bookmark" title="{{$val->title}}">{{$val->title}}</a></h4>
                         <div class="desc">{{$val->desc}}</div>
                         <div class="salo">
                             <span>

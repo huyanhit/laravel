@@ -14,7 +14,7 @@
 					</span>
 				</li>
 				@foreach($intro as $val)	
-				<li><p><a href="{{Request::root()}}/content/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><span class="title">{{$val->title}}</span></a></p></li>
+				<li><p><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><span class="title">{{$val->title}}</span></a></p></li>
 				@endforeach
 			</ul>
 		</div>

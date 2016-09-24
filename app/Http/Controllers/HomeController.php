@@ -58,14 +58,14 @@ class HomeController extends Controller
         $data['location'] = $this->location->getLocation();
         $data['catjobs'] = $this->catjobs->getCatjobs();
         $data['typejobs'] = $this->typejobs->getTypejobs();
-        $data['jobs'] = $this->jobs->getAll();
+        $data['jobs'] = $this->jobs->getJobs();
         return view("include/module-postjobs-ajaxlistjobs",$data);
     }
     public function ajaxads(){
         $data['location'] = $this->location->getLocation();
         $data['catads'] = $this->catads->getCatads();
         $data['typeads'] = $this->typeads->getTypeads();
-        $data['ads'] = $this->ads->getAll();
+        $data['ads'] = $this->ads->getAds();
         $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         return view("include/module-mansory-ajaxadv",$data);
     }

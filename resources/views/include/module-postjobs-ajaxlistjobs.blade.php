@@ -9,7 +9,7 @@
             @endif
         @endforeach 
         " aria-hidden="true"></i> 
-            <a href="#" class="title" target="_blank" title="{{$val->title}}">
+            <a href="{{Request::root()}}/viec-lam/noi-dung/{{$val->id}}" class="title" target="_blank" title="{{$val->title}}">
                {{$val->title}}
             </a>
         </div>

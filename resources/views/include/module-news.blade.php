@@ -8,7 +8,7 @@
 			    <li data-thumb="{{$val->image}}">
 			      <img src="{{$val->image}}" />
 			      <div class="flex-caption">
-			      	<h4><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+			      	<h4><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
 			      	<div>
 			      		{{$val->desc}}
 			      	</div>
@@ -21,7 +21,7 @@
 		<div class="col-md-3 news-center">
 			<ul>
 				@foreach($news as $val)	
-					<li><a href="{{Request::root()}}/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><h4 class="post-title">{{$val->title}}</h4></a></li>
+					<li><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><h4 class="post-title">{{$val->title}}</h4></a></li>
 				@endforeach
 			</ul>
 			<div class="clear"></div>
@@ -40,8 +40,8 @@
 				<ul id="itemContainer" class="recent-tab">
 					@foreach($newsRss as $val)	
 					<li class="jp-hidden" style="display: list-item; opacity: 1;">
-						<a href="{{Request::root()}}/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
-						<h4 class="post-title"><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+						<a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
+						<h4 class="post-title"><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
 						<p>{{$val->desc}}</p>
 						<div class="clearfix"></div>				
 					</li>
@@ -57,8 +57,8 @@
 				<ul id="itemContainer" class="recent-tab">
 					@foreach($newsXL as $val)	
 					<li class="jp-hidden" style="display: list-item; opacity: 1;">
-						<a href="{{Request::root()}}/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
-						<h4 class="post-title"><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+						<a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
+						<h4 class="post-title"><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
 						<p>{{$val->desc}}</p>
 						<div class="clearfix"></div>				
 					</li>
@@ -70,8 +70,8 @@
 				<ul id="itemContainer" class="recent-tab">
 					@foreach($newsGL as $val)	
 					<li class="jp-hidden" style="display: list-item; opacity: 1;">
-						<a href="{{Request::root()}}/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
-						<h4 class="post-title"><a href="{{Request::root()}}/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
+						<a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb" alt="{{$val->title}}"></a>
+						<h4 class="post-title"><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
 						<p>{{$val->desc}}</p>
 						<div class="clearfix"></div>				
 					</li>
