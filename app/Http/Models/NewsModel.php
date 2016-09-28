@@ -174,7 +174,6 @@ class NewsModel extends Model
 		foreach ($result as $key => $val) {
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,80);
-           
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{

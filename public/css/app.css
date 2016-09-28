@@ -118,6 +118,8 @@ body {
     outline: 0; }
   body h4 {
     font-size: 14px; }
+  body h3 {
+    font-size: 16px; }
   body #ajaxsend {
     position: fixed;
     text-align: center;
@@ -258,7 +260,8 @@ body {
           padding-right: 20px;
           margin: 0;
           list-style: none;
-          float: left; }
+          float: left;
+          line-height: 40px; }
           #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a {
             font-size: 12px; }
             #intro .simply-scroll-container .simply-scroll-clip .simply-scroll-list li a span {
@@ -800,9 +803,11 @@ body {
 #footer #footer-bot {
   background: #23323f; }
   #footer #footer-bot #site-info {
-    font-size: 12px; }
+    font-size: 12px;
+    margin-top: 10px; }
     #footer #footer-bot #site-info #credit {
-      display: inline-block; }
+      display: inline-block;
+      color: #ddd; }
     #footer #footer-bot #site-info #footer-nav {
       float: right; }
       #footer #footer-bot #site-info #footer-nav ul {
@@ -812,6 +817,8 @@ body {
           border-right: 1px #666 solid;
           padding: 0 5px;
           line-height: 10px; }
+          #footer #footer-bot #site-info #footer-nav ul li a {
+            color: #ddd; }
           #footer #footer-bot #site-info #footer-nav ul li:hover a {
             color: #fff; }
           #footer #footer-bot #site-info #footer-nav ul li:last-child {

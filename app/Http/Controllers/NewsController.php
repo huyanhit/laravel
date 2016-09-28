@@ -34,7 +34,8 @@ class NewsController extends Controller
         $data['typeid'] = 'newsid';
         $data['comment'] = $this->comment->getCommentbyID('newsid',$id);
         if(isset($data['result']->content)){
-            $checkrss = substr(trim($data['result']->content), 0 , 4);
+            $data['result']->content= preg_replace('/<[\/]*p[^>]*>/', '',$data['result']->content); 
+            $checkrss = substr($data['result']->content, 0 , 4);
             if($checkrss == "http"){
                 $html = file_get_html($data['result']->content);
                 foreach($html->find('.block_timer_share') as $e){
