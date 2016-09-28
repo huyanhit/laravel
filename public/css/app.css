@@ -107,7 +107,7 @@
 body {
   margin: 30px AUTO;
   background: url("../../resources/assets/images/background-new.jpg") no-repeat top center fixed;
-  color: #939ead;
+  color: #555;
   font-family: Roboto, sans-serif;
   font-weight: normal;
   font-size: 13px;
@@ -116,6 +116,8 @@ body {
     text-decoration: none; }
   body *:focus {
     outline: 0; }
+  body h4 {
+    font-size: 14px; }
   body #ajaxsend {
     position: fixed;
     text-align: center;
@@ -751,14 +753,18 @@ body {
   #footer #footer-top p {
     color: #333; }
     #footer #footer-top p i {
-      padding-right: 10px; }
+      width: 25px;
+      text-align: left;
+      font-size: 16px;
+      color: #3d4c54; }
+      #footer #footer-top p i.fa-envelope {
+        font-size: 12px; }
   #footer #footer-top .footer-logo img {
     text-align: right;
     padding: 10px 36px;
     height: 41px;
-    margin-top: 14px;
-    float: right;
-    background: #23323f; }
+    background: #23323f;
+    margin-bottom: 10px; }
   #footer #footer-top .footer-logo, #footer #footer-top .contact-info {
     border-right: 1px #fff solid; }
   #footer #footer-top .social {
@@ -767,14 +773,29 @@ body {
     padding: 0; }
     #footer #footer-top .social li {
       display: inline-block;
-      height: 41px;
-      width: 41px;
+      height: 40px;
+      width: 40px;
       margin-left: 10px;
+      margin-top: 15px;
       background: #81b752;
       line-height: 41px;
       font-size: 24px;
       color: #fff;
       text-align: center; }
+      #footer #footer-top .social li a {
+        display: block; }
+      #footer #footer-top .social li.face a {
+        background: #337ab7; }
+      #footer #footer-top .social li.goplus a {
+        background: #c12d2a; }
+      #footer #footer-top .social li.instagram a i {
+        color: #fff; }
+      #footer #footer-top .social li.youtube a {
+        background: #c12d2a; }
+      #footer #footer-top .social li i {
+        color: #fff; }
+  #footer #footer-top .map {
+    padding-bottom: 15px; }
 
 #footer #footer-bot {
   background: #23323f; }
@@ -1038,7 +1059,8 @@ body {
     margin-top: 10px; }
     #module-comment #comment-form .form-group, #module-comment #child-comment-form .form-group {
       line-height: 30px;
-      padding: 5px 0; }
+      padding: 5px 0;
+      margin: 0; }
       #module-comment #comment-form .form-group input[type='text'], #module-comment #child-comment-form .form-group input[type='text'] {
         height: 30px;
         padding: 5px 10px;

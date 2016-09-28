@@ -4,7 +4,7 @@
 			<div class="item">
 				<article class="post">
 					<a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark">
-						<img src="{{$val->image}}" alt="Magazine">
+						<img src="{{$val->image}}" alt="{{$val->title}}">
 					</a>
 					<div class="entry">
 						<h3><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark">{{$val->title}}</a></h3>

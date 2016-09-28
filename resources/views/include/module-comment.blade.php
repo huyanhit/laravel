@@ -1,6 +1,6 @@
 <div id="module-comment">
 	<div class="title-line clearfix">
-    	<h3><span>Comment</span></h3> 
+    	<h3><span>Bình luận</span></h3> 
 	</div>
 	<ul id="comment-script">
 		@php
@@ -12,16 +12,16 @@
 						<div class="content clearfix">
 							<div class="avata"><img src="'.Request::root().'/public/images/background-new.jpg"></div>';
 							if($val->active == 0){
-								echo '<div class="pendding">Cho duyet</div>';
+								echo '<div class="pendding">Chờ duyệt</div>';
 							}
 							echo '<div class="extra">
 								<span class="name"><strong>'.$val->name.'</strong></span>
-								<span class="date">Luc: '.$val->date_create.'</span>
+								<span class="date">Hồi đáp: '.$val->date_create.'</span>
 								<span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> '.$val->like.' </span>
 								<span class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>'.$val->dislike.'</span>
 							</div>
 							<div class="desc">'.$val->comment.'</div>
-							<div class="reply" data="'.$val->id.'">Hoi dap</div>
+							<div class="reply" data="'.$val->id.'">Hồi đáp</div>
 						</div>';
 						if($val->child){
 							loopchild($val->child);
@@ -36,16 +36,16 @@
 			<div class="content clearfix">
 				<div class="avata"><img src="{{Request::root()}}/public/images/background-new.jpg"></div>
 				@if($val->active == 0)
-				<div class="pendding">Cho duyet</div>
+				<div class="pendding">Chờ duyệt</div>
 				@endif
 				<div class="extra">
 					<span class="name"><strong>{{$val->name}}</strong></span>
-					<span class="date">Luc: {{$val->date_create}}</span>
+					<span class="date">Bình luận: {{$val->date_create}}</span>
 					<span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> {{$val->like}} </span>
 					<span class="dislike"><i class="fa fa-thumbs-o-down" aria-hidden="true"></i>  {{$val->dislike}} </span>
 				</div>
 				<div class="desc">{{$val->comment}}</div>
-				<div class="reply" data="{{$val->id}}">Hoi dap</div>
+				<div class="reply" data="{{$val->id}}">Hồi đáp</div>
 			</div>
 			@if($val->child)
 				@php loopchild($val->child); @endphp
@@ -59,17 +59,17 @@
 		<input type="hidden" id= "type-id" name="type-id" value="{{isset($typeid)?$typeid:''}}">
 		<div class="form-group clearfix">
 	        <div class="col-sm-12">
-	            <input type="text" id="frm-name" placeholder="Ten" required>
+	            <input type="text" id="frm-name" placeholder="Nhập vào tên của bạn" required>
 	        </div>
 	    </div>
 	    <div class="form-group clearfix">
 	        <div class="col-sm-12">
-	            <textarea id="frm-comment" placeholder="Comment" required></textarea>
+	            <textarea id="frm-comment" placeholder="Nhập vào bình luận" required></textarea>
 	        </div>
 	    </div>
 	    <div class="form-group clearfix">
 	        <div class="col-sm-12">
-	            <input class="submit" type="button" value="Comment">
+	            <input class="submit" type="button" value="Gửi bình luận">
 	        </div>
 	    </div>
 	</form>

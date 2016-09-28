@@ -5,7 +5,6 @@
                 <h3><span>Việc làm</span></h3>
                 <form>
                     <div class="name">
-                        <a href="{{Request::root()}}/postface">postface</a>
                         <select>
                             <option value="choose">Địa Điểm</option>
                             @foreach($location as $val)

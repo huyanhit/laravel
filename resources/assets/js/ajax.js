@@ -40,7 +40,7 @@ $(document).ready(function(){
 	})
 	$('a.ajaxdelete').click(function(){
 		url = this.getAttribute( "href" );
-		if(!confirm("do you Want to delete?")){
+		if(!confirm("Bạn có muốn xóa Thông tin này không?")){
 			return false;
 		}
 		elem = $(this).parent().parent();
@@ -124,7 +124,7 @@ $(document).ready(function(){  
 						html += $("#child-comment-form").html();
 						html +='</form>';
 						$("#child-comment-form").remove();
-						$('#comment-script .reply').text('Hoi dap')
+						$('#comment-script .reply').text('Hồi đáp')
 						$("#comment-script").append(html);
 		            }
 		        });
@@ -161,9 +161,9 @@ $(document).ready(function(){  
 	    return false;
 	});
 	$("#comment-script .reply").click(function() {
-		if($(this).text() !='Huy'){
-			$('#comment-script .reply').text('Hoi dap')
-			$(this).text('Huy');
+		if($(this).text() !='Hủy'){
+			$('#comment-script .reply').text('Hồi đáp')
+			$(this).text('Hủy');
 			html = '<form id="child-comment-form" method="POST" action="/laravel/insertcomment">';
 			html += '<input type="hidden" id="frm-idcomment" name="frm-idcomment" value="'+$(this).attr('data')+'">';
 			html += $("#comment-form").html();
@@ -171,7 +171,7 @@ $(document).ready(function(){  
 			$("#comment-form").remove();
 			$(this).parent().append(html);
 		}else{
-			$(this).text('Hoi dap');
+			$(this).text('Hồi đáp');
 			html = '<form id="comment-form" method="POST" action="/laravel/insertcomment">';
 			html += $("#child-comment-form").html();
 			html +='</form>';

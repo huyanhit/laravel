@@ -22,7 +22,7 @@
 		<div class="offset1">
 			<form method="get" id="searchform" action="#">
 				<p><input type="text" value="Tìm kiếm..." onfocus="if ( this.value == 'Tìm kiếm...' ) { this.value = ''; }" onblur="if ( this.value == '' ) { this.value = '...'; }" name="s" id="s">
-				<input type="submit" id="searchsubmit" value="Search"></p>
+				<input type="submit" id="searchsubmit" value="Tìm kiếm"></p>
 			</form>
 		</div>
 		</div>

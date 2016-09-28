@@ -49,7 +49,7 @@
 					</span>  
 				</td>
 				<td>
-					<span class="title"> Đăng tin Facebook </span>
+					<span class="title"> Đăng facebook </span>
 				</td>
 				<td>
 					<span class="title"> Thao tác </span>
@@ -85,7 +85,7 @@
 				<td>
 				</td>
 				<td>
-					<a href="">fanpage <i class="fa fa-facebook"></i></a>
+					<a href="">Fanpage <i class="fa fa-facebook"></i></a>
 				</td>
 				<td>
 					<input type="submit" name="submit" value="Lọc thông tin">

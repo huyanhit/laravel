@@ -1,7 +1,7 @@
 <div id="mutimedia" class="container">
     <div class="row">
     	<div id="title-mutimedia" class="col-xs-12">
-            <h3><span>Mutimedia</span></h3>
+            <h3><span>Giải trí</span></h3>
     	</div>
 		<div class="col-xs-12 owl-mutimedia">
 			<div class="owl-carousel">

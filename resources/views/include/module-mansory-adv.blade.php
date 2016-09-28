@@ -1,7 +1,7 @@
 <div id="masonry" class="container">
     <div class="row">
     	<div class="col-xs-12" id="search-adv">
-            <h3><span>Search adv</span></h3>
+            <h3><span>Tìm tin rao vặt</span></h3>
             <form>
                 <div class="name">
                 	<select>

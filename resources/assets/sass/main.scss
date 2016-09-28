@@ -1,7 +1,7 @@
 body{
     margin: 30px AUTO;
     background: url("../../resources/assets/images/background-new.jpg") no-repeat top center fixed;
-    color: #939ead;
+    color: #555;
     font-family: Roboto, sans-serif;
     font-weight: normal;
     font-size: 13px;
@@ -11,6 +11,9 @@ body{
 	}
 	*:focus{
 		outline: 0;
+	}
+	h4{
+		font-size: 14px;
 	}
 	#ajaxsend{
 		position: fixed;
@@ -810,7 +813,13 @@ body{
 		p{
 			color: #333;
 			i{
-				padding-right: 10px;
+			    width: 25px;
+			    text-align: left;
+			    font-size: 16px;
+			    color: #3d4c54;
+			    &.fa-envelope{
+			    	font-size: 12px;
+			    }
 			}
 		}
 		.footer-logo{
@@ -818,9 +827,8 @@ body{
 				text-align: right;
 			    padding: 10px 36px;
 			    height: 41px;
-			    margin-top: 14px;
-			    float: right;
 			    background: #23323f;
+			    margin-bottom: 10px;
 			}
 		}
 		.footer-logo,.contact-info{
@@ -832,15 +840,39 @@ body{
     		padding: 0;
 			li{
 				display: inline-block;
-			    height: 41px;
-			    width: 41px;
+			    height: 40px;
+			    width: 40px;
 			    margin-left: 10px;
+			    margin-top: 15px;
 			    background: #81b752;
 			    line-height: 41px;
 			    font-size: 24px;
 			    color: #fff;
 			    text-align: center;
+			    a{
+			    	display: block;
+			    }
+				&.face a{
+					background: #337ab7;
+				}
+				&.goplus a{
+					background: #c12d2a;
+				}
+				&.instagram a{
+					i{
+						color: #fff;
+					}
+				}
+				&.youtube a{
+					background: #c12d2a;
+				}
+			    i{
+			    	color: #fff;
+			    }
 			}
+		}
+		.map{
+			padding-bottom: 15px;
 		}
 	}
 	#footer-bot{
@@ -1184,6 +1216,7 @@ body{
 	    .form-group{
 	    	line-height: 30px;
 	    	padding: 5px 0;
+	    	margin: 0;
 	    	input[type='text']{
 	    		height: 30px;
 	    		padding: 5px 10px;
@@ -1212,6 +1245,6 @@ body{
 	    }
 	}
 	#comment-form{
-		 margin: 0;
+		margin: 0;
 	}
 }

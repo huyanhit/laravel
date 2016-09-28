@@ -35,15 +35,10 @@
 		</li>
 		<li class="dropdown"><a href="##" class="dropdown-toggle disabled">Giải trí<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-				<li><a href="accordion.html">Accordion</a></li>
-				<li><a href="blockquotes.html">Blockquotes</a></li>
-				<li><a href="button.html">Buttons</a></li>
-				<li><a href="column.html">Columns</a></li>
-				<li><a href="dropcap.html">Dropcaps</a></li>
-				<li><a href="heading.html">Heading</a></li>
-				<li><a href="tabs.html">Tabs</a></li>
-				<li><a href="tables.html">Tables</a></li>
-				<li><a href="warning.html">Warning</a></li>
+				<li><a href="{{Request::root()}}/giai-tri/nghe-nhac">Nghe nhạc</a></li>
+				<li><a href="{{Request::root()}}/giai-tri/nghe-truyen">Nghe truyện</a></li>
+				<li><a href="{{Request::root()}}/giai-tri/clip-vui">Clip vui</a></li>
+				<li><a href="{{Request::root()}}/giai-tri/xem-phim">Xem phim</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="#" class="dropdown-toggle disabled">Shop online<b class="caret"></b></a>

@@ -9,7 +9,7 @@ $fb = new Facebook($config);
 <!doctype html>
 <html xmlns:fb="http://www.facebook.com/2008/fbml">
     <head>
-        <title>php-sdk</title>
+        <title>Postface-xulanh-sdk</title>
     </head>
     <body><?php 
 		try {
