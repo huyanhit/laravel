@@ -12,11 +12,12 @@ class LibraryController extends Controller
         $this->comment = new CommentModel();
     }
 	public function insertComment(){
+        $typeid = $_POST['typeid'];
         $data = ['id'           => NULL,
                 'name'     => $_POST['name'],
                 'comment'    => $_POST['comment'],
                 'date_create' => time(),
-                'idnews' => $_POST['id'],
+                 $typeid => $_POST['id'],
                 'idcomment' => isset($_POST['idcomment'])?$_POST['idcomment']:0];
         $this->comment->insertComment($data);
         $html ='

@@ -38,8 +38,9 @@ class JobsController extends BaseController
         $data['news'] = $this->news->getpopularNews();
         $data['recent'] = $this->jobs->getrecentJobs($id);
         $data['ads'] = $this->ads->getpopularAds();
-        $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
+        $data['comment'] = $this->comment->getCommentbyID('jobsid',$id);
         $data['result'] = $this->jobs->getjobsbyId($id);
+        $data['typeid'] = 'jobsid';
         return view("contentjobs",$data);
     }
 

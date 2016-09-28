@@ -45,4 +45,24 @@ class MutiModel extends Model
 		$result = DB::table('muti')->where('active',1)->where('id',$id)->get();
 		return $result;
 	}
+    
+    public function getrecentMuti($id = 0){
+        $arraymuti = $this->getMutibyID($id);
+        $result = DB::table('muti')
+        ->where('catmuti', $arraymuti->catmuti)
+        ->where('id', '!=' , $id)
+        ->orderby('id','desc')->take(4)->get();
+        foreach ($result as $key => $val) {
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage(url('/').'/public/uploads'.$result[$key]->image,1,1,'mutiRC',200);
+                $result[$key]->image = url('/').'/public/uploads/mutiRC/'.$result[$key]->image;
+            }
+        }
+        return $result;
+    }
 }

@@ -872,7 +872,7 @@ body{
 		}
 	}
 }
-#content-news,#content-jobs,#content-ads{
+#content-news,#content-jobs,#content-ads,#content-playlist,#content-muti{
 	.container{
 		background: #fff;
 	}
@@ -1048,7 +1048,21 @@ body{
 }
 #muti-audio,#muti-video,#muti-story{
 	background: #fff;
-    padding: 15px;
+}
+#content-muti .image-file{
+	img{
+		width: 100%;
+	    margin: 20px 0;
+	}
+}
+#content-playlist{
+	.playlist{
+		width: 100%;
+		margin: 20px 0;
+	}
+	.entry-content .img{
+		margin: 10px 0;
+	}
 }
 #siderbar-right{
 	margin-top: 15px;
@@ -1073,6 +1087,7 @@ body{
 	    border-bottom: 1px #f2f2f2 solid;
 	    margin-bottom: 10px;
     	padding-bottom: 5px;
+    	margin-top: 20px;
     	.item{
     		clear: both;
     		padding: 5px 0;

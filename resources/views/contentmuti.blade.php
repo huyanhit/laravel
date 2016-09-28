@@ -4,10 +4,17 @@
 	<div class="container">
 		<div class="row">
 			<div class="col-md-8">
-				<h3 class="title"> 
-				{{ isset($result->title)?$result->title:'' }}</h3>
-				{!! isset($result->content)?$result->content:'' !!}
-				@include('include.module-contentmuti')
+				<div class="row">
+					<div class="col-md-6 image-file">
+						<img src="{{$result->image}}">
+						@include('include.module-contentmuti')
+					</div>
+					<div class="col-md-6">
+						<h3 class="title"> 
+						{{ isset($result->title)?$result->title:'' }}</h3>
+						{!! isset($result->content)?$result->content:'' !!}
+					</div>
+				</div>
 				@include('include.module-comment')
 			</div>
 			<div class="col-md-4">

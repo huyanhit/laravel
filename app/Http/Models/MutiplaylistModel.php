@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class MutiplaylistModel extends Model
 {
-	public function getMutiplaylistbyID($id)
+	public function getmutiplaylistbyId($id)
     {
         $result = DB::table('mutiplaylist')
         ->where('plid', $id)

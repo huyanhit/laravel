@@ -1,6 +1,6 @@
 <div id="module-comment">
 	<div class="title-line clearfix">
-    	<h3><span>Comment</span></h3>
+    	<h3><span>Comment</span></h3> 
 	</div>
 	<ul id="comment-script">
 		@php
@@ -56,6 +56,7 @@
 	<form id="comment-form" method="POST" action="{{Request::root()}}/insertcomment">
 		<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" id= "frm-id" name="frm-id" value="{{isset($result->id)?$result->id:0}}">
+		<input type="hidden" id= "type-id" name="type-id" value="{{isset($typeid)?$typeid:''}}">
 		<div class="form-group clearfix">
 	        <div class="col-sm-12">
 	            <input type="text" id="frm-name" placeholder="Ten" required>

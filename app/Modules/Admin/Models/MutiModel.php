@@ -50,7 +50,7 @@ class MutiModel extends Model
 		$result = DB::table('muti')->insertGetId($data);
 		foreach($array as $val){
 			$insert =[  'plid' => $val,
-						'mtid' => $result ];
+						'mtid' => $result];
 			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
@@ -60,11 +60,11 @@ class MutiModel extends Model
 		$str = substr($str, 0, -1);
 		$array = explode(',', $str);
 		$result = DB::table('muti')->where('id',$id)->update($data);
-		$this->playlistmutiModel->deletemutiplaylistbyplID($id);
+		$this->playlistmutiModel->deletemutiplaylistbymtID($id);
 		foreach($array as $val){
 			$insert =[ 
-				'plid' => $id,
-				'mtid' => $val];
+				'plid' => $val,
+				'mtid' => $id];
 			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
@@ -73,7 +73,7 @@ class MutiModel extends Model
 		$result = DB::table('muti')->where('id', $id)->first();
 		return $result;
 	}
-	public function completePlaylist($search){
+	public function completeMuti($search){
 		$result = DB::table('muti')
 		->select('id','title')
 		->where('file','like',$search.'%')

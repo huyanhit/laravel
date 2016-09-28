@@ -7,7 +7,7 @@
 			<div class="owl-carousel">
 				@foreach($video as $val)
 				<div class="item">
-					<a href="{{Request::root()}}/video{{$val->id}}"><img src="{{$val->image}}">
+					<a href="{{Request::root()}}/video/noi-dung/{{$val->id}}"><img src="{{$val->image}}">
 						<h4><i class="fa fa-envira" aria-hidden="true"></i> {{$val->title}}</h4>
 					</a>
 					<div class="meta clearfix">

@@ -51,7 +51,7 @@ class PlaylistModel extends Model
 		$result = DB::table('playlist')->insertGetId($data);
 		foreach($array as $val){
 			$insert =[  'mtid' => $val,
-						'plid' => $result ];
+						'plid' => $result];
 			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
@@ -64,11 +64,11 @@ class PlaylistModel extends Model
 		// DB::table('mutiplaylist')
 		// ->where('mtid', $id)
 		// ->delete();
-		$this->playlistmutiModel->deletemutiplaylistbymtID($id);
+		$this->playlistmutiModel->deletemutiplaylistbyplID($id);
 		foreach($array as $val){
 			$insert =[ 
-					'mtid' => $id,
-					'plid' => $val];
+					'mtid' => $val,
+					'plid' => $id];
 			$this->playlistmutiModel->insertPlaylistmuti($insert);
 		}
 		return $result;
@@ -77,7 +77,7 @@ class PlaylistModel extends Model
 		$result = DB::table('playlist')->where('id', $id)->first();
 		return $result;
 	}
-	public function completeMuti($search){
+	public function completePlaylist($search){
 		$result = DB::table('playlist')
 		->select('id','title')
 		->orwhere('title','like',$search.'%')

@@ -31,7 +31,8 @@ class NewsController extends Controller
         $data['recent'] = $this->news->getrecentNews($id);
         $data['jobs'] = $this->jobs->getpopularJobs();
         $data['ads'] = $this->ads->getpopularAds();
-        $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
+        $data['typeid'] = 'newsid';
+        $data['comment'] = $this->comment->getCommentbyID('newsid',$id);
         if(isset($data['result']->content)){
             $checkrss = substr(trim($data['result']->content), 0 , 4);
             if($checkrss == "http"){

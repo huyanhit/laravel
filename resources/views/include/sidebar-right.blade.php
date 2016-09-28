@@ -23,7 +23,7 @@
     </div>
     @if(!empty($news))
     <div class="siderbar latest-post">
-        <h3 class="title"><span>Viec lam</span></h3>
+        <h3 class="title"><span>Tin tuc</span></h3>
         @foreach($news as $val)
             <div class="item clearfix">
                 <a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}"><img  src="{{$val->image}}" title="{{$val->title}}"></a>

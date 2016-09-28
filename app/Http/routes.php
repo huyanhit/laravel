@@ -52,7 +52,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/rao-vat/sua-tin-rao-vat', 'AdsController@editads');
 
 	/*MUTI*/
-	Route::get('/mutimedia/{id}', 'MutiController@muti');
-	Route::get('/playlist/{id}', 'MutiController@playlist');
+	Route::get('/audio/noi-dung/{id}', 'MutiController@muti');
+	Route::get('/playlist/noi-dung/{id}', 'MutiController@playlist');
+	Route::get('/video/noi-dung/{id}', 'MutiController@video');
 
 });

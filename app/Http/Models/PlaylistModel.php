@@ -37,4 +37,21 @@ class PlaylistModel extends Model
         }
 		return $result;
 	}
+    public function getrecentPlaylist($id = 0){
+        $result = DB::table('playlist')
+        ->where('id', '!=' , $id)
+        ->orderby('id','desc')->take(4)->get();
+        foreach ($result as $key => $val) {
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
+            $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'playlistRC',200);
+                $result[$key]->image = url('/').'/public/uploads/playlistRC/'.$result[$key]->image;
+            }
+        }
+        return $result;
+    }
 }

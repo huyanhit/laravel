@@ -99,9 +99,9 @@ class PlaylistController extends Controller
 	}
 	
 	public function editPlaylist(){
-		$id = $_GET['id'];
+		$id = $_GET['id']; 
 		$playlist = $this->playlistModel->getplaylistbyId($id);
-		$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
+		$playlistmuti = $this->playlistmutiModel->getplaylistmutibyId($id);
 		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['frm'] =  
@@ -127,7 +127,7 @@ class PlaylistController extends Controller
 			    'date_update' => time(),  
 			    'author'      => 1];
 			$this->playlistModel->updatePlaylist($frm,$id,$_POST['playlist-muti']);
-			$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
+			$playlistmuti = $this->playlistmutiModel->getplaylistmutibyId($id);
 			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Playlist.insert',$data);
@@ -178,6 +178,6 @@ class PlaylistController extends Controller
 	}
 	public function completeMuti(){
 		$complete = $_GET['value'];
-		echo $this->mutiModel->completePlaylist($complete);
+		echo $this->mutiModel->completeMuti($complete);
 	}
 }

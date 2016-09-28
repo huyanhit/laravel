@@ -118,11 +118,20 @@ class NewsModel extends Model
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,100);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+            
+            switch ($result[$key]->catnews) {
+            	case 1:
+            		$folder = 'rootrss/';
+            		break;
+            	default:
+            		$folder = '';
+            		break;
+            }
+	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$folder.$result[$key]->image)){
 	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
 	        }else{
-	            $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'news',400);
-	            $result[$key]->image = url('/').'/public/uploads/news/'.$result[$key]->image;
+	            $this->myFunction->cropImage(url('/').'/public/uploads/'.$folder.$result[$key]->image,1,1,'newsPO',400);
+	            $result[$key]->image = url('/').'/public/uploads/newsPO/'.$result[$key]->image;
 	            $result[$key]->totaldisplay = 2;
 	        }
 	    }
@@ -138,10 +147,18 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-            if(empty($result[$key]->image) || !file_exists('public/uploads/rootrss/'.$result[$key]->image)){
-                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            switch ($result[$key]->catnews) {
+            	case 1:
+            		$folder = 'rootrss/';
+            		break;
+            	default:
+            		$folder = '';
+            		break;
+            }
+	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$folder.$result[$key]->image)){
+	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image,1,1,'newsRC',200);
+                $this->myFunction->cropImage(url('/').'/public/uploads/'.$folder.$result[$key]->image,1,1,'newsRC',200);
                 $result[$key]->image = url('/').'/public/uploads/newsRC/'.$result[$key]->image;
             }
         }

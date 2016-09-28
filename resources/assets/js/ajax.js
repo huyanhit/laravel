@@ -1,6 +1,6 @@
 $( document ).ajaxSend(function() {
    $("#ajaxsend").show();
-});
+}); 
 $( document ).ajaxComplete(function() {
    $("#ajaxsend").hide();
 });
@@ -94,7 +94,8 @@ $(document).ready(function(){   
 $(document).ready(function(){  
 	$("#module-comment").on("click","#child-comment-form .submit",function(e) {
 	    url = $('#child-comment-form').attr('action');
-	    insert = $(this).parent().parent().parent().parent().parent();
+	    insert = $(this).parents('.content').parent();
+	    console.log(insert);
 	    if($("#child-comment-form #frm-name").val().length == 0){
 	    	alert('input name');
 	    }else{ 
@@ -106,6 +107,7 @@ $(document).ready(function(){  
 		    		comment: $("#child-comment-form #frm-comment").val(),
 		    		_token:  $("#child-comment-form #_token").val(),
 		    		id: $("#child-comment-form #frm-id").val(),
+		    		typeid: $("#child-comment-form #type-id").val(),
 		    		idcomment: $("#child-comment-form #frm-idcomment").val(),
 	    		};
 	    		console.log(data);
@@ -143,6 +145,7 @@ $(document).ready(function(){  
 	    		name: $("#comment-form #frm-name").val(), 
 	    		comment: $("#comment-form #frm-comment").val(),
 	    		_token:  $("#comment-form #_token").val(),
+	    		typeid: $("#comment-form #type-id").val(),
 	    		id: $("#comment-form #frm-id").val()};
 	    		console.log(data);
 			    $.ajax({

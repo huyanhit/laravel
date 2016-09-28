@@ -36,8 +36,9 @@ class AdsController extends BaseController
         $data['news'] = $this->news->getpopularNews();
         $data['recent'] = $this->ads->getrecentAds($id);
         $data['ads'] = $this->jobs->getpopularJobs();
-        $data['comment'] = $this->comment->getCommentbyID('idnews',$id);
+        $data['comment'] = $this->comment->getCommentbyID('adsid',$id);
         $data['result'] = $this->ads->getadsbyId($id);
+        $data['typeid'] = 'adssid';
         return view("contentads",$data);
     }
 
