@@ -22,7 +22,16 @@ class NewsController extends Controller
         $this->ads = new AdsModel();
         $this->comment = new CommentModel();
     }
-    
+    public function index(){
+        $data['headerline'] = $this->news->getHeadline();
+        $data['intro'] = $this->news->getIntro();
+        $data['newsSL'] = $this->news->getNewsSL();
+        $data['news'] = $this->news->getNews();
+        $data['newsRss'] = $this->news->getNewsRss();
+        $data['newsXL'] = $this->news->getNewsXL();
+        $data['newsGL'] = $this->news->getNewsGL();
+        return view("news",$data);
+    }
     public function contentnews($id)
     {
         $data['headerline'] = $this->news->getHeadline();

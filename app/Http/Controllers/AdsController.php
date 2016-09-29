@@ -10,7 +10,9 @@ use App\Http\Models\AdsModel;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\CommentModel;
-
+use App\Http\Models\LocationModel;
+use App\Http\Models\CatadsModel;
+use App\Http\Models\TypeadsModel;
 include('App\Library\domnode.php') ;
 
 class AdsController extends Controller
@@ -20,9 +22,20 @@ class AdsController extends Controller
         $this->news = new NewsModel();
         $this->jobs = new JobsModel();
         $this->ads = new AdsModel();
+        $this->catads = new CatadsModel();
+        $this->typeads = new TypeadsModel();
+        $this->location = new LocationModel();
         $this->comment = new CommentModel();
     }
-    
+    public function index(){
+        $data['headerline'] = $this->news->getHeadline();
+        $data['ads'] = $this->ads->getAds();
+        $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
+        $data['catads'] = $this->catads->getCatads();
+        $data['typeads'] = $this->typeads->getTypeads();
+        $data['location'] = $this->location->getLocation();
+        return view("ads",$data);
+    }
     public function contentads($id)
     {
         $data['headerline'] = $this->news->getHeadline();

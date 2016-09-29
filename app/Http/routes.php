@@ -21,6 +21,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/ajaxads', 'HomeController@ajaxads');
 
 	/*CONTENT*/
+	Route::get('/tin-tuc', 'NewsController@index');
 	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@contentnews');
 	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@contentjobs');
 	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@contentads');
@@ -34,6 +35,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/getcomment/{id}', 'LibraryController@getComment');
 
 	/*JOBS*/
+	Route::get('/viec-lam', 'JobsController@index');
 	Route::get('/quan-li-viec-lam/postface/{id}', 'PostjobsController@postfaceJobs');
 	Route::post('/quan-li-viec-lam', 'PostjobsController@index');
 	Route::get('/quan-li-viec-lam', 'PostjobsController@index');
@@ -45,6 +47,7 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/quan-li-viec-lam/sua-tin-tuyen-dung', 'PostjobsController@editJobs');
 
 	/*ADS*/
+	Route::get('/rao-vat', 'AdsController@index');
 	Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postfaceads');
 	Route::post('/quan-li-rao-vat', 'PostadsController@index');
 	Route::get('/quan-li-rao-vat', 'PostadsController@index');

@@ -15,22 +15,21 @@
 		</li>
 		<li><a href="about.html">Giới thiệu</a>
 		</li>
-		<li>
+		<li><a href="{{Request::root()}}/tin-tuc">Tin tức<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-				<li><a href="{{Request::root()}}/tin-tuc">Tin tức</a></li>
 				<li><a href="{{Request::root()}}/tin-tuc-xulanh">Tin Xulanh</a></li>
 				<li><a href="{{Request::root()}}/tin-tuc-gia-lai">Tin gia lai</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="{{Request::root()}}/rao-vat" class="dropdown-toggle disabled">Rao vặt<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-				<li><a href="{{Request::root()}}/rao-vat/dang-tin-rao-vat">Đăng tin</a></li>
+				<li><a href="{{Request::root()}}/quan-li-rao-vat/dang-tin-rao-vat">Đăng tin</a></li>
 			</ul>
 		</li>
         <li class="dropdown"><a href="{{Request::root()}}/viec-lam" class="dropdown-toggle disabled">Việc làm<b class="caret"></b></a>
 			<ul class="sub-menu dropdown-menu">
-				<li><a href="{{Request::root()}}/viec-lam/dang-tin-tuyen-dung">Đăng tin tuyển dụng</a></li>
-				<li><a href="{{Request::root()}}/viec-lam/dang-tin-tim-viec">Đăng tin tìm việc</a></li>
+				<li><a href="{{Request::root()}}/quan-li-viec-lam/dang-tin-tuyen-dung">Đăng tin tuyển dụng</a></li>
+				<li><a href="{{Request::root()}}/quan-li-viec-lam/dang-tin-tim-viec">Đăng tin tìm việc</a></li>
 			</ul>
 		</li>
 		<li class="dropdown"><a href="##" class="dropdown-toggle disabled">Giải trí<b class="caret"></b></a>
