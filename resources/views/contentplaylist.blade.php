@@ -11,7 +11,7 @@
 					<div class="col-md-6 entry-content">
 						<h3 class="title"> 
 						{{ isset($result->title)?$result->title:'' }}</h3>
-						<img src="{{$result->image}}">
+						<img src="{{Request::root()}}/public/images/{{$result->image}}">
 						{!! isset($result->content)?$result->content:'' !!}
 					</div>
 				</div>

@@ -23,7 +23,7 @@ class NewsController extends Controller
         $this->comment = new CommentModel();
     }
     
-    public function content($id)
+    public function contentnews($id)
     {
         $data['headerline'] = $this->news->getHeadline();
         $data['intro'] = $this->news->getIntro();

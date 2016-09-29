@@ -1,6 +1,4 @@
 <?php
-
-
 namespace App\Http\Controllers;
 use App\Http\Requests;
 use Illuminate\Http\Request;
@@ -14,7 +12,7 @@ use App\Http\Models\CatadsModel;
 use App\Http\Models\TypeadsModel;
 use App\Http\Models\LocationModel;
 use App\Http\Models\PlaylistModel;
-
+use App\Http\Models\CommentModel;
 class HomeController extends Controller
 {
     
@@ -30,6 +28,7 @@ class HomeController extends Controller
         $this->catads = new CatadsModel();
         $this->typeads = new TypeadsModel();
         $this->location = new LocationModel();
+        $this->comment = new CommentModel();
         $this->index();
     }
     public function index()
@@ -69,4 +68,5 @@ class HomeController extends Controller
         $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
         return view("include/module-mansory-ajaxadv",$data);
     }
+    
 }

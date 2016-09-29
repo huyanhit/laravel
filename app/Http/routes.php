@@ -21,39 +21,40 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/ajaxads', 'HomeController@ajaxads');
 
 	/*CONTENT*/
-	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@content');
-	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@content');
-	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@content');
+	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@contentnews');
+	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@contentjobs');
+	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@contentads');
+	Route::get('/audio/noi-dung/{id}', 'MutiController@muti');
+	Route::get('/playlist/noi-dung/{id}', 'MutiController@playlist');
+	Route::get('/video/noi-dung/{id}', 'MutiController@video');
 
+	/*COMMENT*/
 	Route::get('/insertcomment', 'LibraryController@insertComment');
 	Route::post('/insertcomment', 'LibraryController@insertComment');
 	Route::get('/getcomment/{id}', 'LibraryController@getComment');
 
 	/*JOBS*/
-	Route::get('/postface/{id}', 'PostjobsController@postfaceJobs');
-	Route::post('/viec-lam', 'JobsController@index');
-	Route::get('/viec-lam', 'JobsController@index');
-	Route::get('/viec-lam/delete', 'JobsController@deleteJobs');
-	Route::get('/viec-lam/xem-tin-tuyen-dung', 'JobsController@viewJobs');
-	Route::post('/viec-lam/dang-tin-tuyen-dung', 'JobsController@insertJobs');
-	Route::get('/viec-lam/dang-tin-tuyen-dung', 'JobsController@insertJobs');
-	Route::post('/viec-lam/sua-tin-tuyen-dung', 'JobsController@editJobs');
-	Route::get('/viec-lam/sua-tin-tuyen-dung', 'JobsController@editJobs');
+	Route::get('/quan-li-viec-lam/postface/{id}', 'PostjobsController@postfaceJobs');
+	Route::post('/quan-li-viec-lam', 'PostjobsController@index');
+	Route::get('/quan-li-viec-lam', 'PostjobsController@index');
+	Route::get('/quan-li-viec-lam/delete', 'PostjobsController@deleteJobs');
+	Route::get('/quan-li-viec-lam/xem-tin-tuyen-dung', 'PostjobsController@viewJobs');
+	Route::post('/quan-li-viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
+	Route::get('/quan-li-viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
+	Route::post('/quan-li-viec-lam/sua-tin-tuyen-dung', 'PostjobsController@editJobs');
+	Route::get('/quan-li-viec-lam/sua-tin-tuyen-dung', 'PostjobsController@editJobs');
 
 	/*ADS*/
-	Route::get('/postface/{id}', 'AdsController@postfaceads');
-	Route::post('/rao-vat', 'AdsController@index');
-	Route::get('/rao-vat', 'AdsController@index');
-	Route::get('/rao-vat/delete', 'AdsController@deleteads');
-	Route::get('/rao-vat/xem-tin-rao-vat', 'AdsController@viewads');
-	Route::post('/rao-vat/dang-tin-rao-vat', 'AdsController@insertads');
-	Route::get('/rao-vat/dang-tin-rao-vat', 'AdsController@insertads');
-	Route::post('/rao-vat/sua-tin-rao-vat', 'AdsController@editads');
-	Route::get('/rao-vat/sua-tin-rao-vat', 'AdsController@editads');
-
-	/*MUTI*/
-	Route::get('/audio/noi-dung/{id}', 'MutiController@muti');
-	Route::get('/playlist/noi-dung/{id}', 'MutiController@playlist');
-	Route::get('/video/noi-dung/{id}', 'MutiController@video');
-
+	Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postfaceads');
+	Route::post('/quan-li-rao-vat', 'PostadsController@index');
+	Route::get('/quan-li-rao-vat', 'PostadsController@index');
+	Route::get('/quan-li-rao-vat/delete', 'PostadsController@deleteads');
+	Route::get('/quan-li-rao-vat/xem-tin-rao-vat', 'PostadsController@viewads');
+	Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
+	Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
+	Route::post('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
+	Route::get('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
 });
+Route::auth();
+
+Route::get('/home', 'HomeController@index');

@@ -1,7 +1,7 @@
 <div id="list" class="container">
 	<div class="title-line" class="col-xs-12">
          <h3><span>Việc làm</span></h3>
-         <a href="{{Request::root()}}/viec-lam/dang-tin-tuyen-dung">Đăng Tin</a>
+         <a href="{{Request::url()}}/dang-tin-tuyen-dung">Đăng Tin</a>
     </div>
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
@@ -110,7 +110,7 @@
 				</td>
 				<td>
 					@if($val->active == 1)
-					<a id="postface" href="{{Request::root()}}/postface/{{$val->id}}">
+					<a id="postface" href="{{Request::url()}}/postface/{{$val->id}}">
 						Đăng tin
 					</a>
 					@else

@@ -46,11 +46,25 @@
                 <li><a href="shop-page.html">Product Page</a></li>
                 <li><a href="shop-detail.html">Product Detail</a></li>
                 <li><a href="cart.html">Cart Page</a></li>
-                <li><a href="checkout.html">checkout</a></li>
+                <li><a href="checkout.html">Checkout</a></li>
                 <li><a href="order.html">Order Detail</a></li>
             </ul>
         </li>
-		<li><a href="contact.html">Liên hệ</a></li>
+		<li><a href="{{Request::root()}}/lien-he">Liên hệ</a></li>
+		<span class="login">
+			@if (Auth::guest())
+                <li><a href="{{ url('/login') }}"><i class="fa fa-key" aria-hidden="true"></i> Đăng nhập</a> | <a href="{{ url('/register') }}"><i class="fa fa-registered" aria-hidden="true"></i> Đăng ký</a></li>
+            @else
+                <li class="dropdown">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">
+                    <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu" role="menu">
+                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Đăng xuất</a></li>
+                    </ul>
+                </li>
+            @endif
+		</span>
 	</ul>
 </nav><!-- /.navbar -->
 </div>

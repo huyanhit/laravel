@@ -12,6 +12,7 @@
 					<div class="col-md-6">
 						<h3 class="title"> 
 						{{ isset($result->title)?$result->title:'' }}</h3>
+						<img src="{{Request::root()}}/public/images/{{$result->image}}">
 						{!! isset($result->content)?$result->content:'' !!}
 					</div>
 				</div>

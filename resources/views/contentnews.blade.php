@@ -7,6 +7,7 @@
 				<h3 class="title"> 
 				{{ isset($result->title)?$result->title:'' }}</h3>
 				{!! isset($result->content)?$result->content:'' !!}
+				<img src="{{Request::root()}}/public/images/{{$result->image}}">
 				@include('include.module-comment')
 			</div>
 			<div class="col-md-4">
