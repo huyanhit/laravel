@@ -196,6 +196,9 @@ body {
       text-decoration: none; }
       #header .login a:hover {
         color: #8ecbff; }
+    #header .login ul {
+      right: 0px;
+      left: auto; }
 
 #headline {
   background: #ebebeb;

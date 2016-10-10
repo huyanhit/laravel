@@ -40,7 +40,7 @@
 				<li><a href="{{Request::root()}}/giai-tri/xem-phim">Xem phim</a></li>
 			</ul>
 		</li>
-		<li class="dropdown"><a href="#" class="dropdown-toggle disabled">Shop online<b class="caret"></b></a>
+		<li class="dropdown"><a href="#" class="dropdown-toggle disabled">Shop<b class="caret"></b></a>
             <ul class="sub-menu dropdown-menu">
                 <li><a href="shop-page.html">Product Page</a></li>
                 <li><a href="shop-detail.html">Product Detail</a></li>
@@ -59,7 +59,7 @@
                     <i class="fa fa-user" aria-hidden="true"></i> {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu" role="menu">
-                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i>Đăng xuất</a></li>
+                        <li><a href="{{ url('/logout') }}"><i class="fa fa-btn fa-sign-out"></i> Đăng xuất</a></li>
                     </ul>
                 </li>
             @endif
