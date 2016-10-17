@@ -10,7 +10,7 @@ class PlaylistModel extends Model
     {
         $this->myFunction = new MyFunction();
     }
-	public function getPlaylist()
+	public function getPlayList()
 	{
 		$result = DB::table('Playlist')->where('active',1)->orderby('id','desc')->paginate(10);
 		foreach ($result as $key => $val) {
@@ -26,12 +26,12 @@ class PlaylistModel extends Model
         }
         return $result;
     }
-	public function getPlaylistbyID($id)
+	public function getPlayListByID($id)
 	{
 		$result = DB::table('playlist')->where('active',1)->where('id',$id)->first();
 		return $result;
 	}
-    public function getrecentPlaylist($id = 0){
+    public function getRecentPlayList($id = 0){
         $result = DB::table('playlist')
         ->where('id', '!=' , $id)
         ->orderby('id','desc')->take(4)->get();

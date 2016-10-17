@@ -8,7 +8,6 @@
                 <div class="desc" >{{$val->desc}}</div>
                 <div class="extra">
                 <span class="post-time"> {{$val->date_create}} </span>
-                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1 </span>
                 <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> {{$val->view}} </span>
                 </div>
             </div>
@@ -31,7 +30,6 @@
                 <div class="desc" >{{$val->desc}}</div>
                 <div class="extra">
                 <span class="post-time"> {{$val->date_create}} </span>
-                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1 </span>
                 <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> {{$val->view}} </span>
                 </div>
             </div>
@@ -48,7 +46,6 @@
                 <div class="desc" >{{$val->desc}}</div>
                 <div class="extra">
                 <span class="post-time"> {{$val->date_create}} </span>
-                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1 </span>
                 <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> {{$val->view}} </span>
                 </div>
             </div>
@@ -65,7 +62,6 @@
                 <div class="desc" >{{$val->desc}}</div>
                 <div class="extra">
                 <span class="post-time"> {{$val->date_create}} </span>
-                <span class="like"><i class="fa fa-thumbs-o-up" aria-hidden="true"></i> 1 </span>
                 <span class="view"><i class="fa fa-eye" aria-hidden="true"></i> {{$val->view}} </span>
                 </div>
             </div>

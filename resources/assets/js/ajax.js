@@ -120,7 +120,7 @@ $(document).ready(function(){  
 		           		htm += html;
 		           		htm += '</li></ul>';
 		           		insert.append(htm);
-		           		html = '<form id="comment-form" method="POST" action="/laravel/insertcomment">';
+		           		html = '<form id="comment-form" method="POST" action="/laravel/insertComment">';
 						html += $("#child-comment-form").html();
 						html +='</form>';
 						$("#child-comment-form").remove();
@@ -164,7 +164,7 @@ $(document).ready(function(){  
 		if($(this).text() !='Hủy'){
 			$('#comment-script .reply').text('Hồi đáp')
 			$(this).text('Hủy');
-			html = '<form id="child-comment-form" method="POST" action="/laravel/insertcomment">';
+			html = '<form id="child-comment-form" method="POST" action="/laravel/insertComment">';
 			html += '<input type="hidden" id="frm-idcomment" name="frm-idcomment" value="'+$(this).attr('data')+'">';
 			html += $("#comment-form").html();
 			html +='</form>';
@@ -172,7 +172,7 @@ $(document).ready(function(){  
 			$(this).parent().append(html);
 		}else{
 			$(this).text('Hồi đáp');
-			html = '<form id="comment-form" method="POST" action="/laravel/insertcomment">';
+			html = '<form id="comment-form" method="POST" action="/laravel/insertComment">';
 			html += $("#child-comment-form").html();
 			html +='</form>';
 			$("#child-comment-form").remove();

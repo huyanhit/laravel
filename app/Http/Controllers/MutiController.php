@@ -26,27 +26,27 @@ class MutiController extends Controller
         $this->comment = new CommentModel();
     }
     public function muti($id){
-        $data['headerline'] = $this->news->getHeadline();
+        $data['headerline'] = $this->news->getHeadLine();
         $data['intro'] = $this->news->getIntro();
-        $data['recent'] = $this->muti->getrecentMuti($id);
-        $data['news'] = $this->news->getpopularNews();
-        $data['jobs'] = $this->jobs->getpopularJobs();
-        $data['ads'] = $this->ads->getpopularAds();
-        $data['comment'] = $this->comment->getCommentbyID('playlistid',$id);
-        $data['result'] = $this->muti->getMutibyID($id);
+        $data['recent'] = $this->muti->getRecentMuti($id);
+        $data['news'] = $this->news->getPopularNews();
+        $data['jobs'] = $this->jobs->getPopularJobs();
+        $data['ads'] = $this->ads->getPopularAds();
+        $data['comment'] = $this->comment->getCommentByID('playlistid',$id);
+        $data['result'] = $this->muti->getMutiByID($id);
         $data['typeid'] = 'mutiid';
         return view("contentmuti",$data);
     }
-    public function playlist($id){
-        $data['headerline'] = $this->news->getHeadline();
+    public function playList($id){
+        $data['headerline'] = $this->news->getHeadLine();
         $data['intro'] = $this->news->getIntro();
-        $data['news'] = $this->news->getpopularNews();
-        $data['jobs'] = $this->jobs->getpopularJobs();
-        $data['ads'] = $this->ads->getpopularAds();
-        $data['result'] = $this->playlist->getPlaylistbyId($id);
-        $data['mutiplaylist'] = $this->mutiplaylist->getmutiplaylistbyId($id);
-        $data['comment'] = $this->comment->getCommentbyID('playlistid',$id);
-        $data['recent'] = $this->playlist->getrecentPlaylist($id);
+        $data['news'] = $this->news->getPopularNews();
+        $data['jobs'] = $this->jobs->getPopularJobs();
+        $data['ads'] = $this->ads->getPopularAds();
+        $data['result'] = $this->playlist->getPlayListById($id);
+        $data['mutiplaylist'] = $this->mutiplaylist->getMutiPlayListById($id);
+        $data['comment'] = $this->comment->getCommentByID('playlistid',$id);
+        $data['recent'] = $this->playlist->getRecentPlayList($id);
         $data['typeid'] = 'playlistid';
         return view("contentplaylist",$data);
     }

@@ -17,16 +17,16 @@ Route::group(['middleware' => ['web']], function () {
 	/*HOME*/
 	Route::get('/', 'HomeController@index');
 	Route::get('/trang-chu', 'HomeController@index');
-	Route::get('/ajaxjobs', 'HomeController@ajaxjobs');
-	Route::get('/ajaxads', 'HomeController@ajaxads');
+	Route::get('/ajaxjobs', 'HomeController@ajaxJobs');
+	Route::get('/ajaxads', 'HomeController@ajaxAds');
 
 	/*CONTENT*/
 	Route::get('/tin-tuc', 'NewsController@index');
-	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@contentnews');
-	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@contentjobs');
-	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@contentads');
+	Route::get('/tin-tuc/noi-dung/{id}', 'NewsController@contentNews');
+	Route::get('/viec-lam/noi-dung/{id}', 'JobsController@contentJobs');
+	Route::get('/rao-vat/noi-dung/{id}', 'AdsController@contentAds');
 	Route::get('/audio/noi-dung/{id}', 'MutiController@muti');
-	Route::get('/playlist/noi-dung/{id}', 'MutiController@playlist');
+	Route::get('/playlist/noi-dung/{id}', 'MutiController@playList');
 	Route::get('/video/noi-dung/{id}', 'MutiController@video');
 
 	/*COMMENT*/
@@ -36,7 +36,7 @@ Route::group(['middleware' => ['web']], function () {
 
 	/*JOBS*/
 	Route::get('/viec-lam', 'JobsController@index');
-	Route::get('/quan-li-viec-lam/postface/{id}', 'PostjobsController@postfaceJobs');
+	Route::get('/quan-li-viec-lam/postface/{id}', 'PostjobsController@postFaceJobs');
 	Route::post('/quan-li-viec-lam', 'PostjobsController@index');
 	Route::get('/quan-li-viec-lam', 'PostjobsController@index');
 	Route::get('/quan-li-viec-lam/delete', 'PostjobsController@deleteJobs');
@@ -48,15 +48,15 @@ Route::group(['middleware' => ['web']], function () {
 
 	/*ADS*/
 	Route::get('/rao-vat', 'AdsController@index');
-	Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postfaceads');
+	Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postFaceAds');
 	Route::post('/quan-li-rao-vat', 'PostadsController@index');
 	Route::get('/quan-li-rao-vat', 'PostadsController@index');
-	Route::get('/quan-li-rao-vat/delete', 'PostadsController@deleteads');
-	Route::get('/quan-li-rao-vat/xem-tin-rao-vat', 'PostadsController@viewads');
-	Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
-	Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
-	Route::post('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
-	Route::get('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
+	Route::get('/quan-li-rao-vat/delete', 'PostadsController@deleteAds');
+	Route::get('/quan-li-rao-vat/xem-tin-rao-vat', 'PostadsController@viewAds');
+	Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertAds');
+	Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertAds');
+	Route::post('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editAds');
+	Route::get('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editAds');
 });
 Route::auth();
 

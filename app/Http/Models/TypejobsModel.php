@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypejobsModel extends Model
 {
-	public function getTypejobs()
+	public function getTypeJobs()
 	{
 		$result = DB::table('typejobs')->where('active',1)->get();
 		return $result;

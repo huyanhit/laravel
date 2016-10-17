@@ -20,7 +20,6 @@ class CatmutiModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE catmuti SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

@@ -28,19 +28,19 @@ class JobsModel extends Model
 		return $result;
 	}
 
-	public function insertjobs($data)
+	public function insertJobs($data)
 	{	
 		$result = DB::table('jobs')->insertGetId($data);
 		return $result;
 	}
 
-	public function updatejobs($data,$id)
+	public function updateJobs($data,$id)
 	{	
 		$result = DB::table('jobs')->where('id',$id)->update($data);
 		return $result;
 	}
 
-	public function getjobsbyId($id){
+	public function getJobsById($id){
 		$result = DB::table('jobs')->where('id', $id)->first();
 		return $result;
 	}
@@ -62,7 +62,7 @@ class JobsModel extends Model
         return $result;
     }
 
-	public function getJobsvip()
+	public function getJobsVip()
 	{
 		$result = DB::table('jobs')->where('active',1)->where('catjobs',1)->take(10)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
@@ -78,7 +78,7 @@ class JobsModel extends Model
         }
         return $result;
     }
-	public function getpopularJobs()
+	public function getPopularJobs()
 	{
 		$result = DB::table('jobs')->where('active',1)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
@@ -94,8 +94,8 @@ class JobsModel extends Model
 	    }
 	    return $result;
 	}
-	public function getrecentJobs($id){
-		$arrayjobs = $this->getjobsbyId($id);
+	public function getRecentJobs($id){
+		$arrayjobs = $this->getJobsById($id);
 		$result = DB::table('jobs')
 		->where('catjobs', $arrayjobs->catjobs)
 		->where('id', '!=' , $id)
@@ -112,5 +112,11 @@ class JobsModel extends Model
             }
         }
         return $result;
+	}
+	public function updateView($id){
+		$view = DB::table('jobs')->select('view')->where('id',$id)->first();
+		
+		$result = DB::table('jobs')->where('id',$id)->update(array('view' => $view->view + 1));
+		return $result;
 	}
 }

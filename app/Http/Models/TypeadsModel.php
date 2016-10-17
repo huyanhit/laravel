@@ -5,12 +5,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class TypeadsModel extends Model
 {
-	public function getTypeads()
+	public function getTypeAds()
 	{
 		$result = DB::table('typeads')->where('active',1)->get();
 		return $result;
 	}
-	public function getTypeadsbyId($id)
+	public function getTypeAdsById($id)
 	{
 		$result = DB::table('typeads')->where('active',1)->where('id',$id)->get();
 		return $result;

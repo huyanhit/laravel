@@ -53,13 +53,13 @@
 		</li>
 		@endforeach
 	</ul>
-	<form id="comment-form" method="POST" action="{{Request::root()}}/insertcomment">
+	<form id="comment-form" method="POST" action="{{Request::root()}}/insertComment">
 		<input type="hidden" id="_token" name="_token" value="{{ csrf_token() }}">
 		<input type="hidden" id= "frm-id" name="frm-id" value="{{isset($result->id)?$result->id:0}}">
 		<input type="hidden" id= "type-id" name="type-id" value="{{isset($typeid)?$typeid:''}}">
 		<div class="form-group clearfix">
 	        <div class="col-sm-12">
-	            <input type="text" id="frm-name" placeholder="Nhập vào tên của bạn" required>
+	            <input type="text" id="frm-name" placeholder="Nhập vào tên của bạn" required value="{{$user->name or ''}}">
 	        </div>
 	    </div>
 	    <div class="form-group clearfix">
@@ -67,6 +67,7 @@
 	            <textarea id="frm-comment" placeholder="Nhập vào bình luận" required></textarea>
 	        </div>
 	    </div>
+
 	    <div class="form-group clearfix">
 	        <div class="col-sm-12">
 	            <input class="submit" type="button" value="Gửi bình luận">

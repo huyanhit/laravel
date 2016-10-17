@@ -5,7 +5,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatadsModel extends Model
 {
-	public function getCatads()
+	public function getCatAds()
 	{
 		$result = DB::table('catads')->where('active',1)->get();
 		return $result;

@@ -19,33 +19,34 @@ class AdsController extends Controller
 {
     public function __construct()
     {
-        $this->news = new NewsModel();
-        $this->jobs = new JobsModel();
-        $this->ads = new AdsModel();
-        $this->catads = new CatadsModel();
-        $this->typeads = new TypeadsModel();
+        $this->news     = new NewsModel();
+        $this->jobs     = new JobsModel();
+        $this->ads      = new AdsModel();
+        $this->catads   = new CatadsModel();
+        $this->typeads  = new TypeadsModel();
         $this->location = new LocationModel();
-        $this->comment = new CommentModel();
+        $this->comment  = new CommentModel();
     }
     public function index(){
-        $data['headerline'] = $this->news->getHeadline();
-        $data['ads'] = $this->ads->getAds();
-        $data['totaldisplay'] = $this->ads->getTotaldisplay($data['ads']);
-        $data['catads'] = $this->catads->getCatads();
-        $data['typeads'] = $this->typeads->getTypeads();
-        $data['location'] = $this->location->getLocation();
+        $data['headerline']   = $this->news->getHeadLine();
+        $data['ads']          = $this->ads->getAds();
+        $data['totaldisplay'] = $this->ads->getTotalDisplay($data['ads']);
+        $data['catads']       = $this->catads->getCatAds();
+        $data['typeads']      = $this->typeads->getTypeAds();
+        $data['location']     = $this->location->getLocation();
         return view("ads",$data);
     }
-    public function contentads($id)
+    public function contentAds($id)
     {
-        $data['headerline'] = $this->news->getHeadline();
-        $data['intro'] = $this->news->getIntro();
-        $data['news'] = $this->news->getpopularNews();
-        $data['recent'] = $this->ads->getrecentAds($id);
-        $data['ads'] = $this->jobs->getpopularJobs();
-        $data['comment'] = $this->comment->getCommentbyID('adsid',$id);
-        $data['result'] = $this->ads->getadsbyId($id);
-        $data['typeid'] = 'adsid';
+        $data['headerline']   = $this->news->getHeadLine();
+        $data['intro']        = $this->news->getIntro();
+        $data['news']         = $this->news->getPopularNews();
+        $data['recent']       = $this->ads->getRecentAds($id);
+        $data['ads']          = $this->jobs->getPopularJobs();
+        $data['comment']      = $this->comment->getCommentByID('adsid',$id);
+        $data['result']       = $this->ads->getAdsById($id);
+        $data['typeid']       = 'adsid';
+        $this->ads->updateView($id);
         return view("contentads",$data);
     }
 

@@ -20,7 +20,6 @@ class TypeadsModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE typeads SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

@@ -28,24 +28,25 @@ class JobsController extends Controller
         $this->comment = new CommentModel();
     }
     public function index(){
-        $data['headerline'] = $this->news->getHeadline();
+        $data['headerline'] = $this->news->getHeadLine();
         $data['location'] = $this->location->getLocation();
-        $data['catjobs'] = $this->catjobs->getCatjobs();
-        $data['typejobs'] = $this->typejobs->getTypejobs();
+        $data['catjobs'] = $this->catjobs->getCatJobs();
+        $data['typejobs'] = $this->typejobs->getTypeJobs();
         $data['jobs'] = $this->jobs->getJobs();
-        $data['jobsvip'] = $this->jobs->getJobsvip();
+        $data['jobsvip'] = $this->jobs->getJobsVip();
         return view("jobs",$data);
     }
     public function contentjobs($id)
     {
-        $data['headerline'] = $this->news->getHeadline();
+        $data['headerline'] = $this->news->getHeadLine();
         $data['intro'] = $this->news->getIntro();
-        $data['news'] = $this->news->getpopularNews();
-        $data['recent'] = $this->jobs->getrecentJobs($id);
-        $data['ads'] = $this->ads->getpopularAds();
-        $data['comment'] = $this->comment->getCommentbyID('jobsid',$id);
-        $data['result'] = $this->jobs->getjobsbyId($id);
+        $data['news'] = $this->news->getPopularNews();
+        $data['recent'] = $this->jobs->getRecentJobs($id);
+        $data['ads'] = $this->ads->getPopularAds();
+        $data['comment'] = $this->comment->getCommentByID('jobsid',$id);
+        $data['result'] = $this->jobs->getJobsById($id);
         $data['typeid'] = 'jobsid';
+        $this->jobs->updateView($id);
         return view("contentjobs",$data);
     }
 }

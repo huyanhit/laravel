@@ -56,8 +56,8 @@ class PostjobsController extends BaseController
 
 	public function insertJobs()
 	{
-		$data['catjobs'] = $this->catjobs->getCatjobs();
-		$data['typejobs'] = $this->typejobs->getTypejobs();
+		$data['catjobs'] = $this->catjobs->getCatJobs();
+		$data['typejobs'] = $this->typejobs->getTypeJobs();
 		$data['location'] = $this->location->getLocation();
 
 
@@ -86,9 +86,9 @@ class PostjobsController extends BaseController
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$jobs = $this->jobs->getjobsbyId($id);
-				$data['catjobs'] = $this->catjobs->getCatjobs();
-				$data['typejobs'] = $this->typejobs->getTypejobs();
+				$jobs = $this->jobs->getJobsById($id);
+				$data['catjobs'] = $this->catjobs->getCatJobs();
+				$data['typejobs'] = $this->typejobs->getTypeJobs();
 				$data['location'] = $this->location->getLocation();
 				$data['frm'] =  
 			    ['catjobs'    => $jobs->catjobs,
@@ -109,10 +109,10 @@ class PostjobsController extends BaseController
 	
 	public function editJobs(){
 		$id = $_GET['id'];
-		$jobs = $this->jobs->getjobsbyId($id);
+		$jobs = $this->jobs->getJobsById($id);
 		$data['edit'] = $id;
-		$data['catjobs'] = $this->catjobs->getCatjobs();
-		$data['typejobs'] = $this->typejobs->getTypejobs();
+		$data['catjobs'] = $this->catjobs->getCatJobs();
+		$data['typejobs'] = $this->typejobs->getTypeJobs();
 		$data['location'] = $this->location->getLocation();
 		$data['frm'] =  
 		   ['catjobs'     => $jobs->catjobs,
@@ -157,8 +157,8 @@ class PostjobsController extends BaseController
 		}
 	}
 
-	public function postfaceJobs($id){
-        $result = $this->jobs->getjobsbyId($id);
+	public function postFaceJobs($id){
+        $result = $this->jobs->getJobsById($id);
         $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
         $data['params'] = array(
           "access_token" => $token,

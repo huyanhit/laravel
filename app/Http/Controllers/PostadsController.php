@@ -53,10 +53,10 @@ class PostadsController extends BaseController
 		return view('listads',$result);
 	}
 
-	public function insertads()
+	public function insertAds()
 	{
-		$data['catads'] = $this->catads->getCatads();
-		$data['typeads'] = $this->typeads->getTypeads();
+		$data['catads'] = $this->catads->getCatAds();
+		$data['typeads'] = $this->typeads->getTypeAds();
 		$data['location'] = $this->location->getLocation();
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
@@ -74,7 +74,7 @@ class PostadsController extends BaseController
 			    'from'        => $_POST['from'], 
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->ads->insertads($frm)){
+			if($id = $this->ads->insertAds($frm)){
 				return redirect('/rao-vat');
 			}
 			$data['frm'] = $frm;
@@ -82,9 +82,9 @@ class PostadsController extends BaseController
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$ads = $this->ads->getadsbyId($id);
-				$data['catads'] = $this->catads->getCatads();
-				$data['typeads'] = $this->typeads->getTypeads();
+				$ads = $this->ads->getAdsById($id);
+				$data['catads'] = $this->catads->getCatAds();
+				$data['typeads'] = $this->typeads->getTypeAds();
 				$data['location'] = $this->location->getLocation();
 				$data['frm'] =  
 			    ['catads'    => $ads->catads,
@@ -102,16 +102,16 @@ class PostadsController extends BaseController
 		}
 	}
 	
-	public function editads(){
+	public function editAds(){
 		$id = $_GET['id'];
-		$ads = $this->ads->getadsbyId($id);
+		$ads = $this->ads->getAdsById($id);
 		$data['edit'] = $id;
-		$data['catads'] = $this->catads->getCatads();
-		$data['typeads'] = $this->typeads->getTypeads();
+		$data['catads'] = $this->catads->getCatAds();
+		$data['typeads'] = $this->typeads->getTypeAds();
 		$data['location'] = $this->location->getLocation();
 		$data['frm'] =  
-		   ['catads'     => $ads->catads,
-		    'typeads'    => $ads->typeads,
+		   ['catads'      => $ads->catads,
+		    'typeads'     => $ads->typeads,
 		    'location'    => $ads->location,
 		    'title'       => $ads->title, 
 		    'desc'        => $ads->desc, 
@@ -135,7 +135,7 @@ class PostadsController extends BaseController
 			    'from'        => $_POST['from'], 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			if($this->ads->updateads($frm,$id)){
+			if($this->ads->updateAds($frm,$id)){
 				return redirect('/rao-vat');
 			}else{
 				$data['frm'] = $frm;
@@ -146,15 +146,15 @@ class PostadsController extends BaseController
 		}
 	}
 
-	public function deleteads()
+	public function deleteAds()
 	{
 		if(isset($_GET['id'])){
 			return $this->ads->deteleId($_GET['id']);
 		}
 	}
 
-	public function postfaceads($id){
-        $result = $this->ads->getadsbyId($id);
+	public function postFaceads($id){
+        $result = $this->ads->getAdsById($id);
         $token = 'EAACZCuDOGPW4BAACeeyGTJajVZB5ciDIygwo3AAH1hJZC3P5jwOjJtN2mEhVpLzo79yVSbgNRwPvXnQBMRlnncy5RHW0x1UFcNj2GO6ZCO6krjgntk9ZCJf9oSuryH3m1ZC5FrHVfU5BMuxxlFZC5lM6YK6ji7uVcgQ5q8lxpAg5gZDZD';
         $data['params'] = array(
           "access_token" => $token,

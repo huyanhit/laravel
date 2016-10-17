@@ -1,4 +1,3 @@
-
 $(document).ready(function(){
 	$("#ajaxsend").hide();
 	$('#list input[name="active"]').click(function(){
@@ -83,8 +82,8 @@ $(document).ready(function(){
 		})
 	});
 	$('#listchoose').on('click','.btn-add',function(){
-		val = $(this).parent().find('.title').text();
-		id = $(this).parent().find('.btn-add').attr('val');
+		val  = $(this).parent().find('.title').text();
+		id   = $(this).parent().find('.btn-add').attr('val');
 		html = $('#listadd').html();
 		text = $('#playlist-muti').val();
 		$('#playlist-muti').val(text+id+',');

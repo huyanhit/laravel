@@ -18,11 +18,11 @@ class AdsController extends Controller
 {
 	function __construct()
 	{
-		$this->adsModel    = new AdsModel();
-		$this->catadsModel = new CatadsModel();
-		$this->typeadsModel = new TypeadsModel();
+		$this->adsModel      = new AdsModel();
+		$this->catadsModel   = new CatadsModel();
+		$this->typeadsModel  = new TypeadsModel();
 		$this->locationModel = new LocationModel();
-		$this->myFunction   = new MyFunction();
+		$this->myFunction    = new MyFunction();
 	}
 
 	public function index()
@@ -35,11 +35,11 @@ class AdsController extends Controller
 			$data['sort']['by']    = $_GET['by'];
 		}
 		if(isset($_POST['submit'])){
-			session(['catads'=> ($_POST['catads']!='choose')? $_POST['catads'] : null ]);
+			session(['catads' => ($_POST['catads']!='choose')? $_POST['catads'] : null ]);
 			session(['title'  => $_POST['title']]);
 			session(['desc'   => $_POST['desc']]);
 			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
-			$data['filter']['catads']= session('catads');
+			$data['filter']['catads'] = session('catads');
 		    $data['filter']['title']  = session('title');
 		    $data['filter']['desc']   = session('desc');
 		    $data['filter']['active'] = session('active');
@@ -72,8 +72,8 @@ class AdsController extends Controller
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
 			$frm =  
 			    ['id'     	  => NULL,
-			    'catads'     => $_POST['catads'],
-			    'typeads'    => $_POST['typeads'],
+			    'catads'      => $_POST['catads'],
+			    'typeads'     => $_POST['typeads'],
 			    'location'    => $_POST['location'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 
@@ -118,8 +118,8 @@ class AdsController extends Controller
 		$data['typeads'] = $this->typeadsModel->getAll();
 		$data['location'] = $this->locationModel->getAll();
 		$data['frm'] =  
-		   ['catads'     => $ads->catads,
-		    'typeads'    => $ads->typeads,
+		   ['catads'      => $ads->catads,
+		    'typeads'     => $ads->typeads,
 		    'location'    => $ads->location,
 		    'title'       => $ads->title, 
 		    'desc'        => $ads->desc, 
@@ -133,8 +133,8 @@ class AdsController extends Controller
 				$_FILES["feature"]["name"] = $ads->image;
 			}
 			$frm =  
-			   ['catads'     => $_POST['catads'],
-			    'typeads'    => $_POST['typeads'],
+			   ['catads'      => $_POST['catads'],
+			    'typeads'     => $_POST['typeads'],
 			    'location'    => $_POST['location'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 
@@ -191,5 +191,4 @@ class AdsController extends Controller
 			}
 		}
 	}
-
 }

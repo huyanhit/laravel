@@ -26,17 +26,17 @@ class AdsModel extends Model
 		}
 		return $result;
 	}
-	public function insertads($data)
+	public function insertAds($data)
 	{	
 		$result = DB::table('ads')->insertGetId($data);
 		return $result;
 	}
-	public function updateads($data,$id)
+	public function updateAds($data,$id)
 	{	
 		$result = DB::table('ads')->where('id',$id)->update($data);
 		return $result;
 	}
-	public function getadsbyId($id){
+	public function getAdsById($id){
 		$result = DB::table('ads')->where('id', $id)->first();
 		return $result;
 	}
@@ -93,12 +93,12 @@ class AdsModel extends Model
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,255);
 	        }
         } 
-        $total = $this->getTotaldisplay($result);
-        $result = $this->masorycol($result,$total);
+        $total = $this->getTotalDisplay($result);
+        $result = $this->masoryCol($result,$total);
         return $result;
     }
 
-    public function getTotaldisplay($array){
+    public function getTotalDisplay($array){
     	$total = 0;
     	for($i=0 ; $i < count($array); $i++){
 			$total += $array[$i]->totaldisplay;
@@ -106,7 +106,7 @@ class AdsModel extends Model
 		return ceil($total/4);
     }
     
-	private function masorycol($array,$group){
+	private function masoryCol($array,$group){
 		$total = 0;
 		$gr = 0;
 		$arraygr[$gr] = array();
@@ -128,7 +128,7 @@ class AdsModel extends Model
 					$haschange = false;
 					for($n = $i+1; $n < count($array); $n++){
 						if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay == $group){
-							$haschange = $this->changeposarray($array,$k,$n);
+							$haschange = $this->changePosArray($array,$k,$n);
 							$br = true;
 							break;
 						}
@@ -137,11 +137,11 @@ class AdsModel extends Model
 						$subdisplay = 0;
 						for($n = $i+1; $n < count($array); $n++){
 							if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay+$subdisplay < $group){
-								$this->changeposarray($array,$k,$n);
+								$this->changePosArray($array,$k,$n);
 								$subdisplay += $array[$n]->totaldisplay;
 							}
 							if($total - $array[$k]->totaldisplay + $array[$n]->totaldisplay+$subdisplay == $group){
-								$haschange = $this->changeposarray($array,$k,$n);
+								$haschange = $this->changePosArray($array,$k,$n);
 								$br = true;
 								break;
 							}
@@ -156,13 +156,13 @@ class AdsModel extends Model
 		}
 		return $array;
 	}
-	private function changeposarray(&$array,$posX,$posY){
+	private function changePosArray(&$array,$posX,$posY){
 		$tam = $array[$posX];
 		$array[$posX] = $array[$posY];
 		$array[$posY] = $tam;
 		return true;
 	}
-	public function getpopularAds(){
+	public function getPopularAds(){
 		$result = DB::table('ads')->where('active',1)->where('typeads',7)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
@@ -178,7 +178,7 @@ class AdsModel extends Model
 	    }
 	    return $result;
 	}
-	public function getrecentAds($id){
+	public function getRecentAds($id){
 		$arrayads = $this->getadsbyId($id);
 		$result = DB::table('ads')
 		->where('catads', $arrayads->catads)
@@ -196,5 +196,10 @@ class AdsModel extends Model
             }
         }
         return $result;
+	}
+	public function updateView($id){
+		$view = DB::table('ads')->select('view')->where('id',$id)->first();
+		$result = DB::table('ads')->where('id',$id)->update(array('view' => $view->view + 1));
+		return $result;
 	}
 }

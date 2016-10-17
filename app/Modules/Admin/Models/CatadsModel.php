@@ -6,8 +6,6 @@ use Illuminate\Database\Eloquent\Model;
 
 class CatadsModel extends Model
 {
-	
-
 	public function getAll()
 	{
 		$data = DB::table('catads')->get();
@@ -20,7 +18,6 @@ class CatadsModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE catads SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

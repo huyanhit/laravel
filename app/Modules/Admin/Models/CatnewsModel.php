@@ -20,7 +20,6 @@ class CatnewsModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE catnews SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

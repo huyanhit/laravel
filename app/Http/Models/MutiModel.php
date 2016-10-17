@@ -28,7 +28,7 @@ class MutiModel extends Model
         return $result;
     }
 
-	public function getMutibyID($id)
+	public function getMutiByID($id)
 	{
 		$result = DB::table('muti')->where('active',1)->where('id',$id)->first();
 		if(empty($result->image) || !file_exists('public/uploads/'.$result->image)){
@@ -40,13 +40,13 @@ class MutiModel extends Model
 		return $result;
 	}
 	
-	public function getTypemutibyId($id)
+	public function getTypeMutiById($id)
 	{
 		$result = DB::table('muti')->where('active',1)->where('id',$id)->get();
 		return $result;
 	}
     
-    public function getrecentMuti($id = 0){
+    public function getRecentMuti($id = 0){
         $arraymuti = $this->getMutibyID($id);
         $result = DB::table('muti')
         ->where('catmuti', $arraymuti->catmuti)

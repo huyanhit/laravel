@@ -108,11 +108,11 @@ class NewsModel extends Model
         }
 		return $result;
 	}
-	public function getnewsbyId($id){
+	public function getNewsById($id){
 		$result = DB::table('news')->where('id', $id)->orderby('id','desc')->first();
 		return $result;
 	}
-	public function getpopularNews(){
+	public function getPopularNews(){
 		$result = DB::table('news')->where('active',1)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
@@ -137,8 +137,8 @@ class NewsModel extends Model
 	    }
 	    return $result;
 	}
-	public function getrecentNews($id = 0){
-		$arraynews = $this->getnewsbyId($id);
+	public function getRecentNews($id = 0){
+		$arraynews = $this->getNewsById($id);
 		$result = DB::table('news')
 		->where('catnews', $arraynews->catnews)
 		->where('id', '!=' , $id)
@@ -164,7 +164,7 @@ class NewsModel extends Model
         }
         return $result;
 	}
-	public function getHeadline()
+	public function getHeadLine()
 	{
 		$result = DB::table('news')
 		->where('catnews',4)
@@ -189,6 +189,13 @@ class NewsModel extends Model
 		foreach ($result as $key => $val) {
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,60);
         }
+		return $result;
+	}
+
+	public function updateView($id){
+		$view = DB::table('news')->select('view')->where('id',$id)->first();
+		
+		$result = DB::table('news')->where('id',$id)->update(array('view' => $view->view + 1));
 		return $result;
 	}
 }

@@ -20,7 +20,6 @@ class TypejobsModel extends Model
 	}
 	public function activeId($active,$id)
 	{
-		
 		$result = DB::delete("UPDATE typejobs SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}

@@ -10,6 +10,7 @@ use App\Http\Models\AdsModel;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\CommentModel;
+use Illuminate\Support\Facades\Auth;
 
 include('App\Library\domnode.php') ;
 
@@ -36,15 +37,17 @@ class NewsController extends Controller
     {
         $data['headerline'] = $this->news->getHeadline();
         $data['intro'] = $this->news->getIntro();
-        $data['result'] = $this->news->getnewsbyId($id);
-        $data['recent'] = $this->news->getrecentNews($id);
-        $data['jobs'] = $this->jobs->getpopularJobs();
-        $data['ads'] = $this->ads->getpopularAds();
+        $data['result'] = $this->news->getNewsById($id);
+        $data['recent'] = $this->news->getRecentNews($id);
+        $data['jobs'] = $this->jobs->getPopularJobs();
+        $data['ads'] = $this->ads->getPopularAds();
         $data['typeid'] = 'newsid';
-        $data['comment'] = $this->comment->getCommentbyID('newsid',$id);
+        $data['comment'] = $this->comment->getCommentByID('newsid',$id);
+        $data['user'] = Auth::user();
+
         if(isset($data['result']->content)){
             $data['result']->content= preg_replace('/<[\/]*p[^>]*>/', '',$data['result']->content); 
-            $checkrss = substr($data['result']->content, 0 , 4);
+            $checkrss = substr(trim($data['result']->content), 0 , 4);
             if($checkrss == "http"){
                 $html = file_get_html($data['result']->content);
                 foreach($html->find('.block_timer_share') as $e){
@@ -83,6 +86,7 @@ class NewsController extends Controller
                 $data['result']->content  = preg_replace('#<script(.*?)>(.*?)</script>#is', '', $data['result']->content);
             }
         }
+        $this->news->updateView($id);
         return view("contentnews",$data);
     }
 }
