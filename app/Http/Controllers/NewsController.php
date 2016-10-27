@@ -36,11 +36,11 @@ class NewsController extends Controller
     public function contentnews($id)
     {
         $data['headerline'] = $this->news->getHeadline();
-        $data['intro'] = $this->news->getIntro();
+        $data['intro']  = $this->news->getIntro();
         $data['result'] = $this->news->getNewsById($id);
         $data['recent'] = $this->news->getRecentNews($id);
-        $data['jobs'] = $this->jobs->getPopularJobs();
-        $data['ads'] = $this->ads->getPopularAds();
+        $data['jobs']   = $this->jobs->getPopularJobs();
+        $data['ads']    = $this->ads->getPopularAds();
         $data['typeid'] = 'newsid';
         $data['comment'] = $this->comment->getCommentByID('newsid',$id);
         $data['user'] = Auth::user();

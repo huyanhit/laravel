@@ -30,8 +30,8 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/video/noi-dung/{id}', 'MutiController@video');
 
 	/*COMMENT*/
-	Route::get('/insertcomment', 'LibraryController@insertComment');
-	Route::post('/insertcomment', 'LibraryController@insertComment');
+	Route::get('/insertComment', 'LibraryController@insertComment');
+	Route::post('/insertComment', 'LibraryController@insertComment');
 	Route::get('/getcomment/{id}', 'LibraryController@getComment');
 
 	/*JOBS*/

@@ -46,6 +46,7 @@ class AdsController extends Controller
         $data['comment']      = $this->comment->getCommentByID('adsid',$id);
         $data['result']       = $this->ads->getAdsById($id);
         $data['typeid']       = 'adsid';
+        $data['user'] = Auth::user();
         $this->ads->updateView($id);
         return view("contentads",$data);
     }

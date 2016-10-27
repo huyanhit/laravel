@@ -45,10 +45,10 @@
 		<div id="site-info">
 			<div id="footer-nav">
 				<ul class="menu">
-					<li><a href="{{Request::root()}}/trang-chu">Trang chủ</a></li>
-					<li><a href="{{Request::root()}}/gioi-thieu">Giới thiệu</a></li>
+					<li><a href="{{Request::root()}}/Trang-Chu">Trang Chủ</a></li>
+					<li><a href="{{Request::root()}}/Gioi-Thieu">Giới Thiệu</a></li>
 					<li><a href="{{Request::root()}}/Blog">Blog</a></li>
-					<li><a href="{{Request::root()}}/lien-he">Liên Hệ</a></li>
+					<li><a href="{{Request::root()}}/Lien-He">Liên Hệ</a></li>
 				</ul>
 			</div>
 			<div id="credit" class="fl">

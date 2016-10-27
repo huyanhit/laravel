@@ -19,13 +19,13 @@ class JobsController extends Controller
 {
     public function __construct()
     {
-        $this->news = new NewsModel();
-        $this->jobs = new JobsModel();
-        $this->ads = new AdsModel();
-        $this->catjobs = new CatjobsModel();
+        $this->news     = new NewsModel();
+        $this->jobs     = new JobsModel();
+        $this->ads      = new AdsModel();
+        $this->catjobs  = new CatjobsModel();
         $this->typejobs = new TypejobsModel();
         $this->location = new LocationModel();
-        $this->comment = new CommentModel();
+        $this->comment  = new CommentModel();
     }
     public function index(){
         $data['headerline'] = $this->news->getHeadLine();
@@ -46,6 +46,7 @@ class JobsController extends Controller
         $data['comment'] = $this->comment->getCommentByID('jobsid',$id);
         $data['result'] = $this->jobs->getJobsById($id);
         $data['typeid'] = 'jobsid';
+        $data['user'] = Auth::user();
         $this->jobs->updateView($id);
         return view("contentjobs",$data);
     }
