@@ -149,12 +149,12 @@ $(document).ready(function(){  
 	    		id: $("#comment-form #frm-id").val()};
 	    		console.log(data);
 			    $.ajax({
-		           type: "POST",
-		           url: url,
-		           data: data,
-		           success: function(html){
+		            type: "POST",
+		            url: url,
+		            data: data,
+		            success: function(html){
 		           		$("#comment-script").append(html);
-		           }
+		            }
 		        });
 		    }
         }
