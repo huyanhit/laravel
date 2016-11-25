@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 17, 2016 at 11:02 AM
+-- Generation Time: Nov 25, 2016 at 07:48 AM
 -- Server version: 10.1.13-MariaDB
 -- PHP Version: 5.5.35
 
@@ -118,6 +118,13 @@ CREATE TABLE `comment` (
   `active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `comment`
+--
+
+INSERT INTO `comment` (`id`, `newsid`, `name`, `comment`, `jobsid`, `adsid`, `mutiid`, `playlistid`, `position`, `date_create`, `like`, `dislike`, `idcomment`, `active`) VALUES
+(1, 31, 'huy', 'Ch??ng trình t?ng phát hi?n nhi?u tài n?ng âm nh?c nh? H?ng Nhung, M? Linh, Tr?ng T?n hay ', 0, 0, 0, 0, 0, 1477302599, 0, 0, 0, 0);
+
 -- --------------------------------------------------------
 
 --
@@ -226,31 +233,31 @@ CREATE TABLE `news` (
 --
 
 INSERT INTO `news` (`id`, `catnews`, `title`, `desc`, `content`, `image`, `from`, `active`, `view`, `date_create`, `date_update`, `author`) VALUES
-(1, 1, 'Nhân chứng vụ sập giàn giáo: Bàng hoàng thấy hai người rơi từ tầng cao', 'Vụ sập giàn giáo xảy ra tại công trường thi công nhà cao tầng tại số 1 Giáp Nhị (Hà Nội) làm ông Lê Văn Quý (53 tuổi) và chị Nguyễn Thị Cẩn (25 tuổi) thiệt mạng.', 'http://video.vnexpress.net/tin-tuc/xa-hoi/nhan-chung-vu-sap-gian-giao-bang-hoang-thay-hai-nguoi-roi-tu-tang-cao-3483076.html', 'avaspgingioJPG-1476342340.jpg', 'VnExpress', 1, 0, 1476345461, 0, 1),
-(2, 1, 'Cách dùng số tay trên xe số tự động - tài xế Việt cần biết', 'Số tay hay số thể thao có thể sử dụng để vượt xe khác, hãm xe khi xuống dốc hay đơn giản là tăng cảm hứng lái.', 'http://vnexpress.net/tin-tuc/oto-xe-may/tu-van/cach-dung-so-tay-tren-xe-so-tu-dong-tai-xe-viet-can-biet-3482535.html', 'automatic-transmission-gear-3701-1476345166.jpg', 'VnExpress', 1, 0, 1476345462, 0, 1),
-(3, 1, 'Những giáo viên truyền cảm hứng cho học trò', 'Nằm giảng bài ngoài sân vì quên chìa khóa cửa lớp, âm thầm trang trí lớp học suốt mùa hè, lập "câu lạc bộ quý ông" dành cho học sinh thiếu tình thương của bố là những hành động ghi điểm của giáo viên.', 'http://vnexpress.net/photo/giao-duc/nhung-giao-vien-truyen-cam-hung-cho-hoc-tro-3482879.html', 'nhung-giao-vien-dang-yeu-nhat-the-gioi3-1476326099.jpg', 'VnExpress', 1, 0, 1476345462, 0, 1),
-(4, 1, 'Bộ Tài chính muốn truy thu 131 tỷ đồng sai phạm tại Tổng công ty Đường sắt', 'Đồng tình với kết luận của Thanh tra Chính phủ, Bộ Tài chính vừa đề nghị Thủ tướng cho giữ nguyên yêu cầu Tổng công ty Đường sắt nộp vào ngân sách hơn 131 tỷ đồng.', 'http://kinhdoanh.vnexpress.net/tin-tuc/doanh-nghiep/bo-tai-chinh-muon-truy-thu-131-ty-dong-sai-pham-tai-tong-cong-ty-duong-sat-3483047.html', 'duongsat-1476335957-2965-1476336097.jpg', 'VnExpress', 1, 0, 1476345463, 0, 1),
-(5, 1, 'Tuyển thủ Việt Nam mang nụ cười đến trại trẻ mồ côi tại TP HCM', 'Sáng 13/10, các thành viên đội tuyển cùng đại diện Liên đoàn bóng đá Việt Nam đã đến thăm, giao lưu với làng trẻ em SOS Gò Vấp.', 'http://thethao.vnexpress.net/photo/hinh-hau-truong/tuyen-thu-viet-nam-mang-nu-cuoi-den-trai-tre-mo-coi-tai-tp-hcm-3483044.html', '3-1476334451.jpg', 'VnExpress', 1, 0, 1476345463, 0, 1),
-(6, 1, 'Vì sao phải mở ''phiên tòa'' với người cai nghiện bắt buộc?', 'Theo quy định hiện hành, quyết định đưa người đi cai nghiện bắt buộc thuộc về tòa án và phải mở phiên xem xét gồm thẩm phán, kiểm sát viên, các bên liên quan, luật sư...', 'http://vnexpress.net/tin-tuc/phap-luat/tu-van/vi-sao-phai-mo-phien-toa-voi-nguoi-cai-nghien-bat-buoc-3483030.html', 'minhhoacainghien2-1476330878.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(7, 1, 'Mất 11 giờ để pha trà với ấm đun nước Wi-Fi', 'Các thiết bị gia dụng thông minh, tích hợp Internet, không phải lúc nào cũng đem đến sự thuận tiện cho người dùng như quảng cáo.', 'http://sohoa.vnexpress.net/tin-tuc/dien-tu-gia-dung/mat-11-gio-de-pha-tra-voi-am-dun-nuoc-wi-fi-3483094.html', 'IoT3-1476343718-2352-1476343735.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(8, 1, 'Bé một tháng tuổi bị rao bán hơn 5.000 USD trên mạng', 'Cảnh sát Đức đang điều tra việc một bé gái sơ sinh nước này bị rao bán trên eBay với giá 5.500 USD.', 'http://vnexpress.net/tin-tuc/the-gioi/cuoc-song-do-day/be-mot-thang-tuoi-bi-rao-ban-hon-5-000-usd-tren-mang-3483017.html', 'baby-1476344361.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(9, 1, 'Ngư dân mạo hiểm kéo cá mập dài 2,5 mét về biển', 'Con cá mập dài gần 2,5 m, nặng hơn 200 kg bị mắc lưới ở ngoài khơi Nam Phi phản ứng quyết liệt khi các ngư dân cố gắng thả nó về biển.', 'http://vnexpress.net/tin-tuc/khoa-hoc/ngu-dan-mao-hiem-keo-ca-map-dai-2-5-met-ve-bien-3482938.html', '2-1476328562.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(10, 1, 'Người Philippines nhận xét ông Duterte ''thô lỗ nhưng chân thành''', 'Đánh dấu 100 ngày Tổng thống Duterte lãnh đạo đất nước, người dân Philippines nhận xét tuy có lúc ông nói năng thô lỗ nhưng là người chân thành, yêu dân và vì đân.', 'http://vnexpress.net/tin-tuc/the-gioi/cuoc-song-do-day/nguoi-philippines-nhan-xet-ong-duterte-tho-lo-nhung-chan-thanh-3481439.html', '2657-1476342325.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(11, 1, 'Du khách chết vì say độ cao', 'Một du khách đã chết vì say độ cao khi đi xe đạp trên con đường Tử thần ở Bolivia, cao hơn 3.000 m.', 'http://dulich.vnexpress.net/tin-tuc/quoc-te/du-khach-chet-vi-say-do-cao-3482972.html', 'conduongtuthan-2410-1476243827-5287-1476344556.jpg', 'VnExpress', 1, 0, 1476345464, 0, 1),
-(12, 1, 'Chơi Pokemon Go có thể giúp sống lâu hơn', 'Càng vận động, con người càng có cơ hội kéo dài tuổi thọ và Pokemon Go đang giúp làm tăng mức độ hoạt động thể chất của những người trải nghiệm.', 'http://sohoa.vnexpress.net/tin-tuc/lang-game/choi-pokemon-go-co-the-giup-song-lau-hon-3483038.html', 'pokemon-go-6007-1476339990.jpg', 'VnExpress', 1, 0, 1476345465, 0, 1),
-(13, 1, 'Nếu không cưới được chồng tôi, cô nhân tình quyết phá nhà tôi', 'Anh bảo đừng để cô ta kích động rồi buông bỏ tất cả thì đã trúng kế. Giờ anh mới hiểu bản chất và ý đồ này, cầu xin tôi đừng vội ly hôn.', 'http://vnexpress.net/tin-tuc/tam-su/neu-khong-cuoi-duoc-chong-toi-co-nhan-tinh-quyet-pha-nha-toi-3482893.html', 'ngheo-1476329542-8044-1476329561.jpg', 'VnExpress', 1, 1, 1476345465, 0, 1),
-(14, 1, 'Phan Đinh Tùng đưa vợ và con gái lên sân khấu', 'Gia đình nam ca sĩ hòa giọng trong chương trình "Sài Gòn đêm thứ bảy" sắp phát sóng.', 'http://giaitri.vnexpress.net/tin-tuc/nhac/lang-nhac/phan-dinh-tung-dua-vo-va-con-gai-len-san-khau-3482959.html', 'phan-dinh-tung-2-6481-1476329645.jpg', 'VnExpress', 1, 0, 1476345465, 0, 1),
-(15, 1, 'Váy xuyên thấu dẫn đầu 10 thiết kế đẹp nhất Xuân Hè 2016', 'Bộ đầm đuôi cá của Alexander McQueen được Vogue đánh giá đẹp từ phom dáng đến đường kim mũi chỉ.', 'http://giaitri.vnexpress.net/photo/lang-mot/vay-xuyen-thau-dan-dau-10-thiet-ke-dep-nhat-xuan-he-2016-3482649.html', 'vay-xuyen-thau-dan-dau-10-thiet-ke-dep-nhat-xuan-he-2016-1476341801.jpg', 'VnExpress', 1, 0, 1476345465, 0, 1),
-(16, 1, 'Danh sách độc giả nhận vé xem ra mắt ''The Accountant''', 'Dưới đây là bốn độc giả ở Hà Nội nhận mỗi người một cặp vé dự lễ ra mắt tác phẩm hành động mới của Ben Affleck tối nay (13/10).', 'http://giaitri.vnexpress.net/tin-tuc/cong-dong/danh-sach-doc-gia-nhan-ve-xem-ra-mat-the-accountant-3483069.html', 'toppp-1476341562-1642-1476341565.jpg', 'VnExpress', 1, 0, 1476345465, 0, 1),
-(17, 1, 'Công nghệ cao trong top ngành được tăng lương nhiều', 'Sản xuất, dược, hóa chất, công nghệ cao là 4 ngành có tỷ lệ tăng lương cao nhất, ở mức 10% trong năm nay so với các ngành nghề khác.', 'http://kinhdoanh.vnexpress.net/tin-tuc/doanh-nghiep/cong-nghe-cao-trong-top-nganh-duoc-tang-luong-nhieu-3482157.html', 'cnc-1476332494-3295-1476332701.jpg', 'VnExpress', 1, 0, 1476345466, 0, 1),
-(18, 1, 'Nga lập sư đoàn oanh tạc cơ chiến lược tuần tra Thái Bình Dương', 'Sư đoàn oanh tạc cơ chiến lược mới của Nga đóng ở vùng Viễn Đông sẽ sớm tuần tra gần các căn cứ Mỹ và Nhật Bản ở Thái Bình Dương.', 'http://vnexpress.net/tin-tuc/the-gioi/quan-su/nga-lap-su-doan-oanh-tac-co-chien-luoc-tuan-tra-thai-binh-duong-3483086.html', '2-1476343076.jpg', 'VnExpress', 1, 0, 1476345466, 0, 1),
-(19, 1, 'Chất nghệ thuật trong kiến trúc hiện đại tại Feliz en Vista', 'Lấy cảm hứng từ thành phố được đan trên sợi tơ, chủ đầu tư CapitaLand Việt Nam kiến tạo khu đô thị đậm chất nghệ thuật mà vẫn hiện đại, tiện ích.', 'http://kinhdoanh.vnexpress.net/tin-tuc/bat-dong-san/chat-nghe-thuat-trong-kien-truc-hien-dai-tai-feliz-en-vista-3482611.html', 'Untitled-2-2905-1476264742.jpg', 'VnExpress', 1, 0, 1476345466, 0, 1),
-(20, 1, 'Hàng chục xe máy ngã ra đường vì vết dầu rơi', 'Vết dầu máy từ xe ôtô rơi kết hợp với trận mưa khiến quốc lộ 18 đoạn qua xã Phù Lỗ, Sóc Sơn, Hà Nội trơn trượt, hàng chục người đi xe máy bị ngã xuống đường.', 'http://vnexpress.net/tin-tuc/thoi-su/giao-thong/ha-ng-chu-c-xe-ma-y-nga-ra-duo-ng-vi-ve-t-da-u-roi-3483070.html', 'st3-1476342255.jpg', 'VnExpress', 1, 0, 1476345467, 0, 1),
-(21, 1, 'Vì sao tỷ số truyền hộp giảm tốc là số lẻ?', 'Các anh chị có kinh nghiệm cho em hỏi, vì sao tỷ số truyền hộp giảm tốc lại là số lẻ, ví dụ như 31.4/1 (Nguyễn Duy).', 'http://vnexpress.net/tin-tuc/oto-xe-may/tu-van/vi-sao-ty-so-truyen-hop-giam-toc-la-so-le-3483065.html', 'BMWserie5tvx-1476341521.jpg', 'VnExpress', 1, 1, 1476345467, 0, 1),
-(22, 1, 'Ba cách hiệu quả chống say xe', 'Tập cho tiền đình bớt nhạy cảm là cách chống say xe triệt để nhất với những ai "cứ lên xe là nôn".', 'http://vnexpress.net/tin-tuc/oto-xe-may/dien-dan/ba-cach-hieu-qua-chong-say-xe-2132872.html', 'Say-xe-2728-1476342358.jpg', 'VnExpress', 1, 1, 1476345467, 0, 1),
-(23, 1, '10 trải nghiệm dành cho dân du lịch bụi ở Hà Giang', 'Độc hành, trekking đèo Mã Pì Lèng, vượt sông Nho Quế bằng bè là những điều chỉ dành người ưa mạo hiểm.', 'http://dulich.vnexpress.net/photo/anh-video/10-trai-nghiem-danh-cho-dan-du-lich-bui-o-ha-giang-3482358.html', '8-Chay-Bo-Xe-Dap-1.jpg', 'VnExpress', 1, 9, 1476345468, 0, 1),
-(24, 1, 'Trung Quốc yêu cầu Australia thận trọng về vấn đề Biển Đông', 'Quan chức quân đội Trung Quốc cho rằng Australia cần "thận trọng" với các hành động và phát ngôn liên quan đến Biển Đông.', 'http://vnexpress.net/tin-tuc/the-gioi/trung-quoc-yeu-cau-australia-than-trong-ve-van-de-bien-dong-3482830.html', 'davanhkhan-1476327479.jpg', 'VnExpress', 1, 6, 1476345468, 0, 1),
-(25, 1, 'Vietnamese Stand-up Comedy @PiuPiu', 'Open mic for comedians every Sunday', 'http://e.vnexpress.net/news/travel-life/what-s-on/vietnamese-stand-up-comedy-piupiu-3482919.html', '147083021617985415168670301116-3454-1387-1476327921.jpg', 'VnExpress', 1, 6, 1476345468, 0, 1);
+(26, 1, 'TP HCM cấm ôtô khách ở 3 đường trung tâm', 'Ôtô hơn 25 chỗ bị cấm lưu thông trên đường Lê Hồng Phong, Vĩnh Viễn và Trần Nhân Tôn (quận 10) để đảm bảo trật tự giao thông.', 'http://vnexpress.net/tin-tuc/thoi-su/tp-hcm-cam-oto-khach-o-3-duong-trung-tam-3488502.html', 'thong-bao-5524-1477298671.jpg', 'VnExpress', 1, 0, 1477301095, 0, 1),
+(27, 1, 'Con tin bị cướp biển Somali bắt phải ăn thịt chuột để sống', 'Một người sống sót trong nhóm con tin bị cướp biển Somali bắt giữ trong gần 5 năm kể rằng phải ăn thịt chuột để sống.', 'http://vnexpress.net/tin-tuc/the-gioi/cuoc-song-do-day/con-tin-bi-cuop-bien-somali-bat-phai-an-thit-chuot-de-song-3488400.html', '92063638bcd18e3b74b84030a7369851911c56da-1477294773.jpg', 'VnExpress', 1, 0, 1477301096, 0, 1),
+(28, 1, 'Châu Tinh Trì ra mắt ''Tây Du Giáng Ma 2'' vào Tết 2017', 'Ở dự án mới mang tên "Tây du phục yêu", vua hài viết kịch bản và sản xuất, còn “ông trùm phim kiếm hiệp” Từ Khắc đứng vai trò đạo diễn.', 'http://giaitri.vnexpress.net/tin-tuc/phim/diem-phim/chau-tinh-tri-ra-mat-tay-du-giang-ma-2-vao-tet-2017-3488424.html', 'chatinhtri-1477300154.jpg', 'VnExpress', 1, 0, 1477301096, 0, 1),
+(29, 1, 'Microsoft từng hỏi mua Facebook với giá 24 tỷ USD', 'Cựu CEO Microsoft Steve Ballmer tiết lộ hãng có ý định mua lại Facebook năm 2010, nhưng Mark Zuckerberg đã từ chối một cách khiếm nhã.', 'http://sohoa.vnexpress.net/tin-tuc/doi-song-so/microsoft-tung-hoi-mua-facebook-voi-gia-24-ty-usd-3488494.html', 'Steve-Ballmer-at-CES-2010-2881-1477297969.jpg', 'VnExpress', 1, 1, 1477301096, 0, 1),
+(30, 1, 'Guardiola ''nhốt'' các cầu thủ Man City sau trận hoà', 'HLV người Tây Ban Nha đã buộc các cầu thủ ở yên trong phòng thay đồ khoảng gần một tiếng đồng hồ, sau trận Man City bị Southampton cầm hòa 1-1 ở Etihad.', 'http://thethao.vnexpress.net/tin-tuc/giai-ngoai-hang-anh/guardiola-nhot-cac-cau-thu-man-city-sau-tran-hoa-3488452.html', 'Pep-8883-1477299040.jpg', 'VnExpress', 1, 0, 1477301096, 0, 1),
+(31, 1, 'Cô gái 20 tuổi giành giải nhất Giọng hát hay Hà Nội 2016', 'Nguyễn Thu Thủy vượt 9 gương mặt tiềm năng khác để đoạt danh hiệu cao nhất trong chung kết cuộc thi tối 23/10.', 'http://giaitri.vnexpress.net/tin-tuc/nhac/lang-nhac/co-gai-20-tuoi-gianh-giai-nhat-giong-hat-hay-ha-noi-2016-3488454.html', 'top-1477297550.jpg', 'VnExpress', 1, 4, 1477301096, 0, 1),
+(32, 1, 'Người đẹp hốt hoảng vì suýt trúng mũi lao', 'Không chỉ cô gái mà tất cả mọi người xung quanh đều há hốc mồm khi thấy mũi lao của người đàn ông đâm xuyên qua cánh cửa.', 'http://video.vnexpress.net/tin-tuc/cuoi/nguoi-dep-hot-hoang-vi-suyt-trung-mui-lao-3488527.html', 'Sequence04Still001-1477299787.jpg', 'VnExpress', 1, 0, 1477301097, 0, 1),
+(33, 1, 'Người đàn ông đen đủi nhất quả đất', 'Không chỉ bị rơi xuống hồ vì bị chơi xấu mà người đàn ông còn nhận thêm trái đắng khi vừa lên khỏi mặt nước.', 'http://video.vnexpress.net/tin-tuc/cuoi/nguoi-dan-ong-den-dui-nhat-qua-dat-3488525.html', 'Sequence03Still001-1477299696.jpg', 'VnExpress', 1, 0, 1477301097, 0, 1),
+(34, 1, 'Bà vợ cao tay khiến ông chồng yêu thương mình hơn', 'Vừa thấy chồng về, bà vợ liền lật tung mọi thứ lên khiến căn nhà vô cùng bề bộn.', 'http://video.vnexpress.net/tin-tuc/cuoi/ba-vo-cao-tay-khien-ong-chong-yeu-thuong-minh-hon-3488523.html', 'Sequence02Still001-1477299611.jpg', 'VnExpress', 1, 0, 1477301097, 0, 1),
+(35, 1, 'Trường Giang tức ói máu khi thấy Trấn Thành hôn Nhã Phương', 'Dù rất tức giận đến mức thổ huyết nhưng Trường Giang vẫn tỉnh táo nhận ra đối thủ đẹp trai hơn mình và chấp nhận thất bại.', 'http://video.vnexpress.net/tin-tuc/cuoi/truong-giang-tuc-oi-mau-khi-thay-tran-thanh-hon-nha-phuong-3488520.html', 'Untitled1-1477299503.jpg', 'VnExpress', 1, 0, 1477301097, 0, 1),
+(36, 1, 'Xuất khẩu tôm năm nay dự kiến đạt 3,1 tỷ USD', '9 tháng xuất khẩu tôm Việt Nam đạt 2,2 tỷ USD, dự kiến hết năm có thể đạt 3,1 tỷ USD.', 'http://kinhdoanh.vnexpress.net/tin-tuc/hang-hoa/xuat-khau-tom-nam-nay-du-kien-dat-3-1-ty-usd-3488491.html', 'tomthechantrang1-1660-1477298959.jpg', 'VnExpress', 1, 1, 1477301097, 0, 1),
+(37, 1, 'Trường Giang tức ói máu khi thấy Trấn Thành hôn Nhã Phương', 'Dù rất tức giận đến mức thổ huyết nhưng Trường Giang vẫn tỉnh táo nhận ra đối thủ đẹp trai hơn mình và chấp nhận thất bại.', 'http://vnexpress.net/tin-tuc/cuoi/video/truong-giang-tuc-oi-mau-khi-thay-tran-thanh-hon-nha-phuong-3488515.html', 'Untitled-1-8578-1477299267.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(38, 1, 'Kerber thắng trận đầu tại WTA Finals', 'Tay vợt số một thế giới khởi đầu chiến dịch chinh phục giải đấu tại Singapore bằng chiến thắng với tỷ số 6-7, 6-2, 6-3 trước Dominika Cibulkova.', 'http://thethao.vnexpress.net/tin-tuc/tennis/kerber-thang-tran-dau-tai-wta-finals-3488512.html', '2016-10-23T141324Z-96608814-2927-1477299168.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(39, 1, 'Mercedes-Benz ''đổ bộ'' tại gian hàng lớn nhất VIMS 2016', 'Lần đầu tiên góp mặt tại Triển lãm ôtô quốc tế Việt Nam 2016 (VIMS), thương hiệu ngôi sao ba cánh đầu tư gian hàng 776 m2 với nhiều điều thú vị.', 'http://vnexpress.net/tin-tuc/oto-xe-may/mercedes-benz-do-bo-tai-gian-hang-lon-nhat-vims-2016-3488319.html', 'Image-ExtractWord-0-Out-3849-1477300261.jpeg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(40, 1, 'Hoa hậu Thu Hoài xoạc người trên không', 'Bà mẹ ba con khoe dáng với trang phục bó sát trong bộ ảnh mừng tuổi 40.', 'http://giaitri.vnexpress.net/photo/trong-nuoc/hoa-hau-thu-hoai-xoac-nguoi-tren-khong-3488443.html', 'hoa-hau-thu-hoai-du-day-tren-khong-1477295195.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(41, 1, 'Iceland khoan sâu 5 km để khai thác năng lượng địa nhiệt', 'Iceland hy vọng khai thác được nguồn năng lượng địa nhiệt vô tận bằng mũi khoan sâu 5 km xuống bể nham thạch.', 'http://vnexpress.net/tin-tuc/khoa-hoc/moi-truong/iceland-khoan-sau-5-km-de-khai-thac-nang-luong-dia-nhiet-3488396.html', 'VNEIceland3-1477296119.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(42, 1, 'Người cho thuê nhà được kê khai thuế điện tử', 'Từ tháng 11 tới, người có nhà cho thuê ở Hà Nội và TP HCM sẽ khai thuế thu nhập cá nhân điện tử thay vì đến nộp tờ khai trực tiếp ở cơ quan thuế, giúp tiết kiệm được chi phí đi lại và thời gian.', 'http://kinhdoanh.vnexpress.net/tin-tuc/doanh-nghiep/nguoi-cho-thue-nha-duoc-ke-khai-thue-dien-tu-3488460.html', 'thue7920152121711441597267-147-5013-5182-1477296157.jpeg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(43, 1, 'Trò cũ và CĐV châm chọc Mourinho', 'Sau thất bại 0-4 trước Chelsea, HLV của Man Utd phải nhận hàng loạt chỉ trích xen lẫn châm biếm trên mạng xã hội.', 'http://thethao.vnexpress.net/tin-tuc/giai-ngoai-hang-anh/tro-cu-va-cdv-cham-choc-mourinho-3488263.html', 'mourinho-4340-1477280707.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(44, 1, 'Hồ Văn Cường theo mẹ nuôi Phi Nhung đi cứu trợ lũ lụt', 'Quán quân Vietnam Idol Kids 2016 và mẹ nuôi tặng quà, hát phục vụ người dân huyện Hương Khê, Hà Tĩnh vào ngày 23/10.', 'http://giaitri.vnexpress.net/tin-tuc/gioi-sao/trong-nuoc/ho-van-cuong-theo-me-nuoi-phi-nhung-di-cuu-tro-lu-lut-3488406.html', 'phi-nhung-top-4311-1477298541.jpg', 'VnExpress', 1, 0, 1477301098, 0, 1),
+(45, 1, 'Khách Tây: Hà Nội là chốn rong chơi, Sài Gòn là nơi để sống', 'Những hàng cây cổ thụ dọc con phố nhộn nhịp, ẩm thực đa dạng, con người dễ mến là những điều níu chân khách Tây tại Sài Gòn.', 'http://dulich.vnexpress.net/tin-tuc/cong-dong/dau-chan/khach-tay-ha-noi-la-chon-rong-choi-sai-gon-la-noi-de-song-3488320.html', '11411703239697-1477295225.jpg', 'VnExpress', 1, 0, 1477301099, 0, 1),
+(46, 1, 'Công dân Anh tra tấn gái bán dâm ba ngày rồi sát hại ở Hong Kong', 'Rurik Jutting, nhân viên ngân hàng người Anh, bị buộc tội giết người sau khi cảnh sát phát hiện thi thể hai cô gái trẻ trong căn hộ của anh ở Hong Kong.', 'http://vnexpress.net/tin-tuc/the-gioi/cuoc-song-do-day/cong-dan-anh-tra-tan-gai-ban-dam-ba-ngay-roi-sat-hai-o-hong-kong-3488427.html', '2016-10-24T015557Z-234285068-S-6435-6268-1477297291.jpg', 'VnExpress', 1, 0, 1477301099, 0, 1),
+(47, 1, 'Dịch vụ ''ở ké'' online bị phản đối trên toàn cầu', 'Airbnb - dịch vụ chia sẻ phòng trọ trong thời gian ngắn được định giá 30 tỷ USD đang đối mặt với nhiều vấn đề pháp lý trên toàn cầu.', 'http://kinhdoanh.vnexpress.net/tin-tuc/quoc-te/dich-vu-o-ke-online-bi-phan-doi-tren-toan-cau-3488470.html', 'AIRBUB-jpeg-2491-1477298414.jpg', 'VnExpress', 1, 4, 1477301099, 0, 1),
+(48, 1, 'Tên cướp bị cảnh sát ép ngã xe sau 10 km tháo chạy', 'Bị truy đuổi sau khi giật sợi dây chuyền của người phụ nữ, tên cướp 19 tuổi phóng xe bạt mạng, liên tục ép cảnh sát hòng thoát thân nhưng bất thành.', 'http://vnexpress.net/tin-tuc/phap-luat/ten-cuop-bi-canh-sat-ep-nga-xe-sau-10-km-thao-chay-3488450.html', 'cuop1-1477297320.jpg', 'VnExpress', 1, 0, 1477301099, 0, 1),
+(49, 1, 'Chồng hiến thận cho vợ để tận hưởng từng ngày trước khi cô mất', 'Biết rằng vợ có thể ra đi bất cứ lúc nào, người chồng Singapore đã cố gắng để mỗi ngày sống của chị đều ý nghĩa, trọn vẹn. ', 'http://giadinh.vnexpress.net/tin-tuc/to-am/chong-hien-than-cho-vo-de-tan-huong-tung-ngay-truoc-khi-co-mat-3488445.html', 'chong1-1477297655-9573-1477297911.jpg', 'VnExpress', 1, 0, 1477301099, 0, 1),
+(50, 1, 'Trung Quốc bắt đầu đại hội đảng Cộng sản', 'Gần 400 thành viên cấp cao của đảng Cộng sản Trung Quốc bắt đầu cuộc họp 4 ngày để cải cách "các quy chuẩn đời sống chính trị" và quy định giám sát nội bộ. ', 'http://vnexpress.net/tin-tuc/the-gioi/trung-quoc-bat-dau-dai-hoi-dang-cong-san-3488403.html', 'tapcanbinh-1477296102.jpg', 'VnExpress', 1, 3, 1477301100, 0, 1);
 
 -- --------------------------------------------------------
 
@@ -297,6 +304,23 @@ CREATE TABLE `typeads` (
   `display` int(11) NOT NULL,
   `active` int(1) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `typeads`
+--
+
+INSERT INTO `typeads` (`id`, `title`, `icon`, `display`, `active`) VALUES
+(1, 'short text', '', 1, 1),
+(2, 'short text & short image', '', 2, 1),
+(3, 'short text & image', '', 3, 1),
+(4, 'short text & long image', '', 4, 1),
+(5, 'text', '', 2, 1),
+(6, 'text & short image', '', 3, 1),
+(7, 'text & image', '', 4, 1),
+(8, 'long text & short image', '', 4, 1),
+(9, 'short image', '', 1, 1),
+(10, 'image', '', 2, 1),
+(11, 'long image', '', 3, 1);
 
 -- --------------------------------------------------------
 
@@ -472,7 +496,7 @@ ALTER TABLE `catnews`
 -- AUTO_INCREMENT for table `comment`
 --
 ALTER TABLE `comment`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 --
 -- AUTO_INCREMENT for table `jobs`
 --
@@ -492,7 +516,7 @@ ALTER TABLE `muti`
 -- AUTO_INCREMENT for table `news`
 --
 ALTER TABLE `news`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=51;
 --
 -- AUTO_INCREMENT for table `playlist`
 --
@@ -502,7 +526,7 @@ ALTER TABLE `playlist`
 -- AUTO_INCREMENT for table `typeads`
 --
 ALTER TABLE `typeads`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 --
 -- AUTO_INCREMENT for table `typejobs`
 --
