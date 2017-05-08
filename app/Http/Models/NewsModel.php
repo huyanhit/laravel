@@ -89,8 +89,7 @@ class NewsModel extends Model
 		return $result;
 	}
 
-	public function getNewsGL()
-	{
+	public function getNewsGL(){
 		$result = DB::table('news')
 		->where('catnews',3)
 		->where('active',1)
@@ -108,7 +107,12 @@ class NewsModel extends Model
         }
 		return $result;
 	}
+<<<<<<< HEAD
+   
+	public function getnewsbyId($id){
+=======
 	public function getNewsById($id){
+>>>>>>> 17a626ca0f689f443022cbacbec43af7d28743f3
 		$result = DB::table('news')->where('id', $id)->orderby('id','desc')->first();
 		return $result;
 	}

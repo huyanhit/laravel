@@ -31,6 +31,7 @@ class NewsController extends Controller
         $data['newsRss'] = $this->news->getNewsRss();
         $data['newsXL'] = $this->news->getNewsXL();
         $data['newsGL'] = $this->news->getNewsGL();
+        $data['newsTypes'] = $this->news->getNewsTypes();
         return view("news",$data);
     }
     public function contentnews($id)

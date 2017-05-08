@@ -51,12 +51,25 @@ Route::group(['middleware' => ['web']], function () {
 	Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postFaceAds');
 	Route::post('/quan-li-rao-vat', 'PostadsController@index');
 	Route::get('/quan-li-rao-vat', 'PostadsController@index');
+<<<<<<< HEAD
+	Route::get('/quan-li-rao-vat/delete', 'PostadsController@deleteads');
+	Route::get('/quan-li-rao-vat/xem-tin-rao-vat', 'PostadsController@viewads');
+	Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
+	Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
+	Route::post('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
+	Route::get('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editads');
+
+	Route::get('/login-facebook', 'LoginController@loginFacebook');
+	Route::get('/login-google', 'LoginController@loginGoogle');
+
+=======
 	Route::get('/quan-li-rao-vat/delete', 'PostadsController@deleteAds');
 	Route::get('/quan-li-rao-vat/xem-tin-rao-vat', 'PostadsController@viewAds');
 	Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertAds');
 	Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertAds');
 	Route::post('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editAds');
 	Route::get('/quan-li-rao-vat/sua-tin-rao-vat', 'PostadsController@editAds');
+>>>>>>> 17a626ca0f689f443022cbacbec43af7d28743f3
 });
 Route::auth();
 
