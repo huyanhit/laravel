@@ -14,7 +14,7 @@ body{
 	}
 	h4{
 		font-size: 14px;
-	}
+	} 
 	h3{
 	    font-size: 16px;
 	}
@@ -166,6 +166,8 @@ body{
 	    font-size: 11px;
     	line-height: 41px;
     	margin: 0;
+    	position: relative;
+    	left: -15px;
 	    span{
 	    	background: #3d4c54;
     		padding: 6px;
@@ -268,7 +270,8 @@ body{
 		    height: 39px;
 		    width: 77%;
 		    padding: 15px;	
-		    border: none;
+    		height: 41px;
+			border: 1px #f7f7f7 solid;
 		}
 		input[type="submit"]{
 			float: right;
@@ -360,13 +363,11 @@ body{
 		    text-align: center;
 		}
 		ul{
-			background: #f2f2f2;
+			background: #ffffff;
 		    margin: 0;
-    		padding: 0px 5px;
-		    height: 398px;
-		    overflow-y: scroll;
-    		border-bottom: 12px #f2f2f2 solid;
-    		border-top: 12px #f2f2f2 solid;
+		    height: 396px;
+		    border: 1px #f2f2f2 solid;
+   			border-right: none;
 			li{
 			    background: #FFF;
     			margin: 10px 8px;
@@ -388,10 +389,12 @@ body{
 	}
 }
 #tabwidget{
+	border-bottom: 1px solid #f2f2f2;
   	#tabnav{
     	list-style: none;
     	padding: 0;
     	margin: 0;
+    	background: #3d4c54;
 	  	h3 {
 		  	font-size:13px;
 		 	font-weight:normal;
@@ -426,17 +429,19 @@ body{
 		}
   	}
 	#tab-content {
-		border: 1px solid #f2f2f2;
-	    height: 357px;
+	    height: 354px;
 	    overflow: hidden;
 	    overflow-y: scroll;
-	  	border:1px solid #f2f2f2;
+    	border-left: 1px solid #f2f2f2;
 	  	ul{
    		 	padding: 0;
    		 	margin-top: 0;
 	  		li {
 			  	padding:15px;
 			  	border-bottom:1px solid #f2f2f2;
+			  	&:last-child{
+			  		border-bottom:none;	
+			  	}
 			  	p {
 				  	margin: 0;
     				padding-top: 5px;
@@ -516,18 +521,20 @@ body{
     		float: right;
     		line-height: 41px;
     		select{
-			    height: 39px;
+			    height: 41px;
 			    width: 200px;
-			    padding: 10px;
-			    border: none;
-			    margin-right: 1px;
+			    padding: 0 10px;
+			    margin-right: 0px;
+			    border: 1px #3d4c54 solid;
+			    background: #3d4c54;
+			    color: #fff;
     		}
 		}
 	}
 	#list-jobs{
-    	height: 455px;
+    	height: 405px;
 	    overflow-y: scroll;
-	    border: 14px #f2f2f2 solid;
+	    border: 1px #f2f2f2 solid;
 	    border-right: 1px;
 	    clear: both;
 	    .item{
@@ -561,12 +568,17 @@ body{
 			    text-align: center;
 		}
 		.content{
-		    height: 500px;
-		    overflow-y: scroll;
-		    border: 1px #f2f2f2 solid;
-    		padding: 0 15px;
-    		padding-top: 10px;
+		    height: 470px;
+		    border-left: 1px #f2f2f2 solid;
+		    border-bottom: 1px #f2f2f2 solid;
 			.item{
+				padding: 15px;
+   				padding-bottom: 0;
+   				&:last-child{
+   					.salo{
+   						border-bottom: none;
+   					}
+   				}
 				h4{
 	    			margin: 5px;
 				}
@@ -648,6 +660,8 @@ body{
 	    	line-height: 41px;
 	    	margin: 0;
     		float: left;
+    		position:relative;
+    		left: -15px;
 		    span{
 		    	background: #3d4c54;
 	    		padding: 6px;
@@ -676,11 +690,13 @@ body{
     		float: right;
     		line-height: 41px;
     		select{
-			    height: 39px;
+			    height: 41px;
 			    width: 200px;
-			    padding: 10px;
-			    border: none;
-			    margin-right: 1px;
+			    padding: 0 10px;
+			    margin-right: 0px;
+			    border: 1px #3d4c54 solid;
+			    background: #3d4c54;
+			    color: #fff;
     		}
 		}
 	}

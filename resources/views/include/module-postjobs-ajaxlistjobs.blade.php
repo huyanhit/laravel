@@ -1,4 +1,4 @@
-<div id="list-jobs">
+<div id="list-jobs" class="my_scroll">
     @foreach($jobs as $val)
     <div class="item "> 
         <div class="title col-xs-9">

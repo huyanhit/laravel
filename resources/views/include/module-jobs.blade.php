@@ -20,7 +20,7 @@
         <div class="col-md-4">
              <div class="job-vip">
                 <h3 class="title"><i class="fa fa-star-o"></i> <span>Việc làm tốt</span></h3>
-                <div class="content">
+                <div class="content my_scroll">
                     @foreach($jobsvip as $val)
                     <div class="item">
                         <a href="{{Request::root()}}/viec-lam/noi-dung/{{$val->id}}"><img width="225" height="136" src="{{$val->image}}" class="thumb fl" alt="{{$val->title}}"></a>

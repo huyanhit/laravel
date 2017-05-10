@@ -3,12 +3,12 @@
 </div>
 <header id="header" class="container">
 <div class="row">
-<div class="col-md-3" id="mast-head">
+<div class="col-md-2" id="mast-head">
 	<div id="logo">
 	<a href="{{Request::root()}}" title="Magazine" rel="home"><img src="{{Request::root()}}/resources/assets/images/logo.png" alt="Magazine"></a>
 	</div>
 </div>
-<nav class="col-md-9" class="navbar">
+<nav class="col-md-10" class="navbar">
 	<ul>
 		<li class="icon-home"><a href="{{Request::root()}}"><img src="{{Request::root()}}/resources/assets/images/home.png" alt="Magazine"></a></li>
 		<li class="dropdown"><a href="{{Request::root()}}" class="dropdown-toggle disabled">Trang chủ</a>

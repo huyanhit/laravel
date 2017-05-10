@@ -12,16 +12,22 @@ $(document).ready(function(){
 		  	url: './ajaxjobs',
 		}).done(function( msg ){
 			elem.html(msg);
+			if($('.my_scroll').length){
+		    	$('.my_scroll').jScrollPane();
+		  	}
 		});
 	}
 	elem = $("#ajaxjobs");
-	$('#ajaxjobs').delegate(".ajaxpagin a","click",function(){
+	elem.delegate(".ajaxpagin a","click",function(){
 		url = this.getAttribute( "href" );
 		$.ajax({
 		  	type: 'GET',
 		  	url: url,
 		}).done(function( msg ){
 			elem.html(msg);
+			if($('.my_scroll').length){
+		    	$('.my_scroll').jScrollPane();
+		  	}
 		});
 		return false;
 	});

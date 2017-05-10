@@ -7,6 +7,8 @@
             <div class="panel panel-default">
                 <div class="panel-heading">Đăng nhập</div>
                 <div class="panel-body">
+                    @include('include.module-loginface')
+                    @include('include.module-logingoogle')
                     <form class="form-horizontal" role="form" method="POST" action="{{ url('/login') }}">
                         {{ csrf_field() }}
 

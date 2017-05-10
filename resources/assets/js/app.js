@@ -99,4 +99,7 @@ $(document).ready(function($){
       features: ['playpause','progress'],
     });
   }
+  if($('.my_scroll').length){
+    $('.my_scroll').jScrollPane();
+  }
 });
