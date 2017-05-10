@@ -438,7 +438,16 @@ body{
    		 	margin-top: 0;
 	  		li {
 			  	padding:15px;
-			  	border-bottom:1px solid #f2f2f2;
+			  	position:relative;
+			  	&:before{
+			  		content: "";
+				    border-bottom: 1px #ddd solid;
+				    position: absolute;
+				    height: 1px;
+				    left: 15px;
+				    top: 0;
+				    right: 15px;
+			  	}
 			  	&:last-child{
 			  		border-bottom:none;	
 			  	}

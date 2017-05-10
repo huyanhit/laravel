@@ -238,7 +238,9 @@ body {
     color: #FFF;
     font-size: 11px;
     line-height: 41px;
-    margin: 0; }
+    margin: 0;
+    position: relative;
+    left: -15px; }
     #intro h3 span {
       background: #3d4c54;
       padding: 6px;
@@ -322,7 +324,8 @@ body {
     height: 39px;
     width: 77%;
     padding: 15px;
-    border: none; }
+    height: 41px;
+    border: 1px #f7f7f7 solid; }
   #intro #searchform input[type="submit"] {
     float: right;
     width: 23%;
@@ -391,13 +394,11 @@ body {
     line-height: 41px;
     text-align: center; }
   #news .news-center ul {
-    background: #f2f2f2;
+    background: #ffffff;
     margin: 0;
-    padding: 0px 5px;
-    height: 398px;
-    overflow-y: scroll;
-    border-bottom: 12px #f2f2f2 solid;
-    border-top: 12px #f2f2f2 solid; }
+    height: 396px;
+    border: 1px #f2f2f2 solid;
+    border-right: none; }
     #news .news-center ul li {
       background: #FFF;
       margin: 10px 8px;
@@ -412,71 +413,82 @@ body {
       #news .news-center ul li:last-child {
         margin-bottom: 2px; }
 
-#tabwidget #tabnav {
-  list-style: none;
-  padding: 0;
-  margin: 0; }
-  #tabwidget #tabnav h3 {
-    font-size: 13px;
-    font-weight: normal;
-    margin: 0; }
-  #tabwidget #tabnav li {
-    float: left;
-    width: calc(100%/3); }
-    #tabwidget #tabnav li a {
-      color: #FFF;
-      background: #3d4c54;
-      border-right: 1px solid #485A63;
-      display: block;
-      text-align: center;
-      height: 41px;
-      line-height: 41px;
-      padding: 0; }
-      #tabwidget #tabnav li a i {
-        padding-right: 5px; }
-      #tabwidget #tabnav li a:last-child {
-        border-right: none; }
-      #tabwidget #tabnav li a:hover, #tabwidget #tabnav li a.selected {
-        background: #81b752;
-        text-decoration: none; }
-    #tabwidget #tabnav li img {
-      margin-right: 7px; }
-
-#tabwidget #tab-content {
-  border: 1px solid #f2f2f2;
-  height: 357px;
-  overflow: hidden;
-  overflow-y: scroll;
-  border: 1px solid #f2f2f2; }
-  #tabwidget #tab-content ul {
+#tabwidget {
+  border-bottom: 1px solid #f2f2f2; }
+  #tabwidget #tabnav {
+    list-style: none;
     padding: 0;
-    margin-top: 0; }
-    #tabwidget #tab-content ul li {
-      padding: 15px;
-      border-bottom: 1px solid #f2f2f2; }
-      #tabwidget #tab-content ul li p {
-        margin: 0;
-        padding-top: 5px; }
-      #tabwidget #tab-content ul li > a {
-        float: left; }
-    #tabwidget #tab-content ul:last-child {
-      border-bottom: none; }
-    #tabwidget #tab-content ul img {
-      float: left;
-      margin-right: 15px;
-      width: 90px;
-      height: auto;
-      margin-top: 3px; }
-    #tabwidget #tab-content ul h4 {
+    margin: 0;
+    background: #3d4c54; }
+    #tabwidget #tabnav h3 {
+      font-size: 13px;
+      font-weight: normal;
       margin: 0; }
-  #tabwidget #tab-content.nav {
-    float: right;
-    margin: 0; }
-  #tabwidget #tab-content #tab3 {
-    padding: 0; }
-    #tabwidget #tab-content #tab3 ul li {
-      padding: 15px;
-      border-bottom: 1px solid #f2f2f2; }
+    #tabwidget #tabnav li {
+      float: left;
+      width: calc(100%/3); }
+      #tabwidget #tabnav li a {
+        color: #FFF;
+        background: #3d4c54;
+        border-right: 1px solid #485A63;
+        display: block;
+        text-align: center;
+        height: 41px;
+        line-height: 41px;
+        padding: 0; }
+        #tabwidget #tabnav li a i {
+          padding-right: 5px; }
+        #tabwidget #tabnav li a:last-child {
+          border-right: none; }
+        #tabwidget #tabnav li a:hover, #tabwidget #tabnav li a.selected {
+          background: #81b752;
+          text-decoration: none; }
+      #tabwidget #tabnav li img {
+        margin-right: 7px; }
+  #tabwidget #tab-content {
+    height: 354px;
+    overflow: hidden;
+    overflow-y: scroll;
+    border-left: 1px solid #f2f2f2; }
+    #tabwidget #tab-content ul {
+      padding: 0;
+      margin-top: 0; }
+      #tabwidget #tab-content ul li {
+        padding: 15px;
+        position: relative; }
+        #tabwidget #tab-content ul li:before {
+          content: "";
+          border-bottom: 1px #ddd solid;
+          position: absolute;
+          height: 1px;
+          left: 15px;
+          top: 0;
+          right: 15px; }
+        #tabwidget #tab-content ul li:last-child {
+          border-bottom: none; }
+        #tabwidget #tab-content ul li p {
+          margin: 0;
+          padding-top: 5px; }
+        #tabwidget #tab-content ul li > a {
+          float: left; }
+      #tabwidget #tab-content ul:last-child {
+        border-bottom: none; }
+      #tabwidget #tab-content ul img {
+        float: left;
+        margin-right: 15px;
+        width: 90px;
+        height: auto;
+        margin-top: 3px; }
+      #tabwidget #tab-content ul h4 {
+        margin: 0; }
+    #tabwidget #tab-content.nav {
+      float: right;
+      margin: 0; }
+    #tabwidget #tab-content #tab3 {
+      padding: 0; }
+      #tabwidget #tab-content #tab3 ul li {
+        padding: 15px;
+        border-bottom: 1px solid #f2f2f2; }
 
 #jobs {
   background: #fff;
@@ -516,15 +528,17 @@ body {
       float: right;
       line-height: 41px; }
       #jobs #search-jobs form select {
-        height: 39px;
+        height: 41px;
         width: 200px;
-        padding: 10px;
-        border: none;
-        margin-right: 1px; }
+        padding: 0 10px;
+        margin-right: 0px;
+        border: 1px #3d4c54 solid;
+        background: #3d4c54;
+        color: #fff; }
   #jobs #list-jobs {
-    height: 455px;
+    height: 405px;
     overflow-y: scroll;
-    border: 14px #f2f2f2 solid;
+    border: 1px #f2f2f2 solid;
     border-right: 1px;
     clear: both; }
     #jobs #list-jobs .item {
@@ -549,32 +563,35 @@ body {
     line-height: 41px;
     text-align: center; }
   #jobs .job-vip .content {
-    height: 500px;
-    overflow-y: scroll;
-    border: 1px #f2f2f2 solid;
-    padding: 0 15px;
-    padding-top: 10px; }
-    #jobs .job-vip .content .item h4 {
-      margin: 5px; }
-    #jobs .job-vip .content .item .salo {
-      background: #fff;
-      padding: 10px 0;
-      color: #8abc5e;
-      margin: 10px 0;
-      font-weight: bold;
-      border-bottom: 1px #ccc solid;
-      clear: both; }
-      #jobs .job-vip .content .item .salo span {
-        padding-right: 20px; }
-        #jobs .job-vip .content .item .salo span:last-child {
-          padding-right: 0; }
-        #jobs .job-vip .content .item .salo span i {
-          padding-right: 5px; }
-    #jobs .job-vip .content .item img {
-      width: 100px;
-      height: 100px;
-      margin-right: 15px;
-      float: left; }
+    height: 470px;
+    border-left: 1px #f2f2f2 solid;
+    border-bottom: 1px #f2f2f2 solid; }
+    #jobs .job-vip .content .item {
+      padding: 15px;
+      padding-bottom: 0; }
+      #jobs .job-vip .content .item:last-child .salo {
+        border-bottom: none; }
+      #jobs .job-vip .content .item h4 {
+        margin: 5px; }
+      #jobs .job-vip .content .item .salo {
+        background: #fff;
+        padding: 10px 0;
+        color: #8abc5e;
+        margin: 10px 0;
+        font-weight: bold;
+        border-bottom: 1px #ccc solid;
+        clear: both; }
+        #jobs .job-vip .content .item .salo span {
+          padding-right: 20px; }
+          #jobs .job-vip .content .item .salo span:last-child {
+            padding-right: 0; }
+          #jobs .job-vip .content .item .salo span i {
+            padding-right: 5px; }
+      #jobs .job-vip .content .item img {
+        width: 100px;
+        height: 100px;
+        margin-right: 15px;
+        float: left; }
   #jobs .pagination {
     height: 25px;
     margin-top: 5px;
@@ -617,7 +634,9 @@ body {
       font-size: 11px;
       line-height: 41px;
       margin: 0;
-      float: left; }
+      float: left;
+      position: relative;
+      left: -15px; }
       #masonry #search-adv h3 span {
         background: #3d4c54;
         padding: 6px;
@@ -642,11 +661,13 @@ body {
       float: right;
       line-height: 41px; }
       #masonry #search-adv form select {
-        height: 39px;
+        height: 41px;
         width: 200px;
-        padding: 10px;
-        border: none;
-        margin-right: 1px; }
+        padding: 0 10px;
+        margin-right: 0px;
+        border: 1px #3d4c54 solid;
+        background: #3d4c54;
+        color: #fff; }
   #masonry .list-masonry {
     padding: 0 10px; }
     #masonry .list-masonry .frame-masonry .col {
