@@ -6,10 +6,14 @@ use Illuminate\Database\Eloquent\Model;
 
 class JobsModel extends Model
 {
+	function __construct() {
+       $this->table = "jobs";
+   	}
+
 	public function getAll($data)
 	{
 		if(!empty($data['sort'])){
-			$result = DB::table('jobs')
+			$result = DB::table($this->table)
 			->where('catjobs', 'like', isset($data["filter"]["catjobs"])?$data["filter"]["catjobs"].'%':'%')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
@@ -18,7 +22,7 @@ class JobsModel extends Model
 			->orderby($data['sort']['order'], $data['sort']['by'])
 			->paginate(10);
 		}else{
-			$result = DB::table('jobs')
+			$result = DB::table($this->table)
 			->where('catjobs', 'like', isset($data["filter"]["catjobs"])?$data["filter"]["catjobs"].'%':'%')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
@@ -30,28 +34,28 @@ class JobsModel extends Model
 	}
 	public function deteleId($id)
 	{
-		$result = DB::delete("DELETE FROM jobs WHERE id = ?",[$id]);
+		$result = DB::delete("DELETE FROM ".$this->table." WHERE id = ?",[$id]);
 		return $result;
 	}
 	public function activeId($active,$id)
 	{
-		$result = DB::table('jobs')
+		$result = DB::table($this->table)
             ->where('id', $id)
             ->update(['active' => $active]);
 		return $result;
 	}
-	public function insertjobs($data)
+	public function insertData($data)
 	{	
-		$result = DB::table('jobs')->insertGetId($data);
+		$result = DB::table($this->table)->insertGetId($data);
 		return $result;
 	}
-	public function updatejobs($data,$id)
+	public function updateData($data,$id)
 	{	
-		$result = DB::table('jobs')->where('id',$id)->update($data);
+		$result = DB::table($this->table)->where('id',$id)->update($data);
 		return $result;
 	}
-	public function getjobsbyId($id){
-		$result = DB::table('jobs')->where('id', $id)->first();
+	public function getbyId($id){
+		$result = DB::table($this->table)->where('id', $id)->first();
 		return $result;
 	}
 }

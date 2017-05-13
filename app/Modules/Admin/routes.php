@@ -10,7 +10,9 @@
 | namespace/structure of controllers.
 |
 */
-Route::group(['prefix' => 'admin', 'namespace' => 'App\Modules\Admin\Controllers'], function () {
+    // your routes here
+
+Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\Modules\Admin\Controllers'], function () {
 	
 	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 	Route::post('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);

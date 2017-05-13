@@ -82,7 +82,7 @@ class AdsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->adsModel->insertAds($frm)){
+			if($id = $this->adsModel->insertData($frm)){
 				return redirect('admin/ads/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -90,7 +90,7 @@ class AdsController extends Controller
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$ads = $this->adsModel->getadsbyId($id);
+				$ads = $this->adsModel->getbyId($id);
 				$data['catads'] = $this->catadsModel->getAll();
 				$data['typeads'] = $this->typeadsModel->getAll();
 				$data['location'] = $this->locationModel->getAll();
@@ -143,7 +143,7 @@ class AdsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->adsModel->updateAds($frm,$id);
+			$this->adsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
 			return view('Admin::Ads.insert',$data);
 		}else{

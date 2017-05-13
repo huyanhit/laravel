@@ -85,7 +85,7 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->mutiModel->insertMuti($frm,$_POST['playlist-muti'])){
+			if($id = $this->mutiModel->insertData($frm,$_POST['playlist-muti'])){
 				return redirect('admin/muti/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -93,7 +93,7 @@ class MutiController extends Controller
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$muti = $this->mutiModel->getmutibyId($id);
+				$muti = $this->mutiModel->getbyId($id);
 				$data['catmuti'] = $this->catmutiModel->getAll();
 				$data['typemuti'] = $this->typemutiModel->getAll();
 				$data['frm'] =  
@@ -113,8 +113,8 @@ class MutiController extends Controller
 	
 	public function editMuti(){
 		$id = $_GET['id'];
-		$muti = $this->mutiModel->getmutibyId($id);
-		$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
+		$muti = $this->mutiModel->getbyId($id);
+		$playlistmuti = $this->playlistmutiModel->getbyId($id);
 		$data['playlistmuti'] = $playlistmuti;
 		$data['edit'] = $id;
 		$data['catmuti'] = $this->catmutiModel->getAll();
@@ -150,8 +150,8 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->mutiModel->updateMuti($frm,$id,$_POST['playlist-muti']);
-			$playlistmuti = $this->playlistmutiModel->getmutiplaylistbyId($id);
+			$this->mutiModel->updateData($frm,$id,$_POST['playlist-muti']);
+			$playlistmuti = $this->playlistmutiModel->getbyId($id);
 			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
 			return view('Admin::Muti.insert',$data);
@@ -202,6 +202,6 @@ class MutiController extends Controller
 	}
 	public function completePlaylist(){
 		$complete = $_GET['value'];
-		echo $this->playlistModel->completePlaylist($complete);
+		echo $this->playlistModel->completeData($complete);
 	}
 }

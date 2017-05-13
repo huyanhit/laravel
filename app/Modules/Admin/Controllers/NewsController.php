@@ -36,13 +36,12 @@ class NewsController extends Controller
 			session(['desc'   => $_POST['desc']]);
 			session(['from'   => $_POST['from']]);
 			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
-			$data['filter']['catnews']= session('catnews');
-		    $data['filter']['title']  = session('title');
-		    $data['filter']['desc']   = session('desc');
-		    $data['filter']['from']   = session('from');
-		    $data['filter']['active'] = session('active');
 		}
-
+		$data['filter']['catnews']= session('catnews');
+	    $data['filter']['title']  = session('title');
+	    $data['filter']['desc']   = session('desc');
+	    $data['filter']['from']   = session('from');
+	    $data['filter']['active'] = session('active');
 		if(!empty(session('order')) && !empty(session('by'))){
 			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
 		}else{
@@ -75,7 +74,7 @@ class NewsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->newsModel->insertNews($frm)){
+			if($id = $this->newsModel->insertData($frm)){
 				return redirect('admin/news/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -83,7 +82,7 @@ class NewsController extends Controller
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$news = $this->newsModel->getnewsbyId($id);
+				$news = $this->newsModel->getbyId($id);
 				$data['catnews'] = $this->catnewsModel->getAll();
 				$data['frm'] =  
 			    ['catnews'    => $news->catnews,
@@ -102,7 +101,7 @@ class NewsController extends Controller
 	
 	public function editNews(){
 		$id = $_GET['id'];
-		$news = $this->newsModel->getnewsbyId($id);
+		$news = $this->newsModel->getbyId($id);
 		$data['edit'] = $id;
 		$data['catnews'] = $this->catnewsModel->getAll();
 		$data['frm'] =  
@@ -129,7 +128,7 @@ class NewsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->newsModel->updateNews($frm,$id);
+			$this->newsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
 			return view('Admin::News.insert',$data);
 		}else{

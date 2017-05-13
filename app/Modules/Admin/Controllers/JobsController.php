@@ -86,7 +86,7 @@ class JobsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->jobsModel->insertJobs($frm)){
+			if($id = $this->jobsModel->insertData($frm)){
 				return redirect('admin/jobs/edit?id='.$id);
 			}
 			$data['frm'] = $frm;
@@ -118,7 +118,7 @@ class JobsController extends Controller
 	
 	public function editJobs(){
 		$id = $_GET['id'];
-		$jobs = $this->jobsModel->getjobsbyId($id);
+		$jobs = $this->jobsModel->getbyId($id);
 		$data['edit'] = $id;
 		$data['catjobs'] = $this->catjobsModel->getAll();
 		$data['typejobs'] = $this->typejobsModel->getAll();
@@ -153,7 +153,7 @@ class JobsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->jobsModel->updateJobs($frm,$id);
+			$this->jobsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
 			return view('Admin::Jobs.insert',$data);
 		}else{

@@ -9,19 +9,20 @@ class PlaylistModel extends Model
 {	
 	function __construct()
 	{
+		$this->table = "playlist";
 		$this->playlistmutiModel = new PlaylistmutiModel();
 	}
 	public function getAll($data)
 	{
 		if(!empty($data['sort'])){
-			$result = DB::table('playlist')
+			$result = DB::table($this->table)
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
 			->orderby($data['sort']['order'], $data['sort']['by'])
 			->paginate(10);
 		}else{
-			$result = DB::table('playlist')
+			$result = DB::table($this->table)
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
@@ -31,12 +32,12 @@ class PlaylistModel extends Model
 	}
 	public function deteleId($id)
 	{
-		$result = DB::delete("DELETE FROM playlist WHERE id = ?",[$id]);
+		$result = DB::delete("DELETE FROM ".$this->table." WHERE id = ?",[$id]);
 		return $result;
 	}
 	public function activeId($active,$id)
 	{
-		$result = DB::table('playlist')
+		$result = DB::table($this->table)
             ->where('id', $id)
             ->update(['active' => $active]);
 		return $result;
@@ -48,11 +49,11 @@ class PlaylistModel extends Model
 	{	
 		$str = substr($str, 0, -1);
 		$array = explode(',', $str);
-		$result = DB::table('playlist')->insertGetId($data);
+		$result = DB::table($this->table)->insertGetId($data);
 		foreach($array as $val){
 			$insert =[  'mtid' => $val,
 						'plid' => $result];
-			$this->playlistmutiModel->insertPlaylistmuti($insert);
+			$this->playlistmutiModel->insertData($insert);
 		}
 		return $result;
 	}
@@ -60,25 +61,25 @@ class PlaylistModel extends Model
 	{	
 		$str = substr($str, 0, -1);
 		$array = explode(',', $str);
-		$result = DB::table('playlist')->where('id',$id)->update($data);
+		$result = DB::table($this->table)->where('id',$id)->update($data);
 		// DB::table('mutiplaylist')
 		// ->where('mtid', $id)
 		// ->delete();
-		$this->playlistmutiModel->deletemutiplaylistbyplID($id);
+		$this->playlistmutiModel->deletebyplID($id);
 		foreach($array as $val){
 			$insert =[ 
 					'mtid' => $val,
 					'plid' => $id];
-			$this->playlistmutiModel->insertPlaylistmuti($insert);
+			$this->playlistmutiModel->insertData($insert);
 		}
 		return $result;
 	}
-	public function getplaylistbyId($id){
-		$result = DB::table('playlist')->where('id', $id)->first();
+	public function getbyId($id){
+		$result = DB::table($this->table)->where('id', $id)->first();
 		return $result;
 	}
-	public function completePlaylist($search){
-		$result = DB::table('playlist')
+	public function completeData($search){
+		$result = DB::table($this->table)
 		->select('id','title')
 		->orwhere('title','like',$search.'%')
 		->get();

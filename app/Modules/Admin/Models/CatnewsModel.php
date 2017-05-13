@@ -7,20 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class CatnewsModel extends Model
 {
 	
-
+	function __construct() {
+       $this->table = "catnews";
+   	}
 	public function getAll()
 	{
-		$data = DB::table('catnews')->get();
+		$data = DB::table($this->table)->get();
 		return $data;
 	}
 	public function deteleId($id)
 	{
-		$result = DB::delete("DELETE FROM catnews WHERE id = ?",[$id]);
+		$result = DB::delete("DELETE FROM ".$this->table." WHERE id = ?",[$id]);
 		return $result;
 	}
 	public function activeId($active,$id)
 	{
-		$result = DB::delete("UPDATE catnews SET active = ? WHERE id = ?",[$active,$id]);
+		$result = DB::delete("UPDATE ".$this->table." SET active = ? WHERE id = ?",[$active,$id]);
 		return $result;
 	}
 	

@@ -73,6 +73,7 @@
 			</tr>
 		</thead>
 		<form id="filter" method="post" action="{{Request::url().$urlsort}}">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
 			<tr>
 				<td>
 					#
