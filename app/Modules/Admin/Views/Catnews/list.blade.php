@@ -7,25 +7,7 @@
 				<td>
 					<input type="checkbox" name="checkall" id="checkAll">	
 				</td>
-				<td>
-					<span class="title">Category</span>
-					<span class="sort">
-						<a href="{{Request::url()}}?order=catnews&by=asc">
-							<i class="
-							@if((session('order')=='catnews')&&(session('by')=='asc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-asc" aria-hidden="true"></i>
-						</a>
-						<a href="{{Request::url()}}?order=catnews&by=desc">
-							<i class="
-							@if((session('order')=='catnews')&&(session('by')=='desc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-desc" aria-hidden="true"></i>
-						</a>
-					</span> 
-				</td>
+				
 				<td>
 					<span class="title">Tittle</span>
 					<span class="sort">
@@ -45,65 +27,12 @@
 						</a>
 					</span> 
 				</td>
+				
 				<td>
-					<span class="title">Description</span>
-					<span class="sort">
-						<a href="{{Request::url()}}?order=desc&by=asc">
-							<i class="
-							@if((session('order')=='desc')&&(session('by')=='asc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-asc" aria-hidden="true"></i>
-						</a>
-						<a href="{{Request::url()}}?order=desc&by=desc">
-							<i class="
-							@if((session('order')=='desc')&&(session('by')=='desc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-desc" aria-hidden="true"></i>
-						</a>
-					</span> 
-				</td>
-				<td>
-					<span class="title">Get From</span>
-					<span class="sort">
-						<a href="{{Request::url()}}?order=from&by=asc">
-							<i class="
-							@if((session('order')=='from')&&(session('by')=='asc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-asc" aria-hidden="true"></i>
-						</a>
-						<a href="{{Request::url()}}?order=from&by=desc">
-							<i class="
-							@if((session('order')=='from')&&(session('by')=='desc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-desc" aria-hidden="true"></i>
-						</a>
-					</span>  	
+					<span class="title">Icon</span>
 				</td>
 				<td>
 					Active	
-				</td>
-				<td>
-					<span class="title">View</span>
-					<span class="sort">
-						<a href="{{Request::url()}}?order=view&by=asc">
-							<i class="
-							@if((session('order')=='view')&&(session('by')=='asc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-asc" aria-hidden="true"></i>
-						</a>
-						<a href="{{Request::url()}}?order=view&by=desc">
-							<i class="
-							@if((session('order')=='view')&&(session('by')=='desc'))
-								{{'active'}}
-							@endif
-							fa fa-sort-desc" aria-hidden="true"></i>
-						</a>
-					</span>  
 				</td>
 				<td>
 					Action
@@ -117,29 +46,10 @@
 					#
 				</td>
 				<td>
-					<select  id="catnews" name="catnews">
-						<option 
-					    @if(session('catnews') == '')
-					    {{'selected'}}
-					    @endif
-					    value="choose">Choose</option>
-						@foreach($catnews as $val)
-					  	<option
-					  	@if(session('catnews') == $val->id)
-					  		{{'selected'}}
-					  	@endif
-					  	value="{{$val->id}}">{{$val->title}}</option>
-					  	@endforeach
-					</select>
-				</td>
-				<td>
 					<input type="text" name="title" value="{{session('title')}}">
 				</td>
-				<td>
-					<input type="text" name="desc" value="{{session('desc')}}">
-				</td>
 				<td>	
-					<input type="text" name="from" value="{{session('from')}}">
+					<input type="text" name="icon" value="{{session('icon')}}">
 				</td>
 				<td>
 					<select id="active" name="active">
@@ -160,33 +70,25 @@
 					    value="unactive">Unactive</option>
 					</select> 
 				</td>
-				<td colspan="2">
+				<td >
 					<input type="submit" name="submit" value="Filter">
 					<a class="btn btn-insert pull-right" href="{{Request::url()}}/insert"> Add New </a>
 				</td>
 			</tr>
 		</form>
 		<tbody>
-			@foreach($news as $key => $val)
+			@foreach($data as $key => $val)
 			<tr class="">
 				<td>
 					<input type="checkbox" name="check" data="{{$val->id}}">
 				</td>
-				<td>
-					@foreach($catnews as $vals)
-						@if($val->catnews == $vals->id)
-							{{$vals->title}}
-						@endif
-					@endforeach	
-				</td>
+				
 				<td>
 					{{$val->title}}	
 				</td>
+				
 				<td>
-					{{strip_tags($val->desc)}}	
-				</td>
-				<td>
-					{{$val->from}}	
+					<i class="fa {{$val->icon}}	"></i> {{$val->icon}}
 				</td>
 				<td >
 					@if($val->active == 1)
@@ -194,9 +96,6 @@
 					@else
 						<input type="checkbox" name="active" url="{{Request::url()}}/active?id={{$val->id}}">
 					@endif
-				</td>
-				<td>
-					{{$val->view}}	
 				</td>
 				<td>
 					<a href="{{Request::url()}}/insert?id={{$val->id}}"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
@@ -218,7 +117,7 @@
 			<input type="button" name="updaterss" value="UpdateRss">
 		</div>
 		<div class=" col-md-6 pagination">
-			{!! $news->render() !!}
+			{!! $data->render() !!}
 		</div>
 		<div class=" col-md-3">
 			<a class="btn btn-insert pull-right" href="{{Request::url()}}/insert"> Add New </a>

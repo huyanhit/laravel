@@ -53,7 +53,7 @@ class AdsController extends Controller
 		$result['catads'] = $this->catadsModel->getAll();
 		$result['typeads'] = $this->typeadsModel->getAll();
 		$result['location'] = $this->locationModel->getAll();
-		$result['ads'] = $this->adsModel->getAll($data);
+		$result['ads'] = $this->adsModel->getData($data);
 		foreach ($result['ads'] as $key => $val) {
 			$result['ads'][$key]->title = $this->myFunction->trimText($result['ads'][$key]->title,30);
 			$result['ads'][$key]->desc = $this->myFunction->trimText($result['ads'][$key]->desc,50);
@@ -61,7 +61,7 @@ class AdsController extends Controller
 		return view('Admin::ads.list',$result);
 	}
 
-	public function insertAds()
+	public function insertData()
 	{
 		$data['catads'] = $this->catadsModel->getAll();
 		$data['typeads'] = $this->typeadsModel->getAll();
@@ -110,7 +110,7 @@ class AdsController extends Controller
 		}
 	}
 	
-	public function editAds(){
+	public function editData(){
 		$id = $_GET['id'];
 		$ads = $this->adsModel->getadsbyId($id);
 		$data['edit'] = $id;
@@ -151,14 +151,14 @@ class AdsController extends Controller
 		}
 	}
 
-	public function deleteAds()
+	public function deleteData()
 	{
 		if(isset($_GET['id'])){
 			return $this->adsModel->deteleId($_GET['id']);
 		}
 	}
 
-	public function activeAds()
+	public function activeData()
 	{
 		$active = 0;
 		if($_GET['check'] == 'true'){
@@ -169,7 +169,7 @@ class AdsController extends Controller
 		}
 	}
 
-	public function applyAds()
+	public function applyData()
 	{
 		if(isset($_POST['action'])){
 			switch ((int)$_POST['action']) {

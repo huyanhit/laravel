@@ -54,7 +54,7 @@ class MutiController extends Controller
 		}
 		$result['catmuti'] = $this->catmutiModel->getAll();
 		$result['typemuti'] = $this->typemutiModel->getAll();
-		$result['muti'] = $this->mutiModel->getAll($data);
+		$result['muti'] = $this->mutiModel->getData($data);
 		foreach ($result['muti'] as $key => $val) {
 			$result['muti'][$key]->title = $this->myFunction->trimText($result['muti'][$key]->title,30);
 			$result['muti'][$key]->desc = $this->myFunction->trimText($result['muti'][$key]->desc,50);
@@ -62,7 +62,7 @@ class MutiController extends Controller
 		return view('Admin::muti.list',$result);
 	}
 
-	public function insertMuti()
+	public function insertData()
 	{
 		$data['catmuti'] = $this->catmutiModel->getAll();
 		$data['typemuti'] = $this->typemutiModel->getAll();
@@ -111,7 +111,7 @@ class MutiController extends Controller
 		}
 	}
 	
-	public function editMuti(){
+	public function editData(){
 		$id = $_GET['id'];
 		$muti = $this->mutiModel->getbyId($id);
 		$playlistmuti = $this->playlistmutiModel->getbyId($id);
@@ -160,14 +160,14 @@ class MutiController extends Controller
 		}
 	}
 
-	public function deleteMuti()
+	public function deleteData()
 	{
 		if(isset($_GET['id'])){
 			return $this->mutiModel->deteleId($_GET['id']);
 		}
 	}
 
-	public function activeMuti()
+	public function activeData()
 	{
 		$active = 0;
 		if($_GET['check'] == 'true'){
@@ -178,7 +178,7 @@ class MutiController extends Controller
 		}
 	}
 
-	public function applyMuti()
+	public function applyData()
 	{
 		if(isset($_POST['action'])){
 			switch ((int)$_POST['action']) {

@@ -19,86 +19,99 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\
 
 	Route::get('/news/rss', ['as' => 'news.rss', 'uses' => 'NewsController@updateRss']);
 
-	Route::post('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
-	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertNews']);
+	Route::post('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertData']);
+	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertData']);
 
-	Route::get('/news/delete', ['as' => 'news.delete', 'uses' => 'NewsController@deleteNews']);
+	Route::get('/news/delete', ['as' => 'news.delete', 'uses' => 'NewsController@deleteData']);
 
-	Route::get('/news/active', ['as' => 'news.active', 'uses' => 'NewsController@activeNews']);
+	Route::get('/news/active', ['as' => 'news.active', 'uses' => 'NewsController@activeData']);
 
-	Route::get('/news/edit', ['as'   => 'news.edit', 'uses' => 'NewsController@editNews']);
-	Route::post('/news/edit', ['as'  => 'news.edit', 'uses' => 'NewsController@editNews']);
+	Route::get('/news/edit', ['as'   => 'news.edit', 'uses' => 'NewsController@editData']);
+	Route::post('/news/edit', ['as'  => 'news.edit', 'uses' => 'NewsController@editData']);
 
-	Route::get('/news/apply', ['as'  => 'news.apply','uses' => 'NewsController@applyNews']);
-	Route::post('/news/apply', ['as' => 'news.apply','uses' => 'NewsController@applyNews']);
+	Route::get('/news/apply', ['as'  => 'news.apply','uses' => 'NewsController@applyData']);
+	Route::post('/news/apply', ['as' => 'news.apply','uses' => 'NewsController@applyData']);
 	
+	Route::post('/catnews', ['as' => 'catnews.index', 'uses' => 'CatnewsController@index']);
+	Route::get('/catnews', ['as' => 'catnews.index', 'uses' => 'CatnewsController@index']);
+
+	Route::post('/catnews/insert', ['as' => 'catnews.insert', 'uses' => 'CatnewsController@insertData']);
+	Route::get('/catnews/insert', ['as' => 'catnews.insert', 'uses' => 'CatnewsController@insertData']);
+
+	Route::post('/catnews/edit', ['as' => 'catnews.edit', 'uses' => 'CatnewsController@editData']);
+	Route::get('/catnews/edit', ['as' => 'catnews.edit', 'uses' => 'CatnewsController@editData']);
+
+	Route::get('/catnews/delete', ['as' => 'catnews.delete', 'uses' => 'CatnewsController@deleteData']);
+
+	Route::get('/catnews/active', ['as' => 'catnews.active', 'uses' => 'CatnewsController@activeData']);
+
 
 	Route::get('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
 	Route::post('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
 
-	Route::post('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertJobs']);
-	Route::get('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertJobs']);
+	Route::post('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertData']);
+	Route::get('/jobs/insert', ['as' => 'jobs.insert', 'uses' => 'JobsController@insertData']);
 
-	Route::get('/jobs/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@deleteJobs']);
+	Route::get('/jobs/delete', ['as' => 'jobs.delete', 'uses' => 'JobsController@deleteData']);
 
-	Route::get('/jobs/active', ['as' => 'jobs.active', 'uses' => 'JobsController@activeJobs']);
+	Route::get('/jobs/active', ['as' => 'jobs.active', 'uses' => 'JobsController@activeData']);
 
-	Route::get('/jobs/edit', ['as'   => 'jobs.edit', 'uses' => 'JobsController@editJobs']);
-	Route::post('/jobs/edit', ['as'  => 'jobs.edit', 'uses' => 'JobsController@editJobs']);
+	Route::get('/jobs/edit', ['as'   => 'jobs.edit', 'uses' => 'JobsController@editData']);
+	Route::post('/jobs/edit', ['as'  => 'jobs.edit', 'uses' => 'JobsController@editData']);
 
-	Route::get('/jobs/apply', ['as'  => 'jobs.apply','uses' => 'JobsController@applyJobs']);
-	Route::post('/jobs/apply', ['as' => 'jobs.apply','uses' => 'JobsController@applyJobs']);
+	Route::get('/jobs/apply', ['as'  => 'jobs.apply','uses' => 'JobsController@applyData']);
+	Route::post('/jobs/apply', ['as' => 'jobs.apply','uses' => 'JobsController@applyData']);
 
 
 	Route::get('/ads', ['as' => 'news.index', 'uses' => 'AdsController@index']);
 	Route::post('/ads', ['as' => 'news.index', 'uses' => 'AdsController@index']);
 
-	Route::post('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertAds']);
-	Route::get('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertAds']);
+	Route::post('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertData']);
+	Route::get('/ads/insert', ['as' => 'ads.insert', 'uses' => 'AdsController@insertData']);
 
-	Route::get('/ads/delete', ['as' => 'ads.delete', 'uses' => 'AdsController@deleteAds']);
+	Route::get('/ads/delete', ['as' => 'ads.delete', 'uses' => 'AdsController@deleteData']);
 
-	Route::get('/ads/active', ['as' => 'ads.active', 'uses' => 'AdsController@activeAds']);
+	Route::get('/ads/active', ['as' => 'ads.active', 'uses' => 'AdsController@activeData']);
 
-	Route::get('/ads/edit', ['as'   => 'ads.edit', 'uses' => 'AdsController@editAds']);
-	Route::post('/ads/edit', ['as'  => 'ads.edit', 'uses' => 'AdsController@editAds']);
+	Route::get('/ads/edit', ['as'   => 'ads.edit', 'uses' => 'AdsController@editData']);
+	Route::post('/ads/edit', ['as'  => 'ads.edit', 'uses' => 'AdsController@editData']);
 
-	Route::get('/ads/apply', ['as'  => 'ads.apply','uses' => 'AdsController@applyAds']);
-	Route::post('/ads/apply', ['as' => 'ads.apply','uses' => 'AdsController@applyAds']);
+	Route::get('/ads/apply', ['as'  => 'ads.apply','uses' => 'AdsController@applyData']);
+	Route::post('/ads/apply', ['as' => 'ads.apply','uses' => 'AdsController@applyData']);
 
 
 	Route::get('/muti', ['as' => 'news.index', 'uses' => 'MutiController@index']);
 	Route::post('/muti', ['as' => 'news.index', 'uses' => 'MutiController@index']);
 
-	Route::post('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertMuti']);
-	Route::get('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertMuti']);
+	Route::post('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertData']);
+	Route::get('/muti/insert', ['as' => 'muti.insert', 'uses' => 'MutiController@insertData']);
 
-	Route::get('/muti/delete', ['as' => 'muti.delete', 'uses' => 'MutiController@deleteMuti']);
+	Route::get('/muti/delete', ['as' => 'muti.delete', 'uses' => 'MutiController@deleteData']);
 
-	Route::get('/muti/active', ['as' => 'muti.active', 'uses' => 'MutiController@activeMuti']);
+	Route::get('/muti/active', ['as' => 'muti.active', 'uses' => 'MutiController@activeData']);
 
-	Route::get('/muti/edit', ['as'   => 'muti.edit', 'uses' => 'MutiController@editMuti']);
-	Route::post('/muti/edit', ['as'  => 'muti.edit', 'uses' => 'MutiController@editMuti']);
+	Route::get('/muti/edit', ['as'   => 'muti.edit', 'uses' => 'MutiController@editData']);
+	Route::post('/muti/edit', ['as'  => 'muti.edit', 'uses' => 'MutiController@editData']);
 
-	Route::get('/muti/apply', ['as'  => 'muti.apply','uses' => 'MutiController@applyMuti']);
-	Route::post('/muti/apply', ['as' => 'muti.apply','uses' => 'MutiController@applyMuti']);
+	Route::get('/muti/apply', ['as'  => 'muti.apply','uses' => 'MutiController@applyData']);
+	Route::post('/muti/apply', ['as' => 'muti.apply','uses' => 'MutiController@applyData']);
 
 	Route::get('/playlist', ['as' => 'news.index', 'uses' => 'PlaylistController@index']);
 	Route::post('/playlist', ['as' => 'news.index', 'uses' => 'PlaylistController@index']);
 
-	Route::post('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertPlaylist']);
-	Route::get('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertPlaylist']);
+	Route::post('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertData']);
+	Route::get('/playlist/insert', ['as' => 'playlist.insert', 'uses' => 'PlaylistController@insertData']);
 
-	Route::get('/playlist/delete', ['as' => 'playlist.delete', 'uses' => 'PlaylistController@deletePlaylist']);
+	Route::get('/playlist/delete', ['as' => 'playlist.delete', 'uses' => 'PlaylistController@deleteData']);
 
-	Route::get('/playlist/active', ['as' => 'playlist.active', 'uses' => 'PlaylistController@activePlaylist']);
+	Route::get('/playlist/active', ['as' => 'playlist.active', 'uses' => 'PlaylistController@activeData']);
 
-	Route::get('/playlist/edit', ['as'   => 'playlist.edit', 'uses' => 'PlaylistController@editPlaylist']);
-	Route::post('/playlist/edit', ['as'  => 'playlist.edit', 'uses' => 'PlaylistController@editPlaylist']);
+	Route::get('/playlist/edit', ['as'   => 'playlist.edit', 'uses' => 'PlaylistController@editData']);
+	Route::post('/playlist/edit', ['as'  => 'playlist.edit', 'uses' => 'PlaylistController@editData']);
 
-	Route::get('/playlist/apply', ['as'  => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
-	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyPlaylist']);
+	Route::get('/playlist/apply', ['as'  => 'playlist.apply','uses' => 'PlaylistController@applyData']);
+	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyData']);
 
-	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completePlaylist']);
-	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completeMuti']);
+	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completeData']);
+	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completeData']);
 });

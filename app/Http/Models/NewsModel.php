@@ -198,4 +198,8 @@ class NewsModel extends Model
 		$result = DB::table('news')->where('id',$id)->update(array('view' => $view->view + 1));
 		return $result;
 	}
+
+	public function getNewsTypes(){
+		
+	}
 }

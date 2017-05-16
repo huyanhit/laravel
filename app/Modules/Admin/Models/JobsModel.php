@@ -10,7 +10,7 @@ class JobsModel extends Model
        $this->table = "jobs";
    	}
 
-	public function getAll($data)
+	public function getData($data)
 	{
 		if(!empty($data['sort'])){
 			$result = DB::table($this->table)

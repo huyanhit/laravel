@@ -48,7 +48,7 @@ class NewsController extends Controller
 			$result['urlsort'] = "";
 		}
 		$result['catnews'] = $this->catnewsModel->getAll();
-		$result['news'] = $this->newsModel->getAll($data);
+		$result['news'] = $this->newsModel->getData($data);
 		foreach ($result['news'] as $key => $val) {
 			$result['news'][$key]->title = $this->myFunction->trimText($result['news'][$key]->title,30);
 			$result['news'][$key]->desc = $this->myFunction->trimText($result['news'][$key]->desc,50);
@@ -56,7 +56,7 @@ class NewsController extends Controller
 		return view('Admin::News.list',$result);
 	}
 
-	public function insertNews()
+	public function insertData()
 	{
 		$data['catnews'] = $this->catnewsModel->getAll();
 		$data['frm'] = "";
@@ -99,7 +99,7 @@ class NewsController extends Controller
 		}
 	}
 	
-	public function editNews(){
+	public function editData(){
 		$id = $_GET['id'];
 		$news = $this->newsModel->getbyId($id);
 		$data['edit'] = $id;
@@ -110,6 +110,7 @@ class NewsController extends Controller
 		    'desc'        => $news->desc, 
 		    'content'     => $news->content, 
 		    'from'        => $news->from, 
+		    'image'       => $news->image, 
 		    'active'      => $news->active,  
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
@@ -136,14 +137,14 @@ class NewsController extends Controller
 		}
 	}
 
-	public function deleteNews()
+	public function deleteData()
 	{
 		if(isset($_GET['id'])){
 			return $this->newsModel->deteleId($_GET['id']);
 		}
 	}
 
-	public function activeNews()
+	public function activeData()
 	{
 		$active = 0;
 		if($_GET['check'] == 'true'){
@@ -154,7 +155,7 @@ class NewsController extends Controller
 		}
 	}
 
-	public function applyNews()
+	public function applyData()
 	{
 		if(isset($_POST['action'])){
 			switch ((int)$_POST['action']) {

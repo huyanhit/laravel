@@ -55,7 +55,7 @@ class JobsController extends Controller
 		$result['catjobs'] = $this->catjobsModel->getAll();
 		$result['typejobs'] = $this->typejobsModel->getAll();
 		$result['location'] = $this->locationModel->getAll();
-		$result['jobs'] = $this->jobsModel->getAll($data);
+		$result['jobs'] = $this->jobsModel->getData($data);
 		foreach ($result['jobs'] as $key => $val) {
 			$result['jobs'][$key]->title = $this->myFunction->trimText($result['jobs'][$key]->title,30);
 			$result['jobs'][$key]->desc = $this->myFunction->trimText($result['jobs'][$key]->desc,50);
@@ -63,7 +63,7 @@ class JobsController extends Controller
 		return view('Admin::jobs.list',$result);
 	}
 
-	public function insertJobs()
+	public function insertData()
 	{
 		$data['catjobs'] = $this->catjobsModel->getAll();
 		$data['typejobs'] = $this->typejobsModel->getAll();
@@ -94,7 +94,7 @@ class JobsController extends Controller
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
-				$jobs = $this->jobsModel->getjobsbyId($id);
+				$jobs = $this->jobsModel->getbyId($id);
 				$data['catjobs'] = $this->catjobsModel->getAll();
 				$data['typejobs'] = $this->typejobsModel->getAll();
 				$data['location'] = $this->locationModel->getAll();
@@ -116,7 +116,7 @@ class JobsController extends Controller
 		}
 	}
 	
-	public function editJobs(){
+	public function editData(){
 		$id = $_GET['id'];
 		$jobs = $this->jobsModel->getbyId($id);
 		$data['edit'] = $id;
@@ -161,14 +161,14 @@ class JobsController extends Controller
 		}
 	}
 
-	public function deleteJobs()
+	public function deleteData()
 	{
 		if(isset($_GET['id'])){
 			return $this->jobsModel->deteleId($_GET['id']);
 		}
 	}
 
-	public function activeJobs()
+	public function activeData()
 	{
 		$active = 0;
 		if($_GET['check'] == 'true'){
@@ -179,7 +179,7 @@ class JobsController extends Controller
 		}
 	}
 
-	public function applyJobs()
+	public function applyData()
 	{
 		if(isset($_POST['action'])){
 			switch ((int)$_POST['action']) {

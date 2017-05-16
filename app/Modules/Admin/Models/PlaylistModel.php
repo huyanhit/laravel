@@ -12,7 +12,7 @@ class PlaylistModel extends Model
 		$this->table = "playlist";
 		$this->playlistmutiModel = new PlaylistmutiModel();
 	}
-	public function getAll($data)
+	public function getData($data)
 	{
 		if(!empty($data['sort'])){
 			$result = DB::table($this->table)

@@ -13,6 +13,8 @@
 						<ul class="submenu">
 							<li><a href="{{Request::root().'/admin/news'}}">List</a> </li>
 							<li><a href="{{Request::root().'/admin/news/insert'}}">Insert</a></li>
+							<li><a href="{{Request::root().'/admin/catnews'}}">Categories</a></li>
+							<li><a href="{{Request::root().'/admin/typenews'}}">Types</a></li>
 						</ul>
 					</li>
 					<li><a href="{{Request::root().'/admin/jobs'}}">Jobs</a> 

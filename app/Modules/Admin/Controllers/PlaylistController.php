@@ -48,7 +48,7 @@ class PlaylistController extends Controller
 		}else{
 			$result['urlsort'] = "";
 		}
-		$result['playlist'] = $this->playlistModel->getAll($data);
+		$result['playlist'] = $this->playlistModel->getData($data);
 		foreach ($result['playlist'] as $key => $val) {
 			$result['playlist'][$key]->title = $this->myFunction->trimText($result['playlist'][$key]->title,30);
 			$result['playlist'][$key]->desc = $this->myFunction->trimText($result['playlist'][$key]->desc,50);
@@ -56,7 +56,7 @@ class PlaylistController extends Controller
 		return view('Admin::playlist.list',$result);
 	}
 
-	public function insertPlaylist()
+	public function insertData()
 	{
 		$data['frm'] = "";
 		$data['playlistmuti'] = array();
@@ -98,7 +98,7 @@ class PlaylistController extends Controller
 		}
 	}
 	
-	public function editPlaylist(){
+	public function editData(){
 		$id = $_GET['id']; 
 		$playlist = $this->playlistModel->getbyId($id);
 		$playlistmuti = $this->playlistmutiModel->getbyId($id);
@@ -136,14 +136,14 @@ class PlaylistController extends Controller
 		}
 	}
 
-	public function deletePlaylist()
+	public function deleteData()
 	{
 		if(isset($_GET['id'])){
 			return $this->playlistModel->deteleId($_GET['id']);
 		}
 	}
 
-	public function activePlaylist()
+	public function activeData()
 	{
 		$active = 0;
 		if($_GET['check'] == 'true'){
@@ -154,7 +154,7 @@ class PlaylistController extends Controller
 		}
 	}
 
-	public function applyPlaylist()
+	public function applyData()
 	{
 		if(isset($_POST['action'])){
 			switch ((int)$_POST['action']) {

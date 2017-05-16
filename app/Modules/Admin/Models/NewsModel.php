@@ -11,7 +11,7 @@ class NewsModel extends Model
        $this->table = "news";
    	}
 
-	public function getAll($data)
+	public function getData($data)
 	{
 		if(!empty($data['sort'])){
 			$result = DB::table($this->table)

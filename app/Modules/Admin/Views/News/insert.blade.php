@@ -16,7 +16,7 @@
 		{{Request::url()}}
 	@endif
 	" enctype="multipart/form-data">
-
+		<input type="hidden" name="_token" value="{{ csrf_token() }}">
 	  	<div class="form-group title">
 	    	<label class="control-label col-sm-3">Title</label>
 	    	<div class="col-sm-9">
@@ -47,7 +47,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
-	      		<input type="file" class="form-control" name="feature" id="feature">
+	      		<span><input type="file" class="form-control" name="feature" id="feature">
 	    	</div>
 	 	</div>
 	 	<div class="form-group">

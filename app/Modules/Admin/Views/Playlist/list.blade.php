@@ -103,11 +103,9 @@
 					    value="unactive">Unactive</option>
 					</select> 
 				</td>
-				<td>
-					#
-				</td>
-				<td>
+				<td colspan="2">
 					<input type="submit" name="submit" value=" Filter ">
+					<a class="btn btn-insert pull-right" href="{{Request::url()}}/insert"> Add New </a>
 				</td>
 			</tr>
 		</form>
@@ -156,7 +154,7 @@
 			{!! $playlist->render() !!}
 		</div>
 		<div class=" col-md-3">
-			
+			<a class="btn btn-insert pull-right" href="{{Request::url()}}/insert"> Add New </a>
 		</div>
 	</div>
 </div>
