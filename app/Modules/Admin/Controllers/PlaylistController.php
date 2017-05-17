@@ -62,7 +62,7 @@ class PlaylistController extends Controller
 		$data['playlistmuti'] = array();
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			if(!empty($_FILES["file"]["name"]))
 				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
 			$frm =  
@@ -113,7 +113,7 @@ class PlaylistController extends Controller
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
 				$_FILES["feature"]["name"] = $playlist->image;
 			}

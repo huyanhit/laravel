@@ -69,7 +69,7 @@ class AdsController extends Controller
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			$frm =  
 			    ['id'     	  => NULL,
 			    'catads'      => $_POST['catads'],
@@ -128,7 +128,7 @@ class AdsController extends Controller
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
 				$_FILES["feature"]["name"] = $ads->image;
 			}

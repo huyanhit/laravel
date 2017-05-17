@@ -7,12 +7,19 @@ input, select, button {
 input[type='checkbox'], input[type='radio'] {
   height: auto; }
 
-input[type='submit'], input[type='button'], button, .button {
+input[type='submit'], input[type='button'], button, .button, .btn {
   background: #31708f;
   color: #fff;
-  padding: 0 15px;
+  padding: 5px 15px;
   border: none;
   border-radius: 4px; }
+
+img {
+  border-radius: 5px;
+  width: 50px; }
+
+.inline {
+  display: inline-block; }
 
 #header {
   background: #337ab7;

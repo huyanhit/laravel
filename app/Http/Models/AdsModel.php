@@ -9,6 +9,7 @@ class AdsModel extends Model
 	public function __construct()
     {
         $this->myFunction = new MyFunction();
+        $this->dirimage = '/public/uploads/image/';
     }
     public function getAll($data)
 	{
@@ -53,19 +54,19 @@ class AdsModel extends Model
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
 	        $idtype = $result[$key]->typeads;
 	        $result[$key]->totaldisplay = 0;
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists('public/uploads/image/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
 	            if( $idtype == 2 || $idtype == 6 || $idtype ==8 || $idtype ==9){
-	                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,2,1,'adsshort',400);
+	                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,2,1,'adsshort',400);
 	                $result[$key]->image = url('/').'/public/uploads/adsshort/'.$result[$key]->image;
 	                $result[$key]->totaldisplay = 1;
 	            }else if( $idtype == 3 || $idtype == 7 || $idtype == 10){
-	            	$this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'ads',400);
+	            	$this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'ads',400);
 		            $result[$key]->image = url('/').'/public/uploads/ads/'.$result[$key]->image;
 		            $result[$key]->totaldisplay = 2;
 		        }else if( $idtype == 4 || $idtype == 11){
-	                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,2,3,'adslong',400);
+	                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,2,3,'adslong',400);
 	                $result[$key]->image = url('/').'/public/uploads/adslong/'.$result[$key]->image;
 	                $result[$key]->totaldisplay = 3;
 	            }else{
@@ -168,10 +169,10 @@ class AdsModel extends Model
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,80);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+	        if(empty($result[$key]->image) || !file_exists($this->dirimage.$result[$key]->image)){
 	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
 	        }else{
-	            $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'adsPO',400);
+	            $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'adsPO',400);
 	            $result[$key]->image = url('/').'/public/uploads/adsPO/'.$result[$key]->image;
 	            $result[$key]->totaldisplay = 2;
 	        }
@@ -188,10 +189,10 @@ class AdsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists($this->dirimage.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'adsRC',200);
+                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'adsRC',200);
                 $result[$key]->image = url('/').'/public/uploads/adsRC/'.$result[$key]->image;
             }
         }

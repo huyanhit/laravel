@@ -1,8 +1,14 @@
 <?php 
 namespace App\Library {
 	class MyFunction {
-		public function uploadImage($file){
+		public function uploadImage($file,$dir="image"){
 			$target_dir = "public/uploads/";
+			if(!empty($dir)){
+				$target_dir = "public/uploads/".$dir."/";
+				if(!file_exists($target_dir)){
+					mkdir($target_dir, 0700);
+				}
+			}
 			$target_file = $target_dir.basename($file["name"]);
 		  	$alow = array('jpg','png');
 		  	$name = pathinfo($file["name"], PATHINFO_FILENAME);
@@ -16,6 +22,7 @@ namespace App\Library {
 		  				$file["name"] = $name.$run.'.'.$ext;
 			  		}else{
 						move_uploaded_file($file["tmp_name"],$target_file);
+						$this->cropImage($target_file,1,1,'thumb',100);
 						return $file["name"];
 						break;
 			  		}
@@ -26,8 +33,14 @@ namespace App\Library {
 		  	}
 		}
 
-		public function uploadFile($file){
-			$target_dir = "public/uploads/file/";
+		public function uploadFile($file,$dir = "file"){
+			$target_dir = "public/uploads/";
+			if(!empty($dir)){
+				$target_dir = "public/uploads/".$dir."/";
+				if(!file_exists($target_dir)){
+					mkdir($target_dir, 0700);
+				}
+			}
 			if(!file_exists($target_dir)){
 				mkdir($target_dir, 0700);
 			}
@@ -64,15 +77,15 @@ namespace App\Library {
 		}
 		
 		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb",$resize=0){
-			
+			$target_dir = "public/uploads/";
 		  	$arrext = explode(".", $ini_filename);
 		  	$ext = end($arrext);
 		  	$arrpath = explode("/", $ini_filename);
 		  	$path = end($arrpath);
-			if(!file_exists('public/uploads/'.$save)){
-				mkdir('public/uploads/'.$save, 0700);
+			if(!file_exists($target_dir.$save)){
+				mkdir($target_dir.$save, 0700);
 			}
-			$newpath = 'public/uploads/'.$save.'/'.$path;
+			$newpath = $target_dir.$save.'/'.$path;
 			if(!file_exists($newpath)){
 				header('Content-Type: image/jpeg');
 				if($ext == "gif"){ 
@@ -104,9 +117,7 @@ namespace App\Library {
 				if($resize > 0){
 					$this->resize($newpath, $resize,($resize/$xtl)*$ytl);
 				}
-
 			}
-			  
 		}
 
 		public function resize($ini_filename ,$newwidth = 300, $newheight = 300) {

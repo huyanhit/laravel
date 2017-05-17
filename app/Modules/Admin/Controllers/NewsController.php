@@ -19,6 +19,7 @@ class NewsController extends Controller
 		$this->newsModel    = new NewsModel();
 		$this->catnewsModel = new CatnewsModel();
 		$this->myFunction   = new MyFunction();
+		$this->dirthumb = url('/')."/public/uploads/thumb/";
 	}
 
 	public function index()
@@ -62,7 +63,7 @@ class NewsController extends Controller
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			$frm =  
 			    ['id'     	  => NULL,
 			    'catnews'     => $_POST['catnews'],
@@ -89,7 +90,7 @@ class NewsController extends Controller
 			    'title'       => $news->title, 
 			    'desc'        => $news->desc, 
 			    'content'     => $news->content, 
-			    'image'       => $news->image,
+			    'image'       => $this->dirthumb.$news->image,
 			    'from'        => $news->from, 
 			    'active'      => $news->active,  
 			    'author'      => 1];
@@ -110,12 +111,12 @@ class NewsController extends Controller
 		    'desc'        => $news->desc, 
 		    'content'     => $news->content, 
 		    'from'        => $news->from, 
-		    'image'       => $news->image, 
+		    'image'       => $this->dirthumb.$news->image, 
 		    'active'      => $news->active,  
 		    'author'      => 1];
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
 				$_FILES["feature"]["name"] = $news->image;
 			}
@@ -157,20 +158,21 @@ class NewsController extends Controller
 
 	public function applyData()
 	{
-		if(isset($_POST['action'])){
-			switch ((int)$_POST['action']) {
+		print_r($_GET['data']);
+		if(isset($_GET['action'])){
+			switch ((int)$_GET['action']) {
 				case 1:
-					foreach ($_POST['data'] as $val) {
+					foreach ($_GET['data'] as $val) {
 						$this->newsModel->activeId(1,$val);		
 					}
 				break;
 				case 2:
-					foreach ($_POST['data'] as $val) {
+					foreach ($_GET['data'] as $val) {
 						$this->newsModel->activeId(0,$val);		
 					}
 				break;
 				case 3:
-					foreach ($_POST['data'] as $val) {
+					foreach ($_GET['data'] as $val) {
 						$this->newsModel->deteleId($val);		
 					}
 				break;

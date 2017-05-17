@@ -32,9 +32,9 @@ $(document).ready(function(){
 		$("input[name='check']:checked").each(function(index,elem){
 			data.push($(elem).attr('data'));
 		})
-		console.log(choose.val());
+		console.log(data);
 		$.ajax({
-		  	type: 'POST',
+		  	type: 'GET',
 		  	url: url,
 		  	data: {action: choose.val(), data: data}
 		}).done(function( msg ){
@@ -49,6 +49,7 @@ $(document).ready(function(){
 					$(this).parent().parent().remove();
 				}
 			})
+			location.reload();
 		})
 	})
 	$('input[name="updaterss"]').click(function(){
