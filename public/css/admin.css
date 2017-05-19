@@ -140,6 +140,10 @@ img {
     #list table thead tr span.sort a:hover i {
       color: #f00; }
 
+#list table tbody td {
+  padding: 5px 10px;
+  vertical-align: middle; }
+
 #list table tbody i:before {
   font-size: 20px;
   margin-right: 8px;

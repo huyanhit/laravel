@@ -19,7 +19,6 @@ class NewsController extends Controller
 		$this->newsModel    = new NewsModel();
 		$this->catnewsModel = new CatnewsModel();
 		$this->myFunction   = new MyFunction();
-		$this->dirthumb = url('/')."/public/uploads/thumb/";
 	}
 
 	public function index()
@@ -90,7 +89,7 @@ class NewsController extends Controller
 			    'title'       => $news->title, 
 			    'desc'        => $news->desc, 
 			    'content'     => $news->content, 
-			    'image'       => $this->dirthumb.$news->image,
+			    'image'       => $news->image,
 			    'from'        => $news->from, 
 			    'active'      => $news->active,  
 			    'author'      => 1];
@@ -111,7 +110,7 @@ class NewsController extends Controller
 		    'desc'        => $news->desc, 
 		    'content'     => $news->content, 
 		    'from'        => $news->from, 
-		    'image'       => $this->dirthumb.$news->image, 
+		    'image'       => $news->image, 
 		    'active'      => $news->active,  
 		    'author'      => 1];
 		if(isset($_POST['submit'])){

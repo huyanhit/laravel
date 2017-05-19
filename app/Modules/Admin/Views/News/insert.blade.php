@@ -47,7 +47,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
-	    		<span class="inline"><img src="{{isset($frm['image'])?$frm['image']:''}}"></span>
+	    		<span class="inline"><img src="{{isset($frm['image'])?THUMB_PATH.$frm['image']:''}}"></span>
 	      		<span class="inline"><input type="file" class="form-control" name="feature" id="feature">
 	    	</div>
 	 	</div>

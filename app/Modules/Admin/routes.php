@@ -11,7 +11,9 @@
 |
 */
     // your routes here
-
+define("IMAGE_PATH",url('/').'/public/uploads/image/');
+define("THUMB_PATH",url('/').'/public/uploads/thumb/');
+define("IMAGES_PATH",url('/').'/public/images/');
 Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\Modules\Admin\Controllers'], function () {
 	
 	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
