@@ -11,8 +11,10 @@
 |
 */
 
+define("URL_THUMB_PATH",url('/').'/public/uploads/thumb/');
 
-
+define("UPLOAD_PATH",public_path().'/uploads/');
+define("IMAGES_PATH",public_path().'/images/');
 Route::group(['middleware' => ['web']], function () {
 	/*HOME*/
 	Route::get('/', 'HomeController@index');

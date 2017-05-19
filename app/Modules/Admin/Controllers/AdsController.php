@@ -67,7 +67,7 @@ class AdsController extends Controller
 		$data['typeads'] = $this->typeadsModel->getAll();
 		$data['location'] = $this->locationModel->getAll();
 		$data['frm'] = "";
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			$frm =  
@@ -82,11 +82,13 @@ class AdsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->adsModel->insertData($frm)){
+			if(isset($_POST['submit_edit'])){
+				$id = $this->adsModel->insertData($frm);
 				return redirect('admin/ads/edit?id='.$id);
+			}else{
+				$this->adsModel->insertData($frm);
+				return redirect('admin/ads');
 			}
-			$data['frm'] = $frm;
-			return view('Admin::Ads.insert',$data);
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
@@ -112,7 +114,7 @@ class AdsController extends Controller
 	
 	public function editData(){
 		$id = $_GET['id'];
-		$ads = $this->adsModel->getadsbyId($id);
+		$ads = $this->adsModel->getbyId($id);
 		$data['edit'] = $id;
 		$data['catads'] = $this->catadsModel->getAll();
 		$data['typeads'] = $this->typeadsModel->getAll();
@@ -124,9 +126,10 @@ class AdsController extends Controller
 		    'title'       => $ads->title, 
 		    'desc'        => $ads->desc, 
 		    'content'     => $ads->content, 
+		    'image'       => $ads->image, 
 		    'active'      => $ads->active,  
 		    'author'      => 1];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
@@ -143,9 +146,14 @@ class AdsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->adsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
-			return view('Admin::Ads.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->adsModel->updateData($frm,$id);
+				return view('Admin::Ads.insert',$data);
+			}else{
+				$this->adsModel->updateData($frm,$id);
+				return redirect('admin/ads');
+			}
 		}else{
 			return view('Admin::Ads.insert',$data);
 		}

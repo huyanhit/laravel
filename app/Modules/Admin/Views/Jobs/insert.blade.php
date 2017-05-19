@@ -75,7 +75,8 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
-	      		<input type="file" class="form-control" name="feature" id="feature">
+	      		<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
+	      		<span class="inline"><input type="file" class="form-control " name="feature" id="feature"></span>
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
@@ -106,7 +107,8 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3" ></label>
 	    	<div class="col-sm-9">
-	      		<input type="submit" id="submit" name="submit">
+	      		<input type="submit" id="submit" name="submit" value="Save New">
+	      		<input type="submit" id="submit" name="submit_edit" value="Save & Edit">
 	    	</div>
 	 	</div>
 	</form>

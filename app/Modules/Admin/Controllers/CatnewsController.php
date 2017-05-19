@@ -84,15 +84,20 @@ class CatnewsController extends Controller
 		   ['title'       => $catnews->title,
 		    'icon'        => $catnews->icon, 
 		    'active'      => $catnews->active];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			$frm =  
 			   ['title'       => $_POST['title'], 
 			    'icon'        => $_POST['icon'], 
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    ];
-			$this->catnewsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
-			return view('Admin::Catnews.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->catnewsModel->updateData($frm,$id);
+				return view('Admin::Catnews.insert',$data);
+			}else{
+				$this->catnewsModel->updateData($frm,$id);
+				return redirect('admin/catnews');
+			}
 		}else{
 			return view('Admin::Catnews.insert',$data);
 		}

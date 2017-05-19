@@ -2,9 +2,9 @@
 namespace App\Library {
 	class MyFunction {
 		public function uploadImage($file,$dir="image"){
-			$target_dir = "public/uploads/";
+			$target_dir = UPLOAD_PATH;
 			if(!empty($dir)){
-				$target_dir = "public/uploads/".$dir."/";
+				$target_dir = UPLOAD_PATH.$dir."/";
 				if(!file_exists($target_dir)){
 					mkdir($target_dir, 0700);
 				}
@@ -34,7 +34,7 @@ namespace App\Library {
 		}
 
 		public function uploadFile($file,$dir = "file"){
-			$target_dir = "public/uploads/";
+			$target_dir = UPLOAD_PATH;
 			if(!empty($dir)){
 				$target_dir = "public/uploads/".$dir."/";
 				if(!file_exists($target_dir)){
@@ -77,7 +77,7 @@ namespace App\Library {
 		}
 		
 		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb",$resize=0){
-			$target_dir = "public/uploads/";
+			$target_dir = UPLOAD_PATH;
 		  	$arrext = explode(".", $ini_filename);
 		  	$ext = end($arrext);
 		  	$arrpath = explode("/", $ini_filename);

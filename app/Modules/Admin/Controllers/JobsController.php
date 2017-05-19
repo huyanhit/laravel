@@ -69,7 +69,7 @@ class JobsController extends Controller
 		$data['typejobs'] = $this->typejobsModel->getAll();
 		$data['location'] = $this->locationModel->getAll();
 		$data['frm'] = "";
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			$frm =  
@@ -86,11 +86,13 @@ class JobsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->jobsModel->insertData($frm)){
+			if(isset($_POST['submit_edit'])){
+				$id = $this->jobsModel->insertData($frm);
 				return redirect('admin/jobs/edit?id='.$id);
+			}else{
+				$this->jobsModel->insertData($frm);
+				return redirect('admin/jobs');
 			}
-			$data['frm'] = $frm;
-			return view('Admin::Jobs.insert',$data);
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
@@ -134,7 +136,7 @@ class JobsController extends Controller
 		    'salary'      => $jobs->salary,
 		    'active'      => $jobs->active,  
 		    'author'      => 1];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
@@ -153,9 +155,14 @@ class JobsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->jobsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
-			return view('Admin::Jobs.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->jobsModel->updateData($frm,$id);
+				return view('Admin::Jobs.insert',$data);
+			}else{
+				$this->jobsModel->updateData($frm,$id);
+				return redirect('admin/jobs');
+			}
 		}else{
 			return view('Admin::Jobs.insert',$data);
 		}

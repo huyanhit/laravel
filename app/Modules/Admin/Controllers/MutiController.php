@@ -68,7 +68,7 @@ class MutiController extends Controller
 		$data['typemuti'] = $this->typemutiModel->getAll();
 		$data['frm'] = "";
 		$data['playlistmuti'] = array();
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			if(!empty($_FILES["file"]["name"]))
@@ -85,11 +85,14 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->mutiModel->insertData($frm,$_POST['playlist-muti'])){
-				return redirect('admin/muti/edit?id='.$id);
-			}
 			$data['frm'] = $frm;
-			return view('Admin::Muti.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$id = $this->mutiModel->insertData($frm,$_POST['playlist-muti']);
+				return redirect('admin/muti/edit?id='.$id);
+			}else{
+				$this->mutiModel->insertData($frm);
+				return redirect('admin/muti');
+			}
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
@@ -127,7 +130,7 @@ class MutiController extends Controller
 		    'content'     => $muti->content, 
 		    'active'      => $muti->active,  
 		    'author'      => 1];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
@@ -150,11 +153,16 @@ class MutiController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->mutiModel->updateData($frm,$id,$_POST['playlist-muti']);
-			$playlistmuti = $this->playlistmutiModel->getbyId($id);
-			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
-			return view('Admin::Muti.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->mutiModel->updateData($frm,$id,$_POST['playlist-muti']);
+				$playlistmuti = $this->playlistmutiModel->getbyId($id);
+				$data['playlistmuti'] = $playlistmuti;
+				return view('Admin::Muti.insert',$data);
+			}else{
+				$this->mutiModel->updateData($frm,$id,$_POST['playlist-muti']);
+				return redirect('admin/muti');
+			}
 		}else{
 			return view('Admin::Muti.insert',$data);
 		}

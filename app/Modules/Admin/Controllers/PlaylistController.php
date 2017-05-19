@@ -60,7 +60,7 @@ class PlaylistController extends Controller
 	{
 		$data['frm'] = "";
 		$data['playlistmuti'] = array();
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			if(!empty($_FILES["file"]["name"]))
@@ -74,12 +74,13 @@ class PlaylistController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_create' => time(), 
 			    'author'      => 1];
-
-			if($id = $this->playlistModel->insertData($frm,$_POST['playlist-muti'])){
+			if(isset($_POST['submit_edit'])){
+				$id = $this->playlistModel->insertData($frm,$_POST['playlist-muti']);
 				return redirect('admin/playlist/edit?id='.$id);
+			}else{
+				$this->playlistModel->insertData($frm);
+				return redirect('admin/playlist');
 			}
-			$data['frm'] = $frm;
-			return view('Admin::Playlist.insert',$data);
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
@@ -111,7 +112,7 @@ class PlaylistController extends Controller
 		    'content'     => $playlist->content, 
 		    'active'      => $playlist->active,  
 		    'author'      => 1];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
@@ -126,11 +127,16 @@ class PlaylistController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->playlistModel->updateData($frm,$id,$_POST['playlist-muti']);
 			$playlistmuti = $this->playlistmutiModel->getbyId($id);
 			$data['playlistmuti'] = $playlistmuti;
 			$data['frm'] = $frm;
-			return view('Admin::Playlist.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->playlistModel->updateData($frm,$id,$_POST['playlist-muti']);
+				return view('Admin::Ads.insert',$data);
+			}else{
+				$this->playlistModel->updateData($frm,$id,$_POST['playlist-muti']);
+				return redirect('admin/ads');
+			}
 		}else{
 			return view('Admin::Playlist.insert',$data);
 		}

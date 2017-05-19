@@ -60,7 +60,7 @@ class NewsController extends Controller
 	{
 		$data['catnews'] = $this->catnewsModel->getAll();
 		$data['frm'] = "";
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"]))
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			$frm =  
@@ -74,11 +74,13 @@ class NewsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0,  
 			    'date_create' => time(), 
 			    'author'      => 1];
-			if($id = $this->newsModel->insertData($frm)){
+			if(isset($_POST['submit_edit'])){
+				$id = $this->newsModel->insertData($frm);
 				return redirect('admin/news/edit?id='.$id);
+			}else{
+				$this->newsModel->insertData($frm);
+				return redirect('admin/news');
 			}
-			$data['frm'] = $frm;
-			return view('Admin::News.insert',$data);
 		}else{
 			if(isset($_GET['id'])){
 				$id = $_GET['id'];
@@ -113,7 +115,7 @@ class NewsController extends Controller
 		    'image'       => $news->image, 
 		    'active'      => $news->active,  
 		    'author'      => 1];
-		if(isset($_POST['submit'])){
+		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
 			if(!empty($_FILES["feature"]["name"])){
 				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
 			}else{
@@ -129,9 +131,14 @@ class NewsController extends Controller
 			    'active'      => isset($_POST['active'])? 1 : 0, 
 			    'date_update' => time(),  
 			    'author'      => 1];
-			$this->newsModel->updateData($frm,$id);
 			$data['frm'] = $frm;
-			return view('Admin::News.insert',$data);
+			if(isset($_POST['submit_edit'])){
+				$this->newsModel->updateData($frm,$id);
+				return view('Admin::News.insert',$data);
+			}else{
+				$this->newsModel->updateData($frm,$id);
+				return redirect('admin/news');
+			}
 		}else{
 			return view('Admin::News.insert',$data);
 		}
