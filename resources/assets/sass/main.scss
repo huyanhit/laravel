@@ -170,26 +170,8 @@ body{
     	left: -15px;
 	    span{
 	    	background: #3d4c54;
-    		padding: 6px;
+    		padding: 6px 10px;
    		 	position: relative;
-	    	&:after{
-	    		content: '';
-			    position: absolute;
-			    right: -12px;
-			    background: #3d4c54;
-			    bottom: 0px;
-			    border-left: 13px #3d4c54 solid;
-			    border-bottom: 13px #f7f7f7 solid;
-	    	}
-	    	&:before{
-	    		content: '';
-			    position: absolute;
-			    right: -12px;
-			    background: #3d4c54;
-			    top: 0px;
-			    border-left: 13px #3d4c54 solid;
-			    border-top: 13px #f7f7f7 solid;
-	    	}
 	    }
 	}
 	.simply-scroll-container { 
@@ -361,6 +343,10 @@ body{
 		    height: 41px;
 		    line-height: 41px;
 		    text-align: center;
+
+		}
+		h4{
+			font-weight: normal;
 		}
 		ul{
 			background: #ffffff;
@@ -370,7 +356,7 @@ body{
    			border-right: none;
 			li{
 			    background: #FFF;
-    			margin: 10px 8px;
+    			margin: 0px  8px;
     			margin-right: 0;
     			padding: 10px;
 			    list-style: none;
@@ -436,6 +422,7 @@ body{
 	  	ul{
    		 	padding: 0;
    		 	margin-top: 0;
+			list-style: none;
 	  		li {
 			  	padding:15px;
 			  	position:relative;
@@ -504,26 +491,17 @@ body{
     		float: left;
 		    span{
 		    	background: #3d4c54;
-	    		padding: 6px;
+	    		padding: 6px 10px;
 	   		 	position: relative;
-		    	&:after{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    bottom: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-bottom: 13px #f7f7f7 solid;
-		    	}
-		    	&:before{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    top: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-top: 13px #f7f7f7 solid;
-		    	}
+				&:before{
+					content: '';
+					position: absolute;
+					right: -5px;
+					background: #3d4c54;
+					top: 0px;
+					border-left: 6px #3d4c54 solid;
+					border-top: 20px #fff solid;
+				}
 		    }
 		}
 		form{
@@ -635,15 +613,15 @@ body{
 	    }
 		a,span{
 			background: #3d4c54;
-		    height: 25px;
-		    display: inline-block;
-		    width: 25px;
-		    text-align: center;
-		    line-height: 25px;
-		    margin-right: 5px;
-		    color: #fff;
-		    border: 1px #3d4c54 solid;
-		    box-sizing: content-box;
+			height: 10px;
+			display: inline-block;
+			width: 10px;
+			text-align: center;
+			line-height: 10px;
+			margin-right: 5px;
+			color: #fff;
+			border: 1px #3d4c54 solid;
+			box-sizing: content-box;
 		}
 	}
 }
@@ -673,26 +651,8 @@ body{
     		left: -15px;
 		    span{
 		    	background: #3d4c54;
-	    		padding: 6px;
+	    		padding: 6px 10px;
 	   		 	position: relative;
-		    	&:after{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    bottom: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-bottom: 13px #f7f7f7 solid;
-		    	}
-		    	&:before{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    top: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-top: 13px #f7f7f7 solid;
-		    	}
 		    }
 		}
 		form{
@@ -767,26 +727,17 @@ body{
     		float: left;
 		    span{
 		    	background: #3d4c54;
-	    		padding: 6px;
+				padding: 6px 10px;
 	   		 	position: relative;
-		    	&:after{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    bottom: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-bottom: 13px #f7f7f7 solid;
-		    	}
-		    	&:before{
-		    		content: '';
-				    position: absolute;
-				    right: -12px;
-				    background: #3d4c54;
-				    top: 0px;
-				    border-left: 13px #3d4c54 solid;
-				    border-top: 13px #f7f7f7 solid;
-		    	}
+				&:before{
+					content: '';
+					position: absolute;
+					right: -5px;
+					background: #3d4c54;
+					top: 0px;
+					border-left: 6px #3d4c54 solid;
+					border-top: 20px #fff solid;
+				}
 		    }
 		}
 	}
@@ -1105,23 +1056,14 @@ body{
 	    	background: #3d4c54;
     		padding: 6px 10px;
    		 	position: relative;
-	    	&:after{
-	    		content: '';
-			    position: absolute;
-			    right: -12px;
-			    background: #3d4c54;
-			    bottom: 0px;
-			    border-left: 13px #3d4c54 solid;
-			    border-bottom: 13px #fff solid;
-	    	}
 	    	&:before{
-	    		content: '';
-			    position: absolute;
-			    right: -12px;
-			    background: #3d4c54;
-			    top: 0px;
-			    border-left: 13px #3d4c54 solid;
-			    border-top: 13px #fff solid;
+				content: '';
+				position: absolute;
+				right: -5px;
+				background: #3d4c54;
+				top: 0px;
+				border-left: 6px #3d4c54 solid;
+				border-top: 20px #fff solid;
 	    	}
 	    }
 	}

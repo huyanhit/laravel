@@ -30,11 +30,11 @@ class CatnewsModel extends Model
 	}
 	public function getAll()
 	{
-		$data = DB::table($this->table)->get();
+		$data = DB::table($this->table)->where('active', 1)->get();
 		return $data;
 	}
 	public function getbyId($id){
-		$result = DB::table($this->table)->where('id', $id)->first();
+		$result = DB::table($this->table)->where('id', $id)->where('active', 1)->first();
 		return $result;
 	}
 	public function activeId($active,$id)

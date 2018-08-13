@@ -8,7 +8,6 @@ $(document).ready(function(){
 		  	data : {check: $(this).is(':checked')},
 		}).done(function( msg ){});
 	});
-	
 	$('a.ajaxdelete').click(function(){
 		url = this.getAttribute( "href" );
 		if(!confirm("do you Want to delete?")){
@@ -24,7 +23,6 @@ $(document).ready(function(){
 		});
 		return false;
 	});
-
 	$('input[name="apply"]').click(function(){
 		data = new Array();
 		var choose = $('select[name="apply"]');
@@ -32,12 +30,12 @@ $(document).ready(function(){
 		$("input[name='check']:checked").each(function(index,elem){
 			data.push($(elem).attr('data'));
 		})
-		console.log(data);
 		$.ajax({
 		  	type: 'GET',
 		  	url: url,
 		  	data: {action: choose.val(), data: data}
 		}).done(function( msg ){
+			var reload = false;
 			$("input[name='check']:checked").each(function(index,elem){
 				if(choose.val() == '1'){
 					$(this).parent().parent().find("input[name='active']").prop('checked', this.checked);
@@ -47,11 +45,15 @@ $(document).ready(function(){
 				}
 				else if(choose.val() == '3'){
 					$(this).parent().parent().remove();
+                    reload = true;
 				}
-			})
-			location.reload();
+			});
+
+			if(reload){
+                window.location.reload(false);
+            }
 		})
-	})
+	});
 	$('input[name="updaterss"]').click(function(){
 		$.ajax({
 		  	type: 'GET',
@@ -59,14 +61,16 @@ $(document).ready(function(){
 		}).done(function( msg ){
 			alert('success');
 		})
-	})
-	$("#searchmuti").keyup(function(){
+	});
+	$("#playlist").keyup(function(){
+		console.log($(this).val());
 		value = $(this).val();
+        id = $('#hidden_playlist').val();
 		url =  "./getfile",
 		$.ajax({
 		  	type: 'get',
 		  	url: url,
-		  	data: {value: value}
+		  	data: {value: value,id: id}
 		}).done(function( html ){
 			$('#listchoose').html(html);
 		})
@@ -90,7 +94,7 @@ $(document).ready(function(){
 		$('#playlist-muti').val(text+id+',');
 		html += "<li data='"+id+"'>"+ val +"<span class='btn-delete'>delete</span></li>";
 		$('#listadd').html(html);
-	})
+	});
 	$('#listadd').on('click','.btn-delete',function(){
 		val = $(this).parent().remove();
 		$('#playlist-muti').val('');
@@ -99,7 +103,7 @@ $(document).ready(function(){
 			text += $(elem).attr('data')+',';
 		})
 		$('#playlist-muti').val(text);
-	})
+	});
 });
 $(document).ajaxSend(function() {
    $("#ajaxsend").show();

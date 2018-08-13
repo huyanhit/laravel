@@ -1,11 +1,11 @@
 <div id="ajaxsend">
-	<img src="{{Request::root()}}/resources/assets/images/ajax-loader.gif">
+	<img src="{{Request::root()}}/app/Modules/Admin/Views/Assets/images/ajax-loader.gif">
 </div>
 <div id="header">
 	<div class="container-fluid">
 		<div class="row">
 			<div class="col-md-2" id="logo">
-				Administrator
+				<a href="{{Request::root().'/admin'}}">Administrator</a>
 			</div>
 			<div class="col-md-7">
 				<ul id="menu">
@@ -46,7 +46,7 @@
 			<div class="col-md-3">
 				<div class="avata">
 					<a href="#">
-						<img src="{{Request::root()}}/resources/assets/images/user.png" alt="Magazine">
+						<img src="{{Request::root()}}/app/Modules/Admin/Views/Assets/images/user.png" alt="Magazine">
 					</a>
 				</div>
 				<div class="welcome">
@@ -57,7 +57,24 @@
 						Logout
 					</a>
 				</div>
+				<div class="home-page pull-right">
+					<i class="fa fa-home" aria-hidden="true"></i>
+					<a target="_blank" href="{{Request::root()}}">
+						Home Page
+					</a>
+				</div>
 			</div>
 		</div>
 	</div>
 </div>
+@if ($errors->any())
+<div class="container">
+	<div class="alert alert-danger">
+		<ul>
+			@foreach ($errors->all() as $error)
+				<li>{{ $error }}</li>
+			@endforeach
+		</ul>
+	</div>
+</div>
+@endif

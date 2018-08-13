@@ -1,9 +1,11 @@
 <?php 
 namespace App\Modules\Admin\Controllers;
 
+use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Modules\Admin\Models\NewsModel;
 use App\Modules\Admin\Models\CatnewsModel;
+use App\Modules\Admin\Models\SystemModel;
 use App\Library\MyFunction;
 
 /**
@@ -14,177 +16,235 @@ use App\Library\MyFunction;
  */
 class NewsController extends Controller
 {
-	function __construct()
+	function __construct(Request $request)
 	{
+	    $this->images       = 'news';
+        $this->thum_images  = 'thum_news';
+        $this->request      = $request;
 		$this->newsModel    = new NewsModel();
 		$this->catnewsModel = new CatnewsModel();
+        $this->systemModel  = new SystemModel();
 		$this->myFunction   = new MyFunction();
 	}
 
 	public function index()
 	{
 		$data = array();
-		if(isset($_GET['order']) && isset($_GET['by'])){
-			session(['order' => $_GET['order']]);
-			session(['by'    => $_GET['by']]);
-			$data['sort']['order'] = $_GET['order'];
-			$data['sort']['by']    = $_GET['by'];
+
+		if($this->request->get('order') && $this->request->get('by')){
+			session(['order' => $this->request->get('order')]);
+			session(['by'    => $this->request->get('by')]);
+			$data['sort']['order'] = $this->request->get('order');
+			$data['sort']['by']    = $this->request->get('by');
+		}else{
+            $data['sort']['order'] = 'id';
+            $data['sort']['by']    = 'DESC';
+        }
+
+		if($this->request->input('submit')){
+			session(['catnews'=> ($this->request->input('catnews') != 'choose')? $this->request->input('catnews') : null ]);
+            session(['positions'=> ($this->request->input('positions') != 'choose')? $this->request->input('positions') : null ]);
+            session(['title'  => $this->request->input('title')]);
+			session(['desc'   => $this->request->input('desc')]);
+			session(['from'   => $this->request->input('from')]);
+			session(['active' => ($this->request->input('active')=='active')? 1 :(($this->request->input('active')=='unactive')? 0 : null)]);
+            $data['filter']['catnews']= session('catnews');
+            $data['filter']['positions']= session('positions');
+            $data['filter']['title']  = session('title');
+            $data['filter']['desc']   = session('desc');
+            $data['filter']['from']   = session('from');
+            $data['filter']['active'] = session('active');
 		}
-		if(isset($_POST['submit'])){
-			session(['catnews'=> ($_POST['catnews']!='choose')? $_POST['catnews'] : null ]);
-			session(['title'  => $_POST['title']]);
-			session(['desc'   => $_POST['desc']]);
-			session(['from'   => $_POST['from']]);
-			session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
-		}
-		$data['filter']['catnews']= session('catnews');
-	    $data['filter']['title']  = session('title');
-	    $data['filter']['desc']   = session('desc');
-	    $data['filter']['from']   = session('from');
-	    $data['filter']['active'] = session('active');
-		if(!empty(session('order')) && !empty(session('by'))){
+
+	    if(!empty(session('order')) && !empty(session('by'))){
 			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
 		}else{
 			$result['urlsort'] = "";
 		}
+
 		$result['catnews'] = $this->catnewsModel->getAll();
+        $result['positions'] = $this->systemModel->getAll('news_position');
 		$result['news'] = $this->newsModel->getData($data);
+
 		foreach ($result['news'] as $key => $val) {
 			$result['news'][$key]->title = $this->myFunction->trimText($result['news'][$key]->title,30);
 			$result['news'][$key]->desc = $this->myFunction->trimText($result['news'][$key]->desc,50);
         }
-		return view('Admin::News.list',$result);
+
+        return view('Admin::News.list',$result);
 	}
 
 	public function insertData()
 	{
-		$data['catnews'] = $this->catnewsModel->getAll();
-		$data['frm'] = "";
-		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
-			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
-			$frm =  
-			    ['id'     	  => NULL,
-			    'catnews'     => $_POST['catnews'],
-			    'title'       => $_POST['title'], 
-			    'desc'        => $_POST['desc'], 
-			    'content'     => $_POST['content'], 
-			    'image'       => $_FILES["feature"]["name"], 
-			    'from'        => $_POST['from'], 
-			    'active'      => isset($_POST['active'])? 1 : 0,  
-			    'date_create' => time(), 
-			    'author'      => 1];
-			if(isset($_POST['submit_edit'])){
-				$id = $this->newsModel->insertData($frm);
-				return redirect('admin/news/edit?id='.$id);
-			}else{
-				$this->newsModel->insertData($frm);
-				return redirect('admin/news');
-			}
-		}else{
-			if(isset($_GET['id'])){
-				$id = $_GET['id'];
-				$news = $this->newsModel->getbyId($id);
-				$data['catnews'] = $this->catnewsModel->getAll();
-				$data['frm'] =  
-			    ['catnews'    => $news->catnews,
-			    'title'       => $news->title, 
-			    'desc'        => $news->desc, 
-			    'content'     => $news->content, 
-			    'image'       => $news->image,
-			    'from'        => $news->from, 
-			    'active'      => $news->active,  
-			    'author'      => 1];
-				return view('Admin::News.insert',$data);
-			}
-			return view('Admin::News.insert',$data);
-		}
+		$data['frm'] = array();
+        $catnews = $this->catnewsModel->getAll();
+        $data['catnews'] = array();
+        foreach ($catnews as $value){
+            $data['catnews'][$value->id] = $value->title;
+        }
+
+        $data['positions']      = $this->systemModel->getList('news_position');
+
+        if($this->request->input('submit') || $this->request->input('submit_edit')){
+
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catnews' => 'required',
+                'positions' => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'from' => 'required'
+            ));
+
+            if(!empty($_FILES["feature"]["name"]))
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+
+            $frm =
+                ['id'     	  => NULL,
+                'catnews'     => $this->request->input('catnews'),
+                'positions'   => $this->request->input('positions'),
+                'title'       => $this->request->input('title'),
+                'desc'        => $this->request->input('desc'),
+                'content'     => $this->request->input('content'),
+                'image'       => $_FILES["feature"]["name"],
+                'from'        => $this->request->input('from'),
+                'active'      => $this->request->input('active')? 1 : 0,
+                'date_create' => time(),
+                'author'      => 1];
+
+            if($this->request->input('submit_edit')){
+                $id = $this->newsModel->insertData($frm);
+                return redirect('admin/news/edit?id='.$id);
+            }else{
+                $this->newsModel->insertData($frm);
+                return redirect('admin/news');
+            }
+
+        }elseif($this->request->get('id')){
+            $id = $this->request->get('id');
+            $news = $this->newsModel->getbyId($id);
+            $data['frm'] =
+            ['catnews'    => $news->catnews,
+            'positions'   => $news->positions,
+            'title'       => $news->title,
+            'desc'        => $news->desc,
+            'content'     => $news->content,
+            'image'       => $news->image,
+            'from'        => $news->from,
+            'active'      => $news->active,
+            'author'      => 1];
+        }
+
+        return view('Admin::News.insert',$data);
 	}
 	
 	public function editData(){
-		$id = $_GET['id'];
-		$news = $this->newsModel->getbyId($id);
-		$data['edit'] = $id;
-		$data['catnews'] = $this->catnewsModel->getAll();
-		$data['frm'] =  
-		   ['catnews'     => $news->catnews,
-		    'title'       => $news->title, 
-		    'desc'        => $news->desc, 
-		    'content'     => $news->content, 
-		    'from'        => $news->from, 
-		    'image'       => $news->image, 
-		    'active'      => $news->active,  
-		    'author'      => 1];
-		if(isset($_POST['submit']) || isset($_POST['submit_edit'])){
-			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
-			}else{
-				$_FILES["feature"]["name"] = $news->image;
-			}
-			$frm =  
-			   ['catnews'     => $_POST['catnews'],
-			    'title'       => $_POST['title'], 
-			    'desc'        => $_POST['desc'], 
-			    'content'     => $_POST['content'], 
-			    'image'       => $_FILES["feature"]["name"], 
-			    'from'        => $_POST['from'], 
-			    'active'      => isset($_POST['active'])? 1 : 0, 
-			    'date_update' => time(),  
+        $id = $this->request->get('id');
+        $data['edit'] = $id;
+
+        $catnews = $this->catnewsModel->getAll();
+        $data['catnews'] = array();
+        foreach ($catnews as $value){
+            $data['catnews'][$value->id] = $value->title;
+        }
+
+        $data['positions']      = $this->systemModel->getList('news_position');
+
+        $news = $this->newsModel->getbyId($id);
+		if($this->request->input('submit') || $this->request->input('submit_edit')){
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catnews' => 'required',
+                'positions' => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'from' => 'required'
+            ));
+
+		    if(!empty($_FILES["feature"]["name"])){
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+            }else{
+                $_FILES["feature"]["name"] = $news->image;
+            }
+
+            $data['frm'] =
+			   ['catnews'     => $this->request->input('catnews'),
+                'positions'   => $this->request->input('positions'),
+			    'title'       => $this->request->input('title'),
+			    'desc'        => $this->request->input('desc'),
+			    'content'     => $this->request->input('content'),
+			    'image'       => $_FILES["feature"]["name"],
+			    'from'        => $this->request->input('from'),
+			    'active'      => $this->request->input('active')? 1 : 0,
+			    'date_update' => time(),
 			    'author'      => 1];
-			$data['frm'] = $frm;
-			if(isset($_POST['submit_edit'])){
-				$this->newsModel->updateData($frm,$id);
+
+			if($this->request->input('submit_edit')){
+				$this->newsModel->updateData($data['frm'], $id);
+
 				return view('Admin::News.insert',$data);
 			}else{
-				$this->newsModel->updateData($frm,$id);
+				$this->newsModel->updateData($data['frm'], $id);
+
 				return redirect('admin/news');
 			}
 		}else{
+            $data['frm'] =
+                ['catnews'     => $news->catnews,
+                'positions'   => $news->positions,
+                'title'       => $news->title,
+                'desc'        => $news->desc,
+                'content'     => $news->content,
+                'from'        => $news->from,
+                'image'       => $news->image,
+                'active'      => $news->active,
+                'author'      => 1];
+
 			return view('Admin::News.insert',$data);
 		}
 	}
 
 	public function deleteData()
 	{
-		if(isset($_GET['id'])){
-			return $this->newsModel->deteleId($_GET['id']);
+		if($this->request->get('id')){
+			return $this->newsModel->deteleId($this->request->get('id'));
 		}
 	}
 
 	public function activeData()
 	{
 		$active = 0;
-		if($_GET['check'] == 'true'){
+		if($this->request->get('check') == 'true'){
 			$active = 1;
 		}
-		if(isset($_GET['id'])){
-			return $this->newsModel->activeId($active,$_GET['id']);
+		if($this->request->get('id')){
+			return $this->newsModel->activeId($active,$this->request->get('id'));
 		}
 	}
 
 	public function applyData()
 	{
-		print_r($_GET['data']);
-		if(isset($_GET['action'])){
-			switch ((int)$_GET['action']) {
+		if($this->request->get('action')){
+			switch ((int)$this->request->get('action')) {
 				case 1:
-					foreach ($_GET['data'] as $val) {
+					foreach ($this->request->get('data') as $val) {
 						$this->newsModel->activeId(1,$val);		
 					}
 				break;
 				case 2:
-					foreach ($_GET['data'] as $val) {
+					foreach ($this->request->get('data') as $val) {
 						$this->newsModel->activeId(0,$val);		
 					}
 				break;
 				case 3:
-					foreach ($_GET['data'] as $val) {
+					foreach ($this->request->get('data') as $val) {
 						$this->newsModel->deteleId($val);		
 					}
 				break;
 			}
 		}
 	}
+
 	public function updateRss()
 	{
 		$this->newsModel->importRss('http://vnexpress.net/rss/tin-moi-nhat.rss','VnExpress');

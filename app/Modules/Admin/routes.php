@@ -22,7 +22,6 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\
 	Route::get('/news/insert', ['as' => 'news.insert', 'uses' => 'NewsController@insertData']);
 
 	Route::get('/news/delete', ['as' => 'news.delete', 'uses' => 'NewsController@deleteData']);
-
 	Route::get('/news/active', ['as' => 'news.active', 'uses' => 'NewsController@activeData']);
 
 	Route::get('/news/edit', ['as'   => 'news.edit', 'uses' => 'NewsController@editData']);
@@ -41,8 +40,10 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\
 	Route::get('/catnews/edit', ['as' => 'catnews.edit', 'uses' => 'CatnewsController@editData']);
 
 	Route::get('/catnews/delete', ['as' => 'catnews.delete', 'uses' => 'CatnewsController@deleteData']);
-
 	Route::get('/catnews/active', ['as' => 'catnews.active', 'uses' => 'CatnewsController@activeData']);
+
+    Route::get('/catnews/apply', ['as'  => 'catnews.apply','uses' => 'CatnewsController@applyData']);
+    Route::post('/catnews/apply', ['as' => 'catnews.apply','uses' => 'CatnewsController@applyData']);
 
 
 	Route::get('/jobs', ['as' => 'news.index', 'uses' => 'JobsController@index']);
@@ -112,5 +113,4 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\
 	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyData']);
 
 	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completeData']);
-	Route::get('/playlist/getfile', ['as' => 'muti.file', 'uses' => 'PlaylistController@completeData']);
 });

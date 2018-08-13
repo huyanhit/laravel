@@ -16,19 +16,23 @@ class NewsModel extends Model
 		if(!empty($data['sort'])){
 			$result = DB::table($this->table)
 			->where('catnews', 'like', isset($data["filter"]["catnews"])?$data["filter"]["catnews"].'%':'%')
+            ->where('positions', 'like', isset($data["filter"]["positions"])?$data["filter"]["positions"].'%':'%')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
 			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
 			->orderby($data['sort']['order'], $data['sort']['by'])
+            ->where('active', 1)
 			->paginate(10);
 		}else{
 			$result = DB::table($this->table)
 			->where('catnews', 'like', isset($data["filter"]["catnews"])?$data["filter"]["catnews"].'%':'%')
+            ->where('positions', 'like', isset($data["filter"]["positions"])?$data["filter"]["positions"].'%':'%')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
 			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+            ->where('active', 1)
 			->paginate(10);
 		}
 		return $result;
@@ -56,7 +60,7 @@ class NewsModel extends Model
 		return $result;
 	}
 	public function getbyId($id){
-		$result = DB::table($this->table)->where('id', $id)->first();
+		$result = DB::table($this->table)->where('id', $id)->where('active', 1)->first();
 		return $result;
 	}
 	public function googleRss(){

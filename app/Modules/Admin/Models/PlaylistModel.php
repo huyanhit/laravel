@@ -3,15 +3,18 @@ namespace App\Modules\Admin\Models;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\Admin\Models\PlaylistmutiModel;
 
 class PlaylistModel extends Model
 {	
 	function __construct()
 	{
 		$this->table = "playlist";
-		$this->playlistmutiModel = new PlaylistmutiModel();
 	}
+    public function getAll()
+    {
+        $data = DB::table($this->table)->get();
+        return $data;
+    }
 	public function getData($data)
 	{
 		if(!empty($data['sort'])){
@@ -42,50 +45,36 @@ class PlaylistModel extends Model
             ->update(['active' => $active]);
 		return $result;
 	}
-	private function insertPlaylistmuti($data){
-		DB::table('mutiplaylist')->insertGetId($data);
+	public function insertData($data)
+	{
+		DB::table($this->table)->insertGetId($data);
 	}
-	public function insertPlaylist($data,$str)
-	{	
-		$str = substr($str, 0, -1);
-		$array = explode(',', $str);
-		$result = DB::table($this->table)->insertGetId($data);
-		foreach($array as $val){
-			$insert =[  'mtid' => $val,
-						'plid' => $result];
-			$this->playlistmutiModel->insertData($insert);
-		}
-		return $result;
+
+	public function updateData($data,$id)
+	{
+	    DB::table($this->table)->where('id',$id)->update($data);
 	}
-	public function updatePlaylist($data,$id,$str)
-	{	
-		$str = substr($str, 0, -1);
-		$array = explode(',', $str);
-		$result = DB::table($this->table)->where('id',$id)->update($data);
-		// DB::table('mutiplaylist')
-		// ->where('mtid', $id)
-		// ->delete();
-		$this->playlistmutiModel->deletebyplID($id);
-		foreach($array as $val){
-			$insert =[ 
-					'mtid' => $val,
-					'plid' => $id];
-			$this->playlistmutiModel->insertData($insert);
-		}
-		return $result;
-	}
+
 	public function getbyId($id){
 		$result = DB::table($this->table)->where('id', $id)->first();
 		return $result;
 	}
-	public function completeData($search){
+	public function completeData($id,$search){
 		$result = DB::table($this->table)
-		->select('id','title')
-		->orwhere('title','like',$search.'%')
+		->select('playlist.id','playlist.title','muti_playlist.muti_id')
+        ->leftJoin('muti_playlist',function($join)use($id){
+            $join->on('muti_playlist.playlist_id','=','playlist.id');
+            $join->on('muti_playlist.muti_id','=',DB::raw("'".$id."'"));
+        })
+        ->where('playlist.title','like',$search.'%')
 		->get();
-		$html = '';
+        $html = '';
 		foreach ($result as $value) {
-			$html .= '<li><span class="title">'.$value->title.' </span><span class="btn-add" val='.$value->id.'>Add</span></li>';
+            $check = '';
+		    if($value->muti_id){
+                $check = 'checked';
+            }
+			$html .= '<li><span class="title">'.$value->title.' </span><input type="checkbox" '.$check.' value="'.$value->id.'"></li>';
 		}
 		return $html;
 	}

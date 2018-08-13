@@ -8,6 +8,8 @@ class AdsModel extends Model
 {
 	public function __construct()
     {
+        $this->images = 'ads';
+        $this->thum_images = 'thum_ads';
         $this->myFunction = new MyFunction();
         $this->dirimage = '/public/uploads/image/';
     }
@@ -49,25 +51,23 @@ class AdsModel extends Model
 	}
 	public function getAds()
 	{
+        $images =  $this->images;
 		$result = DB::table('ads')->where('active',1)->orderby('id','desc')->paginate(20);
 		foreach ($result as $key => $val) {
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
 	        $idtype = $result[$key]->typeads;
 	        $result[$key]->totaldisplay = 0;
-            if(empty($result[$key]->image) || !file_exists('public/uploads/image/'.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
 	            if( $idtype == 2 || $idtype == 6 || $idtype ==8 || $idtype ==9){
-	                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,2,1,'adsshort',400);
-	                $result[$key]->image = url('/').'/public/uploads/adsshort/'.$result[$key]->image;
-	                $result[$key]->totaldisplay = 1;
+                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,2,1,$this->thum_images,300);
+                    $result[$key]->totaldisplay = 1;
 	            }else if( $idtype == 3 || $idtype == 7 || $idtype == 10){
-	            	$this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'ads',400);
-		            $result[$key]->image = url('/').'/public/uploads/ads/'.$result[$key]->image;
-		            $result[$key]->totaldisplay = 2;
+                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,1,1,$this->thum_images,300);
+                    $result[$key]->totaldisplay = 2;
 		        }else if( $idtype == 4 || $idtype == 11){
-	                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,2,3,'adslong',400);
-	                $result[$key]->image = url('/').'/public/uploads/adslong/'.$result[$key]->image;
+                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,2,3,$this->thum_images,300);
 	                $result[$key]->totaldisplay = 3;
 	            }else{
 	            	$result[$key]->image = '';

@@ -3,14 +3,12 @@ namespace App\Modules\Admin\Models;
 
 use DB; 
 use Illuminate\Database\Eloquent\Model;
-use App\Modules\Admin\Models\PlaylistmutiModel;
 
 class MutiModel extends Model
 {
 	function __construct()
 	{
 		$this->table = "muti";
-		$this->playlistmutiModel = new PlaylistmutiModel();
 	}
 	public function getData($data)
 	{
@@ -44,31 +42,13 @@ class MutiModel extends Model
             ->update(['active' => $active]);
 		return $result;
 	}
-	public function insertData($data,$str)
-	{	
-		$str = substr($str, 0, -1);
-		$array = explode(',', $str);
-		$result = DB::table($this->table)->insertGetId($data);
-		foreach($array as $val){
-			$insert =[  'plid' => $val,
-						'mtid' => $result];
-			$this->playlistmutiModel->insertData($insert);
-		}
-		return $result;
+	public function insertData($data)
+	{
+		DB::table($this->table)->insertGetId($data);
 	}
-	public function updateData($data,$id,$str)
-	{	
-		$str = substr($str, 0, -1);
-		$array = explode(',', $str);
-		$result = DB::table($this->table)->where('id',$id)->update($data);
-		$this->playlistmutiModel->deletebymtID($id);
-		foreach($array as $val){
-			$insert =[ 
-				'plid' => $val,
-				'mtid' => $id];
-			$this->playlistmutiModel->insertData($insert);
-		}
-		return $result;
+	public function updateData($data,$id)
+	{
+		DB::table($this->table)->where('id',$id)->update($data);
 	}
 	public function getbyId($id){
 		$result = DB::table($this->table)->where('id', $id)->first();

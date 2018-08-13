@@ -7,6 +7,25 @@
 				<td>
 					<input type="checkbox" name="checkall" id="checkAll">	
 				</td>
+				<td  width="7%">
+					<span class="title">Positions</span>
+					<span class="sort">
+						<a href="{{Request::url()}}?order=positions&by=asc">
+							<i class="
+							@if((session('order')=='positions')&&(session('by')=='asc'))
+							{{'active'}}
+							@endif
+									fa fa-sort-asc" aria-hidden="true"></i>
+						</a>
+						<a href="{{Request::url()}}?order=positions&by=desc">
+							<i class="
+							@if((session('order')=='positions')&&(session('by')=='desc'))
+							{{'active'}}
+							@endif
+									fa fa-sort-desc" aria-hidden="true"></i>
+						</a>
+					</span>
+				</td>
 				<td>
 					<span class="title">Tittle</span>
 					<span class="sort">
@@ -79,6 +98,22 @@
 					#
 				</td>
 				<td>
+					<select  id="positions" name="positions">
+						<option
+								@if(session('positions') == '')
+								{{'selected'}}
+								@endif
+								value="choose">Choose</option>
+						@foreach($positions as $val)
+							<option
+									@if(session('positions') == $val->code)
+									{{'selected'}}
+									@endif
+									value="{{$val->code}}">{{$val->name}}</option>
+						@endforeach
+					</select>
+				</td>
+				<td>
 					<input type="text" name="title" value="{{session('title')}}">
 				</td>
 				<td>
@@ -114,6 +149,13 @@
 			<tr class="">
 				<td>
 					<input type="checkbox" name="check" data="{{$val->id}}">
+				</td>
+				<td>
+					@foreach($positions as $vals)
+						@if($val->positions == $vals->code)
+							{{$vals->name}}
+						@endif
+					@endforeach
 				</td>
 				<td>
 					{{$val->title}}	

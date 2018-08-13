@@ -1,12 +1,12 @@
 <?php 
 namespace App\Library {
 	class MyFunction {
-		public function uploadImage($file,$dir="image"){
+		public function uploadImage($file,$dir="images",$thumnail="thum_images"){
 			$target_dir = UPLOAD_PATH;
 			if(!empty($dir)){
 				$target_dir = UPLOAD_PATH.$dir."/";
 				if(!file_exists($target_dir)){
-					mkdir($target_dir, 0700);
+					mkdir($target_dir, 644);
 				}
 			}
 			$target_file = $target_dir.basename($file["name"]);
@@ -22,7 +22,7 @@ namespace App\Library {
 		  				$file["name"] = $name.$run.'.'.$ext;
 			  		}else{
 						move_uploaded_file($file["tmp_name"],$target_file);
-						$this->cropImage($target_file,1,1,'thumb',100);
+						$this->cropImage($target_file,1,1,$thumnail,200);
 						return $file["name"];
 						break;
 			  		}
@@ -76,16 +76,25 @@ namespace App\Library {
 		    return $trimmed_text;
 		}
 		
-		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb",$resize=0){
-			$target_dir = UPLOAD_PATH;
+		public function cropImage($ini_filename, $xtl = 1, $ytl = 1, $save="thumb", $resize=0){
+
+		    $target_dir = UPLOAD_PATH;
 		  	$arrext = explode(".", $ini_filename);
 		  	$ext = end($arrext);
 		  	$arrpath = explode("/", $ini_filename);
 		  	$path = end($arrpath);
-			if(!file_exists($target_dir.$save)){
+
+		  	if($xtl != $ytl){
+                $save = $save.'('.$xtl.'x'.$ytl.')';
+                if(!file_exists($target_dir.$save)){
+                    mkdir($target_dir.$save, 0700);
+                }
+            }elseif(!file_exists($target_dir.$save)){
 				mkdir($target_dir.$save, 0700);
 			}
+
 			$newpath = $target_dir.$save.'/'.$path;
+            $repath = url('/').'/public/uploads/'.$save.'/'.$path;
 			if(!file_exists($newpath)){
 				header('Content-Type: image/jpeg');
 				if($ext == "gif"){ 
@@ -95,7 +104,7 @@ namespace App\Library {
 			    } else if($ext =="jpg" || $ext =="jpeg"){ 
 			        $im = @imagecreatefromjpeg($ini_filename);
 			    }else{
-			    	return false;
+			    	return;
 			    }
 			    if (!$im) {
 			    	return;
@@ -105,19 +114,18 @@ namespace App\Library {
 				$min_xtl = $ini_x_size/$xtl;
 				$min_yht = $ini_y_size/$ytl;
 				if($min_xtl < $min_yht){
-					$crop_measure = min($ini_x_size, $ini_y_size);
 					$to_crop_array = array('x' =>0 , 'y' => (($ini_y_size-($ini_x_size/$xtl*$ytl))/2), 'width' => $ini_x_size,'height'=>($ini_x_size/$xtl*$ytl));
 					$thumb_im = imagecrop($im, $to_crop_array);
 				}else{
-					$crop_measure = min($ini_x_size, $ini_y_size);
 					$to_crop_array = array('x' =>(($ini_x_size-($ini_y_size/$ytl*$xtl))/2) , 'y' => 0, 'width' => ($ini_y_size/$ytl*$xtl), 'height'=> $ini_y_size);
 					$thumb_im = imagecrop($im, $to_crop_array);
 				}
-				imagejpeg($thumb_im, $newpath , 100);
+				imagejpeg($thumb_im, $newpath, 100);
 				if($resize > 0){
 					$this->resize($newpath, $resize,($resize/$xtl)*$ytl);
 				}
 			}
+            return $repath;
 		}
 
 		public function resize($ini_filename ,$newwidth = 300, $newheight = 300) {

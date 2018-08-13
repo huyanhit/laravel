@@ -1,104 +1,87 @@
 @extends('Admin::Layouts.admin')
 @section('content')
-
-<div id="insert" class="container">
-	<h3 class="title-insert text-center">
-	@if(isset($edit))
-		{{'Edit - Ads'}}
-	@else
-		{{'Insert - Ads'}}
-	@endif
-	</h3>
-	<form class="form-horizontal" method="post" action="
-	@if(isset($edit))
+	<div id="insert" class="container">
+		<h3 class="title-insert text-center">
+			@if(isset($edit))
+				{{'Edit - ads'}}
+			@else
+				{{'Insert - ads'}}
+			@endif
+		</h3>
+		<form class="form-horizontal" method="post" action="
+		@if(isset($edit))
 		{{Request::url().'?id='.$edit}}
-	@else
+		@else
 		{{Request::url()}}
-	@endif
-	" enctype="multipart/form-data">
-		<input type="hidden" name="_token" value="{{ csrf_token() }}">
-	  	<div class="form-group title">
-	    	<label class="control-label col-sm-3">Title</label>
-	    	<div class="col-sm-9">
-	      		<input type="text" class="form-control" name="title" id="title" placeholder="Input Title" value="{{isset($frm['title'])?$frm['title']:''}}" required>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Description</label>
-	    	<div class="col-sm-9">
-	      		<textarea class="form-control" name="desc" id="desc" placeholder="Input description" required>{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
-	      		<script type="text/javascript">CKEDITOR.replace('desc'); </script>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Category Ads</label>
-	    	<div class="col-sm-9">
-				<select class="form-control" id="catads" name="catads">
-					@foreach($catads as $val)
-				  	<option
-				  	@if(isset($frm['catads']) && ($frm['catads'] == $val->id))
-				  		{{'selected'}}
-				  	@endif
-				  	value="{{$val->id}}">{{$val->title}}</option>
-				  	@endforeach
-				</select>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Type Ads</label>
-	    	<div class="col-sm-9">
-				<select class="form-control" id="typeads" name="typeads">
-					@foreach($typeads as $val)
-				  	<option
-				  	@if(isset($frm['typeads']) && ($frm['typeads'] == $val->id))
-				  		{{'selected'}}
-				  	@endif
-				  	value="{{$val->id}}">{{$val->title}}</option>
-				  	@endforeach
-				</select>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Location</label>
-	    	<div class="col-sm-9">
-				<select class="form-control" id="location" name="location">
-					@foreach($location as $val)
-				  	<option
-				  	@if(isset($frm['location']) && ($frm['location'] == $val->id))
-				  		{{'selected'}}
-				  	@endif
-				  	value="{{$val->id}}">{{$val->title}}</option>
-				  	@endforeach
-				</select>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Feature Image</label>
-	    	<div class="col-sm-9">
-	    		<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
-	      		<span class="inline"><input type="file" class="form-control " name="feature" id="feature"></span>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">Content</label>
-	    	<div class="col-sm-9">
-	      		<textarea class="form-control" id="content" placeholder="Content" name="content" required> {{isset($frm['content'])?$frm['content']:''}} </textarea>
-	      		<script type="text/javascript">CKEDITOR.replace('content'); </script>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3" >Active</label>
-	    	<div class="col-sm-9">
-	      		<input type="checkbox" id="active" name="active" {{(isset($frm['active']) && $frm['active']==1)?'checked':''}} >
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3" ></label>
-	    	<div class="col-sm-9">
-	      		<input type="submit" id="submit" name="submit" value="Save New">
-	      		<input type="submit" id="submit" name="submit_edit" value="Save & Edit">
-	    	</div>
-	 	</div>
-	</form>
-</div>
+		@endif
+				" enctype="multipart/form-data">
+			<input type="hidden" name="_token" value="{{ csrf_token() }}">
+			<div class="form-group title">
+				<label class="control-label col-sm-3">Title</label>
+				<div class="col-sm-9">
+					{{ Form::input('text','title',isset($frm['title'])?$frm['title']:'',array('class' => 'form-control','placeholder' => 'Input title'))}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Description</label>
+				<div class="col-sm-9">
+					{{ Form::textarea ('desc',isset($frm['desc'])?$frm['desc']:'',array('id'=>'desc', 'class'=>'form-control', 'placeholder'=>'Input description'))}}
+					<script type="text/javascript">CKEDITOR.replace('desc'); </script>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Category ads</label>
+				<div class="col-sm-9">
+					{{Form::select('catads', $catads, isset($frm['catads'])?$frm['catads']:null, array('id'=>'catads', 'class'=>'form-control'))}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Type ads</label>
+				<div class="col-sm-9">
+					{{Form::select('typeads', $typeads, isset($frm['typeads'])?$frm['typeads']:null, array('id'=>'typeads', 'class'=>'form-control'))}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Location</label>
+				<div class="col-sm-9">
+					{{Form::select('location', $location, isset($frm['location'])?$frm['location']:null, array('id'=>'location', 'class'=>'form-control'))}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Positions</label>
+				<div class="col-sm-9">
+					{{Form::select('positions', $positions, isset($frm['positions'])?$frm['positions']:null, array('id'=>'positions', 'class'=>'form-control'))}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Feature Image</label>
+				<div class="col-sm-9">
+					<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
+					<span class="inline">
+				{{Form::file('feature',array('id'=>'feature', 'class'=>'form-control'))}}
+			</span>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3">Content</label>
+				<div class="col-sm-9">
+					{{ Form::textarea ('content',isset($frm['content'])?$frm['content']:'',array('id'=>'content', 'class'=>'form-control', 'placeholder'=>'Input content'))}}
+					<script type="text/javascript">CKEDITOR.replace('content'); </script>
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" >Active</label>
+				<div class="col-sm-9">
+					{{Form::checkbox('active', 1,(isset($frm['active']) && $frm['active']==1)? 'yes': 'no')}}
+				</div>
+			</div>
+			<div class="form-group">
+				<label class="control-label col-sm-3" ></label>
+				<div class="col-sm-9">
+					<input type="submit" id="submit" name="submit" value="Save & Back List">
+					<input type="submit" id="submit" name="submit_edit" value="Save & Edit">
+				</div>
+			</div>
+		</form>
+	</div>
 @endsection

@@ -4,10 +4,10 @@
 	<table class="table table-bordered table-hover table-striped">
 		<thead>
 			<tr>
-				<td>
-					<input type="checkbox" name="checkall" id="checkAll">	
+				<td width="3%" class="text-center">
+					<input type="checkbox" name="checkall" id="checkAll">
 				</td>
-				<td>
+				<td  width="7%">
 					<span class="title">Category</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=catnews&by=asc">
@@ -26,7 +26,26 @@
 						</a>
 					</span> 
 				</td>
-				<td>
+				<td  width="7%">
+					<span class="title">Positions</span>
+					<span class="sort">
+						<a href="{{Request::url()}}?order=positions&by=asc">
+							<i class="
+							@if((session('order')=='positions')&&(session('by')=='asc'))
+							{{'active'}}
+							@endif
+									fa fa-sort-asc" aria-hidden="true"></i>
+						</a>
+						<a href="{{Request::url()}}?order=positions&by=desc">
+							<i class="
+							@if((session('order')=='positions')&&(session('by')=='desc'))
+							{{'active'}}
+							@endif
+									fa fa-sort-desc" aria-hidden="true"></i>
+						</a>
+					</span>
+				</td>
+				<td  width="10%">
 					<span class="title">Tittle</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=title&by=asc">
@@ -45,7 +64,7 @@
 						</a>
 					</span> 
 				</td>
-				<td>
+				<td  width="10%">
 					<span class="title">Description</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=desc&by=asc">
@@ -64,7 +83,7 @@
 						</a>
 					</span> 
 				</td>
-				<td>
+				<td  width="10%">
 					<span class="title">Get From</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=from&by=asc">
@@ -83,10 +102,10 @@
 						</a>
 					</span>  	
 				</td>
-				<td>
+				<td  width="5%">
 					Active	
 				</td>
-				<td>
+				<td  width="5%">
 					<span class="title">View</span>
 					<span class="sort">
 						<a href="{{Request::url()}}?order=view&by=asc">
@@ -105,15 +124,15 @@
 						</a>
 					</span>  
 				</td>
-				<td>
+				<td  width="6%" >
 					Action
 				</td>
 			</tr>
 		</thead>
 		<form id="filter" method="post" action="{{Request::url().$urlsort}}">
 			<input type="hidden" name="_token" value="{{ csrf_token() }}">
-			<tr>
-				<td>
+			<tr >
+				<td class="text-center">
 					#
 				</td>
 				<td>
@@ -130,6 +149,22 @@
 					  	@endif
 					  	value="{{$val->id}}">{{$val->title}}</option>
 					  	@endforeach
+					</select>
+				</td>
+				<td>
+					<select  id="positions" name="positions">
+						<option
+								@if(session('positions') == '')
+								{{'selected'}}
+								@endif
+								value="choose">Choose</option>
+						@foreach($positions as $val)
+							<option
+									@if(session('positions') == $val->code)
+									{{'selected'}}
+									@endif
+									value="{{$val->code}}">{{$val->name}}</option>
+						@endforeach
 					</select>
 				</td>
 				<td>
@@ -168,8 +203,8 @@
 		</form>
 		<tbody>
 			@foreach($news as $key => $val)
-			<tr class="">
-				<td>
+			<tr >
+				<td class="text-center">
 					<input type="checkbox" name="check" data="{{$val->id}}">
 				</td>
 				<td>
@@ -180,6 +215,13 @@
 					@endforeach	
 				</td>
 				<td>
+					@foreach($positions as $vals)
+						@if($val->positions == $vals->code)
+							{{$vals->name}}
+						@endif
+					@endforeach
+				</td>
+				<td>
 					{{$val->title}}	
 				</td>
 				<td>
@@ -188,17 +230,17 @@
 				<td>
 					{{$val->from}}	
 				</td>
-				<td >
+				<td class="text-center">
 					@if($val->active == 1)
 						<input type="checkbox" checked name="active" url="{{Request::url()}}/active?id={{$val->id}}">
 					@else
 						<input type="checkbox" name="active" url="{{Request::url()}}/active?id={{$val->id}}">
 					@endif
 				</td>
-				<td>
+				<td class="text-center">
 					{{$val->view}}	
 				</td>
-				<td>
+				<td class="action_row text-center">
 					<a href="{{Request::url()}}/insert?id={{$val->id}}"> <i class="fa fa-plus-square-o" aria-hidden="true"></i></a>
 					<a href="{{Request::url()}}/edit?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a class="ajaxdelete" href="{{Request::url()}}/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>

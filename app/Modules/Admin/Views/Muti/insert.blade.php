@@ -20,90 +20,75 @@
 	  	<div class="form-group title">
 	    	<label class="control-label col-sm-3">Title</label>
 	    	<div class="col-sm-9">
-	      		<input type="text" class="form-control" name="title" id="title" placeholder="Input Title" value="{{isset($frm['title'])?$frm['title']:''}}" required>
+				{{Form::input('text','title',isset($frm['title'])?$frm['title']:'',array('class' => 'form-control','placeholder' => 'Input title'))}}
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Description</label>
 	    	<div class="col-sm-9">
-	      		<textarea class="form-control" name="desc" id="desc" placeholder="Input description" required>{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
+				{{Form::textarea ('desc',isset($frm['desc'])?$frm['desc']:'',array('id'=>'desc', 'class'=>'form-control', 'placeholder'=>'Input description'))}}
 	      		<script type="text/javascript">CKEDITOR.replace('desc'); </script>
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Category Muti</label>
 	    	<div class="col-sm-9">
-				<select class="form-control" id="catmuti" name="catmuti">
-					@foreach($catmuti as $val)
-				  	<option
-				  	@if(isset($frm['catmuti']) && ($frm['catmuti'] == $val->id))
-				  		{{'selected'}}
-				  	@endif
-				  	value="{{$val->id}}">{{$val->title}}</option>
-				  	@endforeach
-				</select>
+				{{Form::select('catmuti', $catmuti, isset($frm['catmuti'])?$frm['catmuti']:null, array('id'=>'catmuti', 'class'=>'form-control'))}}
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Type Muti</label>
 	    	<div class="col-sm-9">
-				<select class="form-control" id="typemuti" name="typemuti">
-					@foreach($typemuti as $val)
-				  	<option
-				  	@if(isset($frm['typemuti']) && ($frm['typemuti'] == $val->id))
-				  		{{'selected'}}
-				  	@endif
-				  	value="{{$val->id}}">{{$val->title}}</option>
-				  	@endforeach
-				</select>
+				{{Form::select('typemuti', $typemuti, isset($frm['typemuti'])?$frm['typemuti']:null, array('id'=>'typemuti', 'class'=>'form-control'))}}
 	    	</div>
 	 	</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3">Positions</label>
+			<div class="col-sm-9">
+				{{Form::select('positions', $positions, isset($frm['positions'])?$frm['positions']:null, array('id'=>'positions', 'class'=>'form-control'))}}
+			</div>
+		</div>
+
+		<div class="form-group">
+			<label class="control-label col-sm-3">Playlist</label>
+			<div class="col-sm-9">
+				<input type="hidden" value="{{$edit}}" id="hidden_playlist">
+				{{Form::input('text','playlist',isset($frm['playlist'])?$frm['playlist']:null,array('id'=>'playlist','class' => 'form-control','placeholder' => 'Input Playlist'))}}
+				<div id="listchoose">
+
+				</div>
+				{{--{{Form::select('playlist', $playlist, isset($frm['playlist'])?$frm['playlist']:null, array('id'=>'playlist', 'class'=>'form-control'))}}--}}
+			</div>
+		</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
 	      		<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
-	      		<span class="inline"><input type="file" class="form-control " name="feature" id="feature"></span>
+	      		<span class="inline">
+				{{Form::file('feature',array('id'=>'feature', 'class'=>'form-control'))}}
+				</span>
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">File</label>
-	    	<div class="col-sm-9">
-	      		<input type="file" class="form-control" name="file" id="file">
-	    	</div>
+			<div class="col-sm-9">
+			<span class="inline"></span>
+			<span class="inline">
+				{{Form::file('file',array('id'=>'file', 'class'=>'form-control'))}}
+	    	</span>
+			</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Content</label>
 	    	<div class="col-sm-9">
-	      		<textarea class="form-control" id="content" placeholder="Content" name="content" required> {{isset($frm['content'])?$frm['content']:''}} </textarea>
+				{{Form::textarea ('content',isset($frm['content'])?$frm['content']:'',array('id'=>'content', 'class'=>'form-control', 'placeholder'=>'Input content'))}}
 	      		<script type="text/javascript">CKEDITOR.replace('content'); </script>
-	    	</div>
-	 	</div>
-	 	<div class="form-group">
-	    	<label class="control-label col-sm-3">List file</label>
-	    	<div class="col-sm-9">
-	      		<input type="text" class="form-control" name="searchplaylist" id="searchplaylist">
-	      		<div class="row">
-	      			<div class="col-sm-6">
-		      			<input type="hidden" name="playlist-muti" id="playlist-muti"  value="@foreach($playlistmuti as $val){{$val->id.','}}@endforeach">
-		      			<h5>List Search</h5>
-		      			<ul id="listchoose">
-		      			</ul>
-		      		</div>
-		      		<div class="col-sm-6">
-		      			<h5>Has Add</h5>
-		      			<ul id="listadd" class="col-sm-6">
-		      				@foreach($playlistmuti as $val)
-		      					<li data='{{$val->id}}'>{{ $val->title }}<span class='btn-delete'>delete</span></li>
-		      				@endforeach
-		      			</ul>
-		      		</div>
-	      		</div>
 	    	</div>
 	 	</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3" >Active</label>
 	    	<div class="col-sm-9">
-	      		<input type="checkbox" id="active" name="active" {{(isset($frm['active']) && $frm['active']==1)?'checked':''}} >
+				{{Form::checkbox('active', 1,(isset($frm['active']) && $frm['active']==1)? 'yes': 'no')}}
 	    	</div>
 	 	</div>
 	 	<div class="form-group">

@@ -11,6 +11,7 @@ use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\CommentModel;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Models\SystemModel;
 
 include('App\Library\domnode.php') ;
 
@@ -18,30 +19,38 @@ class NewsController extends Controller
 {
     public function __construct()
     {
-        $this->news = new NewsModel();
-        $this->jobs = new JobsModel();
-        $this->ads = new AdsModel();
-        $this->comment = new CommentModel();
+        $this->news         = new NewsModel();
+        $this->jobs         = new JobsModel();
+        $this->ads          = new AdsModel();
+        $this->comment      = new CommentModel();
+        $this->systemCode   = new SystemModel();
+
+        $this->index();
     }
+
     public function index(){
-        $data['headerline'] = $this->news->getHeadline();
-        $data['intro'] = $this->news->getIntro();
-        $data['newsSL'] = $this->news->getNewsSL();
-        $data['news'] = $this->news->getNews();
-        $data['newsRss'] = $this->news->getNewsRss();
-        $data['newsXL'] = $this->news->getNewsXL();
-        $data['newsGL'] = $this->news->getNewsGL();
-        $data['newsTypes'] = $this->news->getNewsTypes();
+
+        $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
+        $data['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
+        $data['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
+        $data['news']           = $this->news->getNewsFrame($this->arrPositions['news_total'],40,60, 20);
+        $data['newsSL']         = $this->news->getNewsFrame($this->arrPositions['news_slider'],40,60, 4 ,false,3,2,600);
+        $data['newsRss']        = $this->news->getNewsFrame($this->arrPositions['news_rss'],40,60, 10);
+        $data['newsXL']         = $this->news->getNewsFrame($this->arrPositions['news_site'],40,60, 10);
+        $data['newsGL']         = $this->news->getNewsFrame($this->arrPositions['news_location'],40,60, 10);
+
         return view("news",$data);
     }
+
     public function contentnews($id)
     {
-        $data['headerline'] = $this->news->getHeadline();
-        $data['intro']  = $this->news->getIntro();
+        $data['intro'] = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
+        $data['headerline'] = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
         $data['result'] = $this->news->getNewsById($id);
         $data['recent'] = $this->news->getRecentNews($id);
         $data['jobs']   = $this->jobs->getPopularJobs();
         $data['ads']    = $this->ads->getPopularAds();
+
         $data['typeid'] = 'newsid';
         $data['comment'] = $this->comment->getCommentByID('newsid',$id);
         $data['user'] = Auth::user();
@@ -88,6 +97,7 @@ class NewsController extends Controller
             }
         }
         $this->news->updateView($id);
+
         return view("contentnews",$data);
     }
 }

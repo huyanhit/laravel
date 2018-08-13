@@ -34,6 +34,7 @@ class LibraryController extends Controller
         </div>';
         print($html);
     }
+
     public function getComment($id){
     	
     }
