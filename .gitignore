@@ -7,5 +7,7 @@
 /config/app
 .env
 .htaccess
+.idea
+index.php
 Homestead.yaml
 Homestead.json
