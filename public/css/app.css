@@ -1,5 +1,4 @@
 @charset "UTF-8";
-
 /* -----------------------------Sass XULANH SITE--------------------------------*/
 /* ADDS A BROWSER PREFIX TO THE PROPERTY */
 /* BACKGROUND GRADIENT */
@@ -124,25 +123,37 @@ body {
   body #ajaxsend {
     position: fixed;
     text-align: center;
-    left: 50%;
-    top: 50%;
+    left: 0%;
+    top: 0;
     z-index: 100;
-    height: 100%;
+    height: 5px;
     width: 100%;
-    transform: translate(-50%, -50%);
-    background: rgba(0, 0, 0, 0.3);
-    display: none; }
+    background: #31708f; }
     body #ajaxsend img {
-      border-radius: 50%;
-      top: 50%;
-      position: relative;
-      transform: translateY(-50px); }
+      display: none; }
+    body #ajaxsend:before {
+      content: "";
+      background: #3c763d;
+      height: 5px;
+      width: 50%;
+      top: 0;
+      display: block;
+      animation-name: ajaxsend;
+      -webkit-animation-name: ajaxsend;
+      -webkit-animation-duration: 1s;
+      animation-iteration-count: infinite;
+      animation-duration: 1s; }
+    body #ajaxsend:after {
+      content: ""; }
 
 #header {
   background: #3D4C54;
   height: 50px; }
   #header #logo {
     line-height: 50px; }
+    #header #logo img {
+      height: 40px;
+      margin-bottom: 5px; }
   #header nav {
     line-height: 50px; }
     #header nav ul {
@@ -198,7 +209,7 @@ body {
       #header .login a:hover {
         color: #8ecbff; }
     #header .login ul {
-      right: 0px;
+      right: 0;
       left: auto; }
 
 #headline {
@@ -244,24 +255,8 @@ body {
     left: -15px; }
     #intro h3 span {
       background: #3d4c54;
-      padding: 6px;
+      padding: 6px 10px;
       position: relative; }
-      #intro h3 span:after {
-        content: '';
-        position: absolute;
-        right: -12px;
-        background: #3d4c54;
-        bottom: 0px;
-        border-left: 13px #3d4c54 solid;
-        border-bottom: 13px #f7f7f7 solid; }
-      #intro h3 span:before {
-        content: '';
-        position: absolute;
-        right: -12px;
-        background: #3d4c54;
-        top: 0px;
-        border-left: 13px #3d4c54 solid;
-        border-top: 13px #f7f7f7 solid; }
   #intro .simply-scroll-container {
     position: relative; }
     #intro .simply-scroll-container .simply-scroll-clip {
@@ -394,6 +389,8 @@ body {
     height: 41px;
     line-height: 41px;
     text-align: center; }
+  #news .news-center h4 {
+    font-weight: normal; }
   #news .news-center ul {
     background: #ffffff;
     margin: 0;
@@ -402,11 +399,12 @@ body {
     border-right: none; }
     #news .news-center ul li {
       background: #FFF;
-      margin: 10px 8px;
+      margin: 0px  8px;
       margin-right: 0;
       padding: 10px;
       list-style: none;
-      position: relative; }
+      position: relative;
+      border-bottom: 1px solid #f7f7f7; }
       #news .news-center ul li h4 {
         margin: 0; }
       #news .news-center ul li:first-child {
@@ -453,7 +451,8 @@ body {
     border-left: 1px solid #f2f2f2; }
     #tabwidget #tab-content ul {
       padding: 0;
-      margin-top: 0; }
+      margin-top: 0;
+      list-style: none; }
       #tabwidget #tab-content ul li {
         padding: 15px;
         position: relative; }
@@ -507,24 +506,16 @@ body {
       float: left; }
       #jobs #search-jobs h3 span {
         background: #3d4c54;
-        padding: 6px;
+        padding: 6px 10px;
         position: relative; }
-        #jobs #search-jobs h3 span:after {
-          content: '';
-          position: absolute;
-          right: -12px;
-          background: #3d4c54;
-          bottom: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-bottom: 13px #f7f7f7 solid; }
         #jobs #search-jobs h3 span:before {
           content: '';
           position: absolute;
-          right: -12px;
+          right: -5px;
           background: #3d4c54;
           top: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-top: 13px #f7f7f7 solid; }
+          border-left: 6px #3d4c54 solid;
+          border-top: 20px #fff solid; }
     #jobs #search-jobs form {
       float: right;
       line-height: 41px; }
@@ -550,7 +541,8 @@ body {
         font-weight: bold; }
         #jobs #list-jobs .item .title i {
           width: 15px;
-          font-size: 18px; }
+          font-size: 14px;
+          color: #387db9; }
       #jobs #list-jobs .item .salary {
         font-weight: bold;
         color: #81b752; }
@@ -606,11 +598,11 @@ body {
         border: 1px #3d4c54 solid; }
     #jobs .pagination a, #jobs .pagination span {
       background: #3d4c54;
-      height: 25px;
+      height: 10px;
       display: inline-block;
-      width: 25px;
+      width: 10px;
       text-align: center;
-      line-height: 25px;
+      line-height: 10px;
       margin-right: 5px;
       color: #fff;
       border: 1px #3d4c54 solid;
@@ -640,24 +632,8 @@ body {
       left: -15px; }
       #masonry #search-adv h3 span {
         background: #3d4c54;
-        padding: 6px;
+        padding: 6px 10px;
         position: relative; }
-        #masonry #search-adv h3 span:after {
-          content: '';
-          position: absolute;
-          right: -12px;
-          background: #3d4c54;
-          bottom: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-bottom: 13px #f7f7f7 solid; }
-        #masonry #search-adv h3 span:before {
-          content: '';
-          position: absolute;
-          right: -12px;
-          background: #3d4c54;
-          top: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-top: 13px #f7f7f7 solid; }
     #masonry #search-adv form {
       float: right;
       line-height: 41px; }
@@ -676,7 +652,7 @@ body {
       float: left;
       padding: 5px; }
     #masonry .list-masonry .frame-masonry .text {
-      padding: 10px 0;
+      padding: 10px;
       border-radius: 0px; }
       #masonry .list-masonry .frame-masonry .text a {
         text-transform: uppercase;
@@ -690,9 +666,10 @@ body {
       padding: 7px 0; }
       #masonry .list-masonry .item .it-fream {
         border: 7px #fff solid;
-        box-shadow: 0px 0px 1px 0px #ccc;
+        box-shadow: 0px 0px 1px 0px #555;
         height: 100%;
-        overflow: hidden; }
+        overflow: hidden;
+        background: #f7f7f7; }
       #masonry .list-masonry .item img, #masonry .list-masonry .item iframe {
         max-width: 100%;
         height: auto;
@@ -714,24 +691,16 @@ body {
       float: left; }
       #mutimedia #title-mutimedia h3 span {
         background: #3d4c54;
-        padding: 6px;
+        padding: 6px 10px;
         position: relative; }
-        #mutimedia #title-mutimedia h3 span:after {
-          content: '';
-          position: absolute;
-          right: -12px;
-          background: #3d4c54;
-          bottom: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-bottom: 13px #f7f7f7 solid; }
         #mutimedia #title-mutimedia h3 span:before {
           content: '';
           position: absolute;
-          right: -12px;
+          right: -5px;
           background: #3d4c54;
           top: 0px;
-          border-left: 13px #3d4c54 solid;
-          border-top: 13px #f7f7f7 solid; }
+          border-left: 6px #3d4c54 solid;
+          border-top: 20px #fff solid; }
   #mutimedia .owl-mutimedia {
     padding-left: 7px;
     padding-right: 7px; }
@@ -742,13 +711,23 @@ body {
         height: auto; }
       #mutimedia .owl-mutimedia .owl-carousel .item h4 {
         padding-top: 15px;
-        margin: 0; }
+        margin: 0;
+        font-size: 12px; }
+      #mutimedia .owl-mutimedia .owl-carousel .item .meta {
+        font-size: 10px;
+        margin-top: 5px;
+        margin-left: 35px; }
       #mutimedia .owl-mutimedia .owl-carousel .item i {
         background: #81b752;
-        padding: 10px;
         color: #fff;
         float: left;
-        margin-right: 10px; }
+        margin-right: 10px;
+        height: 25px;
+        line-height: 26px;
+        width: 25px;
+        border-radius: 50%;
+        text-align: center;
+        padding-left: 2px; }
     #mutimedia .owl-mutimedia .owl-carousel .owl-buttons {
       position: absolute;
       top: -55px;
@@ -801,10 +780,11 @@ body {
         font-size: 12px; }
   #footer #footer-top .footer-logo img {
     text-align: right;
-    padding: 10px 36px;
+    padding: 5px 10px;
     height: 41px;
-    background: #23323f;
-    margin-bottom: 10px; }
+    background: #3d4c54;
+    margin-top: 14px;
+    float: left; }
   #footer #footer-top .footer-logo, #footer #footer-top .contact-info {
     border-right: 1px #fff solid; }
   #footer #footer-top .social {
@@ -864,6 +844,10 @@ body {
 
 #content-news .container, #content-jobs .container, #content-ads .container, #content-playlist .container, #content-muti .container {
   background: #fff; }
+
+#content-news img, #content-jobs img, #content-ads img, #content-playlist img, #content-muti img {
+  width: 100%;
+  padding: 5px 0; }
 
 #postjobs, #postads {
   background: #fff; }
@@ -971,22 +955,14 @@ body {
     background: #3d4c54;
     padding: 6px 10px;
     position: relative; }
-    .title-line h3 span:after {
-      content: '';
-      position: absolute;
-      right: -12px;
-      background: #3d4c54;
-      bottom: 0px;
-      border-left: 13px #3d4c54 solid;
-      border-bottom: 13px #fff solid; }
     .title-line h3 span:before {
       content: '';
       position: absolute;
-      right: -12px;
+      right: -5px;
       background: #3d4c54;
       top: 0px;
-      border-left: 13px #3d4c54 solid;
-      border-top: 13px #fff solid; }
+      border-left: 6px #3d4c54 solid;
+      border-top: 20px #fff solid; }
 
 .title-line a {
   float: right;
