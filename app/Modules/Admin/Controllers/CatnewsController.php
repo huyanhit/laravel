@@ -16,6 +16,7 @@ class CatnewsController extends Controller
 {
 	function __construct(Request $request)
 	{
+        $this->middleware('authAdmin');
         $this->request      = $request;
 		$this->catnewsModel = new CatnewsModel();
 		$this->myFunction   = new MyFunction();

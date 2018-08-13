@@ -13,8 +13,7 @@ use App\Http\Models\CommentModel;
 use Illuminate\Support\Facades\Auth;
 use App\Http\Models\SystemModel;
 
-include('App\Library\domnode.php') ;
-
+include('./app/Library/domnode.php');
 class NewsController extends Controller
 {
     public function __construct()
@@ -42,8 +41,11 @@ class NewsController extends Controller
         return view("news",$data);
     }
 
-    public function contentnews($id)
+    public function contentnews($id_str)
     {
+        $cut_id = strrpos($id_str,'-');
+        $id = substr($id_str,$cut_id + 1);
+        $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
         $data['intro'] = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
         $data['headerline'] = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
         $data['result'] = $this->news->getNewsById($id);
@@ -57,8 +59,8 @@ class NewsController extends Controller
 
         if(isset($data['result']->content)){
             $data['result']->content= preg_replace('/<[\/]*p[^>]*>/', '',$data['result']->content); 
-            $checkrss = substr(trim($data['result']->content), 0 , 4);
-            if($checkrss == "http"){
+            $checkrss = substr(trim($data['result']->content), 0 , 5);
+            if($checkrss == "https"){
                 $html = file_get_html($data['result']->content);
                 foreach($html->find('.block_timer_share') as $e){
                     $e->innertext = '';

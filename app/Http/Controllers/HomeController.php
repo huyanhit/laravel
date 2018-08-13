@@ -39,26 +39,27 @@ class HomeController extends Controller
     public function index()
     {
         $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
-        $data['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
-        $data['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
-        $data['news']           = $this->news->getNewsFrame($this->arrPositions['news_total'],40,60, 20);
-        $data['newsSL']         = $this->news->getNewsFrame($this->arrPositions['news_slider'],40,60, 4 ,false,3,2,600);
-        $data['newsRss']        = $this->news->getNewsFrame($this->arrPositions['news_rss'],40,60, 10,true);
-        $data['newsXL']         = $this->news->getNewsFrame($this->arrPositions['news_site'],40,60, 10);
-        $data['newsGL']         = $this->news->getNewsFrame($this->arrPositions['news_location'],40,60, 10);
+        $data['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],60,60, 10);
+        $data['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],50,110, 10);
+        $data['news']           = $this->news->getNewsFrame($this->arrPositions['news_total'],70,60, 20);
+        $data['newsSL']         = $this->news->getNewsFrame($this->arrPositions['news_slider'],80,100, 4 ,false,3,2,600);
+        $data['newsRss']        = $this->news->getNewsFrame($this->arrPositions['news_rss'],70,100, 10,true);
+        $data['newsXL']         = $this->news->getNewsFrame($this->arrPositions['news_site'],70,100, 10);
+        $data['newsGL']         = $this->news->getNewsFrame($this->arrPositions['news_location'],70,100, 10);
 
         $this->arrPositionsJobs = $this->systemCode->getListSystemCodelByName('jobs_position');
         $data['location']       = $this->location->getLocation();
         $data['catjobs']        = $this->catjobs->getCatJobs();
         $data['typejobs']       = $this->typejobs->getTypeJobs();
         $data['jobs']           = $this->jobs->getJobs();
-        $data['jobsvip']        = $this->jobs->getJobsFrame($this->arrPositionsJobs['jobs_good'],40,60, 10);
+        $data['jobsvip']        = $this->jobs->getJobsFrame($this->arrPositionsJobs['jobs_good'],70,100, 10);
 
         $this->arrPositionsJobs = $this->systemCode->getListSystemCodelByName('ads_position');
         $data['ads']            = $this->ads->getAds();
         $data['totaldisplay']   = $this->ads->getTotalDisplay($data['ads']);
         $data['catads']         = $this->catads->getCatAds();
         $data['typeads']        = $this->typeads->getTypeAds();
+
         $data['audio']          = $this->muti->getMuti();
         $data['playlist']       = $this->playlist->getPlayList();
 

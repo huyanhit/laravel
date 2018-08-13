@@ -6,12 +6,13 @@
 			<div class="col-md-8">
 				<div class="row">
 					<div class="col-md-6 image-file">
+						<img src="{{$result->image}}">
 						@include('include.module-contentplaylist')
 					</div>
 					<div class="col-md-6 entry-content">
 						<h3 class="title"> 
 						{{ isset($result->title)?$result->title:'' }}</h3>
-						<img src="{{Request::root()}}/public/images/{{$result->image}}">
+						{!! isset($result->desc)?$result->desc:'' !!}
 						{!! isset($result->content)?$result->content:'' !!}
 					</div>
 				</div>

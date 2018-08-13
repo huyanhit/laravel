@@ -52,8 +52,8 @@
 		<div class="form-group">
 			<label class="control-label col-sm-3">Playlist</label>
 			<div class="col-sm-9">
-				<input type="hidden" value="{{$edit}}" id="hidden_playlist">
-				{{Form::input('text','playlist',isset($frm['playlist'])?$frm['playlist']:null,array('id'=>'playlist','class' => 'form-control','placeholder' => 'Input Playlist'))}}
+				<input type="hidden" value="{{isset($edit)?$edit:''}}" id="hidden_muti">
+				{{Form::input('text','playlist',isset($frm['playlist'])?$frm['playlist']:null,array('autocomplete'=>'off','id'=>'playlist','class' => 'form-control','placeholder' => 'Input Playlist'))}}
 				<div id="listchoose">
 
 				</div>
@@ -63,7 +63,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
-	      		<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
+	      		<span class="inline"><img src="{{isset($frm['image'])?Request::root().'/public/uploads/thum_muti/'.$frm['image']:''}}"></span>
 	      		<span class="inline">
 				{{Form::file('feature',array('id'=>'feature', 'class'=>'form-control'))}}
 				</span>
@@ -78,6 +78,12 @@
 	    	</span>
 			</div>
 	 	</div>
+		<div class="form-group">
+			<label class="control-label col-sm-3">Cloud File</label>
+			<div class="col-sm-9">
+				{{Form::input('text','link_file',isset($frm['link_file'])?$frm['link_file']:'',array('class' => 'form-control','placeholder' => 'Input Link'))}}
+			</div>
+		</div>
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Content</label>
 	    	<div class="col-sm-9">

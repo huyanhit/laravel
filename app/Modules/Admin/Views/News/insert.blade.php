@@ -45,7 +45,7 @@
 	 	<div class="form-group">
 	    	<label class="control-label col-sm-3">Feature Image</label>
 	    	<div class="col-sm-9">
-	    		<span class="inline"><img src="{{isset($frm['image'])?URL_THUMB_PATH.$frm['image']:''}}"></span>
+	    		<span class="inline"><img src="{{isset($frm['image'])?Request::root().'/public/uploads/thum_news/'.$frm['image']:''}}"></span>
 	      		<span class="inline">
 				{{Form::file('feature',array('id'=>'feature', 'class'=>'form-control'))}}
 				</span>

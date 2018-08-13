@@ -20,8 +20,9 @@ class PlaylistController extends Controller
 {
 	function __construct(Request $request)
 	{
-        $this->images       = 'muti';
-        $this->thum_images  = 'thum_muti';
+        $this->middleware('authAdmin');
+        $this->images       = 'playlist';
+        $this->thum_images  = 'thum_playlist';
         $this->request      = $request;
 		$this->playlistModel    = new PlaylistModel();
 		$this->mutiModel    = new MutiModel();
@@ -69,7 +70,7 @@ class PlaylistController extends Controller
 			$result['playlist'][$key]->desc = $this->myFunction->trimText($result['playlist'][$key]->desc,50);
         }
 
-		return view('Admin::playlist.list',$result);
+		return view('Admin::Playlist.list',$result);
 	}
 
 	public function insertData()
@@ -88,7 +89,7 @@ class PlaylistController extends Controller
             ));
 
 			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],$this->images, $this->thum_images);
 
 			if(!empty($_FILES["file"]["name"]))
 				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
@@ -144,7 +145,7 @@ class PlaylistController extends Controller
             ));
 
 			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
+				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
 			}else{
 				$_FILES["feature"]["name"] = $playlist->image;
 			}

@@ -135,4 +135,16 @@ class NewsModel extends Model
 	  	}
 	  	return $path;
 	}
+
+    public function updateInfo($content,$positions,$catnews){
+        $data = [
+            'content' => $content,
+            'date_create' => time()
+        ];
+        $result = DB::table($this->table)
+            ->where('positions',$positions)
+            ->where('catnews',$catnews)
+            ->update($data);
+        return $result;
+	}
 }

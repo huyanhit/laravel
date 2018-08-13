@@ -12,8 +12,10 @@
 */
     // your routes here
 Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\Modules\Admin\Controllers'], function () {
-	
-	Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
+
+    Route::get('/news/update', ['as' => 'news.update', 'uses' => 'NewsController@updateInfo']);
+
+    Route::get('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 	Route::post('/news', ['as' => 'news.index', 'uses' => 'NewsController@index']);
 
 	Route::get('/news/rss', ['as' => 'news.rss', 'uses' => 'NewsController@updateRss']);
@@ -113,4 +115,8 @@ Route::group(['prefix' => 'admin', 'middleware' => ['web'], 'namespace' => 'App\
 	Route::post('/playlist/apply', ['as' => 'playlist.apply','uses' => 'PlaylistController@applyData']);
 
 	Route::get('/muti/getfile', ['as' => 'muti.file', 'uses' => 'MutiController@completeData']);
+    Route::post('/muti/updatemutiplaylist', ['as' => 'muti.mutiplaylist', 'uses' => 'MutiController@updateMutiPlaylist']);
+
+    Route::get('/', 'AuthController@adminLogin');
+    Route::post('/', ['as'=>'admin-login','uses'=>'AuthController@adminLoginPost']);
 });

@@ -8,7 +8,7 @@
 				@foreach($audio as $val)
 				<div class="item">
 					<a href="{{Request::root()}}/audio/noi-dung/{{$val->id}}"><img src="{{$val->image}}">
-						<h4><i class="fa fa-envira" aria-hidden="true"></i> {{$val->title}}</h4>
+						<h4><i class="fa fa-play" aria-hidden="true"></i> {{$val->title}}</h4>
 					</a>
 					<div class="meta clearfix">
 						<span class="date">{{$val->date_create}}</span>

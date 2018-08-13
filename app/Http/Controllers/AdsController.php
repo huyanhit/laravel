@@ -13,7 +13,7 @@ use App\Http\Models\CommentModel;
 use App\Http\Models\LocationModel;
 use App\Http\Models\CatadsModel;
 use App\Http\Models\TypeadsModel;
-include('App\Library\domnode.php') ;
+use App\Http\Models\SystemModel;
 
 class AdsController extends Controller
 {
@@ -26,9 +26,12 @@ class AdsController extends Controller
         $this->typeads  = new TypeadsModel();
         $this->location = new LocationModel();
         $this->comment  = new CommentModel();
+        $this->systemCode   = new SystemModel();
     }
     public function index(){
-        $data['headerline']   = $this->news->getHeadLine();
+        $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
+        $data['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
+        $data['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
         $data['ads']          = $this->ads->getAds();
         $data['totaldisplay'] = $this->ads->getTotalDisplay($data['ads']);
         $data['catads']       = $this->catads->getCatAds();
@@ -36,17 +39,21 @@ class AdsController extends Controller
         $data['location']     = $this->location->getLocation();
         return view("ads",$data);
     }
-    public function contentAds($id)
+    public function contentAds($id_str)
     {
-        $data['headerline']   = $this->news->getHeadLine();
-        $data['intro']        = $this->news->getIntro();
+        $cut_id = strrpos($id_str,'-');
+        $id = substr($id_str,$cut_id + 1);
+
+        $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
+        $this->arrAds    = $this->systemCode->getListSystemCodelByName('jobs_position');
+        $data['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],40,60, 10);
+        $data['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],40,60, 10);
         $data['news']         = $this->news->getPopularNews();
         $data['recent']       = $this->ads->getRecentAds($id);
         $data['ads']          = $this->jobs->getPopularJobs();
         $data['comment']      = $this->comment->getCommentByID('adsid',$id);
         $data['result']       = $this->ads->getAdsById($id);
         $data['typeid']       = 'adsid';
-        $data['user'] = Auth::user();
         $this->ads->updateView($id);
         return view("contentads",$data);
     }

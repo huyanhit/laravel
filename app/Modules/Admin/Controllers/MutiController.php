@@ -1,4 +1,4 @@
-<?php 
+<?php
 namespace App\Modules\Admin\Controllers;
 
 use Illuminate\Http\Request;
@@ -8,6 +8,7 @@ use App\Modules\Admin\Models\PlaylistModel;
 use App\Modules\Admin\Models\CatmutiModel;
 use App\Modules\Admin\Models\TypemutiModel;
 use App\Modules\Admin\Models\SystemModel;
+use App\Modules\Admin\Models\MutiPlaylistModel;
 use App\Library\MyFunction;
 
 /**
@@ -18,22 +19,23 @@ use App\Library\MyFunction;
  */
 class MutiController extends Controller
 {
-	function __construct(Request $request)
-	{
+    function __construct(Request $request)
+    {
+        $this->middleware('authAdmin');
         $this->images        = 'muti';
         $this->thum_images   = 'thum_muti';
         $this->request       = $request;
-		$this->mutiModel     = new MutiModel();
-		$this->playlistModel = new PlaylistModel();
-		$this->catmutiModel  = new CatmutiModel();
-		$this->typemutiModel = new TypemutiModel();
+        $this->mutiModel     = new MutiModel();
+        $this->playlistModel = new PlaylistModel();
+        $this->catmutiModel  = new CatmutiModel();
+        $this->typemutiModel = new TypemutiModel();
         $this->systemModel   = new SystemModel();
-		$this->myFunction    = new MyFunction();
-	}
+        $this->myFunction    = new MyFunction();
+    }
 
-	public function index()
-	{
-		$data = array();
+    public function index()
+    {
+        $data = array();
 
         if($this->request->get('order') && $this->request->get('by')){
             session(['order' => $this->request->get('order')]);
@@ -66,21 +68,21 @@ class MutiController extends Controller
             $result['urlsort'] = "";
         }
 
-		$result['catmuti'] = $this->catmutiModel->getAll();
-		$result['typemuti'] = $this->typemutiModel->getAll();
-		$result['muti'] = $this->mutiModel->getData($data);
+        $result['catmuti'] = $this->catmutiModel->getAll();
+        $result['typemuti'] = $this->typemutiModel->getAll();
+        $result['muti'] = $this->mutiModel->getData($data);
         $result['positions'] = $this->systemModel->getAll('muti_position');
 
-		foreach ($result['muti'] as $key => $val) {
-			$result['muti'][$key]->title = $this->myFunction->trimText($result['muti'][$key]->title,30);
-			$result['muti'][$key]->desc = $this->myFunction->trimText($result['muti'][$key]->desc,50);
+        foreach ($result['muti'] as $key => $val) {
+            $result['muti'][$key]->title = $this->myFunction->trimText($result['muti'][$key]->title,30);
+            $result['muti'][$key]->desc = $this->myFunction->trimText($result['muti'][$key]->desc,50);
         }
 
-		return view('Admin::muti.list',$result);
-	}
+        return view('Admin::Muti.list',$result);
+    }
 
-	public function insertData()
-	{
+    public function insertData()
+    {
         $data['frm'] = array();
         $catmuti= $this->catmutiModel->getAll();
         $data['catmuti'] = array();
@@ -113,61 +115,63 @@ class MutiController extends Controller
                 'desc' => 'required'
             ));
 
-			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
+            if(!empty($_FILES["feature"]["name"]))
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],$this->images, $this->thum_images);
 
-			if(!empty($_FILES["file"]["name"]))
-				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
+            if(!empty($_FILES["file"]["name"]))
+                $_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
 
             $frm =
                 ['id'     	  => NULL,
-                'catmuti'     => $this->request->input('catmuti'),
-                'typemuti'    => $this->request->input('typemuti'),
-                'playlist'    => $this->request->input('playlist'),
-                'positions'   => $this->request->input('positions'),
-                'title'       => $this->request->input('title'),
-                'desc'        => $this->request->input('desc'),
-                'content'     => $this->request->input('content'),
-                'image'       => $_FILES["feature"]["name"],
-                'file'        => $_FILES["file"]["name"],
-                'active'      => $this->request->input('active')? 1 : 0,
-                'date_create' => time(),
-                'author'      => 1];
+                    'catmuti'     => $this->request->input('catmuti'),
+                    'typemuti'    => $this->request->input('typemuti'),
+                    'playlist'    => $this->request->input('playlist'),
+                    'positions'   => $this->request->input('positions'),
+                    'title'       => $this->request->input('title'),
+                    'desc'        => $this->request->input('desc'),
+                    'content'     => $this->request->input('content'),
+                    'image'       => $_FILES["feature"]["name"],
+                    'file'        => $_FILES["file"]["name"],
+                    'link_file'   => $this->request->input('link_file'),
+                    'active'      => $this->request->input('active')? 1 : 0,
+                    'date_create' => time(),
+                    'author'      => 1];
 
             if($this->request->input('submit_edit')){
-				$id = $this->mutiModel->insertData($frm, $this->request->input('playlist-muti'));
-				return redirect('admin/muti/edit?id='.$id);
-			}else{
-				$this->mutiModel->insertData($frm);
-				return redirect('admin/muti');
-			}
+                $id = $this->mutiModel->insertData($frm, $this->request->input('playlist-muti'));
+                return redirect('admin/muti/edit?id='.$id);
+            }else{
+                $this->mutiModel->insertData($frm);
+                return redirect('admin/muti');
+            }
 
-		} elseif($this->request->get('id')){
+        } elseif($this->request->get('id')){
             $id = $this->request->get('id');
             $muti = $this->mutiModel->getbyId($id);
 
             $data['frm'] =
-            ['catmuti'    => $muti->catmuti,
-            'typemuti'    => $muti->typemuti,
-            'playlist'    => $muti->playlist,
-            'positions'   => $muti->positions,
-            'title'       => $muti->title,
-            'desc'        => $muti->desc,
-            'content'     => $muti->content,
-            'image'       => $muti->image,
-            'active'      => $muti->active,
-            'author'      => 1];
-		}
+                ['catmuti'    => $muti->catmuti,
+                    'typemuti'    => $muti->typemuti,
+                    'playlist'    => $muti->playlist,
+                    'positions'   => $muti->positions,
+                    'title'       => $muti->title,
+                    'desc'        => $muti->desc,
+                    'content'     => $muti->content,
+                    'image'       => $muti->image,
+                    'link_file'   => $muti->link_file,
+                    'active'      => $muti->active,
+                    'author'      => 1];
+        }
 
         return view('Admin::Muti.insert',$data);
-	}
-	
-	public function editData(){
+    }
+
+    public function editData(){
 
         $id = $this->request->get('id');
         $data['edit'] = $id;
 
-		$muti = $this->mutiModel->getbyId($id);
+        $muti = $this->mutiModel->getbyId($id);
 
         $catmuti= $this->catmutiModel->getAll();
         $data['catmuti'] = array();
@@ -199,101 +203,111 @@ class MutiController extends Controller
                 'desc' => 'required'
             ));
 
-			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"],'image');
-			}else{
-				$_FILES["feature"]["name"] = $muti->file;
-			}
+            if(!empty($_FILES["feature"]["name"])){
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+            }else{
+                $_FILES["feature"]["name"] = $muti->image;
+            }
 
-			if(!empty($_FILES["file"]["name"])){
-				$_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
-			}else{
-				$_FILES["file"]["name"] = $muti->file;
-			}
+            if(!empty($_FILES["file"]["name"])){
+                $_FILES["file"]["name"] = $this->myFunction->uploadFile($_FILES["file"]);
+            }else{
+                $_FILES["file"]["name"] = $muti->file;
+            }
 
             $data['frm'] =
                 ['catmuti'    => $this->request->input('catmuti'),
-                'typemuti'    => $this->request->input('typemuti'),
-                'playlist'    => $this->request->input('playlist'),
-                'positions'   => $this->request->input('positions'),
-                'title'       => $this->request->input('title'),
-                'desc'        => $this->request->input('desc'),
-                'content'     => $this->request->input('content'),
-                'image'       => $_FILES["feature"]["name"],
-                'file'        => $_FILES["file"]["name"],
-                'active'      => $this->request->input('active')? 1 : 0,
-                'date_create' => time(),
-                'author'      => 1];
+                    'typemuti'    => $this->request->input('typemuti'),
+                    'playlist'    => $this->request->input('playlist'),
+                    'positions'   => $this->request->input('positions'),
+                    'title'       => $this->request->input('title'),
+                    'desc'        => $this->request->input('desc'),
+                    'content'     => $this->request->input('content'),
+                    'image'       => $_FILES["feature"]["name"],
+                    'file'        => $_FILES["file"]["name"],
+                    'link_file'   => $this->request->input('link_file'),
+                    'active'      => $this->request->input('active')? 1 : 0,
+                    'date_create' => time(),
+                    'author'      => 1];
 
             if($this->request->input('submit_edit')){
-				$this->mutiModel->updateData($data['frm'], $id, $this->request->input('playlist-muti'));
-				return view('Admin::Muti.insert',$data);
-			}else{
-				$this->mutiModel->updateData($data['frm'], $id, $this->request->input('playlist-muti'));
-				return redirect('admin/muti');
-			}
+                $this->mutiModel->updateData($data['frm'], $id, $this->request->input('playlist-muti'));
+                return view('Admin::Muti.insert',$data);
+            }else{
+                $this->mutiModel->updateData($data['frm'], $id, $this->request->input('playlist-muti'));
+                return redirect('admin/muti');
+            }
 
-		}else{
+        }else{
             $data['frm'] =
                 ['catmuti'    => $muti->catmuti,
-                'typemuti'    => $muti->typemuti,
-                'positions'   => $muti->positions,
-                'playlist'    => $muti->playlist,
-                'title'       => $muti->title,
-                'desc'        => $muti->desc,
-                'content'     => $muti->content,
-                'image'       => $muti->image,
-                'file'        => $muti->file,
-                'active'      => $muti->active,
-                'author'      => 1];
-			return view('Admin::Muti.insert',$data);
-		}
-	}
+                    'typemuti'    => $muti->typemuti,
+                    'positions'   => $muti->positions,
+                    'playlist'    => $muti->playlist,
+                    'title'       => $muti->title,
+                    'desc'        => $muti->desc,
+                    'content'     => $muti->content,
+                    'image'       => $muti->image,
+                    'file'        => $muti->file,
+                    'link_file'   => $muti->link_file,
+                    'active'      => $muti->active,
+                    'author'      => 1];
+            return view('Admin::Muti.insert',$data);
+        }
+    }
 
-	public function deleteData()
-	{
-		if(isset($_GET['id'])){
-			return $this->mutiModel->deteleId($this->request->get('id'));
-		}
-	}
+    public function deleteData()
+    {
+        if(isset($_GET['id'])){
+            return $this->mutiModel->deteleId($this->request->get('id'));
+        }
+    }
 
-	public function activeData()
-	{
-		$active = 0;
-		if($_GET['check'] == 'true'){
-			$active = 1;
-		}
-		if(isset($_GET['id'])){
-			return $this->mutiModel->activeId($active,$this->request->get('id'));
-		}
-	}
+    public function activeData()
+    {
+        $active = 0;
+        if($_GET['check'] == 'true'){
+            $active = 1;
+        }
+        if(isset($_GET['id'])){
+            return $this->mutiModel->activeId($active,$this->request->get('id'));
+        }
+    }
 
-	public function applyData()
-	{
-		if(isset($_POST['action'])){
-			switch ((int)$_POST['action']) {
-				case 1:
-					foreach ($_POST['data'] as $val) {
-						$this->mutiModel->activeId(1,$val);		
-					}
-				break;
-				case 2:
-					foreach ($_POST['data'] as $val) {
-						$this->mutiModel->activeId(0,$val);		
-					}
-				break;
-				case 3:
-					foreach ($_POST['data'] as $val) {
-						$this->mutiModel->deteleId($val);		
-					}
-				break;
-			}
-		}
-	}
+    public function applyData()
+    {
+        if(isset($_POST['action'])){
+            switch ((int)$_POST['action']) {
+                case 1:
+                    foreach ($_POST['data'] as $val) {
+                        $this->mutiModel->activeId(1,$val);
+                    }
+                    break;
+                case 2:
+                    foreach ($_POST['data'] as $val) {
+                        $this->mutiModel->activeId(0,$val);
+                    }
+                    break;
+                case 3:
+                    foreach ($_POST['data'] as $val) {
+                        $this->mutiModel->deteleId($val);
+                    }
+                    break;
+            }
+        }
+    }
 
-	public function completeData(){
-		$id = $_GET['id'];
+    public function completeData(){
+        $id = $_GET['id'];
         $complete = $_GET['value'];
-		echo $this->playlistModel->completeData($id,$complete);
-	}
+        echo $this->playlistModel->completeData($id,$complete);
+    }
+
+    public function updateMutiPlaylist(){
+        $mutiId = $_POST['muti_id'];
+        $playlistId = $_POST['playlist_id'];
+        $option = $_POST['option'];
+        $this->mutiPlaylistModel  = new MutiPlaylistModel();
+        echo $this->mutiPlaylistModel->updateData($mutiId, $playlistId, $option);
+    }
 }

@@ -1,13 +1,14 @@
 <!DOCTYPE html>
 <html lang="en">
 	<head>
+		<meta HTTP-EQUIV="Content-Language" CONTENT="vi">
+	    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	    <title>Blog - Tin tuc - Viec lam - Rao vat - Gia lai - Tay nguyen</title>
+		<meta name="description" content="Blog Tin tuc, Viec lam, Rao vat, Giai tri, Gia lai, Tay nguyen" />
+		<meta name="copyright" content="Copyright XuLanh 2017">
+		<meta name="keywords" content="thông tin việc làm, tin tức, rao vặt, giải trí, giá thị trường cà phê nông sản, thảo luận các dịa điểm du lịch, ăn uống khu vực tây nguyên - gia lai">
 
-	    <meta charset="utf-8">
-	    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-	    <meta name="viewport" content="width=device-width, initial-scale=1">
-	    <title>Blog Tay Nguyen</title>
-
-	    <link rel="stylesheet" id="bootstrap-css" href="{{Request::root()}}/resources/assets/css/bootstrap.min.css" type="text/css">
+		<link rel="stylesheet" id="bootstrap-css" href="{{Request::root()}}/resources/assets/css/bootstrap.min.css" type="text/css">
 	    <link rel="stylesheet" id="font-awesome-css" href="{{Request::root()}}/resources/assets/css/font-awesome.min.css" type="text/css">
 	    <link rel="stylesheet" id="carousel-css" href="{{Request::root()}}/resources/assets/css/owl.carousel.css" type="text/css">
 	    <link rel="stylesheet" id="style-css" href="{{Request::root()}}/resources/assets/css/flexslider.css" type="text/css" media="all">

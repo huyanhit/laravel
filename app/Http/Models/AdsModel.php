@@ -76,20 +76,24 @@ class AdsModel extends Model
 	        if( $idtype == 1 || $idtype == 2 || $idtype == 3 || $idtype == 4){
 	        	$result[$key]->display = 1;
 	        	$result[$key]->totaldisplay += 1;
+                $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,50);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,100);
 	        }else if( $idtype == 5 || $idtype == 6 || $idtype == 7){
 	        	$result[$key]->display = 2;
 	        	$result[$key]->totaldisplay += 2;
+                $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,100);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,200);
 	        }else if( $idtype == 8){
 	        	$result[$key]->display = 3;
 	        	$result[$key]->totaldisplay += 3;
+                $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,200);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,255);
 	        }else{
 	        	$result[$key]->display = 0;
+                $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        	$result[$key]->title = $this->myFunction->trimText($result[$key]->title,200);
            		$result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,255);
 	        }
@@ -166,16 +170,16 @@ class AdsModel extends Model
 	public function getPopularAds(){
 		$result = DB::table('ads')->where('active',1)->where('typeads',7)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,80);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-	        if(empty($result[$key]->image) || !file_exists($this->dirimage.$result[$key]->image)){
-	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
-	        }else{
-	            $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'adsPO',400);
-	            $result[$key]->image = url('/').'/public/uploads/adsPO/'.$result[$key]->image;
-	            $result[$key]->totaldisplay = 2;
-	        }
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$this->images.'/'.$result[$key]->image,1,1,$this->thum_images,300);
+                $result[$key]->totaldisplay = 2;
+            }
 	    }
 	    return $result;
 	}
@@ -186,14 +190,14 @@ class AdsModel extends Model
 		->where('id', '!=' , $id)
 		->orderby('id','desc')->take(4)->get();
 		foreach ($result as $key => $val) {
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-            if(empty($result[$key]->image) || !file_exists($this->dirimage.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage(url('/').$this->dirimage.$result[$key]->image,1,1,'adsRC',200);
-                $result[$key]->image = url('/').'/public/uploads/adsRC/'.$result[$key]->image;
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$this->images.'/'.$result[$key]->image,1,1,$this->thum_images,300);
             }
         }
         return $result;

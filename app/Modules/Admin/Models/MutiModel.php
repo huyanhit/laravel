@@ -44,7 +44,7 @@ class MutiModel extends Model
 	}
 	public function insertData($data)
 	{
-		DB::table($this->table)->insertGetId($data);
+		return DB::table($this->table)->insertGetId($data);
 	}
 	public function updateData($data,$id)
 	{

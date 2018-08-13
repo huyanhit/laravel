@@ -7,7 +7,7 @@ use App\Modules\Admin\Models\JobsModel;
 use App\Modules\Admin\Models\CatjobsModel;
 use App\Modules\Admin\Models\TypejobsModel;
 use App\Modules\Admin\Models\LocationModel;
-use App\Modules\Admin\Models\systemModel;
+use App\Modules\Admin\Models\SystemModel;
 use App\Library\MyFunction;
 
 /**
@@ -20,6 +20,7 @@ class JobsController extends Controller
 {
 	function __construct(Request $request)
 	{
+        $this->middleware('authAdmin');
         $this->images       = 'jobs';
         $this->thum_images  = 'thum_jobs';
         $this->request      = $request;
@@ -82,7 +83,7 @@ class JobsController extends Controller
 			$result['jobs'][$key]->title = $this->myFunction->trimText($result['jobs'][$key]->title,30);
 			$result['jobs'][$key]->desc = $this->myFunction->trimText($result['jobs'][$key]->desc,50);
         }
-		return view('Admin::jobs.list',$result);
+		return view('Admin::Jobs.list',$result);
 	}
 
     public function insertData()

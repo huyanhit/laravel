@@ -4,10 +4,10 @@ namespace App\Modules\Admin\Controllers;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Modules\Admin\Models\AdsModel;
-use App\Modules\Admin\Models\CatAdsModel;
-use App\Modules\Admin\Models\TypeAdsModel;
+use App\Modules\Admin\Models\CatadsModel;
+use App\Modules\Admin\Models\TypeadsModel;
 use App\Modules\Admin\Models\LocationModel;
-use App\Modules\Admin\Models\systemModel;
+use App\Modules\Admin\Models\SystemModel;
 use App\Library\MyFunction;
 
 /**
@@ -20,10 +20,11 @@ class AdsController extends Controller
 {
     function __construct(Request $request)
     {
+        $this->middleware('authAdmin');
         $this->images       = 'ads';
         $this->thum_images  = 'thum_ads';
         $this->request      = $request;
-        $this->adsModel    = new adsModel();
+        $this->adsModel    = new AdsModel();
         $this->catadsModel = new CatadsModel();
         $this->typeadsModel = new TypeadsModel();
         $this->locationModel = new LocationModel();
@@ -79,7 +80,7 @@ class AdsController extends Controller
             $result['ads'][$key]->title = $this->myFunction->trimText($result['ads'][$key]->title,30);
             $result['ads'][$key]->desc = $this->myFunction->trimText($result['ads'][$key]->desc,50);
         }
-        return view('Admin::ads.list',$result);
+        return view('Admin::Ads.list',$result);
     }
 
     public function insertData()
@@ -158,7 +159,7 @@ class AdsController extends Controller
                     'author'      => 1];
         }
 
-        return view('Admin::ads.insert',$data);
+        return view('Admin::Ads.insert',$data);
     }
 
     public function editData(){
@@ -238,7 +239,7 @@ class AdsController extends Controller
                     'active'      => $ads->active,
                     'author'      => 1];
 
-            return view('Admin::ads.insert',$data);
+            return view('Admin::Ads.insert',$data);
         }
     }
 

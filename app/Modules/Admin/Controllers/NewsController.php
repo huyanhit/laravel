@@ -7,6 +7,7 @@ use App\Modules\Admin\Models\NewsModel;
 use App\Modules\Admin\Models\CatnewsModel;
 use App\Modules\Admin\Models\SystemModel;
 use App\Library\MyFunction;
+include('./app/Library/domnode.php');
 
 /**
  * NewsController
@@ -18,6 +19,7 @@ class NewsController extends Controller
 {
 	function __construct(Request $request)
 	{
+        $this->middleware('authAdmin');
 	    $this->images       = 'news';
         $this->thum_images  = 'thum_news';
         $this->request      = $request;
@@ -249,4 +251,15 @@ class NewsController extends Controller
 	{
 		$this->newsModel->importRss('http://vnexpress.net/rss/tin-moi-nhat.rss','VnExpress');
 	}
+
+    public function updateInfo()
+    {
+        $html = file_get_html('http://giacaphe.com/gia-ca-phe-noi-dia/');
+        $node = $html->getElementById('gia_trong_nuoc');
+        $node->getElementByTagName('a')->removeAttribute('href');
+        $node->getElementByTagName('img')->clear();
+        $node = htmlentities ($node);
+        $positions = $this->systemModel->getList('news_position');
+        $this->newsModel->updateInfo($node,$positions['news_top'],1);
+    }
 }

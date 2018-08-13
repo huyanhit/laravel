@@ -63,6 +63,9 @@ Route::group(['middleware' => ['web']], function () {
 
 	Route::get('/login-facebook', 'LoginController@loginFacebook');
 	Route::get('/login-google', 'LoginController@loginGoogle');
+
+    Route::get('web-login', 'Auth\AuthController@webLogin');
+    Route::post('web-login', ['as'=>'web-login','uses'=>'AuthController@webLoginPost']);
 });
 Route::auth();
 

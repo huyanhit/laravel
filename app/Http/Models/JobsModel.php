@@ -58,10 +58,11 @@ class JobsModel extends Model
 	public function getJobs()
 	{
         $positions = $this->systemDetailCode->getSystemCodeDetail('jobs_position','jobs_list');
-		$result = DB::table('jobs')->where('positions',$positions)->where('active',1)->orderby('id','desc')->paginate(15);
+		$result = DB::table('jobs')->where('positions',$positions)->where('active',1)->orderby('id','desc')->paginate(10);
 		foreach ($result as $key => $val) {
-            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
-            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,60);
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
+            $result[$key]->title = $this->myFunction->trimText($result[$key]->title,60);
+            $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,100);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
         } 
         return $result;
@@ -77,6 +78,7 @@ class JobsModel extends Model
             ->take($limit)->orderby('id','desc')
             ->get();
         foreach ($result as $key => $val) {
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,$trimText);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,$trimDesc);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
@@ -91,39 +93,43 @@ class JobsModel extends Model
 
 	public function getPopularJobs()
 	{
+        $images =  $this->images;
 		$result = DB::table('jobs')->where('active',1)->take(4)->orderby('id','desc')->get();
 		foreach ($result as $key => $val) {
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
 	        $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-	        if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
-	            $result[$key]->image = url('/').'/public/images/no-image.jpg';
-	        }else{
-	            $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'jobsvip',400);
-	            $result[$key]->image = url('/').'/public/uploads/jobsvip/'.$result[$key]->image;
-	        }
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
+                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            }else{
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, 1, 1, $this->thum_images);
+            }
 	    }
 	    return $result;
 	}
+
 	public function getRecentJobs($id){
+        $images =  $this->images;
 		$arrayjobs = $this->getJobsById($id);
 		$result = DB::table('jobs')
 		->where('catjobs', $arrayjobs->catjobs)
 		->where('id', '!=' , $id)
 		->orderby('id','desc')->take(4)->get();
 		foreach ($result as $key => $val) {
+            $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,40);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$result[$key]->image)){
+            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
                 $result[$key]->image = url('/').'/public/images/no-image.jpg';
             }else{
-                $this->myFunction->cropImage(url('/').'/public/uploads/'.$result[$key]->image,1,1,'jobsRC',200);
-                $result[$key]->image = url('/').'/public/uploads/jobsRC/'.$result[$key]->image;
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, 1, 1, $this->thum_images);
             }
         }
         return $result;
 	}
+
 	public function updateView($id){
 		$view = DB::table('jobs')->select('view')->where('id',$id)->first();
 		

@@ -62,19 +62,44 @@ $(document).ready(function(){
 			alert('success');
 		})
 	});
+    $('input[name="updateinfo"]').click(function(){
+        $.ajax({
+            type: 'GET',
+            url: './news/update',
+        }).done(function( msg ){
+            alert('success');
+        })
+    });
 	$("#playlist").keyup(function(){
-		console.log($(this).val());
-		value = $(this).val();
-        id = $('#hidden_playlist').val();
-		url =  "./getfile",
+        value = $(this).val();
+        id = $('#hidden_muti').val();
+        url =  "./getfile",
 		$.ajax({
-		  	type: 'get',
-		  	url: url,
-		  	data: {value: value,id: id}
+			type: 'get',
+			url: url,
+			data: {value:value,id:id}
 		}).done(function( html ){
 			$('#listchoose').html(html);
 		})
-	});
+    });
+
+    $("#listchoose").on('click','input[type="checkbox"]',function(){
+        var muti = $('#hidden_muti').val();
+        var playlist = $(this).val();
+        var option = $(this).is(':checked');
+        var token = $('input[name="_token"]').val();
+        url =  "./updatemutiplaylist",
+		$.ajax({
+			type: 'post',
+			url: url,
+			data:{
+				_token:token,
+				muti_id:muti,
+				playlist_id:playlist,
+				option:option }
+		}).done(function( html ){
+		});
+    });
 	$("#searchplaylist").keyup(function(){
 		value = $(this).val();
 		url =  "./getfile",

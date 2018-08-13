@@ -1,11 +1,11 @@
-<?php 
+<?php
 namespace App\Modules\Admin\Models;
 
 use DB;
 use Illuminate\Database\Eloquent\Model;
 
 class PlaylistModel extends Model
-{	
+{
 	function __construct()
 	{
 		$this->table = "playlist";
@@ -65,6 +65,7 @@ class PlaylistModel extends Model
         ->leftJoin('muti_playlist',function($join)use($id){
             $join->on('muti_playlist.playlist_id','=','playlist.id');
             $join->on('muti_playlist.muti_id','=',DB::raw("'".$id."'"));
+            $join->on('muti_playlist.active','=',DB::raw("1"));
         })
         ->where('playlist.title','like',$search.'%')
 		->get();
