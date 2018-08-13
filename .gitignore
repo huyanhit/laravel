@@ -4,8 +4,6 @@
 /public/uploads/file
 /public/uploads/audio
 /public/uploads/video
-/config/app
-.env
 .htaccess
 .idea
 index.php
