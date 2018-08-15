@@ -1,7 +1,7 @@
 <?php
 namespace App\Modules\Admin\Controllers;
 
-use App\Admin;
+use App\Modules\Admin\Models\Admin;
 use Validator;
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\ThrottlesLogins;
@@ -66,12 +66,11 @@ class AuthController extends Controller
             'email' => 'required|email',
             'password' => 'required',
         ]);
-        if (auth()->guard('admin')->attempt(
-            ['email' => $request->input('email'),
-            'password' => $request->input('password')]))
-        {
-            $user = auth()->guard('admin')->user();
-            return redirect('/admin/news');
+        if (auth()->guard('admin')->attempt([
+            'email' => $request->input('email'),
+            'password' => $request->input('password')])){
+                auth()->guard('admin')->user();
+                return redirect('/admin/news');
         }else{
             return back()->with('error','your username and password are wrong.');
         }
