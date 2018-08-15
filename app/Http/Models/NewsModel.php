@@ -32,7 +32,7 @@ class NewsModel extends Model
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,$trimDesc);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
-                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', $dimX, $dimY, $this->thum_images, $scale);
             }else{
                 $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, $dimX, $dimY, $this->thum_images, $scale);
             }
