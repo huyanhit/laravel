@@ -31,11 +31,12 @@ class NewsModel extends Model
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,$trimText);
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,$trimDesc);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
-                $result[$key]->image = url('/').'/public/images/no-image.jpg';
+            if(empty($result[$key]->image) || !file_exists(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image)){
+                $link_image = url('/').'/public/images/no-image.jpg';
             }else{
-                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, $dimX, $dimY, $this->thum_images, $scale);
+                $link_image = url('/').'/public/uploads/'.$images.'/'.$result[$key]->image;
             }
+            $result[$key]->image = $this->myFunction->cropImage($link_image, $dimX, $dimY, $this->thum_images, $scale);
         }
 		return $result;
 	}
