@@ -68,9 +68,10 @@ class AuthController extends Controller
         ]);
         if (auth()->guard('admin')->attempt([
             'email' => $request->input('email'),
-            'password' => $request->input('password')])){
-                auth()->guard('admin')->user();
-                return redirect('/admin/news');
+            'password' => $request->input('password'),
+            'role' => 1,
+        ])){
+            return redirect('/admin/news');
         }else{
             return back()->with('error','your username and password are wrong.');
         }
