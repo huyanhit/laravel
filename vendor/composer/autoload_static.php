@@ -4,7 +4,7 @@
 
 namespace Composer\Autoload;
 
-class ComposerStaticInita526d4840c828de0f0877f8e98192303
+class ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374
 {
     public static $files = array (
         '0e6d7bf4a5811bfa5cf40c5ccd6fae6a' => __DIR__ . '/..' . '/symfony/polyfill-mbstring/bootstrap.php',
@@ -78,7 +78,6 @@ class ComposerStaticInita526d4840c828de0f0877f8e98192303
         array (
             'Dotenv\\' => 7,
             'Doctrine\\Instantiator\\' => 22,
-            'Doctrine\\Common\\Inflector\\' => 26,
         ),
         'C' => 
         array (
@@ -211,10 +210,6 @@ class ComposerStaticInita526d4840c828de0f0877f8e98192303
         array (
             0 => __DIR__ . '/..' . '/doctrine/instantiator/src/Doctrine/Instantiator',
         ),
-        'Doctrine\\Common\\Inflector\\' => 
-        array (
-            0 => __DIR__ . '/..' . '/doctrine/inflector/lib/Doctrine/Common/Inflector',
-        ),
         'Cron\\' => 
         array (
             0 => __DIR__ . '/..' . '/mtdowling/cron-expression/src/Cron',
@@ -261,6 +256,13 @@ class ComposerStaticInita526d4840c828de0f0877f8e98192303
             'JakubOnderka\\PhpConsoleColor' => 
             array (
                 0 => __DIR__ . '/..' . '/jakub-onderka/php-console-color/src',
+            ),
+        ),
+        'D' => 
+        array (
+            'Doctrine\\Common\\Inflector\\' => 
+            array (
+                0 => __DIR__ . '/..' . '/doctrine/inflector/lib',
             ),
         ),
     );
@@ -3121,11 +3123,11 @@ class ComposerStaticInita526d4840c828de0f0877f8e98192303
     public static function getInitializer(ClassLoader $loader)
     {
         return \Closure::bind(function () use ($loader) {
-            $loader->prefixLengthsPsr4 = ComposerStaticInita526d4840c828de0f0877f8e98192303::$prefixLengthsPsr4;
-            $loader->prefixDirsPsr4 = ComposerStaticInita526d4840c828de0f0877f8e98192303::$prefixDirsPsr4;
-            $loader->fallbackDirsPsr4 = ComposerStaticInita526d4840c828de0f0877f8e98192303::$fallbackDirsPsr4;
-            $loader->prefixesPsr0 = ComposerStaticInita526d4840c828de0f0877f8e98192303::$prefixesPsr0;
-            $loader->classMap = ComposerStaticInita526d4840c828de0f0877f8e98192303::$classMap;
+            $loader->prefixLengthsPsr4 = ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374::$prefixLengthsPsr4;
+            $loader->prefixDirsPsr4 = ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374::$prefixDirsPsr4;
+            $loader->fallbackDirsPsr4 = ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374::$fallbackDirsPsr4;
+            $loader->prefixesPsr0 = ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374::$prefixesPsr0;
+            $loader->classMap = ComposerStaticInit3cc1ba41e56b4c72e7ac415e48545374::$classMap;
 
         }, null, ClassLoader::class);
     }
