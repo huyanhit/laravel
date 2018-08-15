@@ -57,22 +57,32 @@ class AdsModel extends Model
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
 	        $idtype = $result[$key]->typeads;
 	        $result[$key]->totaldisplay = 0;
-            if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
-                $result[$key]->image = url('/').'/public/images/no-image.jpg';
-            }else{
-	            if( $idtype == 2 || $idtype == 6 || $idtype ==8 || $idtype ==9){
-                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,2,1,$this->thum_images,300);
-                    $result[$key]->totaldisplay = 1;
-	            }else if( $idtype == 3 || $idtype == 7 || $idtype == 10){
-                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,1,1,$this->thum_images,300);
-                    $result[$key]->totaldisplay = 2;
-		        }else if( $idtype == 4 || $idtype == 11){
-                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,2,3,$this->thum_images,300);
-	                $result[$key]->totaldisplay = 3;
-	            }else{
-	            	$result[$key]->image = '';
-	            }
-	        }
+
+			if( $idtype == 2 || $idtype == 6 || $idtype ==8 || $idtype ==9){
+				if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
+					$result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg',2,1,$this->thum_images,300);
+				}else{
+					$result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image,2,1,$this->thum_images,300);
+				}
+				$result[$key]->totaldisplay = 1;
+			}else if( $idtype == 3 || $idtype == 7 || $idtype == 10){
+				if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
+					$result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', 1, 1, $this->thum_images, 300);
+				}else {
+					$result[$key]->image = $this->myFunction->cropImage(url('/') . '/public/uploads/' . $images . '/' . $result[$key]->image, 1, 1, $this->thum_images, 300);
+				}
+				$result[$key]->totaldisplay = 2;
+			}else if( $idtype == 4 || $idtype == 11){
+				if(empty($result[$key]->image) || !file_exists('public/uploads/'.$this->images.'/'.$result[$key]->image)){
+					$result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', 2, 3, $this->thum_images, 300);
+				}else {
+					$result[$key]->image = $this->myFunction->cropImage(url('/') . '/public/uploads/' . $images . '/' . $result[$key]->image, 2, 3, $this->thum_images, 300);
+				}
+				$result[$key]->totaldisplay = 3;
+			}else{
+				$result[$key]->image = '';
+			}
+
 	        if( $idtype == 1 || $idtype == 2 || $idtype == 3 || $idtype == 4){
 	        	$result[$key]->display = 1;
 	        	$result[$key]->totaldisplay += 1;
