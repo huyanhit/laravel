@@ -13,7 +13,7 @@
 	    <link rel="stylesheet" id="style-css" href="{{Request::root()}}/resources/assets/css/flexslider.css" type="text/css" media="all">
 	    <link rel="stylesheet" id="carousel-css" href="{{Request::root()}}/resources/assets/css/mediaelementplayer.min.css" type="text/css">
 	    <link rel="stylesheet" id="style-css" href="{{Request::root()}}/resources/assets/css/mep-feature-playlist.css" type="text/css" media="all">
-	    <link rel="stylesheet" id="style-css" href="{{Request::root()}}/public/css/app.css" type="text/css" media="all">
+	    <link rel="stylesheet" id="style-css" href="{{Request::root()}}/resources/assets/css/app.css" type="text/css" media="all">
 
 	    <script src="{{Request::root()}}/resources/assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
 	    <script src="{{Request::root()}}/resources/assets/js/mediaelement-and-player.min.js" type="text/javascript"></script>
