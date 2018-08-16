@@ -5,6 +5,9 @@
 /public/uploads/video
 /config/app
 /config/database
+/node_modules
+/.git
+/.idea
 .env
 .env.example
 .htaccess
