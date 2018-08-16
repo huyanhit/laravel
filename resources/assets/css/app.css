@@ -205,7 +205,9 @@ body {
     display: inline-block; }
     #header .login a {
       color: #fff;
-      text-decoration: none; }
+      text-decoration: none;
+      font-size: 10px;
+      line-height: 12px; }
       #header .login a:hover {
         color: #8ecbff; }
     #header .login ul {
@@ -851,20 +853,19 @@ body {
 
 #postjobs, #postads {
   background: #fff; }
-  #postjobs h1, #postads h1 {
-    text-align: center;
-    text-transform: uppercase; }
   #postjobs h3, #postads h3 {
-    background: #3d4c54;
     clear: both;
     padding: 10px;
     text-align: center;
-    color: #fff;
+    color: #3d4c54;
+    font-size: 24px;
     text-transform: uppercase; }
   #postjobs .control-label, #postads .control-label {
     text-align: right;
-    font-size: 16px;
-    line-height: 40px; }
+    line-height: 40px;
+    padding: 0 15px;
+    font-size: 18px;
+    font-weight: normal; }
   #postjobs form, #postads form {
     border: 1px #f2f2f2 solid;
     border-radius: 10px;
@@ -875,14 +876,12 @@ body {
       height: 40px;
       padding: 0 15px;
       font-size: 14px;
-      margin-bottom: 10px;
-      max-width: 500px; }
+      margin-bottom: 10px; }
     #postjobs form select, #postads form select {
       padding-left: 11px;
       text-transform: capitalize; }
     #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postjobs form input[type='file'], #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post, #postads form input[type='file'] {
-      margin-bottom: 10px;
-      max-width: 498px; }
+      margin-bottom: 10px; }
     #postjobs form textarea, #postads form textarea {
       height: 150px;
       padding: 15px; }
@@ -891,7 +890,7 @@ body {
       margin-bottom: 10px;
       padding: 8px;
       border: 1px #999 solid; }
-    #postjobs form input[type='submit'], #postads form input[type='submit'] {
+    #postjobs form input[type='submit'], #postjobs form button, #postads form input[type='submit'], #postads form button {
       padding: 0 30px;
       line-height: 40px;
       margin-bottom: 40px;
@@ -1110,6 +1109,77 @@ body {
 #login-layout {
   background: #fff;
   padding: 100px 0; }
+
+.steps-form-3 {
+  width: 100%;
+  position: relative;
+  top: 60px;
+  margin-top: 30px;
+  margin-bottom: 50px; }
+
+.steps-form-3 .steps-row-3 {
+  display: -ms-flexbox;
+  display: flex;
+  -ms-flex-align: center;
+  align-items: center;
+  -ms-flex-direction: column;
+  flex-direction: column; }
+
+.steps-form-3 .steps-row-3:before {
+  bottom: 0;
+  position: absolute;
+  content: "";
+  width: 2px;
+  height: 75%;
+  background-color: #3d4c54;
+  top: -20px; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 {
+  height: 100px;
+  display: -ms-flexbox;
+  display: flex;
+  text-align: center;
+  position: relative; }
+
+.steps-form-3 .steps-row-3 .steps-step-3.no-height {
+  height: 50px; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 p {
+  margin-top: 0.5rem; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 button[disabled] {
+  opacity: 1 !important;
+  filter: alpha(opacity=100) !important; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 {
+  width: 60px;
+  height: 60px;
+  border: 2px solid #3d4c54;
+  background-color: white !important;
+  color: #3d4c54 !important;
+  border-radius: 50%;
+  padding: 18px 18px 15px 15px;
+  margin-top: -22px; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3:hover {
+  border: 2px solid #4285F4;
+  color: #4285F4 !important;
+  background-color: white !important; }
+
+.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 .fa {
+  font-size: 24px; }
+
+.nextBtn-3, .prevBtn-3 {
+  float: right;
+  margin-left: 5px; }
+
+.steps-form-margin {
+  margin-bottom: 50px; }
+
+#frmpostface {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 30px; }
 
 @media only screen and (max-width: 767px) {
   .main {

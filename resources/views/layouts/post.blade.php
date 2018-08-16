@@ -12,6 +12,7 @@
 	    <script src="{{Request::root()}}/resources/assets/js/jquery-1.10.2.min.js" type="text/javascript"></script>
 	    <script src="{{Request::root()}}/resources/assets/js/ajax.js" type="text/javascript"></script>
     	<script src="{{Request::root()}}/resources/assets/ckeditor/ckeditor.js" type="text/javascript"></script>
+		<script src="{{Request::root()}}/resources/assets/js/app.js" type="text/javascript"></script>
 	</head>
 	<body id="layout">
 		@include('include.header')
