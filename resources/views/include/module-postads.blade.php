@@ -149,17 +149,17 @@
 
                     <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
-                            <input type="checkbox" id="checkbox_agree" class="form-check-input">
-                            <label for="checkbox_agree" class="form-check-label">I agree to the terms and conditions</label>
+                            <input type="checkbox" id="checkbox115" class="form-check-input">
+                            <label for="checkbox115" class="form-check-label">I agree to the terms and conditions</label>
                         </div>
                         <div class="form-group">
-                            <input type="checkbox" id="postface" name="postface">
-                            <label class="form-check-label">Tự động đăng fanpage khi đã duyệt</label>
+                            <input type="checkbox" checked id="postface" name="postface">
+                            <label for="checkbox115" class="form-check-label">Tự động đăng fanpage khi đã duyệt</label>
                         </div>
                     </div>
                     <div class="col-md-offset-2 col-md-10">
                         <div class="form-group">
-                            <input type="submit" id="postjob-post" name="submit" value="Đăng Tin" listen="#checkbox_agree__check__enable, #checkbox_agree__un_check__disable">
+                            <input type="submit" id="postjob-post" name="submit" value="Đăng Tin" action="#checkbox115__check__show, #checkbox115__un_check__hide">
                             <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
                         </div>
                     </div>
