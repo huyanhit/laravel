@@ -156,6 +156,16 @@
                             <input type="checkbox" id="postface" name="postface">
                             <label class="form-check-label">Tự động đăng fanpage khi đã duyệt</label>
                         </div>
+                        <div class="form-group">
+                            <label class="form-check-label text-right">Mã xác nhận</label> {!! captcha_img() !!}
+                        </div>
+                        <div>
+                            <label class="form-check-label col-sm-3">Nhập mã xác nhận</label>
+                            <div class="col-sm-9">
+                                <input type="text" class="form-control "  name="captcha" required/>
+                            </div>
+                        </div>
+                    </div>
                     </div>
                     <div class="col-md-offset-2 col-md-10">
                         <div class="form-group">
