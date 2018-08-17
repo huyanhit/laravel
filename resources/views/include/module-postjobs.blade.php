@@ -150,7 +150,7 @@
                     </div>
                     <div class="col-md-offset-2 col-md-10">
                         <div class="form-group">
-                            <input type="submit" id="postjob-post" name="submit" value="Đăng Tin">
+                            <input type="submit" id="postjob-post" name="submit" value="Đăng Tin" action="#checkbox115__check__show, #checkbox115__un_check__hide">
                             <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
                         </div>
                     </div>
