@@ -16,7 +16,6 @@
 		<script>
 			$(document).ready( function() {
 				var event = new event_component();
-				console.log('test');
 				event.run();
 			});
 		</script>
