@@ -3,16 +3,6 @@
 		<div class="col-md-9">
 			<h3><span>Tin Nhanh</span></h3>
 			<ul id="scroller" class="simply-scroll-list">
-				<li class="introweather">
-					<span id="weather" class="weather">
-						<span class="weather_date"></span>
-						<span class="weather_temp">
-							<span class="weather_temp_min"></span>
-							<span class="weather_temp_max"></span>
-						</span>
-						<img class="weather_icon">
-					</span>
-				</li>
 				@foreach($intro as $val)	
 				<li><p><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}" title="{{$val->title}}" rel="bookmark"><span class="title">{{$val->title}}</span></a></p></li>
 				@endforeach

@@ -120,7 +120,7 @@
 
 				{{Form::file('feature',array('id'=>'feature', 'class'=>'form-control'))}}
 
-			</span>
+				</span>
 
 				</div>
 

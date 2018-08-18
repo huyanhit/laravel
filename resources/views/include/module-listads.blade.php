@@ -85,7 +85,7 @@
 				<td>
 				</td>
 				<td>
-					<a href="">Fanpage <i class="fa fa-facebook"></i></a>
+					<a href=""><i class="fa fa-facebook"></i>Fanpage </a>
 				</td>
 				<td>
 					<input type="submit" name="submit" value="Lọc thông tin">
@@ -119,9 +119,9 @@
 					
 				</td>
 				<td>
-					<a href="{{Request::url()}}/xem-tin-rao-vat?id={{$val->id}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></i></a>
-					<a href="{{Request::url()}}/sua-tin-rao-vat?id={{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
-					<a class="ajaxdelete" href="{{Request::url()}}/delete?id={{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::url()}}/xem-tin-rao-vat/{{$val->id}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::url()}}/sua-tin-rao-vat/{{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
+					<a class="ajaxdelete" href="{{Request::url()}}/xoa-tin-rao-vat/{{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>
 			</tr>
 			@endforeach

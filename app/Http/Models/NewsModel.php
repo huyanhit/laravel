@@ -15,17 +15,14 @@ class NewsModel extends Model
 
 	public function getNewsFrame($positions, $trimText, $trimDesc, $limit ,$rss = false , $dimX = 1, $dimY = 1, $scale = 400)
 	{
-	    if($rss){
-            $images = 'rootrss';
-        }else{
-            $images =  $this->images;
-        }
+        $images =  $this->images;
 
-		$result = DB::table('news')
-            ->where('positions',$positions)
-            ->where('active',1)
-            ->take($limit)->orderby('id','desc')
-            ->get();
+        $result = DB::table('news')
+        ->where('positions',$positions)
+        ->where('active',1)
+        ->take($limit)->orderby('id','desc')
+        ->get();
+
 		foreach ($result as $key => $val) {
             $result[$key]->id = $this->myFunction->toSlug($result[$key]->title).'-'.$result[$key]->id;
             $result[$key]->title = $this->myFunction->trimText($result[$key]->title,$trimText);
@@ -37,6 +34,7 @@ class NewsModel extends Model
                 $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, $dimX, $dimY, $this->thum_images, $scale);
             }
         }
+
 		return $result;
 	}
 
@@ -44,6 +42,11 @@ class NewsModel extends Model
 		$result = DB::table('news')->where('id', $id)->where('active',1)->orderby('id','desc')->first();
 		return $result;
 	}
+
+    public function getByCategory($id, $limit){
+        $result = DB::table('news')->where('catnews', $id)->where('active',1)->orderby('id','desc')->take($limit)->get();
+        return $result;
+    }
 
     public function getPopularNews(){
         $images =  $this->images;
@@ -55,12 +58,7 @@ class NewsModel extends Model
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
 
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
-                if(!file_exists('public/uploads/rootrss/'.$result[$key]->image)) {
-                    $result[$key]->image = url('/').'/public/images/no-image.jpg';
-                }else{
-                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image, 1, 1, $this->thum_images);
-                    $result[$key]->totaldisplay = 2;
-                }
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', 1, 1, $this->thum_images);
             }else{
                 $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, 1, 1, $this->thum_images);
                 $result[$key]->totaldisplay = 2;
@@ -84,11 +82,7 @@ class NewsModel extends Model
             $result[$key]->desc = $this->myFunction->trimText($result[$key]->desc,120);
             $result[$key]->date_create = date('d-m-Y',$result[$key]->date_create);
             if(empty($result[$key]->image) || !file_exists('public/uploads/'.$images.'/'.$result[$key]->image)){
-                if(!file_exists('public/uploads/rootrss/'.$result[$key]->image)) {
-                    $result[$key]->image = url('/').'/public/images/no-image.jpg';
-                }else{
-                    $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/rootrss/'.$result[$key]->image, 1, 1, $this->thum_images);
-                }
+                $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', 1, 1, $this->thum_images);
             }else{
                 $result[$key]->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result[$key]->image, 1, 1, $this->thum_images);
             }

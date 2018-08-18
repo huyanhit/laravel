@@ -3,19 +3,21 @@
 	<div class="row">
 		<div class="col-md-5 news-right">
 			<div class="flexslider">
-			  <ul class="slides">
-			    @foreach($newsSL as $val)	
-			    <li data-thumb="{{$val->image}}">
-			      <img src="{{$val->image}}" />
-			      <div class="flex-caption">
-			      	<h4><a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">{{$val->title}}</a></h4>
-			      	<div>
-			      		{{$val->desc}}
-			      	</div>
-			      </div>
-			    </li>
-			    @endforeach
-			  </ul>
+				<ul class="slides">
+					@foreach($newsSL as $val)
+					<li data-thumb="{{$val->image}}">
+						<a href="{{Request::root()}}/tin-tuc/noi-dung/{{$val->id}}">
+							<img src="{{$val->image}}" />
+							<div class="flex-caption">
+								<h4><{{$val->title}}</h4>
+								<div>
+									{{$val->desc}}
+								</div>
+							</div>
+						</a>
+					</li>
+					@endforeach
+				</ul>
 			</div>
 		</div>
 		<div class="col-md-3 news-center">

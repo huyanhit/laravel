@@ -126,30 +126,34 @@ namespace App\Library {
 
 		public function trimText($text, $length, $ellipses = true, $strip_html = true) {
 
-		    if ($strip_html) {
+            if ($strip_html) {
 
-		        $text = strip_tags($text);
+                $text = strip_tags($text);
 
-		    }
+            }
 
-		    if (strlen($text) <= $length) {
+            if ($length != -1) {
 
-		        return $text;
+                if (strlen($text) <= $length) {
 
-		    }
+                    return $text;
 
-		    $last_space = strrpos(substr($text, 0, $length), ' ');
+                }
 
-		    $trimmed_text = substr($text, 0, $last_space);
+                $last_space = strrpos(substr($text, 0, $length), ' ');
 
-		  	if ($ellipses) {
+                $trimmed_text = substr($text, 0, $last_space);
 
-		        $trimmed_text .= '...';
+                if ($ellipses) {
 
-		    }
+                    $trimmed_text .= '...';
+
+                }
+            }else{
+                $trimmed_text = $text;
+            }
 
 		    return $trimmed_text;
-
 		}
 
 		

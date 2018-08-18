@@ -1,9 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Routing\Controller as BaseController;
 
-use App\Http\Requests;
 use Illuminate\Http\Request;
 use App\Library\myfunction;
 use App\Http\Models\JobsModel;
@@ -16,7 +14,7 @@ use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
 
 
-class PostjobsController extends BaseController
+class PostjobsController extends Controller
 {
 	public function __construct()
     {
@@ -59,8 +57,6 @@ class PostjobsController extends BaseController
 		$data['catjobs'] = $this->catjobs->getCatJobs();
 		$data['typejobs'] = $this->typejobs->getTypeJobs();
 		$data['location'] = $this->location->getLocation();
-
-
 		$data['frm'] = "";
 		if(isset($_POST['submit'])){
 			if(!empty($_FILES["feature"]["name"]))

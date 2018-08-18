@@ -67,11 +67,11 @@ $(document).ready(function($){
           var f = result.item.forecast;
           var u = result.units.temperature;
           var c = $('#weather').clone();
-          c.find('.weather_date').text('Pleiku: ' + f.date+' - ');
-          c.find('.weather_temp_min').text('Nhiệt độ: ' + f.low + u + ' -');
+          c.find('.weather_temp_min').text('Pleiku: ' + f.low + u + ' -');
           c.find('.weather_temp_max').text(f.high + u);
           c.find('.weather_icon').attr('src', iconUrl + f.code + '.gif');
           c.appendTo($('.introweather'));
+          return false;
         });
       }
     }

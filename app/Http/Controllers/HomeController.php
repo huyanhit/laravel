@@ -1,7 +1,6 @@
 <?php
 namespace App\Http\Controllers;
 use App\Http\Requests;
-use Illuminate\Http\Request;
 use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
 use App\Http\Models\AdsModel;

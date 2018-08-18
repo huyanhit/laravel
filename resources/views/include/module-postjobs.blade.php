@@ -60,7 +60,7 @@
                     </div>
                     <div class="col-md-offset-3 col-md-9">
                         <div class="form-group">
-                            <button class="btn nextBtn-3 pull-right" type="button">Next</button>
+                            <button class="btn nextBtn-3" type="button">Tiếp tục</button>
                         </div>
                     </div>
                 </div>
@@ -109,8 +109,8 @@
                     </div>
                     <div class="col-md-offset-3 col-md-9">
                         <div class="form-group">
-                            <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
-                            <button class="btn nextBtn-3 pull-right" type="button">Next</button>
+                            <button class="btn prevBtn-3" type="button">Quay lại</button>
+                            <button class="btn nextBtn-3" type="button">Tiếp tục</button>
                         </div>
                     </div>
                 </div>
@@ -147,16 +147,22 @@
                             <input type="checkbox" id="postface" name="postface">
                             <label class="form-check-label">Tự động đăng fanpage khi đã duyệt</label>
                         </div>
+                        <div class="form-group captcha_image">
+                            <label>Mã xác nhận</label> {!! captcha_img() !!}
+                        </div>
+                        <div class="form-group captcha_code">
+                            <label>Nhập mã xác nhận</label>
+                            <input type="text" class="form-control captcha_input"  name="captcha" required/>
+                        </div>
                     </div>
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
                             <input type="submit" id="postjob-post" name="submit" value="Đăng Tin" listen="#checkbox_agree__check__enable, #checkbox_agree__un_check__disable">
-                            <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
+                            <button class="btn prevBtn-3" type="button">Quay lại</button>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
         <div class="clearfix"> </div>
     </form>
 </div>

@@ -154,6 +154,14 @@ body {
     #header #logo img {
       height: 40px;
       margin-bottom: 5px; }
+  #header .introweather {
+    width: 20%;
+    height: 10px;
+    display: inline-block;
+    color: #fff;
+    font-size: 14px; }
+    #header .introweather img {
+      height: 20px; }
   #header nav {
     line-height: 50px; }
     #header nav ul {
@@ -205,9 +213,7 @@ body {
     display: inline-block; }
     #header .login a {
       color: #fff;
-      text-decoration: none;
-      font-size: 10px;
-      line-height: 12px; }
+      text-decoration: none; }
       #header .login a:hover {
         color: #8ecbff; }
     #header .login ul {
@@ -302,41 +308,61 @@ body {
       padding: 5px;
       width: auto;
       padding-right: 30px; }
-  #intro #searchform p {
-    margin: 0;
-    position: relative;
-    background: #3d4c54; }
-    #intro #searchform p:after {
-      content: "\f002";
-      font-family: FontAwesome;
-      position: absolute;
-      top: 0;
-      right: 0;
-      line-height: 39px;
+  #intro #searchform {
+    display: inline-block;
+    width: 100%;
+    height: 100%; }
+    #intro #searchform:before {
+      content: ''; }
+    #intro #searchform p {
+      margin: 0;
+      position: relative;
+      background: #3d4c54;
+      display: inline-block;
+      width: 100%;
+      height: 100%; }
+      #intro #searchform p:after {
+        content: "\f002";
+        font-family: FontAwesome;
+        position: absolute;
+        top: 0;
+        right: 0;
+        line-height: 39px;
+        width: 23%;
+        text-align: center;
+        color: #eee; }
+    #intro #searchform input[type="text"] {
+      border: #3d4c54 4px solid;
+      box-shadow: none;
+      width: 77%;
+      height: 40px;
+      padding: 0 10px; }
+    #intro #searchform input[type="submit"] {
+      float: right;
       width: 23%;
-      text-align: center;
-      color: #eee; }
-  #intro #searchform input[type="text"] {
-    border: medium none;
-    box-shadow: none;
-    height: 39px;
-    width: 77%;
-    padding: 15px;
-    height: 41px;
-    border: 1px #f7f7f7 solid; }
-  #intro #searchform input[type="submit"] {
-    float: right;
-    width: 23%;
-    border: none;
-    height: 39px;
-    background: transparent;
-    font-size: 0;
-    z-index: 1;
-    position: relative; }
+      border: none;
+      height: 39px;
+      background: transparent;
+      font-size: 0;
+      z-index: 1;
+      position: relative; }
 
 #news {
   background: white;
   padding-top: 15px; }
+  #news li {
+    position: relative; }
+    #news li .extra {
+      position: absolute;
+      bottom: 15px;
+      right: 15px;
+      font-size: 11px;
+      background: #3d4c54;
+      padding: 1px 5px;
+      color: #ffffff; }
+      #news li .extra .like, #news li .extra .view {
+        float: right;
+        margin-left: 10px; }
   #news .flexslider {
     border: none;
     margin-bottom: 15px; }
@@ -548,6 +574,8 @@ body {
       #jobs #list-jobs .item .salary {
         font-weight: bold;
         color: #81b752; }
+      #jobs #list-jobs .item .bottom {
+        padding: 10px 0; }
   #jobs .job-vip .title {
     background: #3d4c54;
     color: #FFF;
@@ -622,7 +650,7 @@ body {
   #masonry #search-adv {
     margin-bottom: 15px;
     height: 41px;
-    background: #f7f7f7; }
+    background: #f1f1f1; }
     #masonry #search-adv h3 {
       width: 120px;
       color: #FFF;
@@ -710,7 +738,8 @@ body {
       margin: 0 7px; }
       #mutimedia .owl-mutimedia .owl-carousel .item img {
         width: 100%;
-        height: auto; }
+        height: auto;
+        border: 1px #ccc solid; }
       #mutimedia .owl-mutimedia .owl-carousel .item h4 {
         padding-top: 15px;
         margin: 0;
@@ -863,41 +892,57 @@ body {
   #postjobs .control-label, #postads .control-label {
     text-align: right;
     line-height: 40px;
-    padding: 0 15px;
-    font-size: 18px;
-    font-weight: normal; }
+    padding: 0 15px; }
   #postjobs form, #postads form {
     border: 1px #f2f2f2 solid;
-    border-radius: 10px;
-    padding: 30px 5px;
-    padding-top: 0; }
+    border-radius: 0;
+    padding: 0 5px;
+    margin-top: 0;
+    display: inline-block;
+    width: 100%; }
     #postjobs form input[type='text'], #postjobs form input[type='email'], #postjobs form textarea, #postjobs form select, #postads form input[type='text'], #postads form input[type='email'], #postads form textarea, #postads form select {
       width: 100%;
       height: 40px;
       padding: 0 15px;
       font-size: 14px;
-      margin-bottom: 10px; }
+      margin-bottom: 10px;
+      font-size: 13px; }
     #postjobs form select, #postads form select {
       padding-left: 11px;
       text-transform: capitalize; }
     #postjobs form input[type='radio'], #postjobs form input[type='checkbox'], #postjobs form #cke_content-post, #postjobs form input[type='file'], #postads form input[type='radio'], #postads form input[type='checkbox'], #postads form #cke_content-post, #postads form input[type='file'] {
       margin-bottom: 10px; }
+    #postjobs form input[type='radio'], #postjobs form input[type="checkbox"], #postads form input[type='radio'], #postads form input[type="checkbox"] {
+      width: 15px;
+      height: 15px;
+      position: relative;
+      top: 3px; }
     #postjobs form textarea, #postads form textarea {
       height: 150px;
-      padding: 15px; }
+      padding: 10px 15px; }
     #postjobs form input[type='file'], #postads form input[type='file'] {
-      height: 40px;
+      height: auto;
       margin-bottom: 10px;
       padding: 8px;
       border: 1px #999 solid; }
     #postjobs form input[type='submit'], #postjobs form button, #postads form input[type='submit'], #postads form button {
       padding: 0 30px;
       line-height: 40px;
-      margin-bottom: 40px;
       background: #3d4c54;
       color: #fff;
       border: none;
-      text-transform: capitalize; }
+      text-transform: capitalize;
+      border-radius: 4px; }
+    #postjobs form .captcha_image label, #postjobs form .captcha_code label, #postads form .captcha_image label, #postads form .captcha_code label {
+      display: inline-block;
+      margin-right: 10px;
+      min-width: 110px; }
+    #postjobs form .captcha_image img, #postjobs form .captcha_code img, #postads form .captcha_image img, #postads form .captcha_code img {
+      border: 1px #ccc solid;
+      border-radius: 3px; }
+    #postjobs form .captcha_image input, #postjobs form .captcha_code input, #postads form .captcha_image input, #postads form .captcha_code input {
+      display: inline-block;
+      width: 50%; }
 
 #list {
   background: #fff;
@@ -942,6 +987,29 @@ body {
     color: #a94442; }
   #list .pagination {
     margin: 0 7px; }
+
+.total_news h3, .total_ads h3 {
+  background: #3d4c54;
+  height: 40px;
+  line-height: 40px;
+  padding: 0 15px;
+  color: #ffffff;
+  margin-bottom: 20px; }
+
+.total_news ul, .total_ads ul {
+  list-style: none;
+  margin: 0;
+  padding: 0; }
+  .total_news ul li, .total_ads ul li {
+    margin-bottom: 20px; }
+    .total_news ul li h4, .total_ads ul li h4 {
+      display: inline-block; }
+    .total_news ul li a, .total_ads ul li a {
+      display: inline-block;
+      float: left;
+      margin-right: 15px; }
+    .total_news ul li img, .total_ads ul li img {
+      border: 1px #ccc solid; }
 
 .title-line h3 {
   width: 120px;
@@ -1023,7 +1091,8 @@ body {
       max-width: 100px;
       float: left;
       margin-right: 10px;
-      height: 100px; }
+      height: 100px;
+      border: 1px #ccc solid; }
   #siderbar-right .sidebar-ads {
     margin-bottom: 5px; }
     #siderbar-right .sidebar-ads img {
@@ -1111,75 +1180,58 @@ body {
   padding: 100px 0; }
 
 .steps-form-3 {
-  width: 100%;
+  transform: translateY(50%);
+  -webkit-transform: translateY(50%); }
+  .steps-form-3 .steps-row-3 {
+    display: -ms-flexbox;
+    display: flex;
+    -ms-flex-align: center;
+    align-items: center;
+    -ms-flex-direction: column;
+    flex-direction: column; }
+    .steps-form-3 .steps-row-3:before {
+      bottom: 0;
+      position: absolute;
+      content: "";
+      width: 2px;
+      height: 75%;
+      background-color: #3d4c54;
+      top: -20px; }
+    .steps-form-3 .steps-row-3 .steps-step-3 {
+      height: 100px;
+      display: -ms-flexbox;
+      display: flex;
+      text-align: center;
+      position: relative; }
+      .steps-form-3 .steps-row-3 .steps-step-3 .no-height {
+        height: 50px; }
+      .steps-form-3 .steps-row-3 .steps-step-3 p {
+        margin-top: 0.5rem; }
+      .steps-form-3 .steps-row-3 .steps-step-3 button[disabled] {
+        opacity: 1 !important;
+        filter: alpha(opacity=100) !important; }
+      .steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 {
+        width: 60px;
+        height: 60px;
+        border: 2px solid #3d4c54;
+        background-color: white !important;
+        color: #3d4c54 !important;
+        border-radius: 50%;
+        padding: 18px 18px 15px 15px;
+        margin-top: -22px; }
+      .steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3:hover {
+        border: 2px solid #4285F4;
+        color: #4285F4 !important;
+        background-color: white !important; }
+      .steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 .fa {
+        font-size: 24px; }
+  .steps-form-3.steps-form-margin {
+    margin-bottom: 50px; }
+
+#frmpostface .nextBtn-3, #frmpostface .prevBtn-3 {
+  margin-left: 8px;
   position: relative;
-  top: 60px;
-  margin-top: 30px;
-  margin-bottom: 50px; }
-
-.steps-form-3 .steps-row-3 {
-  display: -ms-flexbox;
-  display: flex;
-  -ms-flex-align: center;
-  align-items: center;
-  -ms-flex-direction: column;
-  flex-direction: column; }
-
-.steps-form-3 .steps-row-3:before {
-  bottom: 0;
-  position: absolute;
-  content: "";
-  width: 2px;
-  height: 75%;
-  background-color: #3d4c54;
-  top: -20px; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 {
-  height: 100px;
-  display: -ms-flexbox;
-  display: flex;
-  text-align: center;
-  position: relative; }
-
-.steps-form-3 .steps-row-3 .steps-step-3.no-height {
-  height: 50px; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 p {
-  margin-top: 0.5rem; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 button[disabled] {
-  opacity: 1 !important;
-  filter: alpha(opacity=100) !important; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 {
-  width: 60px;
-  height: 60px;
-  border: 2px solid #3d4c54;
-  background-color: white !important;
-  color: #3d4c54 !important;
-  border-radius: 50%;
-  padding: 18px 18px 15px 15px;
-  margin-top: -22px; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3:hover {
-  border: 2px solid #4285F4;
-  color: #4285F4 !important;
-  background-color: white !important; }
-
-.steps-form-3 .steps-row-3 .steps-step-3 .btn-circle-3 .fa {
-  font-size: 24px; }
-
-.nextBtn-3, .prevBtn-3 {
-  float: right;
-  margin-left: 5px; }
-
-.steps-form-margin {
-  margin-bottom: 50px; }
-
-#frmpostface {
-  display: inline-block;
-  width: 100%;
-  margin-bottom: 30px; }
+  top: -1px; }
 
 @media only screen and (max-width: 767px) {
   .main {

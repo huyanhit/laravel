@@ -1,8 +1,7 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Routing\Controller as BaseController;
-use App\Http\Requests;
+
 use Illuminate\Http\Request;
 use App\Library\myfunction;
 use App\Http\Models\JobsModel;
@@ -13,12 +12,16 @@ use App\Http\Models\NewsModel;
 use App\Http\Models\AdsModel;
 use App\Http\Models\HeaderlineModel;
 use App\Http\Models\IntroModel;
+use App\Http\Models\SystemModel;
 
-class PostadsController extends BaseController
+class PostadsController extends Controller
 {
-	public function __construct()
+	public function __construct(Request $request)
     {
     	$this->middleware('auth');
+        $this->images       = 'ads';
+        $this->thum_images  = 'thum_ads';
+        $this->request = $request;
         $this->ads = new AdsModel();
         $this->catads = new CatadsModel();
         $this->typeads = new TypeadsModel();
@@ -26,12 +29,17 @@ class PostadsController extends BaseController
         $this->myFunction = new MyFunction();
         $this->jobs = new JobsModel();
         $this->news = new NewsModel();
+        $this->systemCode   = new SystemModel();
     }
 
 	public function index()
 	{
 		$data = array();
-		if(isset($_GET['order']) && isset($_GET['by'])){
+        $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
+        $result['intro']          = $this->news->getNewsFrame($this->arrPositions['news_scroll'],60,60, 10);
+        $result['headerline']     = $this->news->getNewsFrame($this->arrPositions['news_top'],50,110, 10);
+
+        if(isset($_GET['order']) && isset($_GET['by'])){
 			session(['order' => $_GET['order']]);
 			session(['by'    => $_GET['by']]);
 			$data['sort']['order'] = $_GET['order'];
@@ -55,101 +63,126 @@ class PostadsController extends BaseController
 
 	public function insertAds()
 	{
-		$data['catads'] = $this->catads->getCatAds();
-		$data['typeads'] = $this->typeads->getTypeAds();
-		$data['location'] = $this->location->getLocation();
+        $catads = $this->catads->getCatAds();
+        foreach ($catads as $value){
+            $data['catads'][$value->id] = $value->title;
+        }
+
+        $typeads = $this->typeads->getTypeAds();
+        $data['typeads'] = array();
+        foreach ($typeads as $value){
+            $data['typeads'][$value->id] = $value->title;
+        }
+
+        $location = $this->location->getLocation();
+        $data['location'] = array();
+        foreach ($location as $value){
+            $data['location'][$value->id] = $value->title;
+        }
 		$data['frm'] = "";
-		if(isset($_POST['submit'])){
-			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
-			$frm =  
-			    ['id'     	  => NULL,
+
+		if(!empty($this->request->input('submit'))){
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catads' => 'required',
+                'typeads'    => 'required',
+                'location'    => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'captcha' => 'required|captcha'
+            ));
+
+            if(!empty($_FILES["feature"]["name"]))
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+
+            $frm = array(
+                'id'     	  => NULL,
+                'catads'      => $_POST['catads'],
+                'typeads'     => $_POST['typeads'],
+                'location'    => $_POST['location'],
+                'title'       => $_POST['title'],
+                'desc'        => $_POST['desc'],
+                'content'     => $_POST['content'],
+                'image'       => $_FILES["feature"]["name"],
+                'date_create' => time(),
+                'author'      => auth()->user()->id
+            );
+
+            if($id = $this->ads->insertAds($frm)){
+                return redirect('/quan-li-rao-vat');
+            }
+            $data['frm'] = $frm;
+
+		}
+
+        return view("postads", $data);
+	}
+	
+	public function editAds($id){
+		$ads = $this->ads->getAdsById($id);
+		$data['edit'] = $id;
+
+        $catads = $this->catads->getCatAds();
+        foreach ($catads as $value){
+            $data['catads'][$value->id] = $value->title;
+        }
+
+        $typeads = $this->typeads->getTypeAds();
+        $data['typeads'] = array();
+        foreach ($typeads as $value){
+            $data['typeads'][$value->id] = $value->title;
+        }
+
+        $location = $this->location->getLocation();
+        $data['location'] = array();
+        foreach ($location as $value){
+            $data['location'][$value->id] = $value->title;
+        }
+
+		$data['frm'] = array(
+		    'catads'      => $ads->catads,
+		    'typeads'     => $ads->typeads,
+		    'location'    => $ads->location,
+		    'title'       => $ads->title, 
+		    'desc'        => $ads->desc, 
+		    'content'     => $ads->content,
+		    'author'      => auth()->user()->id
+        );
+
+		if(!empty($this->request->input('submit'))){
+            if(!empty($_FILES["feature"]["name"])){
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+            }else{
+                $_FILES["feature"]["name"] = $ads->image;
+            }
+
+			$frm = array(
 			    'catads'     => $_POST['catads'],
 			    'typeads'    => $_POST['typeads'],
 			    'location'    => $_POST['location'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 
 			    'content'     => $_POST['content'], 
-			    'image'       => $_FILES["feature"]["name"], 
-			    'from'        => $_POST['from'], 
-			    'date_create' => time(), 
-			    'author'      => 1];
-			if($id = $this->ads->insertAds($frm)){
-				return redirect('/rao-vat');
-			}
-			$data['frm'] = $frm;
-			return view("postads",$data);
-		}else{
-			if(isset($_GET['id'])){
-				$id = $_GET['id'];
-				$ads = $this->ads->getAdsById($id);
-				$data['catads'] = $this->catads->getCatAds();
-				$data['typeads'] = $this->typeads->getTypeAds();
-				$data['location'] = $this->location->getLocation();
-				$data['frm'] =  
-			    ['catads'    => $ads->catads,
-			    'typeads'    => $ads->typeads,
-			    'location'    => $ads->location,
-			    'title'       => $ads->title, 
-			    'desc'        => $ads->desc, 
-			    'content'     => $ads->content, 
-			    'image'       => $ads->image,
-			    'from'        => $ads->from,  
-			    'author'      => 1];
-				return view('postads',$data);
-			}
-			return view('postads',$data);
-		}
-	}
-	
-	public function editAds(){
-		$id = $_GET['id'];
-		$ads = $this->ads->getAdsById($id);
-		$data['edit'] = $id;
-		$data['catads'] = $this->catads->getCatAds();
-		$data['typeads'] = $this->typeads->getTypeAds();
-		$data['location'] = $this->location->getLocation();
-		$data['frm'] =  
-		   ['catads'      => $ads->catads,
-		    'typeads'     => $ads->typeads,
-		    'location'    => $ads->location,
-		    'title'       => $ads->title, 
-		    'desc'        => $ads->desc, 
-		    'content'     => $ads->content, 
-		    'from'        => $ads->from, 
-		    'author'      => 1];
-		if(isset($_POST['submit'])){
-			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
-			}else{
-				$_FILES["feature"]["name"] = $ads->image;
-			}
-			$frm =  
-			   ['catads'     => $_POST['catads'],
-			    'typeads'    => $_POST['typeads'],
-			    'location'    => $_POST['location'],
-			    'title'       => $_POST['title'], 
-			    'desc'        => $_POST['desc'], 
-			    'content'     => $_POST['content'], 
-			    'image'       => $_FILES["feature"]["name"], 
-			    'from'        => $_POST['from'], 
+			    'image'       => $_FILES["feature"]["name"],
+                'active'      => 0,
 			    'date_update' => time(),  
-			    'author'      => 1];
+			    'author'      => auth()->user()->id
+            );
+
 			if($this->ads->updateAds($frm,$id)){
-				return redirect('/rao-vat');
+				return redirect('/quan-li-rao-vat');
 			}else{
 				$data['frm'] = $frm;
-				return view('postads',$data);
 			}
-		}else{
-			return view('postads',$data);
 		}
+
+		return view('postads',$data);
 	}
 
-	public function deleteAds()
+	public function deleteAds($id)
 	{
-		if(isset($_GET['id'])){
-			return $this->ads->deteleId($_GET['id']);
+		if(isset($id)){
+			return $this->ads->deteleId($id);
 		}
 	}
 

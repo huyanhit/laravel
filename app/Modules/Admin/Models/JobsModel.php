@@ -21,7 +21,6 @@ class JobsModel extends Model
 			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
 			->orderby($data['sort']['order'], $data['sort']['by'])
-            ->where('active', 1)
 			->paginate(10);
 		}else{
 			$result = DB::table($this->table)
@@ -31,7 +30,6 @@ class JobsModel extends Model
 			->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
 			->where('from', 'like', isset($data["filter"]["from"])?$data["filter"]["from"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
-            ->where('active', 1)
 			->paginate(10);
 		}
 		return $result;

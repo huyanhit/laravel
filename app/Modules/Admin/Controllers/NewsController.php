@@ -50,13 +50,14 @@ class NewsController extends Controller
 			session(['desc'   => $this->request->input('desc')]);
 			session(['from'   => $this->request->input('from')]);
 			session(['active' => ($this->request->input('active')=='active')? 1 :(($this->request->input('active')=='unactive')? 0 : null)]);
-            $data['filter']['catnews']= session('catnews');
-            $data['filter']['positions']= session('positions');
-            $data['filter']['title']  = session('title');
-            $data['filter']['desc']   = session('desc');
-            $data['filter']['from']   = session('from');
-            $data['filter']['active'] = session('active');
 		}
+
+        $data['filter']['catnews']= session('catnews');
+        $data['filter']['positions']= session('positions');
+        $data['filter']['title']  = session('title');
+        $data['filter']['desc']   = session('desc');
+        $data['filter']['from']   = session('from');
+        $data['filter']['active'] = session('active');
 
 	    if(!empty(session('order')) && !empty(session('by'))){
 			$result['urlsort'] = '?order='.session('order').'&by='.session('by');
@@ -125,16 +126,17 @@ class NewsController extends Controller
         }elseif($this->request->get('id')){
             $id = $this->request->get('id');
             $news = $this->newsModel->getbyId($id);
-            $data['frm'] =
-            ['catnews'    => $news->catnews,
-            'positions'   => $news->positions,
-            'title'       => $news->title,
-            'desc'        => $news->desc,
-            'content'     => $news->content,
-            'image'       => $news->image,
-            'from'        => $news->from,
-            'active'      => $news->active,
-            'author'      => 1];
+            $data['frm'] = array(
+                'catnews'    => $news->catnews,
+                'positions'   => $news->positions,
+                'title'       => $news->title,
+                'desc'        => $news->desc,
+                'content'     => $news->content,
+                'image'       => $news->image,
+                'from'        => $news->from,
+                'active'      => $news->active,
+                'author'      => 1
+            );
         }
 
         return view('Admin::News.insert',$data);
@@ -169,8 +171,8 @@ class NewsController extends Controller
                 $_FILES["feature"]["name"] = $news->image;
             }
 
-            $data['frm'] =
-			   ['catnews'     => $this->request->input('catnews'),
+            $data['frm'] = array(
+			   'catnews'     => $this->request->input('catnews'),
                 'positions'   => $this->request->input('positions'),
 			    'title'       => $this->request->input('title'),
 			    'desc'        => $this->request->input('desc'),
@@ -179,7 +181,8 @@ class NewsController extends Controller
 			    'from'        => $this->request->input('from'),
 			    'active'      => $this->request->input('active')? 1 : 0,
 			    'date_update' => time(),
-			    'author'      => 1];
+			    'author'      => 1
+            );
 
 			if($this->request->input('submit_edit')){
 				$this->newsModel->updateData($data['frm'], $id);
@@ -191,8 +194,8 @@ class NewsController extends Controller
 				return redirect('admin/news');
 			}
 		}else{
-            $data['frm'] =
-                ['catnews'     => $news->catnews,
+            $data['frm'] = array(
+                'catnews'     => $news->catnews,
                 'positions'   => $news->positions,
                 'title'       => $news->title,
                 'desc'        => $news->desc,
@@ -200,10 +203,10 @@ class NewsController extends Controller
                 'from'        => $news->from,
                 'image'       => $news->image,
                 'active'      => $news->active,
-                'author'      => 1];
-
-			return view('Admin::News.insert',$data);
+                'author'      => 1
+            );
 		}
+        return view('Admin::News.insert',$data);
 	}
 
 	public function deleteData()

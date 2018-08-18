@@ -7,6 +7,16 @@
 	</div>
 </div>
 <nav class="col-md-10" class="navbar">
+	<span class="introweather">
+		<span id="weather" class="weather">
+			<span class="weather_date"></span>
+			<span class="weather_temp">
+				<span class="weather_temp_min"></span>
+				<span class="weather_temp_max"></span>
+			</span>
+			<img class="weather_icon">
+		</span>
+	</span>
 	<ul>
 		<li class="icon-home"><a href="{{Request::root()}}"><img src="{{Request::root()}}/resources/assets/images/home.png" alt="Magazine"></a></li>
 		<li><a href="#">Giới thiệu</a>

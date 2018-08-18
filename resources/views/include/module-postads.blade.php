@@ -1,12 +1,21 @@
 <div id="postads" class="container">
-    <form role="form"  id="frmpostface" class="form-horizontal" method="post"  enctype="multipart/form-data" action="
+    <form role="form"  id="frmpostface" class="form-horizontal" method="post" action="
         @if(isset($edit))
         {{Request::url().'?id='.$edit}}
         @else
         {{Request::url()}}
         @endif
-        ">
-        {!! csrf_field() !!}
+        " enctype="multipart/form-data" >
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="col-md-2 pl-5 pl-md-0 pb-5">
             <!-- Stepper -->
             <div class="steps-form-3">
@@ -32,22 +41,13 @@
                     <div class="form-group title">
                         <label class="control-label col-sm-3">Tiêu đề</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Input Title" value="{{isset($frm['title'])?$frm['title']:''}}" required>
-                            <input type="hidden" class="form-control" id="typeads" name="typeads" value="1">
+                            {{ Form::input('text','title',isset($frm['title'])?$frm['title']:'',array('class' => 'form-control','placeholder' => 'Input title'))}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Danh mục</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="catads" name="catads">
-                                @foreach($catads as $val)
-                                    <option
-                                    @if(isset($frm['catads']) && ($frm['catads'] == $val->id))
-                                    {{'selected'}}
-                                    @endif
-                                    value="{{$val->id}}">{{$val->title}}</option>
-                                @endforeach
-                            </select>
+                            {{ Form::select('catads', $catads, isset($frm['catads'])?$frm['catads']:null, array('id'=>'catads', 'class'=>'form-control'))}}
                         </div>
                     </div>
                     <div class="form-group clearfix">
@@ -59,29 +59,19 @@
                     <div class="form-group">
                         <label class="control-label col-sm-3">Chi tiết tin</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="content-post" placeholder="Content" name="content">
-                                {{isset($frm['content'])?$frm['content']:''}}
-                            </textarea>
+                            {{ Form::textarea ('content',isset($frm['content'])?$frm['content']:'',array('id'=>'content-post', 'class'=>'form-control', 'placeholder'=>'Input content'))}}
                             <script type="text/javascript">CKEDITOR.replace('content-post'); </script>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Hiển thị dạng</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="typeads" name="typeads">
-                                @foreach($typeads as $val)
-                                    <option
-                                            @if(isset($frm['typeads']) && ($frm['typeads'] == $val->id))
-                                            {{'selected'}}
-                                            @endif
-                                            value="{{$val->id}}">{{$val->title}}</option>
-                                @endforeach
-                            </select>
+                            {{Form::select('typeads', $typeads, isset($frm['typeads'])?$frm['typeads']:null, array('id'=>'typeads', 'class'=>'form-control'))}}
                         </div>
                     </div>
                     <div class="col-md-offset-3 col-md-9">
                         <div class="form-group">
-                            <button class="btn nextBtn-3 pull-right" type="button">Next</button>
+                            <button class="btn nextBtn-3" type="button">Tiếp tục</button>
                         </div>
                     </div>
                 </div>
@@ -91,35 +81,22 @@
                 <div class="col-md-12">
                     <h3>Thông tin người đăng</h3>
                     <div class="form-group">
-                        <label class="control-label col-sm-3">Tên người đăng</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="from" value="{{isset($frm['from'])?$frm['from']:''}}" required/>
-                        </div>
-                    </div>
-                    <div class="form-group">
                         <label class="control-label col-sm-3">Liên hệ</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="desc" id="desc" placeholder="Input description" required >{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
+                            {{ Form::textarea ('desc',isset($frm['desc'])?$frm['desc']:'',array('id'=>'desc', 'class'=>'form-control', 'placeholder'=>'Input description'))}}
+                            <script type="text/javascript">CKEDITOR.replace('desc'); </script>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3" >Vùng muốn rao</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="location" name="location">
-                                @foreach($location as $val)
-                                    <option
-                                            @if(isset($frm['location']) && ($frm['location'] == $val->id))
-                                            {{'selected'}}
-                                            @endif
-                                            value="{{$val->id}}">{{$val->title}}</option>
-                                @endforeach
-                            </select>
+                            {{Form::select('location', $location, isset($frm['location'])?$frm['location']:null, array('id'=>'location', 'class'=>'form-control'))}}
                         </div>
                     </div>
                     <div class="col-md-offset-3 col-md-9">
                         <div class="form-group">
-                            <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
-                            <button class="btn nextBtn-3 pull-right" type="button">Next</button>
+                            <button class="btn prevBtn-3" type="button">Quay lại</button>
+                            <button class="btn nextBtn-3" type="button">Tiếp tục</button>
                         </div>
                     </div>
                 </div>
@@ -156,21 +133,18 @@
                             <input type="checkbox" id="postface" name="postface">
                             <label class="form-check-label">Tự động đăng fanpage khi đã duyệt</label>
                         </div>
-                        <div class="form-group">
-                            <label class="form-check-label text-right">Mã xác nhận</label> {!! captcha_img() !!}
+                        <div class="form-group captcha_image">
+                            <label>Mã xác nhận</label> {!! captcha_img() !!}
                         </div>
-                        <div>
-                            <label class="form-check-label col-sm-3">Nhập mã xác nhận</label>
-                            <div class="col-sm-9">
-                                <input type="text" class="form-control "  name="captcha" required/>
-                            </div>
+                        <div class="form-group captcha_code">
+                            <label>Nhập mã xác nhận</label>
+                            <input type="text" class="form-control captcha_input"  name="captcha" required/>
                         </div>
                     </div>
-                    </div>
-                    <div class="col-md-offset-2 col-md-10">
+                    <div class="col-md-offset-2 col-md-8">
                         <div class="form-group">
                             <input type="submit" id="postjob-post" name="submit" value="Đăng Tin" listen="#checkbox_agree__check__enable, #checkbox_agree__un_check__disable">
-                            <button class="btn prevBtn-3 pull-right" type="button">Previous</button>
+                            <button class="btn prevBtn-3" type="button">Quay lại</button>
                         </div>
                     </div>
                 </div>

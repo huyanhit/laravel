@@ -20,7 +20,6 @@ class AdsModel extends Model
                 ->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
                 ->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
                 ->orderby($data['sort']['order'], $data['sort']['by'])
-                ->where('active', 1)
                 ->paginate(10);
         }else{
             $result = DB::table($this->table)
@@ -29,7 +28,6 @@ class AdsModel extends Model
                 ->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
                 ->where('desc', 'like', isset($data["filter"]["desc"])?$data["filter"]["desc"].'%':"%")
                 ->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
-                ->where('active', 1)
                 ->paginate(10);
         }
         return $result;

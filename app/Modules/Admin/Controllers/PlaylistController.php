@@ -49,12 +49,13 @@ class PlaylistController extends Controller
             session(['desc'   => $this->request->input('desc')]);
             session(['from'   => $this->request->input('from')]);
             session(['active' => ($this->request->input('active')=='active')? 1 :(($this->request->input('active')=='unactive')? 0 : null)]);
-            $data['filter']['positions']= session('positions');
-            $data['filter']['title']  = session('title');
-            $data['filter']['desc']   = session('desc');
-            $data['filter']['from']   = session('from');
-            $data['filter']['active'] = session('active');
         }
+
+        $data['filter']['positions']= session('positions');
+        $data['filter']['title']  = session('title');
+        $data['filter']['desc']   = session('desc');
+        $data['filter']['from']   = session('from');
+        $data['filter']['active'] = session('active');
 
         if(!empty(session('order')) && !empty(session('by'))){
             $result['urlsort'] = '?order='.session('order').'&by='.session('by');

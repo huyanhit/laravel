@@ -19,16 +19,24 @@ class AdsModel extends Model
 			$result = DB::table('ads')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+            ->where('author', auth()->user()->id)
 			->orderby($data['sort']['order'], $data['sort']['by'])
 			->paginate(10);
 		}else{
 			$result = DB::table('ads')
 			->where('title', 'like', isset($data["filter"]["title"])?$data["filter"]["title"].'%':"%")
 			->where('active', 'like', isset($data["filter"]["active"])?$data["filter"]["active"]:'%')
+            ->where('author', auth()->user()->id)
 			->paginate(10);
 		}
 		return $result;
 	}
+
+    public function getByCategory($id, $limit){
+        $result = DB::table('ads')->where('catads', $id)->where('active',1)->orderby('id','desc')->take($limit)->get();
+        return $result;
+    }
+
 	public function insertAds($data)
 	{	
 		$result = DB::table('ads')->insertGetId($data);

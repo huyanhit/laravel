@@ -59,12 +59,13 @@ class AdsController extends Controller
             session(['title'  => $_POST['title']]);
             session(['desc'   => $_POST['desc']]);
             session(['active' => ($_POST['active']=='active')? 1 :(($_POST['active']=='unactive')? 0 : null)]);
-            $data['filter']['catads']= session('catads');
-            $data['filter']['positions']= session('positions');
-            $data['filter']['title']  = session('title');
-            $data['filter']['desc']   = session('desc');
-            $data['filter']['active'] = session('active');
         }
+
+        $data['filter']['catads']= session('catads');
+        $data['filter']['positions']= session('positions');
+        $data['filter']['title']  = session('title');
+        $data['filter']['desc']   = session('desc');
+        $data['filter']['active'] = session('active');
 
         if(!empty(session('order')) && !empty(session('by'))){
             $result['urlsort'] = '?order='.session('order').'&by='.session('by');

@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Http\Requests;
-use Illuminate\Http\Request;
 use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
 use App\Http\Models\AdsModel;
@@ -14,6 +13,7 @@ use App\Http\Models\LocationModel;
 use App\Http\Models\CatadsModel;
 use App\Http\Models\TypeadsModel;
 use App\Http\Models\SystemModel;
+use App\Library\MyFunction;
 
 class AdsController extends Controller
 {
@@ -27,6 +27,7 @@ class AdsController extends Controller
         $this->location = new LocationModel();
         $this->comment  = new CommentModel();
         $this->systemCode   = new SystemModel();
+        $this->myFunction   = new MyFunction();
     }
     public function index(){
         $this->arrPositions     = $this->systemCode->getListSystemCodelByName('news_position');
@@ -37,8 +38,34 @@ class AdsController extends Controller
         $data['catads']       = $this->catads->getCatAds();
         $data['typeads']      = $this->typeads->getTypeAds();
         $data['location']     = $this->location->getLocation();
+        $data['total']          = $this->getTotalByCategory(5);
         return view("ads",$data);
     }
+
+    private function getTotalByCategory($limit)
+    {
+        $images = 'ads';
+        $thum_images = 'thum_ads';
+        $data =  $this->catads->getAll();
+        foreach ($data as $key => $val){
+            $ads  =  $this->ads->getByCategory($val->id , $limit);
+            foreach ($ads as $result){
+                $result->id = $this->myFunction->toSlug($result->title).'-'.$result->id;
+                $result->title = $this->myFunction->trimText($result->title,-1);
+                $result->desc = $this->myFunction->trimText($result->desc,-1);
+                $result->date_create = date('d-m-Y',$result->date_create);
+                if(empty($result->image) || !file_exists('public/uploads/'.$images.'/'.$result->image)){
+                    $result->image = $this->myFunction->cropImage(url('/').'/public/images/no-image.jpg', 1, 1, $thum_images);
+                }else{
+                    $result->image = $this->myFunction->cropImage(url('/').'/public/uploads/'.$images.'/'.$result->image, 1, 1, $thum_images);
+                }
+            }
+            $data[$key]->ads = $ads;
+        }
+
+        return $data;
+    }
+
     public function contentAds($id_str)
     {
         $cut_id = strrpos($id_str,'-');
