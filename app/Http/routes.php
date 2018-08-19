@@ -36,10 +36,10 @@ Route::get('/viec-lam', 'JobsController@index');
 Route::get('/quan-li-viec-lam/postface/{id}', 'PostjobsController@postFaceJobs');
 Route::post('/quan-li-viec-lam', 'PostjobsController@index');
 Route::get('/quan-li-viec-lam', 'PostjobsController@index');
-Route::get('/quan-li-viec-lam/delete', 'PostjobsController@deleteJobs');
-Route::get('/quan-li-viec-lam/xem-tin-tuyen-dung', 'PostjobsController@viewJobs');
+
 Route::post('/quan-li-viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
 Route::get('/quan-li-viec-lam/dang-tin-tuyen-dung', 'PostjobsController@insertJobs');
+Route::get('/quan-li-viec-lam/xoa-tin-tuyen-dung/{id}', 'PostjobsController@deleteJobs');
 Route::post('/quan-li-viec-lam/sua-tin-tuyen-dung/{id}', 'PostjobsController@editJobs');
 Route::get('/quan-li-viec-lam/sua-tin-tuyen-dung/{id}', 'PostjobsController@editJobs');
 
@@ -49,11 +49,9 @@ Route::get('/quan-li-rao-vat/postface/{id}', 'PostadsController@postFaceAds');
 Route::post('/quan-li-rao-vat', 'PostadsController@index');
 Route::get('/quan-li-rao-vat', 'PostadsController@index');
 
-
 Route::post('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
 Route::get('/quan-li-rao-vat/dang-tin-rao-vat', 'PostadsController@insertads');
 Route::get('/quan-li-rao-vat/xoa-tin-rao-vat/{id}', 'PostadsController@deleteads');
-Route::get('/quan-li-rao-vat/xem-tin-rao-vat/{id}', 'PostadsController@viewads');
 Route::post('/quan-li-rao-vat/sua-tin-rao-vat/{id}', 'PostadsController@editads');
 Route::get('/quan-li-rao-vat/sua-tin-rao-vat/{id}', 'PostadsController@editads');
 

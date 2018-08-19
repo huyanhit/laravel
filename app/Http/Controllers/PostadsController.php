@@ -58,12 +58,18 @@ class PostadsController extends Controller
 			$result['urlsort'] = "";
 		}
 		$result['ads'] = $this->ads->getAll($data);
+
+        foreach ($result['ads'] as $key => $val) {
+            $result['ads'][$key]->view = $this->myFunction->toSlug($val->title).'-'.$val->id;
+        }
+
 		return view('listads',$result);
 	}
 
 	public function insertAds()
 	{
         $catads = $this->catads->getCatAds();
+        $data['catads'] = array();
         foreach ($catads as $value){
             $data['catads'][$value->id] = $value->title;
         }
@@ -144,12 +150,24 @@ class PostadsController extends Controller
 		    'typeads'     => $ads->typeads,
 		    'location'    => $ads->location,
 		    'title'       => $ads->title, 
-		    'desc'        => $ads->desc, 
+		    'desc'        => $ads->desc,
+            'image'       => $ads->image,
 		    'content'     => $ads->content,
 		    'author'      => auth()->user()->id
         );
 
 		if(!empty($this->request->input('submit'))){
+
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catads' => 'required',
+                'typeads'    => 'required',
+                'location'    => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'captcha' => 'required|captcha'
+            ));
+
             if(!empty($_FILES["feature"]["name"])){
                 $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
             }else{
@@ -157,8 +175,8 @@ class PostadsController extends Controller
             }
 
 			$frm = array(
-			    'catads'     => $_POST['catads'],
-			    'typeads'    => $_POST['typeads'],
+			    'catads'      => $_POST['catads'],
+			    'typeads'     => $_POST['typeads'],
 			    'location'    => $_POST['location'],
 			    'title'       => $_POST['title'], 
 			    'desc'        => $_POST['desc'], 

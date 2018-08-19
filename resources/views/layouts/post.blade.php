@@ -16,6 +16,9 @@
 		<script>
 			$(document).ready( function() {
 				var event = new event_component();
+                event.config({
+                    load: true
+                });
 				event.run();
 			});
 		</script>

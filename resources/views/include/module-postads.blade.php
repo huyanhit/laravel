@@ -52,8 +52,11 @@
                     </div>
                     <div class="form-group clearfix">
                         <label class="control-label col-sm-3">Logo , Hình Ảnh</label>
-                        <div class="col-sm-9">
-                            <input type="file" class="form-control" name="feature" id="feature">
+                        <div class="col-sm-9 upload_field">
+                            <span class="inline">
+                            {{ Form::file('feature',array('id'=>'feature', 'class'=>'form-control')) }}
+                            </span>
+                            <span class="inline"><img src="{{isset($frm['image'])?Request::root().'/public/uploads/thum_ads/'.$frm['image']:''}}"></span>
                         </div>
                     </div>
                     <div class="form-group">

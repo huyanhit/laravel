@@ -1046,6 +1046,11 @@ body{
 		    border: none;
 		    text-transform: capitalize;
 			border-radius: 4px;
+			&:disabled{
+				background: #999c9e;
+				color: #ffffff;
+				cursor: not-allowed;
+			}
 		}
 		.captcha_image, .captcha_code{
 			label{
@@ -1367,6 +1372,35 @@ body{
 #login-layout{
 	background: #fff;
 	padding: 100px 0;
+	.panel-heading{
+		text-align: center;
+		text-transform: uppercase;
+		font-weight: bold;
+	}
+	.login_auto{
+		i{
+			font-size: 20px;
+			height: 35px;
+			width: 35px;
+			line-height: 35px;
+			text-align: center;
+			margin-right: 0px;
+			border-radius: 4px;
+		}
+		.login_face{
+			i{
+				background: #337ab7;
+				color: #fff;
+			}
+		}
+		.login_google{
+			i{
+				background: #c12d2a;
+				color: #fff;
+			}
+		}
+	}
+
 }
 
 .steps-form-3 {
@@ -1438,10 +1472,25 @@ body{
 		margin-bottom: 50px;
 	}
 }
+
 #frmpostface{
     .nextBtn-3, .prevBtn-3{
         margin-left: 8px;
         position: relative;
         top: -1px;
     }
+	.upload_field{
+		.inline{
+			input{
+				width: 50%;
+				float: left;
+			}
+			img{
+				width: 40px;
+				border: 1px #ccc solid;
+				margin-left: 10px;
+				border-radius: 4px;
+			}
+		}
+	}
 }

@@ -5,7 +5,16 @@
         @else
         {{Request::url()}}
         @endif ">
-        {!! csrf_field() !!}
+        @if ($errors->any())
+            <div class="alert alert-danger">
+                <ul>
+                    @foreach ($errors->all() as $error)
+                        <li>{{ $error }}</li>
+                    @endforeach
+                </ul>
+            </div>
+        @endif
+        <input type="hidden" name="_token" value="{{ csrf_token() }}">
         <div class="col-md-2 pl-5 pl-md-0 pb-5">
             <!-- Stepper -->
             <div class="steps-form-3">
@@ -31,30 +40,19 @@
                     <div class="form-group title">
                         <label class="control-label col-sm-3">Tên Công Việc</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" name="title" id="title" placeholder="Input Title" value="{{isset($frm['title'])?$frm['title']:''}}" required>
-                            <input type="hidden" class="form-control" id="typejobs" name="typejobs" value="1">
+                            {{ Form::input('text','title',isset($frm['title'])?$frm['title']:'',array('class' => 'form-control','placeholder' => 'Input title'))}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Ngành Nghề</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="catjobs" name="catjobs">
-                                @foreach($catjobs as $val)
-                                    <option
-                                    @if(isset($frm['catjobs']) && ($frm['catjobs'] == $val->id))
-                                    {{'selected'}}
-                                    @endif
-                                    value="{{$val->id}}">{{$val->title}}</option>
-                                @endforeach
-                            </select>
+                            {{Form::select('catjobs', $catjobs, isset($frm['catjobs'])?$frm['catjobs']:null, array('id'=>'catjobs', 'class'=>'form-control'))}}
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Chi tiết Công Việc</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" id="content-post" placeholder="Content" name="content">
-                                {{isset($frm['content'])?$frm['content']:''}}
-                            </textarea>
+                            {{ Form::textarea ('content',isset($frm['content'])?$frm['content']:'',array('id'=>'content-post', 'class'=>'form-control', 'placeholder'=>'Input content'))}}
                             <script type="text/javascript">CKEDITOR.replace('content-post'); </script>
                         </div>
                     </div>
@@ -69,42 +67,32 @@
             <div class="row setup-content-3" id="step-6">
                 <div class="col-md-12">
                     <h3>Thông tin nhà tuyển dụng</h3>
-                    <div class="form-group">
-                        <label class="control-label col-sm-3">Tên nhà tuyển dụng</label>
-                        <div class="col-sm-9">
-                            <input type="text" class="form-control" name="from" value="{{isset($frm['from'])?$frm['from']:''}}" required/>
-                        </div>
-                    </div>
                     <div class="form-group clearfix">
                         <label class="control-label col-sm-3">Logo , Hình Ảnh</label>
                         <div class="col-sm-9">
-                            <input type="file" class="form-control" name="feature" id="feature">
+                            <span class="inline"><img src="{{isset($frm['image'])?Request::root().'/public/uploads/thum_jobs/'.$frm['image']:''}}"></span>
+                            <span class="inline">
+                            {{ Form::file('feature',array('id'=>'feature', 'class'=>'form-control')) }}
+                            </span>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Thông tin liên hệ</label>
                         <div class="col-sm-9">
-                            <textarea class="form-control" name="desc" id="desc" placeholder="Input description" required>{{isset($frm['desc'])?$frm['desc']:''}}</textarea>
+                            {{ Form::textarea ('desc',isset($frm['desc'])?$frm['desc']:'',array('id'=>'desc', 'class'=>'form-control', 'placeholder'=>'Input description'))}}
+                            <script type="text/javascript">CKEDITOR.replace('desc'); </script>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3">Mức Lương</label>
                         <div class="col-sm-9">
-                            <input type="text" class="form-control" id="salary" name="salary">
+                            <input type="text" class="form-control" name="salary" value="{{isset($frm['salary'])?$frm['salary']:''}}" required>
                         </div>
                     </div>
                     <div class="form-group">
                         <label class="control-label col-sm-3" >Nơi làm việc</label>
                         <div class="col-sm-9">
-                            <select class="form-control" id="location" name="location">
-                                @foreach($location as $val)
-                                    <option
-                                            @if(isset($frm['location']) && ($frm['location'] == $val->id))
-                                            {{'selected'}}
-                                            @endif
-                                            value="{{$val->id}}">{{$val->title}}</option>
-                                @endforeach
-                            </select>
+                            {{Form::select('location', $location, isset($frm['location'])?$frm['location']:null, array('id'=>'location', 'class'=>'form-control'))}}
                         </div>
                     </div>
                     <div class="col-md-offset-3 col-md-9">

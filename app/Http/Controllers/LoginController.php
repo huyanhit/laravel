@@ -10,13 +10,14 @@ use Illuminate\Http\Request;
 use Facebook\Facebook;
 use Google_Client; 
 use Google_Oauth2Service;
+use App\Http\Models\User as User;
 
 
 class LoginController extends Controller
 {
-  public function loginFacebook(){ 
+  public function loginFacebook(){
     session_start();
-    $config = array('app_id' => '780665195420181','app_secret' => '80d7bb98871f8df63cf2acb4653f3a1e','default_graph_version' => 'v2.2');
+    $config = array('app_id' => '1442315149208991','app_secret' => '5cc26a2224f06eeecfcca0b000a23b6f','default_graph_version' => 'v2.2');
     $fb = new Facebook($config);
     $helper = $fb->getRedirectLoginHelper();
 
@@ -48,7 +49,7 @@ class LoginController extends Controller
 
     $tokenMetadata = $oAuth2Client->debugToken($accessToken);
 
-    $tokenMetadata->validateAppId($config['app_id']); 
+    $tokenMetadata->validateAppId($config['app_id']);
     $tokenMetadata->validateExpiration();
 
     if (! $accessToken->isLongLived()) {
@@ -60,7 +61,7 @@ class LoginController extends Controller
       }
     }
 
-    //Session::put('fb_access_token', (string) $accessToken);  
+    //Session::put('fb_access_token', (string) $accessToken);
     //$fb->setDefaultAccessToken(Session::get('fb_access_token'));
 
     $_SESSION['fb_access_token'] = (string) $accessToken;
@@ -68,10 +69,26 @@ class LoginController extends Controller
 
     $response = $fb->get('/me?locale=en_US&fields=id,last_name,first_name,email,birthday');
     $userData = $response->getDecodedBody();
-    echo('<pre>');
-    print_r($userData);
-      
+
+      if (auth()->guard('web')->attempt([
+          'email' => $userData['email'],
+          'password' => $userData['id'],
+      ])){
+          return redirect('/');
+      }else{
+          User::create([
+              'name' => $userData['last_name'].' '.$userData['first_name'],
+              'email' => $userData['email'],
+              'password' => bcrypt($userData['id']),
+          ]);
+          auth()->guard('web')->attempt([
+              'email' => $userData['email'],
+              'password' => $userData['id'],
+          ]);
+          return redirect('/');
+      }
   }
+
   public function loginGoogle(){ 
     $clientId = '403419571002-8k79k4a49ucfgj4a3nqhou9rrf86v21a.apps.googleusercontent.com'; 
     $clientSecret = 'ylyMrxbu9tsOz9iMdMLLqcy3';

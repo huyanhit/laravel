@@ -16,12 +16,15 @@ use App\Http\Models\IntroModel;
 
 class PostjobsController extends Controller
 {
-	public function __construct()
+	public function __construct(Request $request)
     {
 		$this->middleware('auth');
+        $this->images       = 'jobs';
+        $this->thum_images  = 'thum_jobs';
         $this->jobs = new JobsModel();
         $this->news = new NewsModel();
         $this->ads = new AdsModel();
+        $this->request = $request;
         $this->catjobs = new CatjobsModel();
         $this->typejobs = new TypejobsModel();
         $this->location = new LocationModel();
@@ -54,15 +57,41 @@ class PostjobsController extends Controller
 
 	public function insertJobs()
 	{
-		$data['catjobs'] = $this->catjobs->getCatJobs();
-		$data['typejobs'] = $this->typejobs->getTypeJobs();
-		$data['location'] = $this->location->getLocation();
+        $catjobs = $this->catjobs->getCatJobs();
+        $data['catjobs'] = array();
+        foreach ($catjobs as $value){
+            $data['catjobs'][$value->id] = $value->title;
+        }
+
+        $typejobs =$this->typejobs->getTypeJobs();
+        $data['typejobs'] = array();
+        foreach ($typejobs as $value){
+            $data['typejobs'][$value->id] = $value->title;
+        }
+
+        $location = $this->location->getLocation();
+        $data['location'] = array();
+        foreach ($location as $value){
+            $data['location'][$value->id] = $value->title;
+        }
+
 		$data['frm'] = "";
-		if(isset($_POST['submit'])){
-			if(!empty($_FILES["feature"]["name"]))
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
-			$frm =  
-			    ['id'     	  => NULL,
+        if(!empty($this->request->input('submit'))){
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catjobs' => 'required',
+                'typejobs'    => 'required',
+                'location'    => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'captcha' => 'required|captcha'
+            ));
+
+            if(!empty($_FILES["feature"]["name"]))
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
+
+			$frm = array(
+			    'id'     	  => NULL,
 			    'catjobs'     => $_POST['catjobs'],
 			    'typejobs'    => $_POST['typejobs'],
 			    'location'    => $_POST['location'],
@@ -73,61 +102,73 @@ class PostjobsController extends Controller
 			    'from'        => $_POST['from'], 
 			    'salary'      => $_POST['salary'],
 			    'date_create' => time(), 
-			    'author'      => 1];
+			    'author'      => auth()->user()->id);
+
 			if($id = $this->jobs->insertJobs($frm)){
 				return redirect('/viec-lam');
 			}
 			$data['frm'] = $frm;
-			return view("postjobs",$data);
-		}else{
-			if(isset($_GET['id'])){
-				$id = $_GET['id'];
-				$jobs = $this->jobs->getJobsById($id);
-				$data['catjobs'] = $this->catjobs->getCatJobs();
-				$data['typejobs'] = $this->typejobs->getTypeJobs();
-				$data['location'] = $this->location->getLocation();
-				$data['frm'] =  
-			    ['catjobs'    => $jobs->catjobs,
-			    'typejobs'    => $jobs->typejobs,
-			    'location'    => $jobs->location,
-			    'title'       => $jobs->title, 
-			    'desc'        => $jobs->desc, 
-			    'content'     => $jobs->content, 
-			    'image'       => $jobs->image,
-			    'from'        => $jobs->from, 
-			    'salary'      => $jobs->salary, 
-			    'author'      => 1];
-				return view('postjobs',$data);
-			}
-			return view('postjobs',$data);
 		}
+
+        return view("postjobs", $data);
 	}
 	
-	public function editJobs(){
-		$id = $_GET['id'];
+	public function editJobs($id){
+
 		$jobs = $this->jobs->getJobsById($id);
 		$data['edit'] = $id;
-		$data['catjobs'] = $this->catjobs->getCatJobs();
-		$data['typejobs'] = $this->typejobs->getTypeJobs();
-		$data['location'] = $this->location->getLocation();
-		$data['frm'] =  
-		   ['catjobs'     => $jobs->catjobs,
+
+        $catjobs = $this->catjobs->getCatJobs();
+        $data['catjobs'] = array();
+        foreach ($catjobs as $value){
+            $data['catjobs'][$value->id] = $value->title;
+        }
+
+        $typejobs =$this->typejobs->getTypeJobs();
+        $data['typejobs'] = array();
+        foreach ($typejobs as $value){
+            $data['typejobs'][$value->id] = $value->title;
+        }
+
+        $location = $this->location->getLocation();
+        $data['location'] = array();
+        foreach ($location as $value){
+            $data['location'][$value->id] = $value->title;
+        }
+
+		$data['frm'] =array(
+		    'catjobs'     => $jobs->catjobs,
 		    'typejobs'    => $jobs->typejobs,
 		    'location'    => $jobs->location,
 		    'title'       => $jobs->title, 
 		    'desc'        => $jobs->desc, 
-		    'content'     => $jobs->content, 
+		    'content'     => $jobs->content,
+            'image'       => $jobs->image,
 		    'from'        => $jobs->from, 
 		    'salary'      => $jobs->salary,
-		    'author'      => 1];
-		if(isset($_POST['submit'])){
-			if(!empty($_FILES["feature"]["name"])){
-				$_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"]);
+		    'author'      => auth()->user()->id
+        );
+
+        if(!empty($this->request->input('submit'))){
+
+            $this->validate($this->request, array(
+                'title' => 'required|max:255',
+                'catjobs' => 'required',
+                'typejobs'    => 'required',
+                'location'    => 'required',
+                'content' => 'required',
+                'desc' => 'required',
+                'captcha' => 'required|captcha'
+            ));
+
+            if(!empty($_FILES["feature"]["name"])){
+                $_FILES["feature"]["name"] = $this->myFunction->uploadImage($_FILES["feature"], $this->images, $this->thum_images);
 			}else{
 				$_FILES["feature"]["name"] = $jobs->image;
 			}
-			$frm =  
-			   ['catjobs'     => $_POST['catjobs'],
+
+			$frm =  array(
+			    'catjobs'     => $_POST['catjobs'],
 			    'typejobs'    => $_POST['typejobs'],
 			    'location'    => $_POST['location'],
 			    'title'       => $_POST['title'], 
@@ -136,20 +177,25 @@ class PostjobsController extends Controller
 			    'image'       => $_FILES["feature"]["name"], 
 			    'from'        => $_POST['from'], 
 			    'salary'      => $_POST['salary'],
+                'active'      => 0,
 			    'date_update' => time(),  
-			    'author'      => 1];
-			$this->jobs->updateJobs($frm,$id);
-			$data['frm'] = $frm;
-			return view('postjobs',$data);
-		}else{
-			return view('postjobs',$data);
+			    'author'      => auth()->user()->id
+            );
+
+            if($this->jobs->updateJobs($frm,$id)){
+                return view('postjobs',$data);
+            }else{
+                $data['frm'] = $frm;
+            }
 		}
+
+		return view('postjobs',$data);
 	}
 
-	public function deleteJobs()
+	public function deleteJobs($id)
 	{
-		if(isset($_GET['id'])){
-			return $this->jobs->deteleId($_GET['id']);
+		if($id){
+			return $this->jobs->deteleId($id);
 		}
 	}
 

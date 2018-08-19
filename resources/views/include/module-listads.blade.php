@@ -119,7 +119,7 @@
 					
 				</td>
 				<td>
-					<a href="{{Request::url()}}/xem-tin-rao-vat/{{$val->id}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
+					<a href="{{Request::root()}}/rao-vat/noi-dung/{{$val->view}}"><i class="fa fa-share-square-o" aria-hidden="true"></i></a>
 					<a href="{{Request::url()}}/sua-tin-rao-vat/{{$val->id}}"> <i class="fa fa-pencil-square-o" aria-hidden="true"></i></a>
 					<a class="ajaxdelete" href="{{Request::url()}}/xoa-tin-rao-vat/{{$val->id}}"> <i class="fa fa-minus-square-o" aria-hidden="true"></i></a>
 				</td>

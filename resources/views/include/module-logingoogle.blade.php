@@ -38,4 +38,4 @@ if ($gClient->getAccessToken()) {
 } 
 
 $authUrl = $gClient->createAuthUrl();
-echo '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'">login google</a>';
+echo '<a href="'.filter_var($authUrl, FILTER_SANITIZE_URL).'"><i class="fa fa-google-plus" aria-hidden="true"></i></a>';

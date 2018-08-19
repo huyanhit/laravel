@@ -933,6 +933,10 @@ body {
       border: none;
       text-transform: capitalize;
       border-radius: 4px; }
+      #postjobs form input[type='submit']:disabled, #postjobs form button:disabled, #postads form input[type='submit']:disabled, #postads form button:disabled {
+        background: #999c9e;
+        color: #ffffff;
+        cursor: not-allowed; }
     #postjobs form .captcha_image label, #postjobs form .captcha_code label, #postads form .captcha_image label, #postads form .captcha_code label {
       display: inline-block;
       margin-right: 10px;
@@ -1178,6 +1182,24 @@ body {
 #login-layout {
   background: #fff;
   padding: 100px 0; }
+  #login-layout .panel-heading {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold; }
+  #login-layout .login_auto i {
+    font-size: 20px;
+    height: 35px;
+    width: 35px;
+    line-height: 35px;
+    text-align: center;
+    margin-right: 0px;
+    border-radius: 4px; }
+  #login-layout .login_auto .login_face i {
+    background: #337ab7;
+    color: #fff; }
+  #login-layout .login_auto .login_google i {
+    background: #c12d2a;
+    color: #fff; }
 
 .steps-form-3 {
   transform: translateY(50%);
@@ -1232,6 +1254,16 @@ body {
   margin-left: 8px;
   position: relative;
   top: -1px; }
+
+#frmpostface .upload_field .inline input {
+  width: 50%;
+  float: left; }
+
+#frmpostface .upload_field .inline img {
+  width: 40px;
+  border: 1px #ccc solid;
+  margin-left: 10px;
+  border-radius: 4px; }
 
 @media only screen and (max-width: 767px) {
   .main {
