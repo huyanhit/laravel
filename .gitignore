@@ -2,6 +2,8 @@
 /public/uploads
 /config/database
 /node_modules
+/config/app
+/config/database
 /.git
 /.idea
 .env
