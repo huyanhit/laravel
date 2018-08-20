@@ -2,8 +2,8 @@
 /public/uploads
 /config/database
 /node_modules
-/config/app
-/config/database
+/config/app.php
+/config/database.php
 /.git
 /.idea
 .env
@@ -13,5 +13,3 @@
 index.php
 Homestead.yaml
 Homestead.json
-/.env
-/index.php
