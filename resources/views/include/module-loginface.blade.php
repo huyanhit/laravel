@@ -11,7 +11,7 @@ $fb = new Facebook($config);
 $helper = $fb->getRedirectLoginHelper();
 
 $permissions = ['email']; // Optional permissions
-$loginUrl = $helper->getLoginUrl('http://'.$_SERVER['HTTP_HOST'].'/laravel/login-facebook', $permissions);
+$loginUrl = $helper->getLoginUrl('http://'.$_SERVER['HTTP_HOST'].'/login-facebook', $permissions);
 
 echo '<a href="' . htmlspecialchars($loginUrl) . '"><i class="fa fa-facebook" aria-hidden="true"></i></a>';
 ?>
