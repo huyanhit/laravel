@@ -7,7 +7,7 @@ use App\Http\Models\NewsModel;
 use App\Http\Models\JobsModel;
 use App\Http\Models\AdsModel;
 use App\Http\Models\HeaderlineModel;
-use App\Http\Models\CatNewsModel;
+use App\Http\Models\CatnewsModel;
 use App\Http\Models\IntroModel;
 use App\Http\Models\CommentModel;
 use Illuminate\Support\Facades\Auth;
@@ -22,7 +22,7 @@ class NewsController extends Controller
         $this->news         = new NewsModel();
         $this->jobs         = new JobsModel();
         $this->ads          = new AdsModel();;
-        $this->catnews      = new CatNewsModel();
+        $this->catnews      = new CatnewsModel();
         $this->comment      = new CommentModel();
         $this->systemCode   = new SystemModel();
         $this->myFunction   = new MyFunction();
