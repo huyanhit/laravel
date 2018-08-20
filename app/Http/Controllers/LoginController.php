@@ -85,8 +85,8 @@ class LoginController extends Controller
               'email' => $userData['email'],
               'password' => $userData['id'],
           ]);
-          return redirect('/');
       }
+    return redirect('/');
   }
 
   public function loginGoogle(){ 
