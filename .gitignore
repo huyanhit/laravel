@@ -1,9 +1,5 @@
-/vendor
 /public/storage
-/public/uploads/file
-/public/uploads/audio
-/public/uploads/video
-/config/app
+/public/uploads
 /config/database
 /node_modules
 /.git
@@ -15,5 +11,5 @@
 index.php
 Homestead.yaml
 Homestead.json
-
 /.env
+/index.php
