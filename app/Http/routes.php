@@ -62,6 +62,7 @@ Route::get('web-login', 'Auth\AuthController@webLogin');
 Route::post('web-login', ['as'=>'web-login','uses'=>'AuthController@webLoginPost']);
 
 Route::get('/home', 'HomeController@index');
+Route::get('/test', 'HomeController@test');
 
 Route::auth();
 

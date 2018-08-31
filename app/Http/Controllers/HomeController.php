@@ -65,6 +65,10 @@ class HomeController extends Controller
         return view("home",$data);
     }
 
+    public function test(){
+        echo(json_encode($this->news->getNewsFrame($this->arrPositions['news_rss'],70,100, 10,true)));
+    }
+
     public function ajaxjobs(){
         $data['location']   = $this->location->getLocation();
         $data['catjobs']    = $this->catjobs->getCatJobs();
