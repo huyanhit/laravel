@@ -58,11 +58,13 @@ Route::get('/quan-li-rao-vat/sua-tin-rao-vat/{id}', 'PostadsController@editads')
 Route::get('/login-facebook', 'LoginController@loginFacebook');
 Route::get('/login-google', 'LoginController@loginGoogle');
 
-Route::get('web-login', 'Auth\AuthController@webLogin');
-Route::post('web-login', ['as'=>'web-login','uses'=>'AuthController@webLoginPost']);
+Route::post('/api/dang-nhap', 'UserController@login');
+Route::post('/api/dang-ky', 'UserController@register');
+Route::group(['middleware' => 'jwt.auth'], function () {
+    Route::get('/api/thong-tin', 'UserController@getUserInfo');
+});
 
 Route::get('/home', 'HomeController@index');
-Route::get('/test', 'HomeController@test');
 
 Route::auth();
 

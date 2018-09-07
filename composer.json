@@ -9,7 +9,8 @@
         "laravel/framework": "5.2.*",
         "laravelcollective/html": "^5.2.0",
         "doctrine/inflector": "1.1.0",
-        "mews/captcha": "^2.2"
+        "mews/captcha": "^2.2",
+        "tymon/jwt-auth": "^0.5.12"
     },
     "require-dev": {
         "fzaninotto/faker": "~1.4",
