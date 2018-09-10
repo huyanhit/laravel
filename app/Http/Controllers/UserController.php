@@ -53,4 +53,8 @@ class UserController extends Controller
     public function postNews(Request $request){
         print_r($request->input());
     }
+
+    public function getAllUser(){
+        return response()->json(User::all());
+    }
 }
