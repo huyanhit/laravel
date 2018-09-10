@@ -54,7 +54,7 @@ class UserController extends Controller
         print_r($request->input());
     }
 
-    public function getAllUser(){
+    public function getAllUser(Request $request){
         return response()->json(User::all());
     }
 }
