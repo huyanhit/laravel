@@ -32,27 +32,25 @@ class UserController extends Controller
 
     public function login(Request $request){
         if($request->isMethod('post')){
-
             $credentials = $request->only('email', 'password');
-
             $token = null;
-
             try {
                if (!$token = JWTAuth::attempt($credentials)) {
-                 die;
-                return response()->json(['invalid_email_or_password'], 422);
+                   return response()->json(['invalid_email_or_password'], 422);
                }
-
             } catch (JWTAuthException $e) {
                 return response()->json(['failed_to_create_token'], 500);
             }
             return response()->json(compact('token'));
-
         }
     }
 
     public function getUserInfo(Request $request){
         $user = JWTAuth::toUser($request->token);
         return response()->json(['result' => $user]);
+    }
+
+    public function postNews(Request $request){
+        print_r($request->input());
     }
 }

@@ -62,6 +62,7 @@ Route::post('/api/dang-nhap', 'UserController@login');
 Route::post('/api/dang-ky', 'UserController@register');
 Route::group(['middleware' => 'jwt.auth'], function () {
     Route::get('/api/thong-tin', 'UserController@getUserInfo');
+    Route::post('/api/dang-tin-tuc', 'UserController@postNews');
 });
 
 Route::get('/home', 'HomeController@index');
