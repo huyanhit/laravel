@@ -50,6 +50,23 @@ class UserController extends Controller
         return response()->json(['result' => $user]);
     }
 
+    public function updateUserInfo(Request $request){
+        $id = $request->input('id');
+        $name = $request->input('name');
+        $email = $request->input('email');
+
+        $result = User::where('id', $id)
+                    ->update([
+                        'name' => $data['name'],
+                        'email' => $data['email']
+                    ]);
+        if($result){
+            return response()->json(["success"]);
+        }else{
+            return response()->json(["false"]);
+        }
+    }
+
     public function postNews(Request $request){
         print_r($request->input());
     }
