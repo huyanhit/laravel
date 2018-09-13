@@ -57,8 +57,8 @@ class UserController extends Controller
 
         $result = User::where('id', $id)
                     ->update([
-                        'name' => $data['name'],
-                        'email' => $data['email']
+                        'name' => $name,
+                        'email' => $email
                     ]);
         if($result){
             return response()->json(["success"]);
