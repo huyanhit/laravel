@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use JWTAuth;
 use JWTAuthException;
 use Hash;
+use App\Library\myfunction;
 
 class UserController extends Controller
 {
@@ -14,6 +15,9 @@ class UserController extends Controller
 
     public function __construct(User $user){
         $this->user = $user;
+        $this->images = 'news';
+        $this->thum_images = 'thum_news';
+        $this->myFunction = new MyFunction();
     }
 
     public function register(Request $request){
@@ -66,6 +70,35 @@ class UserController extends Controller
             return response()->json(["false"]);
         }
     }
+    
+    public function insertUserInfo(Request $request){
+        $password = $request->input('password');
+        $email = $request->input('email');
+
+        $result = User::create([
+                        'password' => $password,
+                        'email' => $email
+                    ]);
+        if($result){
+            return response()->json(["success"]);
+        }else{
+            return response()->json(["false"]);
+        }
+    }
+    
+    public function uploadUserInfo(Request $request){
+        $file =  $request->file;
+        if($file != null){
+            $destinationPath = public_path('uploads');
+            $fileName = $file->getClientOriginalName();
+            if($file->move($destinationPath, $fileName)){
+                $path = url('/');
+                return response()->json([$path.'/public/uploads/'.$fileName]);
+            }
+        }
+        return response()->json(["false"]);
+    }
+    
 
     public function postNews(Request $request){
         print_r($request->input());
